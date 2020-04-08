@@ -233,7 +233,7 @@ module ProteinInference =
 
     /// By reading GFF creates the protein models (relationships of proteins to each other) which basically means grouping the rnas over the gene loci
     /// TODO: Don't group over order but rather group over id
-    let assignTranscriptsToGenes regexPattern (gffLines: seq<GFF3.GFFLine<seq<char>>>)  =
+    let assignTranscriptsToGenes regexPattern (gffLines: seq<GFFLine<seq<char>>>)  =
         gffLines
         // transcripts are grouped by the gene they originate from
         |> Seq.groupWhen isGene
@@ -259,6 +259,21 @@ module ProteinInference =
         )
         |> Seq.concat
         |> Map.ofSeq
+
+    /// Creates a lookup data base to assign peptides to the proteins they are contained in
+    let createPeptideProteinRelation (protModels:seq<ProteinModel<'id,'chromosomeId,'geneLocus,'sequence list> option>) =
+        let ppRelation = BidirectionalDictionary<'sequence,ProteinModelInfo<'id,'chromosomeId,'geneLocus>>()
+        protModels
+        |> Seq.iter (fun prot ->
+                        // insert peptide-protein relationship
+                        // Todo: change type of proteinID in digest
+                        match prot with
+                        | Some proteinModel ->
+                            proteinModel.Sequence
+                            |> Seq.iter (fun pepSequence -> ppRelation.Add pepSequence proteinModel.ProteinModelInfo)
+                        | None -> ()
+        )
+        ppRelation
 
     /// Contains all different classes with their associated proteins
     type private ClassMap =
@@ -288,6 +303,73 @@ module ProteinInference =
             let name = proteinGroupToString prots
             Seq.iter (fun p -> m.[c].Add p name) prots
             m
+
+    // Creates a Map of peptides with their highest found score
+    let createPeptideScoreMap (psmInputs: PSMInput list list) =
+        psmInputs
+        |> List.concat
+        |> List.groupBy (fun psm -> psm.Seq)
+        |> List.map (fun (sequence, psmList) ->
+            // This sequence may contain modifications.
+            // Depending on the type of lookup this map is used for, the modifications have to be removed.
+            sequence,
+            psmList
+            |> List.maxBy (fun psm -> psm.PercolatorScore)
+            |> fun psm -> psm.PercolatorScore
+        )
+        |> Map.ofList
+
+    // Assigns a score to each protein with reverse digested peptides based on the peptides obtained in psm.
+    let createReverseProteinScores (reverseProteins: (string*string[])[]) (peptideScoreMap: Map<string,float>) =
+        // Remove modifications from map since protein inference was also done using unmodified peptides
+        let scoreMapWithoutMods =
+            peptideScoreMap
+            |> Map.toArray
+            |> Array.map (fun (seq, score) ->
+                removeModification seq, score
+            )
+            |> Map.ofArray
+        reverseProteins
+        |> Array.map (fun (protein, peptides) ->
+        protein,
+            (
+                peptides
+                // looks wether the peptides resulting from the reverse digest appear in the peptides from the psm
+                |> Array.map (fun pep ->
+                    scoreMapWithoutMods.TryFind pep
+                    |> (fun x ->
+                        match x with
+                        | Some score -> score
+                        | None -> 0.
+                    )
+                )
+                |> Array.sum,
+                peptides
+            )
+        )
+        // only hits are relevant
+        |> Array.filter (fun (protein, (score, peptides)) -> score <> 0.)
+        |> Map.ofArray
+
+    /// Sums up score of all peptide sequences
+    let assignPeptideScores (peptideSequences : string []) (peptideScoreMap : Map<string,float>) =
+        peptideSequences
+        |> Array.map (fun sequence -> peptideScoreMap.Item sequence)
+        |> Array.sum
+
+    /// Looks if the given protein accession is present in a map of identified decoy proteins and assigns its score when found.
+    let assignDecoyScoreToTargetScore (proteins: string) (decoyScores: Map<string,(float * string[])>) =
+        let prots = proteins |> String.split ';'
+        prots
+        |> Array.map (fun protein ->
+            decoyScores.TryFind protein
+            |> fun protOpt ->
+                match protOpt with
+                // peptides which pointed to the decoy version of this protein are discarded here, they can be included if needed
+                | Some (score,peptides) -> score
+                | None -> 0.
+        )
+        |> Array.max
 
     ///In a given class finds the overlap between the given and already added proteins and integrates them
     let private findAndIntegrate (m:ClassMap) (c:PeptideEvidenceClass) (proteins:string []) =
