@@ -192,8 +192,73 @@ module ProteinInference =
         | PeptideEvidenceClass.C3b -> "Class3B"
 
     /// Appends a collection of proteins to a single string
-    let private proteinGroupToString (proteinGroup:string[]) =
+    let proteinGroupToString (proteinGroup:string[]) =
         Array.reduce (fun x y ->  x + ";" + y) proteinGroup
+
+    let removeModification pepSeq =
+        String.filter (fun c -> System.Char.IsLower c |> not && c <> '[' && c <> ']') pepSeq
+
+    /// Checks if GFF line describes gene
+    let isGene (item: GFFLine<seq<char>>) =
+        match item with
+        | GFFEntryLine x -> x.Feature = "gene"
+        | _ -> false
+
+    /// Checks if GFF line describes rna
+    let isRNA (item: GFFLine<seq<char>>) =
+        match item with
+        | GFFEntryLine x -> if x.Feature = "mRNA" then Some x else None
+        | _ -> None
+
+    /// Reads geographical information about protein from gff entry and builds the modelinfo of it
+    /// This function takes an RNA gff3 entry and therefore will contain the splice variant id of the gene in its result.
+    /// This splice variant id should be the same in the given FastA-file.
+    let createProteinModelInfoFromEntry i locus (entry:GFFEntry) =
+        let attributes = entry.Attributes
+        /// Same as in FastA file
+        let spliceVariantID =
+            match Map.tryFind "Name" attributes with
+            | Some res ->
+                res.Head
+            | None ->
+                failwithf "could not find spliceVariantId for locus %s" locus
+        let chromosomeID = entry.Seqid
+
+        let direction =
+            match entry.Strand with
+            |'+' -> StrandDirection.Forward
+            |'-' -> StrandDirection.Reverse
+
+        createProteinModelInfo spliceVariantID chromosomeID direction locus i Seq.empty Seq.empty
+
+    /// By reading GFF creates the protein models (relationships of proteins to each other) which basically means grouping the rnas over the gene loci
+    /// TODO: Don't group over order but rather group over id
+    let assignTranscriptsToGenes regexPattern (gffLines: seq<GFF3.GFFLine<seq<char>>>)  =
+        gffLines
+        // transcripts are grouped by the gene they originate from
+        |> Seq.groupWhen isGene
+        |> Seq.map (fun group ->
+            match Seq.head group with
+            | GFFEntryLine x ->
+                let locus = x.Attributes.["ID"].Head // =genename, this value is used to assign mRNAs of the same gene together
+                group
+                |> Seq.choose isRNA //the transcripts of the gene are chosen
+                |> Seq.mapi (fun i element ->
+                    // every transcript of gene gets its own number i and other info is collected from element and used for info of protein
+                    let modelInfo = createProteinModelInfoFromEntry i locus element
+                    let r = System.Text.RegularExpressions.Regex.Match(modelInfo.Id,regexPattern)
+                    // the gff3 id has to be matched with the sequence in the fasta file. therefore the regexpattern is used
+                    if r.Success then
+                        r.Value,
+                        modelInfo
+                    else
+                        failwithf "could not match gff3 entry id %s with regexpattern %s. Either gff3 file is corrupt or regexpattern is not correct" modelInfo.Id regexPattern
+                )
+
+            | _ -> Seq.empty
+        )
+        |> Seq.concat
+        |> Map.ofSeq
 
     /// Contains all different classes with their associated proteins
     type private ClassMap =
