@@ -855,6 +855,31 @@ module SearchDB =
                 | true  -> Some (reader.GetDouble(0))
                 | false -> Option.None)
 
+            /// Prepares statement to select a Protein Accession entry by ID
+            let prepareSelectProteinAccessionByID (cn:SQLiteConnection) (tr) =
+                let querystring = "SELECT Accession FROM Protein WHERE ID=@id "
+                let cmd = new SQLiteCommand(querystring, cn, tr)
+                cmd.Parameters.Add("@id", DbType.Int32) |> ignore
+                (fun (id:int32)  ->
+                    cmd.Parameters.["@id"].Value <- id
+                    use reader = cmd.ExecuteReader()
+                    match reader.Read() with
+                    | true  -> (reader.GetString(0))
+                    | false -> ""
+                )
+
+            /// Prepares statement to select a Peptide Sequence entry by ID
+            let prepareSelectPepSequenceByPepSequenceID (cn:SQLiteConnection) (tr) =
+                let querystring = "SELECT Sequence FROM PepSequence WHERE ID=@pepSequenceID"
+                let cmd = new SQLiteCommand(querystring, cn, tr)
+                cmd.Parameters.Add("@pepSequenceID", DbType.Int32) |> ignore
+                (fun (pepSequenceID:int)  ->
+                    cmd.Parameters.["@pepSequenceID"].Value <- pepSequenceID
+                    use reader = cmd.ExecuteReader()
+                    reader.Read() |> ignore
+                    reader.GetString(0)
+                )
+
                 //#define SQLITE_ERROR        1   /* SQL error or missing database */
                 //#define SQLITE_INTERNAL     2   /* Internal logic error in SQLite */
                 //#define SQLITE_PERM         3   /* Access permission denied */
