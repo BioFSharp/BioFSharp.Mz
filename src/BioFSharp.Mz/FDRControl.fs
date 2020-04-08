@@ -1,8 +1,69 @@
 ﻿namespace BioFSharp.Mz
 
 open FSharp.Stats
+open FSharpAux
 
 module FDRControl = 
+
+    module MAYU =
+
+        // FDR estimation using MAYU
+        // Code form 'stirlingLogFactorial' to 'estimatePi0HG' translated from percolator 'ProteinFDREstimator.cpp'
+
+        let private stirlingLogFacorial (n: float) =
+            log(sqrt(2. * pi  *n)) + n * log(n) - n
+
+        let private exactLogFactorial (n: float) =
+            let rec loop i log_fact =
+                if i > n then
+                    log_fact
+                else
+                    let new_log_fact = log_fact + (log i)
+                    loop (i + 1.) new_log_fact
+            loop 2. 0.
+
+        let private logFactorial (n: float) =
+            if n < 1000. then
+                exactLogFactorial n
+            else
+                stirlingLogFacorial n
+
+        let private logBinomial (n: float) (k: float) =
+            (logFactorial n) - (logFactorial k) - (logFactorial (n - k))
+
+        let private hypergeometric (x: float) (n: float) (w: float) (d: float) =
+            //natural logarithm of the probability
+            if (d > 0.) then
+                exp((logBinomial w x) + (logBinomial (n - w) (d - x)) - (logBinomial n d))
+            else 0.
+
+        /// Estimates the false positives given the total number of entries, the number of target hits and the number of decoy hits
+        let estimatePi0HG (n: float) (targets: float) (cf: float) =
+            let rec loop (fp: float) (logprob: float list) =
+                if fp > cf then
+                    logprob |> List.rev
+                else
+                    let tp = targets - fp
+                    let w = n - tp
+                    let prob = hypergeometric fp n w cf
+                    loop (fp + 1.) (prob::logprob)
+            let logprob = loop 0. []
+            let sum = logprob |> List.sum
+            let logprob_Norm =
+                logprob
+                |> List.map (fun x ->
+                    x / sum
+                )
+            // MAYU rounds here to first decimal
+            let expectation_value_FP_PID =
+                logprob_Norm
+                |> List.foldi (fun i acc x ->
+                    acc + x * (float i)
+                ) 0.
+            if (isNan expectation_value_FP_PID) || (isInf expectation_value_FP_PID) then
+                0.
+            else
+                expectation_value_FP_PID
 
     /// for given data, creates a logistic regression model and returns a mapping function for this model
     let getLogisticRegressionFunction (x:vector) (y:vector) epsilon = 
