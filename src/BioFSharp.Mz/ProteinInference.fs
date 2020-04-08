@@ -7,6 +7,8 @@ open BioFSharp.IO.GFF3
 open FSharpAux.IO.SchemaReader.Attribute
 open System.Collections.Generic
 open FSharp.Plotly
+open FDRControl
+open FDRControl.MAYU
 
 
 module ProteinInference = 
@@ -575,3 +577,111 @@ module ProteinInference =
            else
             Chart.SaveHtmlAs (path + @"_QValueGraph")
             
+    module MAYU =
+
+        /// Returns proteins sorted into bins according to their size.
+        /// proteins are the proteins which were found in either the reverse or forward proteininference, proteinsFromDB are the proteins with peptide sequence
+        /// on which the inference was performed.
+        let binProteinsLength (proteins: InferredProteinClassItemScored []) (proteinsFromDB: (string*string)[]) binCount =
+            // need to bin all proteins in the db, not only those with hit?
+            let proteinsNotMatchedDB =
+                let proteinsMatched =
+                    proteins
+                    |> Array.collect (fun protein ->
+                        protein.GroupOfProteinIDs
+                        |> String.split ';'
+                    )
+                    |> Set.ofArray
+                // Creates an entry for every protein that is present in the search db and wasn't inferred
+                proteinsFromDB
+                |> Array.choose (fun (proteinName, peptideSequence) ->
+                    if Set.contains proteinName proteinsMatched then
+                        None
+                    else
+                        Some ((createInferredProteinClassItemScored proteinName BioFSharp.PeptideClassification.PeptideEvidenceClass.Unknown [|peptideSequence|] (-1.) (-1.) false false false),
+                             float peptideSequence.Length)
+                )
+
+            // Adds the length of the peptide sequence to every protein, since they should be binned according to it
+            let addedSequenceLength =
+                let proteinLengthMap =
+                    proteinsFromDB
+                    |> Array.map (fun (protein,sequence) ->
+                        protein, sequence.Length
+                    )
+                    |> Map.ofArray
+                proteins
+                |> Array.map (fun ipcis ->
+                    ipcis,
+                    let groupOfProteins =
+                        ipcis.GroupOfProteinIDs
+                        |> String.split ';'
+                    groupOfProteins
+                    |> Array.map (fun protein ->
+                        match proteinLengthMap.TryFind protein with
+                        | None -> failwith "A protein where you are trying to get the length from isn't present in the database"
+                        | Some length -> float length
+                    )
+                    // lengths are averaged for protein groups
+                    |> Array.average
+                )
+            let combined = Array.append addedSequenceLength proteinsNotMatchedDB
+            // sorting treats protein groups as one protein with average length. They are also treated as one protein for total and target counts.
+            let sortLength =
+                combined
+                |> Array.sortBy snd
+                |> Array.map fst
+            let bins =
+                let binSize =
+                    ceil (float sortLength.Length / binCount)
+                sortLength
+                |> Array.chunkBySize (int binSize)
+            bins
+
+        // The original paper of Mayu describes a protein as:
+        // FP = if only if all its peptides with q <= threshold are decoy
+        // TP = at least one of its peptides with q <= threshold is target
+        // However, the way mayu estimates it on the program is like this:
+        // FP = any protein that contains a decoy psm with q <= threshold
+        // TP = any protein that contains a target psm with q <= threshold
+        // They do not consider protein containing both decoy and target psms.
+        // ProteomIQon currently uses the picked target decoy approach with the following definitions:
+        // FP = protein where the score of decoy hits is higher than score of target hits
+        // TP = protein where the score of target hits is higher than score of decoy hits
+        // Also, mayu estimates q as the empirical (target-decoy) q value.
+        // Percolator estimates q as the empirical (target-decoy) q value and adjusted by pi0
+        // Mayu extracts the list of TP and FP proteins from PSM level whereas percolator
+        // extract the list of TP and FP proteins from peptide level, this avoids redundancy and
+        // gives a better calibration since peptide level q values are re-adjusted in percolator.
+        // ProteomIQon extracts TP and FP proteins from the result of the picked target decoy approach.
+        // This creates sometimes a difference in the number of TP and FP proteins between percolator, Mayu, and ProteomIQon,
+        // which causes a slight difference in the estimated protein FDR.
+
+        /// Calculates the expected false positives for every protein bin and sums them up.
+        let expectedFP (proteinBin: InferredProteinClassItemScored []) =
+            let numberTarget =
+                proteinBin
+                |> Array.sumBy (fun protein ->
+                    match not protein.DecoyBigger && protein.FoundInDB with
+                    | true -> 1.
+                    | false -> 0.
+                )
+            let numberDecoy =
+                proteinBin
+                 |> Array.sumBy (fun protein ->
+                     match protein.DecoyBigger && protein.FoundInDB with
+                     | true -> 1.
+                     | false -> 0.
+                 )
+            let total =
+                let notFound =
+                    proteinBin
+                    |> Array.sumBy (fun protein ->
+                        match not protein.FoundInDB with
+                        | true -> 1.
+                        | false -> 0.
+                    )
+                notFound + numberTarget + numberDecoy
+            // MAYU rounds the number of expected false positives for every bin to the first decimal
+            let fpInBin = estimatePi0HG total numberTarget numberDecoy
+            fpInBin
