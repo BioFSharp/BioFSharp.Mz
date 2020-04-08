@@ -3,6 +3,8 @@
 
 open FSharpAux
 open BioFSharp.PeptideClassification
+open BioFSharp.IO.GFF3
+open FSharpAux.IO.SchemaReader.Attribute
 open System.Collections.Generic
 
 
@@ -30,6 +32,68 @@ module ProteinInference =
             Class: PeptideEvidenceClass
         }    
 
+    /// For a group of proteins, contains information about all peptides that might be used for its quantification and score calculated for it.
+    type InferredProteinClassItemScored =
+        {
+            GroupOfProteinIDs: string
+            PeptideSequence  : string []
+            Class            : PeptideEvidenceClass
+            TargetScore      : float
+            DecoyScore       : float
+            Decoy            : bool
+            DecoyBigger      : bool
+            FoundInDB        : bool
+        }
+
+    /// For a group of proteins, contains information about all peptides that might be used for its quantification and score / q-value calculated for it.
+    type InferredProteinClassItemQValue =
+        {
+            GroupOfProteinIDs: string
+            PeptideSequence  : string []
+            Class            : PeptideEvidenceClass
+            TargetScore      : float
+            DecoyScore       : float
+            QValue           : float
+            Decoy            : bool
+            DecoyBigger      : bool
+            FoundInDB        : bool
+        }
+
+    /// For a group of proteins, contains information about all peptides that are put into the output file.
+    type InferredProteinClassItemOut =
+        {
+            GroupOfProteinIDs: string
+            PeptideSequence  : string
+            Class            : PeptideEvidenceClass
+            TargetScore      : float
+            DecoyScore       : float
+            QValue           : float
+        }
+
+    type PSMInput =
+        {
+            [<FieldAttribute("PepSequenceID")>]
+            PepSequenceID   : int
+            [<FieldAttribute("StringSequence")>]
+            Seq             :string
+            [<FieldAttribute("PercolatorScore")>]
+            PercolatorScore : float
+        }
+
+    /// Input for QValue calulation
+    type QValueInput =
+        {
+            Score    : float
+            IsDecoy  : bool
+        }
+
+    type ScoreTargetDecoyCount =
+        {
+            Score      : float
+            DecoyCount : float
+            TargetCount: float
+        }
+
     let private createInferredProteinClassItem proteinIDs evidenceClass peptideSequences = 
         {
             GroupOfProteinIDs = proteinIDs
@@ -42,6 +106,55 @@ module ProteinInference =
             GroupOfProteinIDs = proteinIDs
             PeptideSequence = peptideSequence
             Class = evidenceClass
+        }
+
+    let createInferredProteinClassItemScored proteinIDs evidenceClass peptideSequences targetScore decoyScore isDecoy decoyBigger foundInDB =
+        {
+            GroupOfProteinIDs = proteinIDs
+            PeptideSequence   = peptideSequences
+            Class             = evidenceClass
+            TargetScore       = targetScore
+            DecoyScore        = decoyScore
+            Decoy             = isDecoy
+            DecoyBigger       = decoyBigger
+            FoundInDB         = foundInDB
+        }
+
+    let createInferredProteinClassItemQValue proteinIDs evidenceClass peptideSequences targetScore decoyScore qValue isDecoy decoyBigger foundInDB =
+        {
+            GroupOfProteinIDs = proteinIDs
+            PeptideSequence   = peptideSequences
+            Class             = evidenceClass
+            TargetScore       = targetScore
+            DecoyScore        = decoyScore
+            QValue            = qValue
+            Decoy             = isDecoy
+            DecoyBigger       = decoyBigger
+            FoundInDB         = foundInDB
+        }
+
+    let createInferredProteinClassItemOut proteinIDs evidenceClass peptideSequences targetScore decoyScore qValue =
+        {
+            GroupOfProteinIDs = proteinIDs
+            PeptideSequence   = peptideSequences
+            Class             = evidenceClass
+            TargetScore       = targetScore
+            DecoyScore        = decoyScore
+            QValue            = qValue
+        }
+
+    let createQValueInput score isDecoy =
+        {
+            Score     = score
+            IsDecoy   = isDecoy
+        }
+
+    /// Gives the decoy and target count at a specific score
+    let createScoreTargetDecoyCount score decoyCount targetCount =
+        {
+            Score       = score
+            DecoyCount  = decoyCount
+            TargetCount = targetCount
         }
  
     /// Used to decide wether overlapping groups of proteins should be kept or merged
