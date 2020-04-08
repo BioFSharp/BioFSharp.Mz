@@ -6,6 +6,7 @@ open BioFSharp.PeptideClassification
 open BioFSharp.IO.GFF3
 open FSharpAux.IO.SchemaReader.Attribute
 open System.Collections.Generic
+open FSharp.Plotly
 
 
 module ProteinInference = 
