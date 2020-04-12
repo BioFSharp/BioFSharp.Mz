@@ -6,7 +6,8 @@ open BioFSharp.PeptideClassification
 open BioFSharp.IO.GFF3
 open FSharpAux.IO.SchemaReader.Attribute
 open System.Collections.Generic
-open FSharp.Plotly
+open FSharp.Stats
+open FSharp.Stats.Fitting.NonLinearRegression
 open FDRControl
 open FDRControl.MAYU
 
@@ -522,61 +523,6 @@ module ProteinInference =
                 )
             )
 
-    let qValueHitsVisualization bandwidth inferredProteinClassItemScored path (groupFiles: bool) =
-        let decoy, target = inferredProteinClassItemScored |> Array.partition (fun x -> x.DecoyBigger)
-        // Histogram with relative abundance
-        let freqTarget = FSharp.Stats.Distributions.Frequency.create bandwidth (target |> Array.map (fun x -> x.TargetScore))
-                            |> Map.toArray
-                            |> Array.map (fun x -> fst x, (float (snd x)) / (float target.Length))
-        let freqDecoy  = FSharp.Stats.Distributions.Frequency.create bandwidth (decoy |> Array.map (fun x -> x.DecoyScore))
-                            |> Map.toArray
-                            |> Array.map (fun x -> fst x, (float (snd x)) / (float target.Length))
-        // Histogram with absolute values
-        let freqTarget1 = FSharp.Stats.Distributions.Frequency.create bandwidth (target |> Array.map (fun x -> x.TargetScore))
-                            |> Map.toArray
-        let freqDecoy1  = FSharp.Stats.Distributions.Frequency.create bandwidth (decoy |> Array.map (fun x -> x.DecoyScore))
-                            |> Map.toArray
-        let histogram =
-            [
-                Chart.Column freqTarget |> Chart.withTraceName "Target"
-                    |> Chart.withAxisAnchor(Y=1);
-                Chart.Column freqDecoy |> Chart.withTraceName "Decoy"
-                    |> Chart.withAxisAnchor(Y=1);
-                Chart.Column freqTarget1
-                    |> Chart.withAxisAnchor(Y=2)
-                    |> Chart.withMarkerStyle (Opacity = 0.)
-                    |> Chart.withTraceName (Showlegend = false);
-                Chart.Column freqDecoy1
-                    |> Chart.withAxisAnchor(Y=2)
-                    |> Chart.withMarkerStyle (Opacity = 0.)
-                    |> Chart.withTraceName (Showlegend = false)
-            ]
-            |> Chart.Combine
-
-        let sortedQValues =
-            inferredProteinClassItemScored
-            |> Array.map
-                (fun x -> if x.Decoy then
-                            x.DecoyScore, x.QValue
-                            else
-                            x.TargetScore, x.QValue
-                )
-            |> Array.sortBy (fun (score, qVal) -> score)
-
-        [
-            Chart.Point sortedQValues |> Chart.withTraceName "Q-Values";
-            histogram
-        ]
-        |> Chart.Combine
-        |> Chart.withY_AxisStyle("Relative Frequency / Q-Value",Side=StyleParam.Side.Left,Id=1, MinMax = (0., 1.))
-        |> Chart.withY_AxisStyle("Absolute Frequency",Side=StyleParam.Side.Right,Id=2,Overlaying=StyleParam.AxisAnchorId.Y 1, MinMax = (0., float target.Length))
-        |> Chart.withX_AxisStyle "Score"
-        |> Chart.withSize (900., 900.)
-        |> if groupFiles then
-            Chart.SaveHtmlAs (path + @"\QValueGraph")
-           else
-            Chart.SaveHtmlAs (path + @"_QValueGraph")
-            
     module MAYU =
 
         /// Returns proteins sorted into bins according to their size.
@@ -685,3 +631,175 @@ module ProteinInference =
             // MAYU rounds the number of expected false positives for every bin to the first decimal
             let fpInBin = estimatePi0HG total numberTarget numberDecoy
             fpInBin
+
+    
+    /// Calculates the fdr of the data using the MAYU method. The proteinsFromDB is the DB that was used for the inference.
+    let calculateFDRwithMAYU (data: InferredProteinClassItemScored []) (proteinsFromDB: (string*string)[]) =
+        let proteinBins = MAYU.binProteinsLength data proteinsFromDB 10.
+        let estimatedFP =
+            proteinBins
+            |> Array.fold (fun acc proteinBin -> acc + MAYU.expectedFP proteinBin) 0.
+        let targetCount =
+            data
+            |> Array.sumBy (fun x ->
+            match x.DecoyBigger with
+            | true -> 0.
+            | false -> 1.
+            )
+        let fdr =
+            if (isNan estimatedFP) || (isInf estimatedFP) || estimatedFP = 0. then
+                1.
+            elif (estimatedFP / targetCount < 0.) || (estimatedFP / targetCount > 1.) then
+                1.
+            else
+                estimatedFP / targetCount
+        fdr
+
+    /// Calculates Decoy/Target ratio
+    let calculateFDRwithDecoyTargetRatio (data: InferredProteinClassItemScored []) =
+        // Should decoy Hits be doubled?: Target-decoy search strategy for increasedconfidence in large-scale proteinidentifications by mass spectrometry
+        let decoyCount  =
+            data
+            |> Array.sumBy (fun x ->
+                match x.DecoyBigger with
+                | true -> 1.
+                | false -> 0.
+            )
+        let targetCount =
+            data
+            |> Array.sumBy (fun x ->
+                match x.DecoyBigger with
+                | true -> 0.
+                | false -> 1.
+            )
+        decoyCount/targetCount
+
+    /// Gives a function to calculate the q value for a score in a dataset using Lukas method and Levenberg Marguardt fitting
+    let calculateQValueLogReg fdrEstimate bandwidth (data: 'a []) (isDecoy: 'a -> bool) (decoyScoreF: 'a -> float) (targetScoreF: 'a -> float) =
+        // Input for q value calculation
+        let createTargetDecoyInput =
+            data
+            |> Array.map (fun item ->
+                if isDecoy item then
+                    createQValueInput (decoyScoreF item) true
+                else
+                    createQValueInput (targetScoreF item) false
+            )
+
+        let scores,pep,qVal =
+            binningFunction bandwidth fdrEstimate (fun (x: QValueInput) -> x.Score) (fun (x: QValueInput) -> x.IsDecoy) createTargetDecoyInput
+            |> fun (scores,pep,qVal) -> scores.ToArray(), pep.ToArray(), qVal.ToArray()
+
+        //Chart.Point (scores,qVal)
+        //|> Chart.Show
+
+        // gives a range of 1 to 30 for the steepness. This can be adjusted depending on the data, but normally it should lie in this range
+        let initialGuess =
+            Fitting.NonLinearRegression.LevenbergMarquardtConstrained.initialParamsOverRange scores qVal [|1. .. 30.|]
+            |> Array.map (fun guess -> Table.lineSolverOptions guess)
+
+        // performs Levenberg Marguardt Constrained algorithm on the data for every given initial estimate with different steepnesses and selects the one with the lowest RSS
+        let estimate =
+            initialGuess
+            |> Array.map (fun initial ->
+                if initial.InitialParamGuess.Length > 3 then failwith "Invalid initial param guess for Logistic Function"
+                let lowerBound =
+                    initial.InitialParamGuess
+                    |> Array.map (fun param -> param - (abs param) * 0.1)
+                    |> vector
+                let upperBound =
+                    initial.InitialParamGuess
+                    |> Array.map (fun param -> param + (abs param) * 0.1)
+                    |> vector
+                LevenbergMarquardtConstrained.estimatedParamsWithRSS Table.LogisticFunctionAscending initial 0.001 10.0 lowerBound upperBound scores qVal
+            )
+            |> Array.filter (fun (param,rss) -> not (param |> Vector.exists System.Double.IsNaN))
+            |> Array.minBy snd
+            |> fst
+
+        let logisticFunction = Table.LogisticFunctionAscending.GetFunctionValue estimate
+        logisticFunction
+
+    /// Gives a function to calculate the q value for a score in a dataset using Storeys method
+    let calculateQValueStorey (data: 'a[]) (isDecoy: 'a -> bool) (decoyScoreF: 'a -> float) (targetScoreF: 'a -> float) =
+        // Gives an array of scores with the frequency of decoy and target hits at that score
+        let scoreFrequencies =
+            data
+            |> Array.map (fun x ->
+                if isDecoy x then
+                    decoyScoreF x, true
+                else
+                    targetScoreF x, false
+            )
+            // groups by score
+            |> Array.groupBy fst
+            // counts occurences of targets and decoys at that score
+            |> Array.map (fun (score,scoreDecoyInfo) ->
+                let decoyCount =
+                    scoreDecoyInfo
+                    |> Array.sumBy (fun (score, decoyInfo) ->
+                        match decoyInfo with
+                        | true -> 1.
+                        | false -> 0.
+                    )
+                let targetCount =
+                    scoreDecoyInfo
+                    |> Array.sumBy (fun (score, decoyInfo) ->
+                        match decoyInfo with
+                        | true -> 0.
+                        | false -> 1.
+                    )
+                createScoreTargetDecoyCount score decoyCount targetCount
+            )
+            |> Array.sortByDescending (fun x -> x.Score)
+
+        // Goes through the list and assigns each protein a "q value" by dividing total decoy hits so far through total target hits so far
+        let reverseQVal =
+            scoreFrequencies
+            |> Array.fold (fun (acc: (float*float*float*float) list) scoreCounts ->
+                let _,_,decoyCount,targetCount = acc.Head
+                // Should decoy hits be doubled?
+                // accumulates decoy hits
+                let newDecoyCount  = decoyCount + scoreCounts.DecoyCount(* * 2.*)
+                // accumulates target hits
+                let newTargetCount = targetCount + scoreCounts.TargetCount
+                let newQVal =
+                    let nominator =
+                        if newTargetCount > 0. then
+                            newTargetCount
+                        else 1.
+                    newDecoyCount / nominator
+                (scoreCounts.Score, newQVal, newDecoyCount, newTargetCount):: acc
+            ) [0., 0., 0., 0.]
+            // removes last part of the list which was the "empty" initial entry
+            |> fun list -> list.[.. list.Length-2]
+            |> List.map (fun (score, qVal, decoyC, targetC) -> score, qVal)
+
+        //Assures monotonicity by going through the list from the bottom to top and assigning the previous q value if it is smaller than the current one
+        let score, monotoneQVal =
+            if reverseQVal.IsEmpty then
+                failwith "Reverse qvalues in Storey calculation are empty"
+            let head::tail = reverseQVal
+            tail
+            |> List.fold (fun (acc: (float*float) list) (score, newQValue) ->
+                let _,qValue = acc.Head
+                if newQValue > qValue then
+                    (score, qValue)::acc
+                else
+                    (score, newQValue)::acc
+            )[head]
+            |> Array.ofList
+            |> Array.sortBy fst
+            |> Array.unzip
+        // Linear Interpolation
+        let linearSplineCoeff = Interpolation.LinearSpline.initInterpolateSorted score monotoneQVal
+        // takes a score from the dataset and assigns it a q value
+        let interpolation = Interpolation.LinearSpline.interpolate linearSplineCoeff
+        interpolation
+
+    // Assigns a q value to an InferredProteinClassItemScored
+    let assignQValueToIPCIS (qValueF: float -> float) (item: InferredProteinClassItemScored) =
+        if item.Decoy then
+            createInferredProteinClassItemQValue item.GroupOfProteinIDs item.Class item.PeptideSequence item.TargetScore item.DecoyScore (qValueF item.DecoyScore) item.Decoy item.DecoyBigger true
+        else
+            createInferredProteinClassItemQValue item.GroupOfProteinIDs item.Class item.PeptideSequence item.TargetScore item.DecoyScore (qValueF item.TargetScore) item.Decoy item.DecoyBigger true
