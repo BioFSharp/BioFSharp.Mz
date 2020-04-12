@@ -4,5 +4,4 @@ BioFSharp.IO
 FSharpAux
 FSharpAux.IO
 FSharp.Stats
-FSharp.Plotly
 System.Data.SQLite
