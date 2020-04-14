@@ -1,6 +1,6 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27703.2000
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29806.167
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".paket", ".paket", "{63297B98-5CED-492C-A5B7-A5B4F73CF142}"
 	ProjectSection(SolutionItems) = preProject
@@ -58,6 +58,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".build", ".build", "{7C6D08
 		build.sh = build.sh
 	EndProjectSection
 EndProject
+Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "BioFSharp.Mz.Vis", "src\BioFSharp.Mz.Vis\BioFSharp.Mz.Vis.fsproj", "{74C79326-82D8-43D0-B699-EDFB5C20ECB2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -72,6 +74,10 @@ Global
 		{5349BEF1-33E9-421A-8211-587105C7F81E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5349BEF1-33E9-421A-8211-587105C7F81E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5349BEF1-33E9-421A-8211-587105C7F81E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{74C79326-82D8-43D0-B699-EDFB5C20ECB2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{74C79326-82D8-43D0-B699-EDFB5C20ECB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{74C79326-82D8-43D0-B699-EDFB5C20ECB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{74C79326-82D8-43D0-B699-EDFB5C20ECB2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
