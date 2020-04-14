@@ -711,13 +711,13 @@ module ProteinInference =
                     initial.InitialParamGuess
                     |> Array.map (fun param -> param + (abs param) * 0.1)
                     |> vector
-                LevenbergMarquardtConstrained.estimatedParamsWithRSS Table.LogisticFunctionAscending initial 0.001 10.0 lowerBound upperBound scores qVal
+                LevenbergMarquardtConstrained.estimatedParamsWithRSS Table.LogisticFunctionDescending initial 0.001 10.0 lowerBound upperBound scores qVal
             )
             |> Array.filter (fun (param,rss) -> not (param |> Vector.exists System.Double.IsNaN))
             |> Array.minBy snd
             |> fst
 
-        let logisticFunction = Table.LogisticFunctionAscending.GetFunctionValue estimate
+        let logisticFunction = Table.LogisticFunctionDescending.GetFunctionValue estimate
         logisticFunction
 
     /// Gives a function to calculate the q value for a score in a dataset using Storeys method
