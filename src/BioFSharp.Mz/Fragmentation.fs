@@ -334,13 +334,11 @@ module Fragmentation =
                 let newMainPeak = new LadderedTaggedMass(mainPeak.Iontype, Mass.toMZ mainPeak.Mass charge, i + 1, charge)
                 let newDependentPeaks =
                     dependentPeaks
-                    |> List.map (fun dependentPeak ->
-                        new LadderedTaggedMass(dependentPeak.Iontype, Mass.toMZ dependentPeak.Mass charge, i + 1, charge)
-                    )
+                    |> List.map (fun dependentPeak -> new LadderedTaggedMass(dependentPeak.Iontype, Mass.toMZ dependentPeak.Mass charge, i + 1, charge))
                 let newPeakFamily =
                     {
-                     MainPeak = newMainPeak
-                     DependentPeaks = newDependentPeaks
+                        MainPeak = newMainPeak
+                        DependentPeaks = newDependentPeaks
                     }
                 newPeakFamily
             )
