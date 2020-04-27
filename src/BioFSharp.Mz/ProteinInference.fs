@@ -52,19 +52,12 @@ module ProteinInference =
     /// For a group of proteins, contains information about all peptides that might be used for its quantification and score / q-value calculated for it.
     type InferredProteinClassItemQValue =
         {
-            GroupOfProteinIDs: string
-            PeptideSequence  : string []
-            Class            : PeptideEvidenceClass
-            TargetScore      : float
-            DecoyScore       : float
+            InfProtClassItem : InferredProteinClassItemScored
             QValue           : float
-            Decoy            : bool
-            DecoyBigger      : bool
-            FoundInDB        : bool
         }
 
     /// For a group of proteins, contains information about all peptides that are put into the output file.
-    type InferredProteinClassItemOut =
+    type Result =
         {
             GroupOfProteinIDs: string
             PeptideSequence  : string
@@ -81,7 +74,7 @@ module ProteinInference =
             [<FieldAttribute("StringSequence")>]
             Seq             :string
             [<FieldAttribute("PercolatorScore")>]
-            PercolatorScore : float
+            Score : float
         }
 
     /// Input for QValue calulation
@@ -124,17 +117,10 @@ module ProteinInference =
             FoundInDB         = foundInDB
         }
 
-    let createInferredProteinClassItemQValue proteinIDs evidenceClass peptideSequences targetScore decoyScore qValue isDecoy decoyBigger foundInDB =
+    let createInferredProteinClassItemQValue infProtClassItemScored qValue=
         {
-            GroupOfProteinIDs = proteinIDs
-            PeptideSequence   = peptideSequences
-            Class             = evidenceClass
-            TargetScore       = targetScore
-            DecoyScore        = decoyScore
-            QValue            = qValue
-            Decoy             = isDecoy
-            DecoyBigger       = decoyBigger
-            FoundInDB         = foundInDB
+            InfProtClassItem = infProtClassItemScored
+            QValue           = qValue
         }
 
     let createInferredProteinClassItemOut proteinIDs evidenceClass peptideSequences targetScore decoyScore qValue =
@@ -318,8 +304,8 @@ module ProteinInference =
             // Depending on the type of lookup this map is used for, the modifications have to be removed.
             sequence,
             psmList
-            |> List.maxBy (fun psm -> psm.PercolatorScore)
-            |> fun psm -> psm.PercolatorScore
+            |> List.maxBy (fun psm -> psm.Score)
+            |> fun psm -> psm.Score
         )
         |> Map.ofList
 
@@ -800,6 +786,6 @@ module ProteinInference =
     // Assigns a q value to an InferredProteinClassItemScored
     let assignQValueToIPCIS (qValueF: float -> float) (item: InferredProteinClassItemScored) =
         if item.Decoy then
-            createInferredProteinClassItemQValue item.GroupOfProteinIDs item.Class item.PeptideSequence item.TargetScore item.DecoyScore (qValueF item.DecoyScore) item.Decoy item.DecoyBigger true
+            createInferredProteinClassItemQValue item (qValueF item.DecoyScore)
         else
-            createInferredProteinClassItemQValue item.GroupOfProteinIDs item.Class item.PeptideSequence item.TargetScore item.DecoyScore (qValueF item.TargetScore) item.Decoy item.DecoyBigger true
+            createInferredProteinClassItemQValue item (qValueF item.TargetScore)

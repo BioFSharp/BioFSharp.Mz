@@ -5,25 +5,25 @@ open BioFSharp.Mz.ProteinInference
 
 module ProteinInference =
 
-    let qValueHitsVisualization bandwidth inferredProteinClassItemScored path (groupFiles: bool) =
+    let qValueHitsVisualization bandwidth (inferredProteinClassItemQValue: InferredProteinClassItemQValue[]) path (groupFiles: bool) =
         let decoy, target =
-            inferredProteinClassItemScored
-            |> Array.partition (fun x -> x.DecoyBigger)
+            inferredProteinClassItemQValue
+            |> Array.partition (fun x -> x.InfProtClassItem.DecoyBigger)
         // Histogram with relative abundance
         let relFreqTarget = 
-            FSharp.Stats.Distributions.Frequency.create bandwidth (target |> Array.map (fun x -> x.TargetScore))
+            FSharp.Stats.Distributions.Frequency.create bandwidth (target |> Array.map (fun x -> x.InfProtClassItem.TargetScore))
             |> Map.toArray
             |> Array.map (fun x -> fst x, (float (snd x)) / (float target.Length))
         let relFreqDecoy  =
-            FSharp.Stats.Distributions.Frequency.create bandwidth (decoy |> Array.map (fun x -> x.DecoyScore))
+            FSharp.Stats.Distributions.Frequency.create bandwidth (decoy |> Array.map (fun x -> x.InfProtClassItem.DecoyScore))
             |> Map.toArray
             |> Array.map (fun x -> fst x, (float (snd x)) / (float target.Length))
         // Histogram with absolute values
         let absFreqTarget =
-            FSharp.Stats.Distributions.Frequency.create bandwidth (target |> Array.map (fun x -> x.TargetScore))
+            FSharp.Stats.Distributions.Frequency.create bandwidth (target |> Array.map (fun x -> x.InfProtClassItem.TargetScore))
             |> Map.toArray
         let absFreqDecoy  =
-            FSharp.Stats.Distributions.Frequency.create bandwidth (decoy |> Array.map (fun x -> x.DecoyScore))
+            FSharp.Stats.Distributions.Frequency.create bandwidth (decoy |> Array.map (fun x -> x.InfProtClassItem.DecoyScore))
             |> Map.toArray
         let histogram =
             [
@@ -45,12 +45,12 @@ module ProteinInference =
             |> Chart.Combine
 
         let sortedQValues =
-            inferredProteinClassItemScored
+            inferredProteinClassItemQValue
             |> Array.map (fun x ->
-                if x.Decoy then
-                    x.DecoyScore, x.QValue
+                if x.InfProtClassItem.Decoy then
+                    x.InfProtClassItem.DecoyScore, x.QValue
                 else
-                    x.TargetScore, x.QValue
+                    x.InfProtClassItem.TargetScore, x.QValue
             )
             |> Array.sortBy (fun (score, qVal) -> score)
 
