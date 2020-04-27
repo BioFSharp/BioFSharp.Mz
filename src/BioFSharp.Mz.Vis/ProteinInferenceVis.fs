@@ -8,9 +8,10 @@ module ProteinInference =
     let qValueHitsVisualization bandwidth inferredProteinClassItemScored path (groupFiles: bool) =
         let decoy, target = inferredProteinClassItemScored |> Array.partition (fun x -> x.DecoyBigger)
         // Histogram with relative abundance
-        let freqTarget = FSharp.Stats.Distributions.Frequency.create bandwidth (target |> Array.map (fun x -> x.TargetScore))
-                            |> Map.toArray
-                            |> Array.map (fun x -> fst x, (float (snd x)) / (float target.Length))
+        let freqTarget = 
+            FSharp.Stats.Distributions.Frequency.create bandwidth (target |> Array.map (fun x -> x.TargetScore))
+            |> Map.toArray
+            |> Array.map (fun x -> fst x, (float (snd x)) / (float target.Length))
         let freqDecoy  = FSharp.Stats.Distributions.Frequency.create bandwidth (decoy |> Array.map (fun x -> x.DecoyScore))
                             |> Map.toArray
                             |> Array.map (fun x -> fst x, (float (snd x)) / (float target.Length))
