@@ -8,7 +8,7 @@ module ProteinInference =
     let qValueHitsVisualization bandwidth (inferredProteinClassItemQValue: InferredProteinClassItemQValue[]) path (groupFiles: bool) =
         let decoy, target =
             inferredProteinClassItemQValue
-            |> Array.partition (fun x -> x.InfProtClassItem.DecoyBigger)
+            |> Array.partition (fun x -> x.InfProtClassItem.DecoyHasBetterScore)
         // Histogram with relative abundance
         let relFreqTarget = 
             FSharp.Stats.Distributions.Frequency.create bandwidth (target |> Array.map (fun x -> x.InfProtClassItem.TargetScore))
