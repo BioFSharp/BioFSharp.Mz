@@ -52,7 +52,7 @@ module ProteinInference =
                 else
                     x.InfProtClassItem.TargetScore, x.QValue
             )
-            |> Array.sortBy (fun (score, qVal) -> score)
+            |> Array.sortBy fst
 
         [
             Chart.Point sortedQValues
