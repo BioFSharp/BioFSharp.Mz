@@ -39,14 +39,14 @@ module ProteinInference =
     /// For a group of proteins, contains information about all peptides that might be used for its quantification and score calculated for it.
     type InferredProteinClassItemScored =
         {
-            GroupOfProteinIDs: string
-            PeptideSequence  : string []
-            Class            : PeptideEvidenceClass
-            TargetScore      : float
-            DecoyScore       : float
-            Decoy            : bool
-            DecoyBigger      : bool
-            FoundInDB        : bool
+            GroupOfProteinIDs  : string
+            PeptideSequence    : string []
+            Class              : PeptideEvidenceClass
+            TargetScore        : float
+            DecoyScore         : float
+            Decoy              : bool
+            DecoyHasBetterScore: bool
+            FoundInDB          : bool
         }
 
     /// For a group of proteins, contains information about all peptides that might be used for its quantification and score / q-value calculated for it.
@@ -105,16 +105,16 @@ module ProteinInference =
             Class = evidenceClass
         }
 
-    let createInferredProteinClassItemScored proteinIDs evidenceClass peptideSequences targetScore decoyScore isDecoy decoyBigger foundInDB =
+    let createInferredProteinClassItemScored proteinIDs evidenceClass peptideSequences targetScore decoyScore isDecoy decoyHasBetterScore foundInDB =
         {
-            GroupOfProteinIDs = proteinIDs
-            PeptideSequence   = peptideSequences
-            Class             = evidenceClass
-            TargetScore       = targetScore
-            DecoyScore        = decoyScore
-            Decoy             = isDecoy
-            DecoyBigger       = decoyBigger
-            FoundInDB         = foundInDB
+            GroupOfProteinIDs   = proteinIDs
+            PeptideSequence     = peptideSequences
+            Class               = evidenceClass
+            TargetScore         = targetScore
+            DecoyScore          = decoyScore
+            Decoy               = isDecoy
+            DecoyHasBetterScore = decoyHasBetterScore
+            FoundInDB           = foundInDB
         }
 
     let createInferredProteinClassItemQValue infProtClassItemScored qValue=
@@ -255,13 +255,13 @@ module ProteinInference =
         let ppRelation = BidirectionalDictionary<'sequence,ProteinModelInfo<'id,'chromosomeId,'geneLocus>>()
         protModels
         |> Seq.iter (fun prot ->
-                        // insert peptide-protein relationship
-                        // Todo: change type of proteinID in digest
-                        match prot with
-                        | Some proteinModel ->
-                            proteinModel.Sequence
-                            |> Seq.iter (fun pepSequence -> ppRelation.Add pepSequence proteinModel.ProteinModelInfo)
-                        | None -> ()
+            // insert peptide-protein relationship
+            // Todo: change type of proteinID in digest
+            match prot with
+            | Some proteinModel ->
+                proteinModel.Sequence
+                |> Seq.iter (fun pepSequence -> ppRelation.Add pepSequence proteinModel.ProteinModelInfo)
+            | None -> ()
         )
         ppRelation
 
@@ -284,7 +284,7 @@ module ProteinInference =
         let searchProts (m:ClassMap) (prots:string[]) =
             match Map.tryFindKey (fun c (d:BidirectionalDictionary<string,string>) ->
                     Array.exists (fun p -> d.ContainsKey p) prots
-                ) m with
+                  ) m with
             | Some c -> c
             | None -> PeptideEvidenceClass.Unknown
 
@@ -315,9 +315,7 @@ module ProteinInference =
         let scoreMapWithoutMods =
             peptideScoreMap
             |> Map.toArray
-            |> Array.map (fun (seq, score) ->
-                removeModification seq, score
-            )
+            |> Array.map (fun (seq, score) -> removeModification seq, score)
             |> Map.ofArray
         reverseProteins
         |> Array.map (fun (protein, peptides) ->
@@ -427,7 +425,7 @@ module ProteinInference =
         |> List.collect (fun ci -> 
             let prots = ci.GroupOfProteinIDs
             List.init prots.Length (fun i -> prots.[i],ci)
-            )
+           )
         |> List.groupBy fst
         |> List.map (fun (p,l) -> p, List.map snd l)
         |> Map.ofList
@@ -538,9 +536,7 @@ module ProteinInference =
             let addedSequenceLength =
                 let proteinLengthMap =
                     proteinsFromDB
-                    |> Array.map (fun (protein,sequence) ->
-                        protein, sequence.Length
-                    )
+                    |> Array.map (fun (protein,sequence) -> protein, sequence.Length)
                     |> Map.ofArray
                 proteins
                 |> Array.map (fun ipcis ->
@@ -594,14 +590,14 @@ module ProteinInference =
             let numberTarget =
                 proteinBin
                 |> Array.sumBy (fun protein ->
-                    match not protein.DecoyBigger && protein.FoundInDB with
+                    match not protein.DecoyHasBetterScore && protein.FoundInDB with
                     | true -> 1.
                     | false -> 0.
                 )
             let numberDecoy =
                 proteinBin
                  |> Array.sumBy (fun protein ->
-                     match protein.DecoyBigger && protein.FoundInDB with
+                     match protein.DecoyHasBetterScore && protein.FoundInDB with
                      | true -> 1.
                      | false -> 0.
                  )
@@ -628,9 +624,9 @@ module ProteinInference =
         let targetCount =
             data
             |> Array.sumBy (fun x ->
-            match x.DecoyBigger with
-            | true -> 0.
-            | false -> 1.
+                match x.DecoyHasBetterScore with
+                | true -> 0.
+                | false -> 1.
             )
         let fdr =
             if (isNan estimatedFP) || (isInf estimatedFP) || estimatedFP = 0. then
@@ -647,14 +643,14 @@ module ProteinInference =
         let decoyCount  =
             data
             |> Array.sumBy (fun x ->
-                match x.DecoyBigger with
+                match x.DecoyHasBetterScore with
                 | true -> 1.
                 | false -> 0.
             )
         let targetCount =
             data
             |> Array.sumBy (fun x ->
-                match x.DecoyBigger with
+                match x.DecoyHasBetterScore with
                 | true -> 0.
                 | false -> 1.
             )
@@ -751,8 +747,7 @@ module ProteinInference =
                 let newTargetCount = targetCount + scoreCounts.TargetCount
                 let newQVal =
                     let nominator =
-                        if newTargetCount > 0. then
-                            newTargetCount
+                        if newTargetCount > 0. then newTargetCount
                         else 1.
                     newDecoyCount / nominator
                 (scoreCounts.Score, newQVal, newDecoyCount, newTargetCount):: acc
