@@ -317,12 +317,21 @@ module Fragmentation =
                 let cTerm = cTerminalSeries massFunction (aal |> List.rev)
                 nTerm@cTerm
             createFragmentMasses targetMasses decoyMasses        
-
-    type LadderedTaggedMass (iontype:Ions.IonTypeFlag,mass:float, number:int, charge: float) =
-        member this.Iontype = iontype
-        member this.MassOverCharge = mass
-        member this.Number = number
-        member this.Charge = charge
+    [<Struct>]
+    type LadderedTaggedMass  =
+        {
+            Iontype       : Ions.IonTypeFlag
+            MassOverCharge: float
+            Number        : int
+            Charge        : float
+        }
+    let createLadderedTaggedMass iontype mass number charge: LadderedTaggedMass =
+        {
+            Iontype        = iontype
+            MassOverCharge = mass
+            Number         = number
+            Charge         = charge
+        }
 
     let ladderAndChargeElement (chargeList: float list) (sortedList: Mz.PeakFamily<Mz.TaggedMass.TaggedMass> list) =
         sortedList
@@ -331,10 +340,10 @@ module Fragmentation =
             |> List.map (fun charge ->
                 let mainPeak = taggedMass.MainPeak
                 let dependentPeaks = taggedMass.DependentPeaks
-                let newMainPeak = new LadderedTaggedMass(mainPeak.Iontype, Mass.toMZ mainPeak.Mass charge, i + 1, charge)
+                let newMainPeak = createLadderedTaggedMass mainPeak.Iontype (Mass.toMZ mainPeak.Mass charge) (i + 1) charge
                 let newDependentPeaks =
                     dependentPeaks
-                    |> List.map (fun dependentPeak -> new LadderedTaggedMass(dependentPeak.Iontype, Mass.toMZ dependentPeak.Mass charge, i + 1, charge))
+                    |> List.map (fun dependentPeak -> createLadderedTaggedMass dependentPeak.Iontype (Mass.toMZ dependentPeak.Mass charge) (i + 1) charge)
                 let newPeakFamily =
                     {
                         MainPeak = newMainPeak
