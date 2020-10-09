@@ -1,3 +1,9 @@
+#### 0.1.4 - Friday, Oktober 9, 2020
+* Minor changes 
+* SearchDB: added default inclusion of peptides resulting of protein n terminal methionin cleavages.
+* FDRControl: added more stable qValue calculation, added storeys qvalue method
+* ProteinInference: added FDR calculations
+
 #### 0.1.3 - Monday, March 16, 2020
 * Minor changes 
 * Quantification: improved handling of unsuccessful fits
