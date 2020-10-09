@@ -5,6 +5,7 @@ open BioFSharp
 open BioFSharp.IO
 
 open System
+open System.Data
 open FSharpAux
 open AminoAcids 
 open ModificationInfo
@@ -558,6 +559,20 @@ module SearchDB =
                 | true -> Some (reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetString(4), 
                             reader.GetInt32(5), reader.GetInt32(6), reader.GetDouble(7),reader.GetInt32(8), reader.GetInt32(9), reader.GetString(10), reader.GetString(11), reader.GetString(12), reader.GetString(13),reader.GetInt32(14))
                 | false -> None
+
+            /// Prepares statement to select Accession and Sequence of Proteins from SearchDB
+            let selectProteins (cn:SQLiteConnection) =
+                let selectProteins =
+                    let querystring = "SELECT Accession, Sequence FROM Protein"
+                    let cmd = new SQLiteCommand(querystring, cn)
+                    use reader = cmd.ExecuteReader()
+                    (
+                        [
+                            while reader.Read() do
+                                yield (reader.GetString(0), reader.GetString(1))
+                        ]
+                    )
+                selectProteins
                 
             /// Prepares statement to select all SearchDbParams entries by FastaPath, Protease, MinmissedCleavages, MaxmissedCleavages, MaxMass, MinPepLength, MaxPepLength, IsotopicLabel, MassMode, FixedMods, VariableMods, VarModsThreshold
             let prepareSelectSearchDbParamsbyParams (cn:SQLiteConnection) =
@@ -854,6 +869,31 @@ module SearchDB =
                 match reader.Read() with 
                 | true  -> Some (reader.GetDouble(0))
                 | false -> Option.None)
+
+            /// Prepares statement to select a Protein Accession entry by ID
+            let prepareSelectProteinAccessionByID (cn:SQLiteConnection) (tr) =
+                let querystring = "SELECT Accession FROM Protein WHERE ID=@id "
+                let cmd = new SQLiteCommand(querystring, cn, tr)
+                cmd.Parameters.Add("@id", DbType.Int32) |> ignore
+                (fun (id:int32)  ->
+                    cmd.Parameters.["@id"].Value <- id
+                    use reader = cmd.ExecuteReader()
+                    match reader.Read() with
+                    | true  -> (reader.GetString(0))
+                    | false -> ""
+                )
+
+            /// Prepares statement to select a Peptide Sequence entry by ID
+            let prepareSelectPepSequenceByPepSequenceID (cn:SQLiteConnection) (tr) =
+                let querystring = "SELECT Sequence FROM PepSequence WHERE ID=@pepSequenceID"
+                let cmd = new SQLiteCommand(querystring, cn, tr)
+                cmd.Parameters.Add("@pepSequenceID", DbType.Int32) |> ignore
+                (fun (pepSequenceID:int)  ->
+                    cmd.Parameters.["@pepSequenceID"].Value <- pepSequenceID
+                    use reader = cmd.ExecuteReader()
+                    reader.Read() |> ignore
+                    reader.GetString(0)
+                )
 
                 //#define SQLITE_ERROR        1   /* SQL error or missing database */
                 //#define SQLITE_INTERNAL     2   /* Internal logic error in SQLite */
@@ -1557,6 +1597,18 @@ module SearchDB =
                 |> List.map (createLookUpResultBy parseAAString)
         )
 
+    /// Prepares a function which returns a list of protein Accessions tupled with the peptide sequence whose ID they were retrieved by
+    let getProteinPeptideLookUpFromFileBy (memoryDB: SQLiteConnection) =
+        let tr = memoryDB.BeginTransaction()
+        let selectCleavageIdxByPepSeqID   = Db.SQLiteQuery.prepareSelectCleavageIndexByPepSequenceID memoryDB tr
+        let selectProteinByProtID         = Db.SQLiteQuery.prepareSelectProteinAccessionByID memoryDB tr
+        let selectPeptideByPepSeqID       = Db.SQLiteQuery.prepareSelectPepSequenceByPepSequenceID memoryDB tr
+        (
+            fun pepSequenceID ->
+                selectCleavageIdxByPepSeqID pepSequenceID
+                |> List.map (fun (_,protID,pepID,_,_,_) -> selectProteinByProtID protID, selectPeptideByPepSeqID pepID )
+        )
+
         /// Returns a LookUpResult list
     let getThreadSafePeptideLookUpFromFileBy (cn:SQLiteConnection) sdbParams = 
         let parseAAString = initOfModAminoAcidString sdbParams.IsotopicMod (sdbParams.FixedMods@sdbParams.VariableMods)
@@ -1648,6 +1700,25 @@ module SearchDB =
             createSearchDbParams 
                 name fo fp id (Digestion.Table.getProteaseBy pr) minmscl maxmscl mass minpL maxpL 
                     (Newtonsoft.Json.JsonConvert.DeserializeObject<SearchInfoIsotopic list>(isoL)) (Newtonsoft.Json.JsonConvert.DeserializeObject<MassMode>(mMode)) (massFBy (Newtonsoft.Json.JsonConvert.DeserializeObject<MassMode>(mMode))) 
+                        (Newtonsoft.Json.JsonConvert.DeserializeObject<SearchModification list>(fMods)) (Newtonsoft.Json.JsonConvert.DeserializeObject<SearchModification list>(vMods)) vThr
+        | None ->
+            failwith "This database does not contain any SearchParameters. It is not recommended to work with this file."
+
+    /// Returns SearchDbParams of a existing database by SQLiteConnection
+    let getSDBParamsByCn (cn :SQLiteConnection)=
+        let cn =
+            match cn.State with
+            | ConnectionState.Open ->
+                cn
+            | ConnectionState.Closed ->
+                cn.Open()
+                cn
+            | _ as x -> failwith "Data base is busy."
+        match Db.SQLiteQuery.selectSearchDbParams cn with
+        | Some (iD,name,fo,fp,pr,minmscl,maxmscl,mass,minpL,maxpL,isoL,mMode,fMods,vMods,vThr) ->
+            createSearchDbParams
+                name fo fp id (Digestion.Table.getProteaseBy pr) minmscl maxmscl mass minpL maxpL
+                    (Newtonsoft.Json.JsonConvert.DeserializeObject<SearchInfoIsotopic list>(isoL)) (Newtonsoft.Json.JsonConvert.DeserializeObject<MassMode>(mMode)) (massFBy (Newtonsoft.Json.JsonConvert.DeserializeObject<MassMode>(mMode)))
                         (Newtonsoft.Json.JsonConvert.DeserializeObject<SearchModification list>(fMods)) (Newtonsoft.Json.JsonConvert.DeserializeObject<SearchModification list>(vMods)) vThr
         | None ->
             failwith "This database does not contain any SearchParameters. It is not recommended to work with this file."
