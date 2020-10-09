@@ -46,6 +46,13 @@ NUGET
     FsCheck (2.14.3)
       FSharp.Core (>= 4.2.3)
     FSharp.Core (4.7.2)
+    FSharp.Plotly (1.2.1)
+      FSharp.Core
+      Newtonsoft.Json
+    FSharp.Stats (0.3.0-beta)
+      FSharp.Core (>= 4.7.2)
+      FSharpAux (>= 1.0)
+      FSharpAux.IO (>= 1.0)
     FSharpAux (1.0)
       FSharp.Core
     FSharpAux.IO (1.0)
@@ -139,14 +146,9 @@ NUGET
       FSharpAux
       FSharpAux.IO
       Newtonsoft.Json (>= 11.0.2)
-  remote: paket-files/github.com/CSBiology/FSharp.Stats
-    FSharp.Stats (0.1.1)
 GIT
   remote: https://github.com/CSBiology/FSharpAux.git
      (456f096ee9b48ad866c483590c86421ee300c857)
-      path: /
-  remote: https://github.com/CSBiology/FSharp.Stats.git
-     (f1cbc1d7cf6155dcd59ec2f3fa99294db09332ff)
       path: /
   remote: https://github.com/CSBiology/BioFSharp.git
      (8ab2972bf4d20ecc9e1e2eec2c426f5424ad81dd)
