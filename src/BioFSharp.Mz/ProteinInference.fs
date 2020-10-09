@@ -77,20 +77,6 @@ module ProteinInference =
             Score : float
         }
 
-    /// Input for QValue calulation
-    type QValueInput =
-        {
-            Score    : float
-            IsDecoy  : bool
-        }
-
-    type ScoreTargetDecoyCount =
-        {
-            Score      : float
-            DecoyCount : float
-            TargetCount: float
-        }
-
     let private createInferredProteinClassItem proteinIDs evidenceClass peptideSequences = 
         {
             GroupOfProteinIDs = proteinIDs
@@ -133,19 +119,9 @@ module ProteinInference =
             QValue            = qValue
         }
 
-    let createQValueInput score isDecoy =
-        {
-            Score     = score
-            IsDecoy   = isDecoy
-        }
 
-    /// Gives the decoy and target count at a specific score
-    let createScoreTargetDecoyCount score decoyCount targetCount =
-        {
-            Score       = score
-            DecoyCount  = decoyCount
-            TargetCount = targetCount
-        }
+
+
  
     /// Used to decide wether overlapping groups of proteins should be kept or merged
     type IntegrationStrictness = 
@@ -656,127 +632,6 @@ module ProteinInference =
             )
         decoyCount/targetCount
 
-    /// Gives a function to calculate the q value for a score in a dataset using Lukas method and Levenberg Marguardt fitting
-    let calculateQValueLogReg fdrEstimate bandwidth (data: 'a []) (isDecoy: 'a -> bool) (decoyScoreF: 'a -> float) (targetScoreF: 'a -> float) =
-        // Input for q value calculation
-        let createTargetDecoyInput =
-            data
-            |> Array.map (fun item ->
-                if isDecoy item then
-                    createQValueInput (decoyScoreF item) true
-                else
-                    createQValueInput (targetScoreF item) false
-            )
-
-        let scores,pep,qVal =
-            binningFunction bandwidth fdrEstimate (fun (x: QValueInput) -> x.Score) (fun (x: QValueInput) -> x.IsDecoy) createTargetDecoyInput
-            |> fun (scores,pep,qVal) -> scores.ToArray(), pep.ToArray(), qVal.ToArray()
-
-        //Chart.Point (scores,qVal)
-        //|> Chart.Show
-
-        // gives a range of 1 to 30 for the steepness. This can be adjusted depending on the data, but normally it should lie in this range
-        let initialGuess =
-            Fitting.NonLinearRegression.LevenbergMarquardtConstrained.initialParamsOverRange scores qVal [|1. .. 30.|]
-            |> Array.map (fun guess -> Table.lineSolverOptions guess)
-
-        // performs Levenberg Marguardt Constrained algorithm on the data for every given initial estimate with different steepnesses and selects the one with the lowest RSS
-        let estimate =
-            initialGuess
-            |> Array.map (fun initial ->
-                if initial.InitialParamGuess.Length > 3 then failwith "Invalid initial param guess for Logistic Function"
-                let lowerBound =
-                    initial.InitialParamGuess
-                    |> Array.map (fun param -> param - (abs param) * 0.1)
-                    |> vector
-                let upperBound =
-                    initial.InitialParamGuess
-                    |> Array.map (fun param -> param + (abs param) * 0.1)
-                    |> vector
-                LevenbergMarquardtConstrained.estimatedParamsWithRSS Table.LogisticFunctionDescending initial 0.001 10.0 lowerBound upperBound scores qVal
-            )
-            |> Array.filter (fun (param,rss) -> not (param |> Vector.exists System.Double.IsNaN))
-            |> Array.minBy snd
-            |> fst
-
-        let logisticFunction = Table.LogisticFunctionDescending.GetFunctionValue estimate
-        logisticFunction
-
-    /// Gives a function to calculate the q value for a score in a dataset using Storeys method
-    let calculateQValueStorey (data: 'a[]) (isDecoy: 'a -> bool) (decoyScoreF: 'a -> float) (targetScoreF: 'a -> float) =
-        // Gives an array of scores with the frequency of decoy and target hits at that score
-        let scoreFrequencies =
-            data
-            |> Array.map (fun x ->
-                if isDecoy x then
-                    decoyScoreF x, true
-                else
-                    targetScoreF x, false
-            )
-            // groups by score
-            |> Array.groupBy fst
-            // counts occurences of targets and decoys at that score
-            |> Array.map (fun (score,scoreDecoyInfo) ->
-                let decoyCount =
-                    scoreDecoyInfo
-                    |> Array.sumBy (fun (score, decoyInfo) ->
-                        match decoyInfo with
-                        | true -> 1.
-                        | false -> 0.
-                    )
-                let targetCount =
-                    scoreDecoyInfo
-                    |> Array.sumBy (fun (score, decoyInfo) ->
-                        match decoyInfo with
-                        | true -> 0.
-                        | false -> 1.
-                    )
-                createScoreTargetDecoyCount score decoyCount targetCount
-            )
-            |> Array.sortByDescending (fun x -> x.Score)
-
-        // Goes through the list and assigns each protein a "q value" by dividing total decoy hits so far through total target hits so far
-        let reverseQVal =
-            scoreFrequencies
-            |> Array.fold (fun (acc: (float*float*float*float) list) scoreCounts ->
-                let _,_,decoyCount,targetCount = acc.Head
-                // Should decoy hits be doubled?
-                // accumulates decoy hits
-                let newDecoyCount  = decoyCount + scoreCounts.DecoyCount(* * 2.*)
-                // accumulates target hits
-                let newTargetCount = targetCount + scoreCounts.TargetCount
-                let newQVal =
-                    let nominator =
-                        if newTargetCount > 0. then newTargetCount
-                        else 1.
-                    newDecoyCount / nominator
-                (scoreCounts.Score, newQVal, newDecoyCount, newTargetCount):: acc
-            ) [0., 0., 0., 0.]
-            // removes last part of the list which was the "empty" initial entry
-            |> fun list -> list.[.. list.Length-2]
-            |> List.map (fun (score, qVal, decoyC, targetC) -> score, qVal)
-
-        //Assures monotonicity by going through the list from the bottom to top and assigning the previous q value if it is smaller than the current one
-        let score, monotoneQVal =
-            if reverseQVal.IsEmpty then
-                failwith "Reverse qvalues in Storey calculation are empty"
-            let head::tail = reverseQVal
-            tail
-            |> List.fold (fun (acc: (float*float) list) (score, newQValue) ->
-                let _,qValue = acc.Head
-                if newQValue > qValue then
-                    (score, qValue)::acc
-                else
-                    (score, newQValue)::acc
-            )[head]
-            |> Array.ofList
-            |> Array.sortBy fst
-            |> Array.unzip
-        // Linear Interpolation
-        let linearSplineCoeff = Interpolation.LinearSpline.initInterpolateSorted score monotoneQVal
-        // takes a score from the dataset and assigns it a q value
-        let interpolation = Interpolation.LinearSpline.interpolate linearSplineCoeff
-        interpolation
 
     // Assigns a q value to an InferredProteinClassItemScored
     let assignQValueToIPCIS (qValueF: float -> float) (item: InferredProteinClassItemScored) =
