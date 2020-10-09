@@ -317,6 +317,51 @@ module Fragmentation =
                 let cTerm = cTerminalSeries massFunction (aal |> List.rev)
                 nTerm@cTerm
             createFragmentMasses targetMasses decoyMasses        
+    [<Struct>]
+    type LadderedTaggedMass  =
+        {
+            Iontype       : Ions.IonTypeFlag
+            MassOverCharge: float
+            Number        : int
+            Charge        : float
+        }
+    let createLadderedTaggedMass iontype mass number charge: LadderedTaggedMass =
+        {
+            Iontype        = iontype
+            MassOverCharge = mass
+            Number         = number
+            Charge         = charge
+        }
+
+    let ladderAndChargeElement (chargeList: float list) (sortedList: Mz.PeakFamily<Mz.TaggedMass.TaggedMass> list) =
+        sortedList
+        |> List.mapi (fun i taggedMass ->
+            chargeList
+            |> List.map (fun charge ->
+                let mainPeak = taggedMass.MainPeak
+                let dependentPeaks = taggedMass.DependentPeaks
+                let newMainPeak = createLadderedTaggedMass mainPeak.Iontype (Mass.toMZ mainPeak.Mass charge) (i + 1) charge
+                let newDependentPeaks =
+                    dependentPeaks
+                    |> List.map (fun dependentPeak -> createLadderedTaggedMass dependentPeak.Iontype (Mass.toMZ dependentPeak.Mass charge) (i + 1) charge)
+                let newPeakFamily =
+                    {
+                        MainPeak = newMainPeak
+                        DependentPeaks = newDependentPeaks
+                    }
+                newPeakFamily
+            )
+        )
+        |> List.concat
+
+    let ladderElement (ionList: Mz.PeakFamily<Mz.TaggedMass.TaggedMass> list) (chargeList: float list) =
+        let groupedList =
+            ionList
+            |> List.groupBy ( fun x -> x.MainPeak.Iontype)
+            |> List.map snd
+            |> List.map List.sort
+        groupedList
+        |> List.collect (ladderAndChargeElement chargeList)
  
  //    let imoniumIons (rawMass:List<float>) (label : IBioItem -> Formula.Formula) = 
     //        let currentCO = massDiffAX_CO label 
