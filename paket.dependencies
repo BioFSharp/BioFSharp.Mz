@@ -28,8 +28,6 @@ nuget BioFSharp.IO
 nuget System.Data.SQLite ~> 1.0.112.2
 nuget System.Data.SQLite.Core ~> 1.0.112.2
 
-clitool dotnet-fake
-
 group Formatting
 storage: local
 source https://nuget.org/api/v2
