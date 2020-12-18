@@ -932,9 +932,8 @@ module SearchDB =
 
         /// Returns the database name given the SearchDbParams
         let getNameOf (sdbParams:SearchDbParams) =
-            sprintf "%s\\%s.db" 
-                (sdbParams.DbFolder |> FSharpAux.IO.PathFileName.normalizeFileName)
-                (sdbParams.Name |> FSharpAux.IO.PathFileName.fileNameWithoutExtension )
+            System.IO.Path.Combine [|sdbParams.DbFolder;sdbParams.Name|]
+            |> fun x -> System.IO.Path.ChangeExtension(x,"db") 
 
         /// Returns a comma seperated string of given search modification list
         let getJsonStringOf item =
