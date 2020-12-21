@@ -1,23 +1,22 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <TargetFramework>net47</TargetFramework>
-    <RootNamespace>BioFSharp.Mz.Tests</RootNamespace>
-    <AssemblyName>BioFSharp.Mz.Tests</AssemblyName>
-    <Name>BioFSharp.Mz.Tests</Name>
     <OutputType>Exe</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <GenerateProgramFile>false</GenerateProgramFile>
   </PropertyGroup>
+
   <ItemGroup>
-    <Compile Include="Generators.fs" />
-    <Compile Include="Core.fs" />
-    <Compile Include="Tests.fs" />
-    <Compile Include="RunTests.fs" />
-    <None Include="paket.references" />
+    <Compile Include="Sample.fs" />
+    <Compile Include="Main.fs" />
   </ItemGroup>
+
   <ItemGroup>
-    <ProjectReference Include="..\..\src\BioFSharp.Mz\BioFSharp.Mz.fsproj"></ProjectReference>
+    <PackageReference Include="AltCover" Version="7.3.802" />
+    <PackageReference Include="Expecto" Version="9.*" />
+    <PackageReference Include="YoloDev.Expecto.TestSdk" Version="0.*" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.*" />
+    <ProjectReference Include="..\..\src\BioFSharp.Mz\BioFSharp.Mz.fsproj" />
+    <PackageReference Update="FSharp.Core" Version="4.*" />
   </ItemGroup>
-  <Import Project="..\..\.paket\Paket.Restore.targets" />
 </Project>

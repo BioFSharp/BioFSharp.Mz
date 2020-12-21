@@ -1,4 +1,4 @@
-Microsoft Visual Studio Solution File, Format Version 12.00
+﻿Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29806.167
 MinimumVisualStudioVersion = 10.0.40219.1
@@ -34,8 +34,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "content", "content", "{8E6D
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{ED8079DD-2B06-4030-9F0F-DC548F98E1C4}"
 EndProject
-Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "BioFSharp.Mz.Tests", "tests\BioFSharp.Mz.Tests\BioFSharp.Mz.Tests.fsproj", "{5349BEF1-33E9-421A-8211-587105C7F81E}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "git", "git", "{078A9C52-DDC1-46F4-9235-9E6C89C87AFD}"
 	ProjectSection(SolutionItems) = preProject
 		.gitattributes = .gitattributes
@@ -60,6 +58,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".build", ".build", "{7C6D08
 EndProject
 Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "BioFSharp.Mz.Vis", "src\BioFSharp.Mz.Vis\BioFSharp.Mz.Vis.fsproj", "{74C79326-82D8-43D0-B699-EDFB5C20ECB2}"
 EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "BioFSharp.Mz.Tests", "tests\BioFSharp.Mz.Tests\BioFSharp.Mz.Tests.fsproj", "{D83DA3EA-3EBB-42EF-99AB-2E0DDC5A5E70}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -70,14 +70,14 @@ Global
 		{C11E9782-6300-40E5-AE37-32197AD9F78D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C11E9782-6300-40E5-AE37-32197AD9F78D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C11E9782-6300-40E5-AE37-32197AD9F78D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5349BEF1-33E9-421A-8211-587105C7F81E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5349BEF1-33E9-421A-8211-587105C7F81E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5349BEF1-33E9-421A-8211-587105C7F81E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5349BEF1-33E9-421A-8211-587105C7F81E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{74C79326-82D8-43D0-B699-EDFB5C20ECB2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{74C79326-82D8-43D0-B699-EDFB5C20ECB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{74C79326-82D8-43D0-B699-EDFB5C20ECB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{74C79326-82D8-43D0-B699-EDFB5C20ECB2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D83DA3EA-3EBB-42EF-99AB-2E0DDC5A5E70}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D83DA3EA-3EBB-42EF-99AB-2E0DDC5A5E70}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D83DA3EA-3EBB-42EF-99AB-2E0DDC5A5E70}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D83DA3EA-3EBB-42EF-99AB-2E0DDC5A5E70}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -85,7 +85,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{83F16175-43B1-4C90-A1EE-8E351C33435D} = {A6A6AF7D-D6E3-442D-9B1E-58CC91879BE1}
 		{8E6D5255-776D-4B61-85F9-73C37AA1FB9A} = {A6A6AF7D-D6E3-442D-9B1E-58CC91879BE1}
-		{5349BEF1-33E9-421A-8211-587105C7F81E} = {ED8079DD-2B06-4030-9F0F-DC548F98E1C4}
+		{D83DA3EA-3EBB-42EF-99AB-2E0DDC5A5E70} = {ED8079DD-2B06-4030-9F0F-DC548F98E1C4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D55EAFC0-7966-48AB-9DF6-8CFA23ABABB1}

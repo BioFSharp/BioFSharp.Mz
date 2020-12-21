@@ -1,6 +1,6 @@
 namespace BioFSharp.Mz.Vis
 
-open FSharp.Plotly
+open Plotly.NET
 open BioFSharp.Mz.ProteinInference
 
 module ProteinInference =
