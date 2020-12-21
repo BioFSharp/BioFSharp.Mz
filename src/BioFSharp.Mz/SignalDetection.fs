@@ -197,12 +197,20 @@ module SignalDetection =
             MzTolerance           : float
             SNRS_Percentile       : float
             MinSNR                : float 
+            RefineMZ              : bool
+            SumIntensities        : bool
             }
 
         //toCentroid ricker2d nScales yYhreshold mzTol (*spacing_perc*) snrs_perc minSnr mzData intensityData
         ///
-        let createWaveletParameters numberOfScales yThreshold mzTolerance sNRS_Percentile minSNR = {
-            NumberOfScales=numberOfScales; YThreshold=yThreshold ;MzTolerance=mzTolerance;SNRS_Percentile=sNRS_Percentile;MinSNR=minSNR
+        let createWaveletParameters numberOfScales yThreshold mzTolerance sNRS_Percentile minSNR refineMZ sumIntensities = {
+            NumberOfScales  = numberOfScales
+            YThreshold      = yThreshold 
+            MzTolerance     = mzTolerance
+            SNRS_Percentile = sNRS_Percentile
+            MinSNR          = minSNR
+            RefineMZ        = refineMZ
+            SumIntensities  = sumIntensities
             }
 
         /// Helperfunction to calculate the mz values left and right from the target value which will be included in the computation of 
@@ -327,8 +335,7 @@ module SignalDetection =
 
                         if targetCol < mzData.Length-1 then //falls j = mzData.Length.1 dann ist man am ende des m/z Arrays angekommen und die corrMatrix ist fertig            // falls nicht : Dieser Vorgang wird wiederholt unzwar wird dazu ein waveletdataarray erzeugt, der auf den Punkten zwischen den m/z werden basiert.
                             let moverzShift =  ( (mzDataPadded.[centerPaddedColIdx] + mzDataPadded.[centerPaddedColIdx+1]) / 2.0 )
-                            let correlation = waveletF mzDataPadded waveletData' centerPaddedColIdx nPointsLeft nPointsRight moverzShift width
-                                
+                            let correlation = waveletF mzDataPadded waveletData' centerPaddedColIdx nPointsLeft nPointsRight moverzShift width                                
                             let mutable acc = 0.
                             for k = 0 to nPointsLeft+nPointsRight do                
                                 acc <- acc + (correlation.[k] * intensityDataPadded.[k + startpoint] ) 
@@ -448,7 +455,7 @@ module SignalDetection =
             findLocalMaximaLoop 2 corrMatrix 
 
         /// 
-        let refinePeaks yThreshold mzTol (scalings: float[]) (mzData:float []) (intensityData:float [])  (allLines: ResizeArray<RidgeLine>) (xSpacingAvg:float []) =          
+        let refinePeaks refineMZ sumIntensities yThreshold mzTol (scalings: float[]) (mzData:float []) (intensityData:float [])  (allLines: ResizeArray<RidgeLine>) (xSpacingAvg:float []) =          
             let xPeakValues = ResizeArray<float>(2500)
             let yPeakValues = ResizeArray<float>(2500)
             if allLines.Count = 0 then 
@@ -457,7 +464,7 @@ module SignalDetection =
                 finalX, finalY 
             else
                 for i = 0 to allLines.Count-1 do
-                    let mzColIdx = allLines.[i].Col  / 2
+                    let mzColIdx = allLines.[i].Col / 2
                     let row = allLines.[i].Row
                     let currentScaling = scalings.[row]
                     let offset = 
@@ -478,23 +485,33 @@ module SignalDetection =
                         if intensityData.[j] >= maxIntensity
                             then
                                 maxIntensityMZ <- mzData.[j]
-                                maxIntensity   <- intensityData.[j]                  
-                    if xPeakValues.Count = 0 && maxIntensity > yThreshold then
+                                maxIntensity   <- intensityData.[j]
+                    let finalMz =
+                        if sumIntensities then 
+                            intensityAccumulator
+                        else 
+                            maxIntensity
+                    let finalIntensity =
+                        if sumIntensities then 
+                            intensityAccumulator
+                        else 
+                            maxIntensity
+                    if xPeakValues.Count = 0 && finalIntensity > yThreshold then
                         xPeakValues.Add maxIntensityMZ
-                        yPeakValues.Add maxIntensity                        
-                    elif xPeakValues.Count > 0 && (maxIntensityMZ - xPeakValues.[xPeakValues.Count-1]) < mzTol && (maxIntensity > yPeakValues.[xPeakValues.Count-1] && maxIntensity > yThreshold ) then 
+                        yPeakValues.Add finalIntensity                        
+                    elif xPeakValues.Count > 0 && (maxIntensityMZ - xPeakValues.[xPeakValues.Count-1]) < mzTol && (finalIntensity > yPeakValues.[xPeakValues.Count-1] && finalIntensity > yThreshold ) then 
                         xPeakValues.[xPeakValues.Count-1] <- maxIntensityMZ
-                        yPeakValues.[yPeakValues.Count-1] <- maxIntensity                     
-                    elif xPeakValues.Count > 0 && maxIntensityMZ <> xPeakValues.[xPeakValues.Count-1] && (maxIntensityMZ - xPeakValues.[xPeakValues.Count-1] ) > mzTol && maxIntensity > yThreshold then 
+                        yPeakValues.[yPeakValues.Count-1] <- finalIntensity                     
+                    elif xPeakValues.Count > 0 && maxIntensityMZ <> xPeakValues.[xPeakValues.Count-1] && (maxIntensityMZ - xPeakValues.[xPeakValues.Count-1] ) > mzTol && finalIntensity > yThreshold then 
                         xPeakValues.Add maxIntensityMZ
-                        yPeakValues.Add maxIntensity                   
+                        yPeakValues.Add finalIntensity                   
                 let finalX = xPeakValues.ToArray()
                 let finalY = yPeakValues.ToArray()
                 finalX, finalY                
 
                 
         /// Returns a MzIntensityArray that containing the spectral centroids of the input spectra. 
-        let toCentroid waveletF nScales yThreshold mzTol (*spacing_perc*) snrs_perc minSnr (mzData: float []) (intensityData: float [])  =
+        let toCentroid waveletF nScales yThreshold mzTol (*spacing_perc*) snrs_perc minSnr (refineMZ:bool) (sumIntensities:bool) (mzData: float []) (intensityData: float [])  =
             if mzData.Length < 3 then
                 ([||], [||]) //, Array2D.empty
             else
@@ -531,11 +548,11 @@ module SignalDetection =
             //
             getSNRFilteredPeakLines snrs_perc minSnr mzTol nScales mzData allLines corrMatrix
 
-            refinePeaks yThreshold mzTol scalings mzData intensityData allLines xSpacingAvg
-            //corrMatrix
+            refinePeaks refineMZ sumIntensities yThreshold mzTol scalings mzData intensityData allLines xSpacingAvg
+
 
         let toCentroidWithRicker2D (centroidParams:WaveletParameters) (mzData: float []) (intensityData: float [])  = 
-            toCentroid ricker2d centroidParams.NumberOfScales centroidParams.YThreshold centroidParams.MzTolerance (*spacing_perc*) centroidParams.SNRS_Percentile centroidParams.MinSNR mzData intensityData
+            toCentroid ricker2d centroidParams.NumberOfScales centroidParams.YThreshold centroidParams.MzTolerance (*spacing_perc*) centroidParams.SNRS_Percentile centroidParams.MinSNR centroidParams.RefineMZ centroidParams.SumIntensities mzData intensityData
 
 
     module SecondDerivative =
@@ -610,7 +627,7 @@ module SignalDetection =
                                     let mutable intensityAccumulator = 0.0 
                                     let mutable maxIntensityMZ = 0.0
                                     for j = startFittingPoint to endFittingPoint do 
-                                        intensityAccumulator <- intensityAccumulator + intensityData.[j] //is never used, maybe important to determine the spectra intensity?
+                                        intensityAccumulator <- intensityAccumulator + intensityData.[j] 
                                         if intensityData.[j] >= maxIntensity
                                             then
                                                 maxIntensity   <- intensityData.[j]
