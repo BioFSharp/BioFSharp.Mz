@@ -455,12 +455,12 @@ module SignalDetection =
             findLocalMaximaLoop 2 corrMatrix 
 
         /// 
-        let refinePeaks refineMZ sumIntensities yThreshold mzTol (scalings: float[]) (mzData:float []) (intensityData:float [])  (allLines: ResizeArray<RidgeLine>) (xSpacingAvg:float []) =          
-            let xPeakValues = ResizeArray<float>(2500)
-            let yPeakValues = ResizeArray<float>(2500)
+        let refinePeaks refineMz sumIntensities yThreshold mzTol (scalings: float[]) (mzData:float []) (intensityData:float [])  (allLines: ResizeArray<RidgeLine>) (xSpacingAvg:float []) =          
+            let xData = ResizeArray<float>(2500)
+            let yData = ResizeArray<float>(2500)
             if allLines.Count = 0 then 
-                let finalX = xPeakValues.ToArray()
-                let finalY = yPeakValues.ToArray()
+                let finalX = xData.ToArray()
+                let finalY = yData.ToArray()
                 finalX, finalY 
             else
                 for i = 0 to allLines.Count-1 do
@@ -477,36 +477,40 @@ module SignalDetection =
                     let endFittingPoint = Care.getColHighBound mzData mzColIdx offset
                     // sum up the intensity and find the highest point. If there are multiple
                     // points with the maxIntensity value, take the one with the highest m/z.
-                    let mutable maxIntensity = 0.0 
                     let mutable maxIntensityMZ = 0.0
-                    let mutable intensityAccumulator = 0.0 
+                    let mutable maxIntensity = 0.0 
+                    let mutable weightedMzSum = 0.0
+                    let mutable intensitySum = 0.0 
                     for j = startFittingPoint to endFittingPoint do 
-                        intensityAccumulator <- intensityAccumulator + intensityData.[j] 
+                        intensitySum <- intensitySum + intensityData.[j] 
+                        weightedMzSum <- weightedMzSum + (mzData.[j] * intensityData.[j])
                         if intensityData.[j] >= maxIntensity
                             then
-                                maxIntensityMZ <- mzData.[j]
                                 maxIntensity   <- intensityData.[j]
-                    let finalMz =
+                                maxIntensityMZ <- mzData.[j] 
+                    let refCentLength = xData.Count    
+                    let currentMz = 
+                        if refineMz then 
+                            let weightedMeanMz = weightedMzSum / intensitySum
+                            weightedMeanMz 
+                        else
+                            maxIntensityMZ
+                    let currentIntensity =
                         if sumIntensities then 
-                            intensityAccumulator
-                        else 
+                            intensitySum
+                        else
                             maxIntensity
-                    let finalIntensity =
-                        if sumIntensities then 
-                            intensityAccumulator
-                        else 
-                            maxIntensity
-                    if xPeakValues.Count = 0 && finalIntensity > yThreshold then
-                        xPeakValues.Add maxIntensityMZ
-                        yPeakValues.Add finalIntensity                        
-                    elif xPeakValues.Count > 0 && (maxIntensityMZ - xPeakValues.[xPeakValues.Count-1]) < mzTol && (finalIntensity > yPeakValues.[xPeakValues.Count-1] && finalIntensity > yThreshold ) then 
-                        xPeakValues.[xPeakValues.Count-1] <- maxIntensityMZ
-                        yPeakValues.[yPeakValues.Count-1] <- finalIntensity                     
-                    elif xPeakValues.Count > 0 && maxIntensityMZ <> xPeakValues.[xPeakValues.Count-1] && (maxIntensityMZ - xPeakValues.[xPeakValues.Count-1] ) > mzTol && finalIntensity > yThreshold then 
-                        xPeakValues.Add maxIntensityMZ
-                        yPeakValues.Add finalIntensity                   
-                let finalX = xPeakValues.ToArray()
-                let finalY = yPeakValues.ToArray()
+                    if refCentLength = 0 && maxIntensity > yThreshold then
+                        xData.Add currentMz
+                        yData.Add currentIntensity
+                    elif refCentLength > 0 && (currentMz - xData.[refCentLength-1]) < mzTol && (currentIntensity > yData.[refCentLength-1] && maxIntensity > yThreshold ) then 
+                        xData.[refCentLength-1] <- currentMz
+                        yData.[refCentLength-1] <- currentIntensity             
+                    elif refCentLength > 0 && currentMz <> xData.[refCentLength-1] && (currentMz - xData.[refCentLength-1] ) > mzTol && maxIntensity > yThreshold then 
+                        xData.Add currentMz
+                        yData.Add currentIntensity              
+                let finalX = xData.ToArray()
+                let finalY = yData.ToArray()
                 finalX, finalY                
 
                 
@@ -556,14 +560,35 @@ module SignalDetection =
 
 
     module SecondDerivative =
-    
+        ///
+        type SecondDerivativeParameters = {
+            WindowSizeSGfilter    : int
+            YThreshold            : float
+            MzTolerance           : float
+            SNRS_Windowsize       : int 
+            SNRS_Percentile       : float
+            RefineMZ              : bool
+            SumIntensities        : bool
+            }
 
-        let toCentroid windowSizeSNR windowSizeSGfilter mzTol noise_perc (mzData:float []) (intensityData:float []) =
+        //toCentroid ricker2d nScales yYhreshold mzTol (*spacing_perc*) snrs_perc minSnr mzData intensityData
+        ///
+        let createSecondDerivativeParameters windowSizeSGfilter yThreshold mzTolerance sNRS_Windowsize sNRS_Percentile refineMZ sumIntensities = {
+            WindowSizeSGfilter  = windowSizeSGfilter
+            YThreshold          = yThreshold 
+            MzTolerance         = mzTolerance
+            SNRS_Windowsize     = sNRS_Windowsize
+            SNRS_Percentile     = sNRS_Percentile
+            RefineMZ            = refineMZ
+            SumIntensities      = sumIntensities
+            }
+
+        let toCentroid refineMz sumIntensities windowSizeSGfilter yThreshold mzTol windowSizeSNR snrs_perc (mzData:float []) (intensityData:float []) =
             if mzData.Length < 5 || intensityData.Length < 5 then [||],[||]
             else
             // Step 1: Calculate negative snd derivative of the intensity Data
             let negSndDev = 
-                FSharp.Stats.Signal.Filtering.savitzky_golay windowSizeSGfilter 3 2 5 intensityData 
+                FSharp.Stats.Signal.Filtering.savitzkyGolay windowSizeSGfilter 3 2 5 intensityData 
                 |> Array.ofSeq
                 |> Array.map (fun x -> x * -1.)
 
@@ -594,7 +619,7 @@ module SignalDetection =
 
                 let nTot = unsortedData.Count
                 let sortedData = unsortedData |> Seq.toArray |> Array.sort
-                let mutable noise = Care.scoreAtPercentile noise_perc nTot sortedData  //calcs Noisethreshold in bin i 
+                let mutable noise = Care.scoreAtPercentile snrs_perc nTot sortedData  //calcs Noisethreshold in bin i 
                 if noise < 1.0 then noise <- 1.0
                 noises.[i] <- noise
     
@@ -615,45 +640,54 @@ module SignalDetection =
                                )
                 filteredPeaks
                 |> Array.ofSeq
-
             // Step 4: refine Peak positions to real maxima
             let refinedCentroids = 
-                let refCentroids = ResizeArray<float*float>()
+                let xData = ResizeArray<float>()
+                let yData = ResizeArray<float>()
                 filteredPeaks
                 |> Array.iteri (fun idx ((mz,intensity),i) -> 
                                     let startFittingPoint  = Care.getColLowBound mzData i (mzTol/2.)
                                     let endFittingPoint    = Care.getColHighBound mzData i (mzTol/2.)
-                                    let mutable maxIntensity = 0.0 
-                                    let mutable intensityAccumulator = 0.0 
                                     let mutable maxIntensityMZ = 0.0
+                                    let mutable maxIntensity = 0.0 
+                                    let mutable weightedMzSum = 0.0
+                                    let mutable intensitySum = 0.0 
                                     for j = startFittingPoint to endFittingPoint do 
-                                        intensityAccumulator <- intensityAccumulator + intensityData.[j] 
+                                        intensitySum <- intensitySum + intensityData.[j] 
+                                        weightedMzSum <- weightedMzSum + (mzData.[j] * intensityData.[j])
                                         if intensityData.[j] >= maxIntensity
                                             then
                                                 maxIntensity   <- intensityData.[j]
                                                 maxIntensityMZ <- mzData.[j] 
-                                    let refCentLength = refCentroids.Count    
-
-                                    if refCentLength = 0 then 
-                                        refCentroids.Add (maxIntensityMZ, maxIntensity)
-
-                                    elif maxIntensityMZ - fst refCentroids.[refCentLength-1] >= mzTol then
-                                         refCentroids.Add (maxIntensityMZ, maxIntensity) 
-
-                                    elif  maxIntensityMZ - fst refCentroids.[refCentLength-1] <= mzTol && snd refCentroids.[refCentLength-1] < maxIntensity then
-                                         refCentroids.[refCentLength-1] <- (maxIntensityMZ, maxIntensity)
+                                    let currentMz = 
+                                        if refineMz then 
+                                            let weightedMeanMz = weightedMzSum / intensitySum
+                                            weightedMeanMz 
+                                        else
+                                            maxIntensityMZ
+                                    let currentIntensity =
+                                        if sumIntensities then 
+                                            intensitySum
+                                        else
+                                            maxIntensity
+                                    let xDataL = xData.Count    
+                                    if xDataL = 0 && currentIntensity > yThreshold then 
+                                        xData.Add (currentMz)
+                                        yData.Add (currentIntensity)
+                                    else
+                                        let prevMz,prevMaxIntensity= xData.[xDataL-1],yData.[xDataL-1]
+                                        if currentMz - prevMz >= mzTol && currentIntensity > yThreshold then
+                                            xData.Add (currentMz)
+                                            yData.Add (currentIntensity)
+                                        elif currentMz  - prevMz <= mzTol && prevMaxIntensity < currentIntensity then
+                                             xData.[xDataL-1] <- currentMz
+                                             yData.[xDataL-1] <- currentIntensity
                                )
-        
-                let nTotFinal = refCentroids.Count
-                let xDataPadded = Array.zeroCreate nTotFinal
-                let yDataPadded = Array.zeroCreate nTotFinal 
-                refCentroids 
-                |> Seq.iteri (fun i (x,y) -> 
-                                xDataPadded.[i] <- x
-                                yDataPadded.[i] <- y
-                                )  
-                xDataPadded, yDataPadded   
+                xData.ToArray(),yData.ToArray()
             refinedCentroids
+
+        let toCentroidSecondDerivative (centroidParams:SecondDerivativeParameters) (mzData: float []) (intensityData: float []) = 
+            toCentroid centroidParams.RefineMZ centroidParams.SumIntensities centroidParams.WindowSizeSGfilter centroidParams.YThreshold centroidParams.MzTolerance centroidParams.SNRS_Windowsize centroidParams.SNRS_Percentile mzData intensityData
             
     /// Returns mzIntensityArray after noise reduction 
     let filterByIntensitySNR perc minSnr (mzData: float []) (intensityData:float [])  = 
