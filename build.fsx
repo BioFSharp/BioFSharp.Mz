@@ -32,7 +32,6 @@ open Fake.Tools.Git
 
 Target.initEnvironment ()
 
-let release = ReleaseNotes.load "RELEASE_NOTES.md"
 
 [<AutoOpen>]
 module TemporaryDocumentationHelpers =
@@ -122,16 +121,23 @@ let title           = "BioFSharp.Mz"
 let owners          = "CSBiology, Timo Muehlhaus, David Zimmer"
 let description     = "BioFSharp.Mz - modular computational proteomics"
 
-let licenseUrl      = "https://github.com/CSBiology/BioFSharp.Mz/blob/developer/LICENSE"
-let projectUrl      = "https://github.com/CSBiology/BioFSharp.Mz"
-
-let iconUrl         = ""
-let tags            = "proteomics FSharp massspec computational"
-let releaseNotes    = (release.Notes |> String.concat "\r\n")
-let repositoryUrl   = "https://github.com/CSBiology/BioFSharp.Mz"
-let stableVersion   = SemVer.parse release.NugetVersion
 
 let testProject     = "tests/BioFSharp.Mz.Tests/BioFSharp.Mz.Tests.fsproj"
+
+let release = ReleaseNotes.load "RELEASE_NOTES.md"
+let stableVersion = SemVer.parse release.NugetVersion
+let stableVersionTag = (sprintf "%i.%i.%i" stableVersion.Major stableVersion.Minor stableVersion.Patch )
+let mutable prereleaseSuffix = ""
+let mutable prereleaseTag = ""
+let mutable isPrerelease = false
+
+let setPrereleaseTag = BuildTask.create "SetPrereleaseTag" [] {
+    printfn "Please enter pre-release package suffix"
+    let suffix = System.Console.ReadLine()
+    prereleaseSuffix <- suffix
+    prereleaseTag <- (sprintf "%s-%s" release.NugetVersion suffix)
+    isPrerelease <- true
+}
 
 let clean = BuildTask.create "Clean" [] {
     !! "src/**/bin"
@@ -163,71 +169,50 @@ let copyBinaries = BuildTask.create "CopyBinaries" [clean; build] {
     |>  Seq.iter (fun (fromDir, toDir) -> Shell.copyDir toDir fromDir (fun _ -> true))
 }
 
-let pack = BuildTask.create "Pack" [clean; build] {
-    if promptYesNo (sprintf "creating stable package with version %i.%i.%i OK?" stableVersion.Major stableVersion.Minor stableVersion.Patch ) then
-        !! "src/**/*.*proj"
-        |> Seq.iter (Fake.DotNet.DotNet.pack (fun p ->
-            let msBuildParams =
-                {p.MSBuildParams with 
-                    Properties = ([
-                        "Version",(sprintf "%i.%i.%i" stableVersion.Major stableVersion.Minor stableVersion.Patch )
-                        "Authors",              authors
-                        "Title",                title
-                        "Owners",               owners
-                        "Description",          description
-                        "PackageLicenseUrl",    licenseUrl
-                        "PackageProjectUrl",    projectUrl
-                        "IconUrl",              iconUrl
-                        "PackageTags",          tags
-                        "PackageReleaseNotes",  releaseNotes
-                        "RepositoryUrl",        repositoryUrl
-                        "RepositoryType",       "git"
-                    ] @ p.MSBuildParams.Properties)
-                }
-            {
-                p with 
-                    MSBuildParams = msBuildParams
-                    OutputPath = Some pkgDir
-            }
-        ))
-    else failwith "aborted"
-}
-
-let packPrerelease = BuildTask.create "PackPrerelease" [clean; build] {
-    !! "src/**/*.*proj"
-    |> Seq.iter (Fake.DotNet.DotNet.pack (fun p ->
-        printfn "Please enter pre-release package suffix"
-        let suffix = System.Console.ReadLine()
-        let prereleaseTag = (sprintf "%s-%s" release.NugetVersion suffix)
-        if promptYesNo (sprintf "package tag will be %s OK?" prereleaseTag )
-            then 
+let pack = BuildTask.create "Pack" [clean; build; copyBinaries] {
+    if promptYesNo (sprintf "creating stable package with version %s OK?" stableVersionTag ) 
+        then
+            !! "src/**/*.*proj"
+            |> Seq.iter (Fake.DotNet.DotNet.pack (fun p ->
                 let msBuildParams =
                     {p.MSBuildParams with 
                         Properties = ([
-                            "Version",              prereleaseTag
-                            "Authors",              authors
-                            "Title",                title
-                            "Owners",               owners
-                            "Description",          description
-                            "PackageLicenseUrl",    licenseUrl
-                            "PackageProjectUrl",    projectUrl
-                            "IconUrl",              iconUrl
-                            "PackageTags",          tags
-                            "PackageReleaseNotes",  releaseNotes
-                            "RepositoryUrl",        repositoryUrl
-                            "RepositoryType",       "git"
+                            "Version",stableVersionTag
+                            "PackageReleaseNotes",  (release.Notes |> String.concat "\r\n")
                         ] @ p.MSBuildParams.Properties)
                     }
                 {
                     p with 
-                        VersionSuffix = Some suffix
-                        OutputPath = Some pkgDir
                         MSBuildParams = msBuildParams
+                        OutputPath = Some pkgDir
                 }
-            else
-                failwith "aborted"
-    ))
+            ))
+    else failwith "aborted"
 }
+
+let packPrerelease = BuildTask.create "PackPrerelease" [setPrereleaseTag; clean; build; copyBinaries] {
+    if promptYesNo (sprintf "package tag will be %s OK?" prereleaseTag )
+        then 
+            !! "src/**/*.*proj"
+            //-- "src/**/Plotly.NET.Interactive.fsproj"
+            |> Seq.iter (Fake.DotNet.DotNet.pack (fun p ->
+                        let msBuildParams =
+                            {p.MSBuildParams with 
+                                Properties = ([
+                                    "Version", prereleaseTag
+                                    "PackageReleaseNotes",  (release.Notes |> String.toLines )
+                                ] @ p.MSBuildParams.Properties)
+                            }
+                        {
+                            p with 
+                                VersionSuffix = Some prereleaseSuffix
+                                OutputPath = Some pkgDir
+                                MSBuildParams = msBuildParams
+                        }
+            ))
+    else
+        failwith "aborted"
+    }
 
 
 
