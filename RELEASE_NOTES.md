@@ -1,3 +1,6 @@
+#### 0.1.5 - Friday, February 19, 2021
+* SignalDetection: add option for peak summation and intensity weighted based mz refinement
+
 #### 0.1.4 - Friday, Oktober 9, 2020
 * Minor changes 
 * SearchDB: added default inclusion of peptides resulting of protein n terminal methionin cleavages.
