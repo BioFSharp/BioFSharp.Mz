@@ -183,3 +183,5 @@ paket-files
 temp
 /pkg
 /codeCov.xml
+/.fsdocs
+/output
