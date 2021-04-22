@@ -6,6 +6,7 @@
     <AssemblyName>BioFSharp.Mz.Vis</AssemblyName>
     <Name>BioFSharp.Mz</Name>
     <OutputType>Library</OutputType>
+    <PackageProjectUrl>https://csbiology.github.io/BioFSharp.Mz/</PackageProjectUrl>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <!-- Optional: Declare that the Repository URL can be published to NuSpec -->
     <PublishRepositoryUrl>true</PublishRepositoryUrl>

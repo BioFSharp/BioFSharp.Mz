@@ -20,7 +20,7 @@
     <Description>BioFSharp.Mz - modular computational proteomics</Description>
     <Summary>BioFSharp.Mz - modular computational proteomics</Summary>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageProjectUrl>https://github.com/CSBiology/BioFSharp.Mz/</PackageProjectUrl>
+    <PackageProjectUrl>https://csbiology.github.io/BioFSharp.Mz/</PackageProjectUrl>
     <!--<PackageIconUrl>https://github.com/CSBiology/BioFSharp.Mz</PackageIconUrl>-->
     <PackageTags>fsharp dotnet proteomics</PackageTags>
     <RepositoryUrl>https://github.com/CSBiology/BioFSharp.Mz</RepositoryUrl>
