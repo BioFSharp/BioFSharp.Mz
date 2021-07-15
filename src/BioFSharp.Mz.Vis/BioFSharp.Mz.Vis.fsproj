@@ -17,6 +17,19 @@
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
   </PropertyGroup>
+  <PropertyGroup>
+    <Authors>David Zimmer, Caroline Ott, Heinrich Lukas Weil, Timo Muehlhaus</Authors>
+    <Description>BioFSharp.Mz.Vis - modular computational proteomics visualization</Description>
+    <Summary>BioFSharp.Mz.Vis - modular computational proteomics visualization</Summary>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/CSBiology/BioFSharp.Mz/</PackageProjectUrl>
+    <!--<PackageIconUrl>https://github.com/CSBiology/BioFSharp.Mz</PackageIconUrl>-->
+    <PackageTags>fsharp dotnet proteomics</PackageTags>
+    <RepositoryUrl>https://github.com/CSBiology/BioFSharp.Mz</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <FsDocsLicenseLink>https://github.com/CSBiology/BioFSharp.Mz/blob/developer/LICENSE</FsDocsLicenseLink>
+    <FsDocsReleaseNotesLink>https://github.com/CSBiology/BioFSharp.Mz/blob/developer/RELEASE_NOTES.md</FsDocsReleaseNotesLink>
+  </PropertyGroup>
   <ItemGroup>
     <Compile Include="ProteinInferenceVis.fs" />
   </ItemGroup>
@@ -30,5 +43,4 @@
     <PackageReference Include="Plotly.NET" Version="2.0.0-alpha5" />
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All"/>
   </ItemGroup>
-
 </Project>

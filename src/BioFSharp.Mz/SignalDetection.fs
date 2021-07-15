@@ -1,4 +1,7 @@
 ﻿namespace BioFSharp.Mz
+// The module contains a modified version of a wavelet-based peak picking approach
+// published by French et. al, available via doi: 10.1021/pr500886y.
+// The original work was published using the Apache v2 license https://www.apache.org/licenses/LICENSE-2.0
 
 open BioFSharp
 open BioFSharp.IO
