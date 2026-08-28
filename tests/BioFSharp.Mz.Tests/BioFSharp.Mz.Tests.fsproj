@@ -16,6 +16,7 @@
     <Compile Include="SearchDBTests.fs" />
     <Compile Include="MzIdentMLModelTests.fs" />
     <Compile Include="SearchEngineResultTests.fs" />
+    <Compile Include="SequestLikeTests.fs" />
     <Compile Include="Main.fs" />
   </ItemGroup>
 
