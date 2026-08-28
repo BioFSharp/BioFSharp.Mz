@@ -60,6 +60,10 @@ let tests =
                 Expect.equal (ChargeState.getChargeBy stdParams 0.25) 4 "0.25 Da spacing identifies charge 4"
                 // Adjacent isotopologue peaks are spaced ~1 Da divided by the charge (published isotope-envelope relation), so mean spacings 1.0, 0.5, 0.25 identify charges 1, 2, 4.
 
+            testCase "getChargeBy selects the nearest allowed charge for imperfect spacing" <| fun _ ->
+                Expect.equal (ChargeState.getChargeBy stdParams 0.34) 3 "0.34 Da spacing is nearest to charge 3"
+                // real centroid spacings are never exact: |0.34 - 1/3| = 0.0067 versus 0.09 for charge 4 and 0.16 for charge 2 - nearest-spacing selection is the required behavior, hand-computed.
+
             testCase "mzChargeDeviationBy is zero for exact spacings, permutation-invariant, and grows with deviation" <| fun _ ->
                 Expect.floatClose
                     Accuracy.high
@@ -103,6 +107,28 @@ let tests =
                 // Peaks within the 1.0-wide window right of the start peak (100.3 and 100.6; 102 is outside) are represented relative to the start peak's m/z and normalized by its intensity: (100.3-100, 800/1000) and (100.6-100, 600/1000), hand-computed. Both pass the intensity thresholds by construction - the checks compare RAW intensities: 800 > 0.1*1000 (vs start) and 800 > 0.1*1000 (vs prior); 600 > 0.1*1000 and 600 > 0.1*800. Lengths count the start peak plus accepted peaks.
                 // The implementation returns the accepted peaks in descending order; comparison above is set/order agnostic as specified.
 
+            testCase "intensity thresholds reject noise peaks during cluster extraction" <| fun _ ->
+                let _, rejected = ChargeState.getRelPeakPosInWindowBy [|500.0; 500.4|] [|1000.0; 40.0|] 1.0 0.05 0.01 0
+                Expect.isEmpty rejected.Peaks "a peak below the start-relative threshold is rejected"
+                Expect.equal rejected.SourceSetLength 1 "the rejected peak is omitted from the source count"
+                Expect.equal rejected.SubSetLength 1 "the rejected peak is omitted from the subset count"
+
+                let _, acceptedThenRejected =
+                    ChargeState.getRelPeakPosInWindowBy
+                        [|500.0; 500.4; 500.8|]
+                        [|1000.0; 800.0; 300.0|]
+                        1.0
+                        0.05
+                        0.5
+                        0
+                Expect.equal acceptedThenRejected.Peaks.Length 1 "only the first candidate peak passes both thresholds"
+                let acceptedPeak = List.head acceptedThenRejected.Peaks
+                Expect.floatClose Accuracy.high acceptedPeak.Mz 0.4 "the accepted peak has start-relative m/z"
+                Expect.floatClose Accuracy.high acceptedPeak.Intensity 0.8 "the accepted peak has start-relative intensity"
+                Expect.equal acceptedThenRejected.SourceSetLength 2 "the accepted count includes the start peak"
+                Expect.equal acceptedThenRejected.SubSetLength 2 "the subset count includes the start peak"
+                // the two thresholds guard against noise creating false charge hypotheses; each case isolates one threshold.
+
             testCase "powerSetOf enumerates all subsets anchored at the start peak" <| fun _ ->
                 let cluster = ChargeState.createPutativeIsotopeCluster [Peak(0.1, 0.5); Peak(0.2, 0.3)] 3 3
                 let subsets = ChargeState.powerSetOf cluster
@@ -114,7 +140,16 @@ let tests =
                         "every subset contains the start-peak anchor"
                     Expect.equal subset.SourceSetLength 3 "source length is preserved"
                     Expect.equal subset.SubSetLength subset.Peaks.Length "subset length matches its peak list")
+                let canonicalSubsets =
+                    subsets
+                    |> List.map (fun subset -> subset.Peaks |> List.map (fun peak -> peak.Mz) |> List.sort)
+                    |> Set.ofList
+                Expect.equal
+                    canonicalSubsets
+                    (set [ [0.0]; [0.0; 0.1]; [0.0; 0.2]; [0.0; 0.1; 0.2] ])
+                    "all distinct start-anchored membership combinations are present"
                 // 2^n subsets of n non-anchor peaks is the definition of a powerset; the anchor represents the start peak, which every isotope-cluster hypothesis must contain.
+                // count alone passes for duplicated subsets; distinct membership combinations are what the isotope-hypothesis search needs.
 
             testCase "mzDistancesOf returns adjacent gaps of a descending peak list" <| fun _ ->
                 let actual = ChargeState.mzDistancesOf [Peak(3.0, 1.); Peak(1.0, 1.); Peak(0.0, 1.)]
@@ -173,14 +208,62 @@ let tests =
                 | Some value -> Expect.floatClose Accuracy.high value 0.0 "identical distributions have zero divergence"
                 | None -> failtest "identical distributions return Some divergence"
                 match ChargeState.kullbackLeiblerDivergenceOf [|0.5; 0.5|] [|0.9; 0.1|] with
-                | Some value -> Expect.isTrue (value > 0.0) "different distributions have positive divergence"
+                | Some value ->
+                    let expected = 0.9 * log (0.9 / 0.5) + 0.1 * log (0.1 / 0.5)
+                    Expect.isTrue
+                        (abs (value - expected) <= 1e-9)
+                        (sprintf "the directed divergence has its defining value; expected %g, got %g" expected value)
+                    Expect.isTrue (value > 0.0) "different distributions have positive divergence"
                 | None -> failtest "same-length distributions return Some divergence"
                 Expect.equal
                     (ChargeState.kullbackLeiblerDivergenceOf [|0.5; 0.5|] [|1.0|])
                     None
                     "mismatched supports return None"
                 // Gibbs' inequality - D(p||q) >= 0 with equality iff p = q; mismatched supports are undefined (documented None).
+                // the defining D(p||q) with q as first argument - the exact value pins direction and operand order, which zero/positive checks cannot.
+
+            testCase "peakPosStdDevBy scales like a dispersion estimate" <| fun _ ->
+                let mkAC residuals =
+                    ChargeState.createAssignedCharge
+                        "p"
+                        "f"
+                        500.0
+                        2
+                        999.0
+                        0.0
+                        1.0
+                        residuals
+                        (List.length residuals)
+                        1.0
+                        Set.empty
+                        None
+                let s1 = ChargeState.peakPosStdDevBy [mkAC [-0.1; 0.0; 0.1]]
+                let s1' = ChargeState.peakPosStdDevBy [mkAC [0.1; -0.1; 0.0]]
+                let s2 = ChargeState.peakPosStdDevBy [mkAC [-0.2; 0.0; 0.2]]
+                Expect.isTrue (s1 > 0.0 && Double.IsFinite s1) "non-constant residuals have a finite positive spread"
+                Expect.floatClose Accuracy.high s1' s1 "the spread is permutation-invariant"
+                Expect.floatClose Accuracy.high s2 (2.0 * s1) "the spread is homogeneous under scaling"
+                // any standard-deviation convention (sample or population) is positive for non-constant data, permutation-invariant, and homogeneous of degree 1 - convention-independent properties.
         ]
+
+        testCase "heavier peptides get broader predicted isotope envelopes" <| fun _ ->
+            let eLight = ChargeState.poissonEstofMassTrunc ChargeState.n14MassToLambda 10 500.0
+            let eHeavy = ChargeState.poissonEstofMassTrunc ChargeState.n14MassToLambda 10 3000.0
+            let eLightN15 = ChargeState.poissonEstofMassTrunc ChargeState.n15MassToLambda 10 500.0
+            let eHeavyN15 = ChargeState.poissonEstofMassTrunc ChargeState.n15MassToLambda 10 3000.0
+            [eLight; eHeavy; eLightN15; eHeavyN15]
+            |> List.iter (fun envelope -> Expect.floatClose Accuracy.high (Array.sum envelope) 1.0 "the envelope is normalized")
+            let expectedIndex envelope =
+                envelope
+                |> Array.mapi (fun i probability -> float i * probability)
+                |> Array.sum
+            Expect.isTrue
+                (expectedIndex eHeavy > expectedIndex eLight)
+                "the heavier n14 envelope has a greater expected isotopologue index"
+            Expect.isTrue
+                (expectedIndex eHeavyN15 > expectedIndex eLightN15)
+                "the heavier n15 envelope has a greater expected isotopologue index"
+            // more atoms -> more chances of a heavy isotope: the expected isotopologue index must grow with peptide mass - a domain invariant that leaves the empirical lambda coefficients unpinned.
 
         testList "CandidateHandling" [
             testCase "normalizePeaksByIntensitySum returns intensity fractions summing to one" <| fun _ ->
@@ -269,7 +352,12 @@ let tests =
                 Expect.equal best.PrecCharge 2 "the lowest-score candidate has charge 2"
                 Expect.floatClose Accuracy.high best.PutMass 997.98545 "the charge-2 neutral mass"
                 Expect.floatClose Accuracy.high best.MZChargeDev 0.0 "exact 0.5 Da spacing has zero charge deviation"
+                let charges = candidates |> List.map (fun candidate -> candidate.PrecCharge)
+                Expect.equal (Set.ofList charges).Count charges.Length "returned precursor charges are distinct"
+                let chargeTwo = candidates |> List.find (fun candidate -> candidate.PrecCharge = 2)
+                Expect.equal chargeTwo.SubSetLength 3 "the winning charge-2 candidate retains the full envelope"
                 // The spectrum is constructed as a textbook 2+ isotope envelope (0.5 Da spacing); charge determination must prefer charge 2, and the derived neutral mass follows the fundamental m/z relation.
+                // the function documents one best candidate per charge; the full three-peak envelope explains the most peaks and must be the retained charge-2 hypothesis.
 
             // PENDING: an uninterpretable dense window (>= 15 source peaks) makes the function fall
             // back to hedging across ALL allowed charges - one sentinel candidate per charge in
