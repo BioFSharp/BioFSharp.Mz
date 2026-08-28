@@ -59,7 +59,7 @@ let scanlimits = (100.0, 2000.0)
 let chargeState = 2
 let maxMemory = System.Int64.MaxValue
 
-let generateWithCachesAtMemory maxMemory lookUpCache andromedaCache sequestCache =
+let generateWithCachesAtMemoryInWindow maxMemory lookUpCache andromedaCache sequestCache lowerMass upperMass =
     SearchEngineGeneric.OrderedCache.generateTheoSpectra
         calcIonSeries
         mf
@@ -70,8 +70,11 @@ let generateWithCachesAtMemory maxMemory lookUpCache andromedaCache sequestCache
         chargeState
         scanlimits
         maxMemory
-        400.0
-        700.0
+        lowerMass
+        upperMass
+
+let generateWithCachesAtMemory maxMemory lookUpCache andromedaCache sequestCache =
+    generateWithCachesAtMemoryInWindow maxMemory lookUpCache andromedaCache sequestCache 400.0 700.0
 
 let generateWithCaches lookUpCache andromedaCache sequestCache =
     generateWithCachesAtMemory maxMemory lookUpCache andromedaCache sequestCache
@@ -119,6 +122,45 @@ let tests =
             |> List.iter (fun spectrum ->
                 Expect.isTrue (Vector.sum spectrum.TheoSpec > 0.0) "SEQUEST theoretical spectra contain fragment signal")
 
+        testCase "the requested mass window selects the candidates" <| fun _ ->
+            let lookUpCache = Cache.createCache<int64, _>
+            let andromedaCache = Cache.createCache<int64, _>
+            let sequestCache = Cache.createCache<int64, _>
+            let androA, sequestA =
+                generateWithCachesAtMemoryInWindow
+                    maxMemory
+                    lookUpCache
+                    andromedaCache
+                    sequestCache
+                    (pepMass peptideA)
+                    (pepMass peptideA)
+            Expect.equal
+                (androA |> List.map (fun spectrum -> spectrum.LookUpResult.PepSequenceID))
+                [1]
+                "an exact peptide-A mass window returns only peptide A for Andromeda"
+            Expect.equal
+                (sequestA |> List.map (fun spectrum -> spectrum.LookUpResult.PepSequenceID))
+                [1]
+                "an exact peptide-A mass window returns only peptide A for SEQUEST"
+
+            let lookUpCacheEmpty = Cache.createCache<int64, _>
+            let andromedaCacheEmpty = Cache.createCache<int64, _>
+            let sequestCacheEmpty = Cache.createCache<int64, _>
+            let androEmpty, sequestEmpty =
+                generateWithCachesAtMemoryInWindow
+                    maxMemory
+                    lookUpCacheEmpty
+                    andromedaCacheEmpty
+                    sequestCacheEmpty
+                    2000.0
+                    3000.0
+            // the mass window is the search-space contract: only candidates inside the inclusive precursor window may produce spectra, and an empty lookup must leave the caches untouched.
+            Expect.equal androEmpty [] "an above-range window returns no Andromeda spectra"
+            Expect.equal sequestEmpty [] "an above-range window returns no SEQUEST spectra"
+            Expect.equal lookUpCacheEmpty.Count 0 "an empty lookup leaves the lookup cache empty"
+            Expect.equal andromedaCacheEmpty.Count 0 "an empty lookup leaves the Andromeda cache empty"
+            Expect.equal sequestCacheEmpty.Count 0 "an empty lookup leaves the SEQUEST cache empty"
+
         // PENDING: the cache hit branch assumes that a covered mass RANGE implies every candidate in
         // it is PRESENT. With a cache pre-populated by a prior overlapping query (simulated here with
         // two foreign in-range keys), generateTheoSpectra returns the foreign spectra - which are not
@@ -148,50 +190,56 @@ let tests =
 
         testCase "the cached pipeline agrees with the direct per-engine spectrum generation" <| fun _ ->
             let andro, sequest = generateWithFreshCaches ()
-            let fragA = calcIonSeries mf peptideA
-            let directAndro =
-                AndromedaLike.getTheoSpecs scanlimits chargeState [(lookupA, fragA)]
-                |> List.head
-            let directSequest =
-                SequestLike.getTheoSpecs scanlimits chargeState [(lookupA, fragA)]
-                |> List.head
-            let cachedAndro =
-                andro
-                |> List.find (fun spectrum -> spectrum.LookUpResult.PepSequenceID = 1)
-            let cachedSequest =
-                sequest
-                |> List.find (fun spectrum -> spectrum.LookUpResult.PepSequenceID = 1)
+            let candidates = [(1, lookupA, peptideA); (2, lookupB, peptideB)]
+            let compareAndromedaFamilies
+                (actual: PeakFamily<TaggedPeak.TaggedPeak> array)
+                (expected: PeakFamily<TaggedPeak.TaggedPeak> array)
+                message =
+                Expect.equal actual.Length expected.Length (sprintf "%s family counts agree" message)
+                let actualMainMz = actual |> Array.map (fun family -> family.MainPeak.Mz) |> Array.sort
+                let expectedMainMz = expected |> Array.map (fun family -> family.MainPeak.Mz) |> Array.sort
+                let mzAccuracy = { Accuracy.absolute = 1e-9; relative = 1e-9 }
+                Array.iter2
+                    (fun actualMz expectedMz ->
+                        Expect.floatClose mzAccuracy actualMz expectedMz (sprintf "%s main-peak m/z" message))
+                    actualMainMz
+                    expectedMainMz
 
-            // HONESTY: both paths execute the same predictOf on the same FragmentMasses - this is not an independent oracle for spectral correctness (that lives in the per-engine groups); what it genuinely pins is cache-layer transparency on the miss branch: correct lookup-to-fragment pairing and charge/scanlimit plumbing through getPeptideLookUpWithMemBy and the fold.
-            Expect.equal
-                cachedAndro.TheoSpec.Length
-                directAndro.TheoSpec.Length
-                "cached Andromeda spectrum has the same number of peak families"
-            let cachedAndroMainMz =
-                cachedAndro.TheoSpec
-                |> Array.map (fun family -> family.MainPeak.Mz)
-                |> Array.sort
-            let directAndroMainMz =
-                directAndro.TheoSpec
-                |> Array.map (fun family -> family.MainPeak.Mz)
-                |> Array.sort
-            let mzAccuracy = { Accuracy.absolute = 1e-9; relative = 1e-9 }
-            Array.iter2
-                (fun actual expected ->
-                    Expect.floatClose mzAccuracy actual expected "cached Andromeda main-peak m/z")
-                cachedAndroMainMz
-                directAndroMainMz
+            for pepSequenceID, lookUpResult, aminoAcids in candidates do
+                let frag = calcIonSeries mf aminoAcids
+                let directAndro =
+                    AndromedaLike.getTheoSpecs scanlimits chargeState [(lookUpResult, frag)]
+                    |> List.head
+                let directSequest =
+                    SequestLike.getTheoSpecs scanlimits chargeState [(lookUpResult, frag)]
+                    |> List.head
+                let cachedAndro =
+                    andro
+                    |> List.find (fun spectrum -> spectrum.LookUpResult.PepSequenceID = pepSequenceID)
+                let cachedSequest =
+                    sequest
+                    |> List.find (fun spectrum -> spectrum.LookUpResult.PepSequenceID = pepSequenceID)
 
-            expectVectorFloatClose
-                1e-9
-                cachedSequest.TheoSpec
-                directSequest.TheoSpec
-                "cached target theoretical spectrum"
-            expectVectorFloatClose
-                1e-9
-                cachedSequest.DecoyTheoSpec
-                directSequest.DecoyTheoSpec
-                "cached decoy theoretical spectrum"
+                // HONESTY: both paths execute the same predictOf on the same FragmentMasses - this is not an independent oracle for spectral correctness (that lives in the per-engine groups); what it genuinely pins is cache-layer transparency on the miss branch: correct lookup-to-fragment pairing and charge/scanlimit plumbing through getPeptideLookUpWithMemBy and the fold.
+                compareAndromedaFamilies
+                    cachedAndro.TheoSpec
+                    directAndro.TheoSpec
+                    (sprintf "cached Andromeda target for PepSequenceID %d" pepSequenceID)
+                compareAndromedaFamilies
+                    cachedAndro.DecoyTheoSpec
+                    directAndro.DecoyTheoSpec
+                    (sprintf "cached Andromeda decoy for PepSequenceID %d" pepSequenceID)
+                expectVectorFloatClose
+                    1e-9
+                    cachedSequest.TheoSpec
+                    directSequest.TheoSpec
+                    (sprintf "cached SEQUEST target for PepSequenceID %d" pepSequenceID)
+                expectVectorFloatClose
+                    1e-9
+                    cachedSequest.DecoyTheoSpec
+                    directSequest.DecoyTheoSpec
+                    (sprintf "cached SEQUEST decoy for PepSequenceID %d" pepSequenceID)
+            // one-candidate comparison would accept swapped payloads that keep IDs and non-emptiness; per-ID content equality over ALL candidates pins the pairing.
 
         testCase "a second identical call is served from the cache with identical content" <| fun _ ->
             let lookUpCache = Cache.createCache<int64, _>
@@ -202,6 +250,31 @@ let tests =
 
             Expect.equal (projection second) (projection first) "repeated calls have equivalent result projections"
             // projection equivalence alone would pass a cache that serves corrupted or swapped content; elementwise equality pins what the warm cache actually serves.
+            let projectFamilies (families: PeakFamily<TaggedPeak.TaggedPeak> array) =
+                families
+                |> Array.map (fun family ->
+                    family.MainPeak.Iontype,
+                    family.MainPeak.Mz,
+                    family.DependentPeaks |> List.map (fun dependent -> dependent.Iontype, dependent.Mz))
+            let expectFamilyProjections
+                (actual: (Ions.IonTypeFlag * float * (Ions.IonTypeFlag * float) list) array)
+                (expected: (Ions.IonTypeFlag * float * (Ions.IonTypeFlag * float) list) array)
+                message =
+                Expect.equal actual.Length expected.Length (sprintf "%s family count" message)
+                let mzAccuracy = { Accuracy.absolute = 1e-9; relative = 1e-9 }
+                Array.iter2
+                    (fun (actualIon, actualMz, actualDependents) (expectedIon, expectedMz, expectedDependents) ->
+                        Expect.equal actualIon expectedIon (sprintf "%s main ion type" message)
+                        Expect.floatClose mzAccuracy actualMz expectedMz (sprintf "%s main m/z" message)
+                        Expect.equal (List.length actualDependents) (List.length expectedDependents) (sprintf "%s dependent count" message)
+                        List.iter2
+                            (fun (actualDependentIon, actualDependentMz) (expectedDependentIon, expectedDependentMz) ->
+                                Expect.equal actualDependentIon expectedDependentIon (sprintf "%s dependent ion type" message)
+                                Expect.floatClose mzAccuracy actualDependentMz expectedDependentMz (sprintf "%s dependent m/z" message))
+                            actualDependents
+                            expectedDependents)
+                    actual
+                    expected
             for pepSequenceID in [1; 2] do
                 let firstAndro = first |> fst |> List.find (fun spectrum -> spectrum.LookUpResult.PepSequenceID = pepSequenceID)
                 let secondAndro = second |> fst |> List.find (fun spectrum -> spectrum.LookUpResult.PepSequenceID = pepSequenceID)
@@ -217,10 +290,15 @@ let tests =
                     secondSequest.DecoyTheoSpec
                     firstSequest.DecoyTheoSpec
                     (sprintf "cached SEQUEST decoy spectrum for PepSequenceID %d" pepSequenceID)
-                Expect.equal
-                    (secondAndro.TheoSpec.Length, secondAndro.DecoyTheoSpec.Length)
-                    (firstAndro.TheoSpec.Length, firstAndro.DecoyTheoSpec.Length)
-                    (sprintf "cached Andromeda family counts for PepSequenceID %d" pepSequenceID)
+                expectFamilyProjections
+                    (projectFamilies secondAndro.TheoSpec)
+                    (projectFamilies firstAndro.TheoSpec)
+                    (sprintf "cached Andromeda target projection for PepSequenceID %d" pepSequenceID)
+                expectFamilyProjections
+                    (projectFamilies secondAndro.DecoyTheoSpec)
+                    (projectFamilies firstAndro.DecoyTheoSpec)
+                    (sprintf "cached Andromeda decoy projection for PepSequenceID %d" pepSequenceID)
+            // count equality accepts corrupted or swapped warm-cache content; the projection pins what is actually served (floatClose on m/z, with NaN intensities excluded by construction).
             second
             |> snd
             |> List.iter (fun spectrum ->
@@ -286,11 +364,19 @@ let tests =
             let foreign =
                 let lookup = SearchDB.createLookUpResult 100 100 100.0 100000000L "FOREIGN100" peptideA 0
                 TheoreticalSpectra.createTheoreticalSpectrum lookup (vector [1.0]) (vector [0.5])
+            let foreignAndro =
+                let lookup = SearchDB.createLookUpResult 100 100 100.0 100000000L "FOREIGN100" peptideA 0
+                AndromedaLike.getTheoSpecs scanlimits chargeState [(lookup, calcIonSeries mf peptideA)]
+                |> List.head
+            Cache.addItem lookUpCache (100000000L, [])
+            Cache.addItem andromedaCache (100000000L, [foreignAndro])
             Cache.addItem sequestCache (100000000L, [foreign])
 
             let andro, sequest = generateWithCachesAtMemory 0L lookUpCache andromedaCache sequestCache
 
-            // the maxMemory knob is the documented cache-pressure valve: over budget, all three caches are flushed and rebuilt from the current query - observable as the foreign entry vanishing while results stay complete.
+            // the documented contract clears all three caches; observing only one would accept a partial flush.
+            Expect.isFalse (lookUpCache.ContainsKey 100000000L) "the foreign lookup cache entry is cleared"
+            Expect.isFalse (andromedaCache.ContainsKey 100000000L) "the foreign Andromeda cache entry is cleared"
             Expect.isFalse (sequestCache.ContainsKey 100000000L) "the foreign SEQUEST cache entry is cleared"
             Expect.equal
                 (andro |> List.map (fun spectrum -> spectrum.LookUpResult.PepSequenceID) |> Set.ofList)
