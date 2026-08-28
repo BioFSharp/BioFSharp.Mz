@@ -49,6 +49,19 @@ let tests =
             Expect.isFalse (s.Contains rawPath) "the raw file path is not serialized"
             // The wrapper must let the caller decide path dialect (Windows vs WSL); leaking the raw path would break cross-OS invocation. Observed via the stub converter - no filesystem or OS dependence.
 
+        // PENDING: real proteomics paths commonly contain spaces ("C:\Proteomics Runs\..."), and the
+        // serializer emits converted paths UNQUOTED, so standard Windows argument parsing splits them
+        // into multiple operands - percolator receives a broken file reference. Argued-correct: the
+        // serialized fragment must carry the full path as one operand (quoted).
+        ptestCase "converted paths containing spaces remain single command-line operands" <| fun _ ->
+            let s =
+                PercolatorWrapper.Parameters.stringOf
+                    PercolatorWrapper.Parameters.fileInfoToWindowsPath
+                    (PercolatorWrapper.Parameters.PercolatorParams.FileOutputOptions [
+                        PercolatorWrapper.Parameters.POUTTAB_PSMs (FileInfo @"C:\Proteomics Runs\run.psms")
+                    ])
+            Expect.stringContains s "\"C:\Proteomics Runs\run.psms\"" "a converted path containing spaces is quoted as one operand"
+
         testCase "each remaining option family serializes its published percolator flags" <| fun _ ->
             let conv = fun (_: System.IO.FileInfo) -> "CONVERTED"
 
@@ -105,6 +118,98 @@ let tests =
                     (PercolatorWrapper.Parameters.PercolatorParams.GeneralOptions [])
             Expect.equal actual "" "no options produce no arguments"
             // No options, no arguments.
+
+        testCase "target and decoy output flags are distinct for all three result types" <| fun _ ->
+            let conv = fun (_: System.IO.FileInfo) -> "P"
+            let serialize option =
+                PercolatorWrapper.Parameters.stringOf
+                    conv
+                    (PercolatorWrapper.Parameters.PercolatorParams.FileOutputOptions [option])
+            let assertPair name target targetFlag decoy decoyFlag =
+                let targetOutput = serialize target
+                let decoyOutput = serialize decoy
+                Expect.stringContains targetOutput targetFlag (sprintf "%s target output uses its target flag" name)
+                Expect.isFalse (targetOutput.Contains "decoy") (sprintf "%s target output does not contain a decoy flag" name)
+                Expect.stringContains decoyOutput decoyFlag (sprintf "%s decoy output uses its decoy flag" name)
+                Expect.isTrue (decoyOutput.Contains "decoy") (sprintf "%s decoy output is distinct from target output" name)
+            // swapping a target/decoy output pair silently reverses target-decoy semantics downstream - the one confusion the per-family representative test cannot catch.
+            assertPair
+                "peptides"
+                (PercolatorWrapper.Parameters.POUTTAB_Peptides (FileInfo @"C:\x\p.tsv"))
+                "--results-peptides"
+                (PercolatorWrapper.Parameters.POUTTAB_DecoyPeptides (FileInfo @"C:\x\p.decoy.tsv"))
+                "--decoy-results-peptides"
+            assertPair
+                "PSMs"
+                (PercolatorWrapper.Parameters.POUTTAB_PSMs (FileInfo @"C:\x\p.psms"))
+                "--results-psms"
+                (PercolatorWrapper.Parameters.POUTTAB_DecoyPSMs (FileInfo @"C:\x\p.decoy.psms"))
+                "--decoy-results-psms"
+            assertPair
+                "proteins"
+                (PercolatorWrapper.Parameters.POUTTAB_Proteins (FileInfo @"C:\x\p.proteins"))
+                "--results-proteins"
+                (PercolatorWrapper.Parameters.POUTTAB_DecoyProteins (FileInfo @"C:\x\p.decoy.proteins"))
+                "--decoy-results-proteins"
+
+        testCase "semantically confusable option siblings map to their own flags" <| fun _ ->
+            let conv = fun (_: System.IO.FileInfo) -> "P"
+            let serializeGeneral option =
+                PercolatorWrapper.Parameters.stringOf
+                    conv
+                    (PercolatorWrapper.Parameters.PercolatorParams.GeneralOptions [option])
+            let mixMax = serializeGeneral PercolatorWrapper.Parameters.PostProcessing_MIXMAX
+            let tdc = serializeGeneral PercolatorWrapper.Parameters.PostProcessing_TargetDecoyCompetition
+            Expect.stringContains mixMax "--post-processing-mix-max" "MIXMAX uses its own post-processing flag"
+            Expect.isFalse (mixMax.Contains "--post-processing-tdc") "MIXMAX does not use the TDC flag"
+            Expect.stringContains tdc "--post-processing-tdc" "TDC uses its own post-processing flag"
+            Expect.isFalse (tdc.Contains "--post-processing-mix-max") "TDC does not use the MIXMAX flag"
+
+            let crossValidation =
+                PercolatorWrapper.Parameters.stringOf
+                    conv
+                    (PercolatorWrapper.Parameters.PercolatorParams.SVMTrainingOptions [
+                        PercolatorWrapper.Parameters.FDR_CrossValidation 0.02
+                    ])
+            let positiveExamples =
+                PercolatorWrapper.Parameters.stringOf
+                    conv
+                    (PercolatorWrapper.Parameters.PercolatorParams.SVMTrainingOptions [
+                        PercolatorWrapper.Parameters.FDR_PositiveExamples 0.03
+                    ])
+            Expect.stringContains crossValidation "--testFDR 0.02" "cross-validation FDR uses testFDR"
+            Expect.isFalse (crossValidation.Contains "--trainFDR") "cross-validation FDR does not use trainFDR"
+            Expect.stringContains positiveExamples "--trainFDR 0.03" "positive-example FDR uses trainFDR"
+            Expect.isFalse (positiveExamples.Contains "--testFDR") "positive-example FDR does not use testFDR"
+
+            let fidoAlpha =
+                PercolatorWrapper.Parameters.stringOf
+                    conv
+                    (PercolatorWrapper.Parameters.PercolatorParams.ProteinInferenceOptions_FIDO [
+                        PercolatorWrapper.Parameters.Alpha 0.25
+                    ])
+            let fidoBeta =
+                PercolatorWrapper.Parameters.stringOf
+                    conv
+                    (PercolatorWrapper.Parameters.PercolatorParams.ProteinInferenceOptions_FIDO [
+                        PercolatorWrapper.Parameters.Beta 0.5
+                    ])
+            let fidoGamma =
+                PercolatorWrapper.Parameters.stringOf
+                    conv
+                    (PercolatorWrapper.Parameters.PercolatorParams.ProteinInferenceOptions_FIDO [
+                        PercolatorWrapper.Parameters.Gamma 0.75
+                    ])
+            Expect.stringContains fidoAlpha "--fido-alpha 0.25" "Fido alpha uses its own flag and value"
+            Expect.isFalse (fidoAlpha.Contains "0.5") "Fido alpha does not use beta's value"
+            Expect.isFalse (fidoAlpha.Contains "0.75") "Fido alpha does not use gamma's value"
+            Expect.stringContains fidoBeta "--fido-beta 0.5" "Fido beta uses its own flag and value"
+            Expect.isFalse (fidoBeta.Contains "0.25") "Fido beta does not use alpha's value"
+            Expect.isFalse (fidoBeta.Contains "0.75") "Fido beta does not use gamma's value"
+            Expect.stringContains fidoGamma "--fido-gamma 0.75" "Fido gamma uses its own flag and value"
+            Expect.isFalse (fidoGamma.Contains "0.25") "Fido gamma does not use alpha's value"
+            Expect.isFalse (fidoGamma.Contains "0.5") "Fido gamma does not use beta's value"
+            // train/test FDR and the three Fido priors are semantically distinct knobs; distinct values make a swapped mapping observable.
 
         // PENDING: percolator's CLI requires whitespace (or =) between a flag and its value; the
         // implementation concatenates e.g. "--Cneg" directly with the number ("--Cneg0.75"), which the
