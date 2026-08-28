@@ -77,6 +77,35 @@ let tests =
 
                 Expect.floatClose Accuracy.high (ParamContainer.getValueAsFloat "MS:1" container) 55.0 "the existing term is updated in place"
                 Expect.equal container.Count 1 "updating an existing term does not add a second entry"
+
+            testCase "a replaced parameter keeps value and unit coupled" <| fun _ ->
+                let fixedTs = DateTime(2026, 1, 15)
+                let scanStartTime = Term.initOf "MS:1000016" "MS" "scan start time" fixedTs
+                let secondTerm = Term.initOf "UO:0000010" "UO" "second" fixedTs
+                let minuteTerm = Term.initOf "UO:0000031" "UO" "minute" fixedTs
+                let container =
+                    ParamContainer.ofSeq [
+                        CvParam.createWithUnit
+                            (Guid.NewGuid())
+                            scanStartTime
+                            (box 90.0 :?> IConvertible)
+                            secondTerm
+                    ]
+
+                ParamContainer.addOrUpdateInPlace
+                    (CvParam.createWithUnit
+                        (Guid.NewGuid())
+                        scanStartTime
+                        (box 1.5 :?> IConvertible)
+                        minuteTerm)
+                    container
+                |> ignore
+
+                let stored = ParamContainer.getCvParam "MS:1000016" container
+                Expect.equal container.Count 1 "replacing a parameter does not add a second term entry"
+                Expect.floatClose Accuracy.high (Convert.ToDouble stored.Value) 1.5 "the replacement keeps its new value"
+                Expect.equal (stored.Unit |> Option.map (fun unitTerm -> unitTerm.Id)) (Some minuteTerm.Id) "the replacement keeps its new unit"
+                // 90 seconds = 1.5 minutes: a quantity is value AND unit together; replacement leaving a stale unit corrupts every consumer reading times or masses.
         ]
 
         testList "DataModel" [
@@ -99,6 +128,7 @@ let tests =
             testCase "entity table DDL creates queryable tables and a prepared insert round-trips a row" <| fun _ ->
                 withTemporaryDirectory (fun directory ->
                     let file = Path.Combine(directory, "mzidentml.db")
+                    let fixedTs = DateTime(2026, 1, 15)
                     use cn = new SQLiteConnection(sprintf "Data Source=%s;Version=3" file)
                     cn.Open()
                     use tr = cn.BeginTransaction()
@@ -106,14 +136,33 @@ let tests =
                     MzIdentMLModel.Db.DBSequence.createDBSequenceTable cn |> ignore
                     MzIdentMLModel.Db.DBSequence.createDBSequenceParamTable cn |> ignore
                     let insert = MzIdentMLModel.Db.DBSequence.prepareInsertDBSequence cn tr
-                    insert 1 "ACC1" "protein one" "sdb1" DateTime.Now |> ignore
+                    insert 17 "P01234" "ALBU_HUMAN" "Swiss-Prot-2026_01" fixedTs |> ignore
                     tr.Commit()
 
-                    use command = new SQLiteCommand("SELECT Accession, Name FROM DBSequence WHERE ID = 1", cn)
+                    use command = new SQLiteCommand("SELECT ID, Accession, Name, SearchDBID, RowVersion FROM DBSequence WHERE ID = 17", cn)
                     use reader = command.ExecuteReader()
                     Expect.isTrue (reader.Read()) "the inserted row is returned by independent SQL"
-                    Expect.equal (reader.GetString(0)) "ACC1" "the accession round-trips"
-                    Expect.equal (reader.GetString(1)) "protein one" "the name round-trips"
+                    if reader.Read() then
+                        failtest "the query returned more than one row"
+                    else
+                        ()
+                    // The first Read above established the row; re-querying the scalar fields keeps all five column assertions independent of the row-count check.
+                    use rowCommand = new SQLiteCommand("SELECT ID, Accession, Name, SearchDBID, RowVersion FROM DBSequence WHERE ID = 17", cn)
+                    use rowReader = rowCommand.ExecuteReader()
+                    if rowReader.Read() then
+                        Expect.equal (rowReader.GetInt32(0)) 17 "the ID round-trips"
+                        Expect.equal (rowReader.GetString(1)) "P01234" "the accession round-trips"
+                        Expect.equal (rowReader.GetString(2)) "ALBU_HUMAN" "the name round-trips"
+                        Expect.equal (rowReader.GetString(3)) "Swiss-Prot-2026_01" "the SearchDBID round-trips"
+                        let storedRowVersion = rowReader.GetDateTime(4)
+                        if storedRowVersion <> fixedTs then
+                            printfn "D7 RowVersion precision observed: expected %O, got %O; comparing to the second" fixedTs storedRowVersion
+                        Expect.equal
+                            (storedRowVersion.ToString("yyyy-MM-dd HH:mm:ss"))
+                            (fixedTs.ToString("yyyy-MM-dd HH:mm:ss"))
+                            "the RowVersion round-trips to the stored second"
+                    else
+                        failtest "the five-column row disappeared during the independent read"
                     Expect.isFalse (reader.Read()) "the query returns exactly one row"
 
                     use tablesCommand = new SQLiteCommand("SELECT name FROM sqlite_master WHERE type='table'", cn)
@@ -123,6 +172,112 @@ let tests =
                             yield tablesReader.GetString(0)
                     ]
                     Expect.isTrue (List.contains "DBSequenceParam" tableNames) "the DBSequenceParam table exists"
+                )
+
+            // PENDING: the SpectrumIdentificationItem prepared insert binds option values directly to
+            // SQLite Int32 parameters and throws before the graph row can be persisted.
+            ptestCase "a spectrum identification graph persists and joins back correctly" <| fun _ ->
+                withTemporaryDirectory (fun directory ->
+                    let file = Path.Combine(directory, "mzidentml-graph.db")
+                    let fixedTs = DateTime(2026, 1, 15)
+                    use cn = new SQLiteConnection(sprintf "Data Source=%s;Version=3" file)
+                    cn.Open()
+
+                    MzIdentMLModel.Db.DBSequence.createDBSequenceTable cn |> ignore
+                    MzIdentMLModel.Db.Peptide.createPeptideTable cn |> ignore
+                    MzIdentMLModel.Db.Modification.createModificationTable cn |> ignore
+                    MzIdentMLModel.Db.ModLocation.createModLocationTable cn |> ignore
+                    MzIdentMLModel.Db.PeptideEvidence.createPeptideEvidenceTable cn |> ignore
+                    MzIdentMLModel.Db.SpectrumIdentificationResult.createSpectrumIdentificationResultTable cn |> ignore
+                    MzIdentMLModel.Db.SpectrumIdentificationItem.createSpectrumIdentificationItemTable cn |> ignore
+
+                    use tr = cn.BeginTransaction()
+                    let insertDbSequence = MzIdentMLModel.Db.DBSequence.prepareInsertDBSequence cn tr
+                    let insertPeptide = MzIdentMLModel.Db.Peptide.prepareInsertPeptide cn tr
+                    let insertModification = MzIdentMLModel.Db.Modification.prepareInsertModification cn tr
+                    let insertModLocation = MzIdentMLModel.Db.ModLocation.prepareInsertModLocation cn tr
+                    let insertPeptideEvidence = MzIdentMLModel.Db.PeptideEvidence.prepareInsertPeptideEvidence cn tr
+                    let insertSpectrumIdentificationResult = MzIdentMLModel.Db.SpectrumIdentificationResult.prepareInsertSpectrumIdentificationResult cn tr
+                    let insertSpectrumIdentificationItem = MzIdentMLModel.Db.SpectrumIdentificationItem.prepareInsertSpectrumIdentificationItem cn tr
+
+                    insertDbSequence 1 "P100" "protein" "sdb" fixedTs |> ignore
+                    insertPeptide "pep1" "ACDMK" fixedTs |> ignore
+                    insertModification 1 "Oxidation" "M" 15.994915 15.99 fixedTs |> ignore
+                    insertModLocation 1 1 1 4 "M" fixedTs |> ignore
+                    insertPeptideEvidence 1 1 1 None None None None None None None fixedTs |> ignore
+                    insertSpectrumIdentificationResult 1 "scan=42" "sd1" None None fixedTs |> ignore
+                    insertSpectrumIdentificationItem 1 (Some 1) None 1 None None "true" (Some 1) None 500.25 2 None None fixedTs |> ignore
+                    tr.Commit()
+
+                    use command = new SQLiteCommand(
+                        "SELECT p.Sequence, m.MonoisotopicMassDelta, ml.Location, ml.Residue, dbs.Accession, sir.SpectrumID, sii.Rank, sii.ChargeState, sii.SampleID " +
+                        "FROM SpectrumIdentificationItem AS sii " +
+                        "JOIN SpectrumIdentificationResult AS sir ON sir.ID = sii.SpectrumIdentificationResultID " +
+                        "JOIN Peptide AS p ON p.ID = printf('pep%d', sii.PeptideID) " +
+                        "JOIN PeptideEvidence AS pe ON pe.PeptideID = sii.PeptideID " +
+                        "JOIN DBSequence AS dbs ON dbs.ID = pe.DBSequenceID " +
+                        "JOIN ModLocation AS ml ON ml.PeptideID = pe.PeptideID " +
+                        "JOIN Modification AS m ON m.ID = ml.ModificationID " +
+                        "WHERE sii.ID = 1",
+                        cn)
+                    use reader = command.ExecuteReader()
+                    Expect.isTrue (reader.Read()) "the hand-written graph join returns the stored identification"
+                    if reader.Read() then
+                        failtest "the hand-written graph join returned more than one identification"
+                    else
+                        ()
+
+                    use rowCommand = new SQLiteCommand(
+                        "SELECT p.Sequence, m.MonoisotopicMassDelta, ml.Location, ml.Residue, dbs.Accession, sir.SpectrumID, sii.Rank, sii.ChargeState, sii.SampleID " +
+                        "FROM SpectrumIdentificationItem AS sii " +
+                        "JOIN SpectrumIdentificationResult AS sir ON sir.ID = sii.SpectrumIdentificationResultID " +
+                        "JOIN Peptide AS p ON p.ID = printf('pep%d', sii.PeptideID) " +
+                        "JOIN PeptideEvidence AS pe ON pe.PeptideID = sii.PeptideID " +
+                        "JOIN DBSequence AS dbs ON dbs.ID = pe.DBSequenceID " +
+                        "JOIN ModLocation AS ml ON ml.PeptideID = pe.PeptideID " +
+                        "JOIN Modification AS m ON m.ID = ml.ModificationID " +
+                        "WHERE sii.ID = 1",
+                        cn)
+                    use rowReader = rowCommand.ExecuteReader()
+                    if rowReader.Read() then
+                        Expect.equal (rowReader.GetString(0)) "ACDMK" "the peptide sequence joins back"
+                        Expect.floatClose Accuracy.high (rowReader.GetDouble(1)) 15.994915 "the modification delta joins back"
+                        Expect.equal (rowReader.GetInt32(2)) 4 "the modification location joins back"
+                        Expect.equal (rowReader.GetString(3)) "M" "the modified residue joins back"
+                        Expect.equal (rowReader.GetString(4)) "P100" "the DBSequence accession joins through peptide evidence"
+                        Expect.equal (rowReader.GetString(5)) "scan=42" "the spectrum ID joins back"
+                        Expect.equal (rowReader.GetInt32(6)) 1 "the rank joins back"
+                        Expect.equal (rowReader.GetInt32(7)) 2 "the charge state joins back"
+                        Expect.isTrue (rowReader.IsDBNull(8)) "the deliberately absent SampleID remains NULL"
+                    else
+                        failtest "the graph join had no row to inspect"
+                    // the model's purpose is persisting identifications; a broken column mapping or optional binding silently corrupts every consumer - the join is hand-written so no broken select helper is exercised.
+                )
+
+            // PENDING: with PRAGMA foreign_keys = ON, inserting a ProteinDetectionHypothesis whose
+            // DBSequenceID does not exist must fail - the table declares no FOREIGN KEY constraint, so the
+            // orphan row inserts silently and downstream protein inference dereferences nothing.
+            ptestCase "protein hypotheses cannot reference non-existent sequence evidence" <| fun _ ->
+                withTemporaryDirectory (fun directory ->
+                    let file = Path.Combine(directory, "mzidentml-orphan.db")
+                    let fixedTs = DateTime(2026, 1, 15)
+                    use cn = new SQLiteConnection(sprintf "Data Source=%s;Version=3" file)
+                    cn.Open()
+                    MzIdentMLModel.Db.DBSequence.createDBSequenceTable cn |> ignore
+                    MzIdentMLModel.Db.ProteinDetectionList.createProteinDetectionListTable cn |> ignore
+                    MzIdentMLModel.Db.ProteinAmbiguityGroup.createProteinAmbiguityGroupTable cn |> ignore
+                    MzIdentMLModel.Db.ProteinDetectionHypothesis.createProteinDetectionHypothesisTable cn |> ignore
+                    use pragma = new SQLiteCommand("PRAGMA foreign_keys=ON", cn)
+                    pragma.ExecuteNonQuery() |> ignore
+                    use tr = cn.BeginTransaction()
+                    let insertList = MzIdentMLModel.Db.ProteinDetectionList.prepareInsertProteinDetectionList cn tr
+                    let insertGroup = MzIdentMLModel.Db.ProteinAmbiguityGroup.prepareInsertProteinAmbiguityGroup cn tr
+                    insertList 1 "pdl1" "protein detection list" "sdb" fixedTs |> ignore
+                    insertGroup 1 1 None fixedTs |> ignore
+                    let insertHypothesis = MzIdentMLModel.Db.ProteinDetectionHypothesis.prepareInsertProteinDetectionHypothesis cn tr
+                    Expect.throws
+                        (fun () -> insertHypothesis 1 999 1 None "true" fixedTs |> ignore)
+                        "an orphan DBSequenceID is rejected when foreign keys are enabled"
                 )
 
             // PENDING: the param-table insert SQL's column list is missing its closing ")" (and carries a
