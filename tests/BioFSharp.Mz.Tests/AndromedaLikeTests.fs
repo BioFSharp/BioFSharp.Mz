@@ -52,6 +52,12 @@ let spectrumID = "spec1"
 let targetScore (results: SearchEngineResult.SearchEngineResult<float> list) =
     results |> List.find (fun result -> result.IsTarget) |> fun result -> result.Score
 
+let familyAtOnePlusMz mz =
+    let mass = Mass.ofMZ mz 1.0
+    Peaks.createPeakFamily
+        (TaggedPeak.TaggedPeak(Ions.IonTypeFlag.B, Mass.toMZ mass 1.0, nan))
+        []
+
 [<Tests>]
 let tests =
     testList "AndromedaLikeTests" [
@@ -209,5 +215,134 @@ let tests =
                         expectWithin 1e-9 actualNext expectedNext "sequential and parallel next deltas agree")
                     seqProjection
                     parProjection
+
+            testCase "the score is the corrected binomial upper tail and the best peak depth wins" <| fun _ ->
+                let fam400 = familyAtOnePlusMz 400.0
+                let fam450 = familyAtOnePlusMz 450.0
+                let dummyFarDecoy = familyAtOnePlusMz 1500.0
+                let theoSpec =
+                    TheoreticalSpectra.createTheoreticalSpectrum
+                        lookup
+                        [|fam400; fam450|]
+                        [|dummyFarDecoy|]
+                let measured = PeakArray.zipMzInt [|(400.0, 100.0)|]
+                let actual =
+                    AndromedaLike.calcAndromedaScore
+                        (1, 2)
+                        scanlimits
+                        20.0
+                        measured
+                        30.0
+                        2
+                        800.0
+                        [theoSpec]
+                        "s"
+                    |> targetScore
+                // hand-derived: N = 2 offered, K = 1 matched; at depth q = 1, p = q/100 = 0.01 and the
+                // binomial upper tail P(X >= 1; 2, 0.01) = 1 - 0.99^2 = 0.0199, giving -10*log10 = 17.011; the
+                // q = 2 row gives p = 0.02 -> 14.02, so the maximum-over-depths selection must return the q = 1
+                // row. At precursor m/z 800 the documented Andromeda corrections cancel exactly:
+                // 0.024*(800-600) - 4.8 = 0. Pins the actual scoring formula, not just monotonicity.
+                expectWithin 1e-2 actual 17.011 "the corrected binomial upper-tail score uses the best q row"
+
+            testCase "the ppm tolerance bounds matching" <| fun _ ->
+                let fam1000 = familyAtOnePlusMz 1000.0
+                let dummyFarDecoy = familyAtOnePlusMz 1500.0
+                let theoSpec =
+                    TheoreticalSpectra.createTheoreticalSpectrum
+                        lookup
+                        [|fam1000|]
+                        [|dummyFarDecoy|]
+                let scoreFor measuredMz tolerance =
+                    AndromedaLike.calcAndromedaScore
+                        (1, 1)
+                        scanlimits
+                        tolerance
+                        (PeakArray.zipMzInt [|(measuredMz, 100.0)|])
+                        30.0
+                        2
+                        800.0
+                        [theoSpec]
+                        "s"
+                    |> targetScore
+                let inside = scoreFor 1000.019 20.0
+                let outside = scoreFor 1000.021 20.0
+                // 20 ppm of 1000 = 0.020 Da: 19 ppm is inside, 21 ppm outside - no boundary-exact input; distinguishes ppm from Dalton interpretation and from ignored tolerance.
+                expectWithin 1e-2 inside 20.0 "a 19 ppm offset is inside the 20 ppm tolerance"
+                Expect.equal outside 0.0 "a 21 ppm offset is outside the 20 ppm tolerance"
+
+            testCase "abundance ranking is local to the 100-Da window" <| fun _ ->
+                let fam400 = familyAtOnePlusMz 400.0
+                let dummyFarDecoy = familyAtOnePlusMz 1500.0
+                let theoSpec =
+                    TheoreticalSpectra.createTheoreticalSpectrum
+                        lookup
+                        [|fam400|]
+                        [|dummyFarDecoy|]
+                let scoreFor spectrum =
+                    AndromedaLike.calcAndromedaScore
+                        (1, 1)
+                        scanlimits
+                        20.0
+                        (PeakArray.zipMzInt spectrum)
+                        30.0
+                        2
+                        800.0
+                        [theoSpec]
+                        "s"
+                    |> targetScore
+                let insideWindowCompetitor = scoreFor [|(400.0, 50.0); (440.0, 100.0)|]
+                let outsideWindowCompetitor = scoreFor [|(400.0, 50.0); (460.0, 100.0)|]
+                // the 100-Da rating window is Andromeda's published convention; 40/60 Da separations avoid the boundary.
+                Expect.equal insideWindowCompetitor 0.0 "a more intense peak 40 Da away makes the match rank second"
+                expectWithin 1e-2 outsideWindowCompetitor 20.0 "a more intense peak 60 Da away is outside the rating window"
+
+            testCase "the recompute-ion-series entry point agrees with the precomputed path" <| fun _ ->
+                let rRev =
+                    AndromedaLike.calcAndromedaLikeScoresRevDecoy
+                        (fun massF aal ->
+                            let generated =
+                                Fragmentation.Series.fragmentMasses
+                                    Fragmentation.Series.bOfBioList
+                                    Fragmentation.Series.yOfBioList
+                                    mf
+                                    aal
+                            generated.TargetMasses)
+                        Formula.monoisoMass
+                        qMinAndMax
+                        scanlimits
+                        20.0
+                        spectrum
+                        30.0
+                        2
+                        precursorMz
+                        [lookup]
+                        "spec1"
+                let rPre =
+                    AndromedaLike.calcAndromedaScore
+                        qMinAndMax
+                        scanlimits
+                        20.0
+                        spectrum
+                        30.0
+                        2
+                        precursorMz
+                        theoSpecs
+                        "spec1"
+                let keyed (results: SearchEngineResult.SearchEngineResult<float> list) =
+                    results
+                    |> List.map (fun result -> (result.PepSequenceID, result.IsTarget), result.Score)
+                    |> Map.ofList
+                let revByKey = keyed rRev
+                let preByKey = keyed rPre
+                Expect.equal revByKey.Count preByKey.Count "the two paths return the same keyed result count"
+                preByKey
+                |> Map.iter (fun key expected ->
+                    let actual = Map.find key revByKey
+                    expectWithin 1e-9 actual expected (sprintf "scores agree for key %A" key))
+                let target = rRev |> List.find (fun result -> result.IsTarget)
+                let decoy = rRev |> List.find (fun result -> not result.IsTarget)
+                // the self-generating entry point must not diverge from the precomputed-spectrum path on identical fragments; key-based comparison sidesteps the recorded tie-order difference.
+                Expect.isTrue (target.Score > decoy.Score) "the recomputed target beats the decoy"
         ]
     ]
