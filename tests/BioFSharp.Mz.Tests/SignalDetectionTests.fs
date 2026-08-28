@@ -258,6 +258,22 @@ let tests =
                 Expect.floatClose Accuracy.medium cx.[0] 100.0 "the refined centroid is at the symmetric Gaussian apex"
                 Expect.floatClose Accuracy.high cy.[0] 1000.0 "the reported intensity is the raw apex maximum"
                 // The constructed grid contains x=100.0 exactly, where the symmetric Gaussian reaches its amplitude.
+                let cxSummed, cySummed =
+                    SignalDetection.SecondDerivative.toCentroid true true 7 10.0 0.12 20 50.0 mz intens
+                Expect.floatClose Accuracy.medium cxSummed.[0] 100.0 "summing intensities does not move the refined centroid"
+                Expect.isTrue (cySummed.[0] > 1000.0) "summing the fitting window exceeds the apex intensity"
+                // summing over the fitting window must strictly exceed the apex maximum because the neighbors carry positive intensity - and switching the intensity mode must not move the centroid.
+
+            testCase "second-derivative refinement improves an off-grid apex estimate" <| fun _ ->
+                let mz = Array.init 41 (fun i -> 99.0 + float i * 0.05)
+                let trueCenter = 100.025
+                let intens = mz |> Array.map (gauss 1000.0 trueCenter 0.1)
+                let cxRaw, _ = SignalDetection.SecondDerivative.toCentroid false false 7 10.0 0.12 20 50.0 mz intens
+                let cxRef, _ = SignalDetection.SecondDerivative.toCentroid true false 7 10.0 0.12 20 50.0 mz intens
+                Expect.equal cxRaw.Length 1 "the raw-apex mode finds one centroid"
+                Expect.equal cxRef.Length 1 "the refined mode finds one centroid"
+                Expect.isTrue (abs (cxRef.[0] - trueCenter) < abs (cxRaw.[0] - trueCenter)) (sprintf "raw centroid %A; refined centroid %A" cxRaw cxRef)
+                // the raw-apex mode can only return a grid point (>= 0.025 off the true center); the intensity-weighted refinement must land strictly closer - the constructed off-grid apex is the oracle. If this fails at runtime, report the observed centroids verbatim and leave the test out.
         ]
 
         testList "WaveletCentroiding" [
@@ -277,6 +293,8 @@ let tests =
                     }
                 let cx, cy = SignalDetection.Wavelet.toCentroidWithRicker2D parameters mz intens
                 Expect.equal cx.Length cy.Length "centroid m/z and intensity arrays have equal lengths"
+                Expect.equal cx.Length 2 "a noiseless two-mode spectrum yields exactly two centroids"
+                // a noiseless spectrum containing exactly two isolated modes must yield exactly two centroids - false positives corrupt downstream feature matching (probe-verified: currently exactly 2).
                 Expect.isTrue (cx |> Array.exists (fun x -> abs (x - 499.5) <= 0.05)) "a centroid is recovered near the first apex"
                 Expect.isTrue (cx |> Array.exists (fun x -> abs (x - 500.5) <= 0.05)) "a centroid is recovered near the second apex"
                 Expect.isTrue (cx |> Array.forall (fun x -> x >= 498.0 && x <= 502.0)) "centroids lie inside the data range"
@@ -293,5 +311,45 @@ let tests =
                 Expect.isTrue (abs (nearestFirstPeakIntensity - 1000.0) <= 250.0) "the centroid nearest 499.5 has intensity within 25% of 1000.0"
                 // the constructed apex (on the 0.01 grid) has intensity 1000; a centroid claiming that peak must report an intensity of its magnitude, not an artifact value
                 // Expected positions come from the constructed apexes; the matching tolerance is 0.05 m/z.
+
+            testCase "the intensity threshold suppresses sub-threshold peaks" <| fun _ ->
+                let mz = [|498.0 .. 0.01 .. 502.0|]
+                let intens =
+                    mz
+                    |> Array.map (fun x -> gauss 1000.0 499.5 0.02 x + gauss 50.0 500.5 0.02 x)
+                let parameters : SignalDetection.Wavelet.WaveletParameters = {
+                    NumberOfScales = 10
+                    YThreshold = 0.0
+                    MzTolerance = 0.05
+                    SNRS_Percentile = 50.0
+                    MinSNR = 0.0
+                    RefineMZ = true
+                    SumIntensities = false
+                    }
+                let cLow, _ = SignalDetection.Wavelet.toCentroidWithRicker2D { parameters with YThreshold = 0.0 } mz intens
+                let cHigh, _ = SignalDetection.Wavelet.toCentroidWithRicker2D { parameters with YThreshold = 100.0 } mz intens
+                Expect.isTrue (cLow |> Array.exists (fun x -> abs (x - 499.5) <= 0.05)) "the low threshold retains the strong peak"
+                Expect.isTrue (cLow |> Array.exists (fun x -> abs (x - 500.5) <= 0.05)) "the low threshold retains the weak peak"
+                Expect.isTrue (cHigh |> Array.exists (fun x -> abs (x - 499.5) <= 0.05)) "the high threshold retains the strong peak"
+                Expect.isFalse (cHigh |> Array.exists (fun x -> abs (x - 500.5) <= 0.05)) "the high threshold suppresses the weak peak"
+                // YThreshold is the documented minimum peak intensity: the 50-amplitude peak sits below 100 and must vanish while the 1000-amplitude peak survives - the oracle is the constructed raw apex intensities (probe-verified).
+
+            testCase "refinePeaks implements the three documented output modes" <| fun _ ->
+                let mzData = [|99.6; 99.8; 100.0; 100.2; 100.4|]
+                let intensities = [|0.0; 2.0; 10.0; 6.0; 0.0|]
+                let scalings = [|1.0|]
+                let xSpacingAvg = Array.create 5 0.45
+                let run refineMz sumIntensities =
+                    let lines = System.Collections.Generic.List<SignalDetection.Wavelet.RidgeLine>()
+                    lines.Add (SignalDetection.Wavelet.createRidgeLine 0 4)
+                    SignalDetection.Wavelet.refinePeaks refineMz sumIntensities 1.0 0.45 scalings mzData intensities lines xSpacingAvg
+                let rawMz, rawIntensity = run false false
+                Expect.equal rawMz [|100.0|] "raw-apex mode returns the apex m/z"
+                Expect.equal rawIntensity [|10.0|] "maximum-intensity mode returns the apex intensity"
+                let refinedMz, _ = run true false
+                Expect.isTrue (abs (refinedMz.[0] - 100.0444444) <= 1e-6) "refined m/z is the intensity-weighted mean of the fitting window"
+                let _, summedIntensity = run false true
+                Expect.equal summedIntensity [|18.0|] "summed-intensity mode returns the fitting-window total"
+                // the three mode combinations are the module's documented output contracts (apex vs weighted-centroid position; max vs summed intensity); a symmetric on-grid fixture cannot distinguish them, so this asymmetric fixture is load-bearing.
         ]
     ]
