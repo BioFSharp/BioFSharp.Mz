@@ -20,6 +20,7 @@
     <Compile Include="AndromedaLikeTests.fs" />
     <Compile Include="XScoringTests.fs" />
     <Compile Include="SearchEngineInteractionTests.fs" />
+    <Compile Include="QuantificationTests.fs" />
     <Compile Include="Main.fs" />
   </ItemGroup>
 
