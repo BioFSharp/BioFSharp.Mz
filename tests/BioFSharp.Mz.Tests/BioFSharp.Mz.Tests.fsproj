@@ -19,6 +19,7 @@
     <Compile Include="SequestLikeTests.fs" />
     <Compile Include="AndromedaLikeTests.fs" />
     <Compile Include="XScoringTests.fs" />
+    <Compile Include="SearchEngineInteractionTests.fs" />
     <Compile Include="Main.fs" />
   </ItemGroup>
 
