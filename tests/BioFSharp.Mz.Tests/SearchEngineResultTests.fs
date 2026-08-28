@@ -124,6 +124,49 @@ let tests =
             // on corrupted PSMs. Distinct per-element sequences catch cross-element field mixing
             // that identical fixtures would hide.
 
+        testCase "normalization changes exactly one field of every record" <| fun _ ->
+            let inputs =
+                [ SearchEngineResult.createSearchEngineResult SearchEngineResult.SearchEngine.SEQUESTLike "s1" 101 201 0 true 10.0 "PA" 2 401.0 801.0 801.1 2 100.0 9.9 9.9
+                  SearchEngineResult.createSearchEngineResult SearchEngineResult.SearchEngine.AndromedaLike "s2" 102 202 1 false 20.0 "PB" 3 502.0 902.0 902.1 3 80.0 9.9 9.9
+                  SearchEngineResult.createSearchEngineResult SearchEngineResult.SearchEngine.XTandemLike "s3" 103 203 2 true 30.0 "PC" 4 603.0 1003.0 1003.1 4 50.0 9.9 9.9 ]
+            let bestToRest = SearchEngineResult.calcNormDeltaBestToRest inputs
+            let next = SearchEngineResult.calcNormDeltaNext inputs
+            let expectedBestToRest =
+                [ { inputs.[0] with NormDeltaBestToRest = 0.0 }
+                  { inputs.[1] with NormDeltaBestToRest = 0.2 }
+                  { inputs.[2] with NormDeltaBestToRest = 0.5 } ]
+            let expectedNext =
+                [ { inputs.[0] with NormDeltaNext = 0.2 }
+                  { inputs.[1] with NormDeltaNext = 0.3 }
+                  { inputs.[2] with NormDeltaNext = 0.0 } ]
+            Expect.equal bestToRest expectedBestToRest "best-to-rest normalization changes only its designated field"
+            Expect.equal next expectedNext "adjacent normalization changes only its designated field"
+            // whole-record equality against the input-with-one-field-changed pins EVERY field at once - IDs, masses, scan time, engine, the sibling delta - without enumerating them; corruption of any metadata fails.
+
+        testCase "a zero best score triggers the sentinels even over negative tails" <| fun _ ->
+            let results = [mkResult 0.0; mkResult -2.0; mkResult -5.0]
+            let bestToRest =
+                SearchEngineResult.calcNormDeltaBestToRest results
+                |> List.map (fun result -> result.NormDeltaBestToRest)
+            let next =
+                SearchEngineResult.calcNormDeltaNext results
+                |> List.map (fun result -> result.NormDeltaNext)
+            expectFloatListClose Accuracy.high bestToRest [1.0; 1.0; 1.0] "zero best score gives best-to-rest sentinels"
+            expectFloatListClose Accuracy.high next [0.0; 0.0; 0.0] "zero best score gives adjacent-delta sentinels"
+            // the documented sentinel depends only on the BEST score being zero; mixed tails distinguish the documented policy from an all-zero special case or per-element sentinels.
+
+        testCase "negative lower scores produce deltas above one, unclamped" <| fun _ ->
+            let results = [mkResult 10.0; mkResult -5.0; mkResult -25.0]
+            let bestToRest =
+                SearchEngineResult.calcNormDeltaBestToRest results
+                |> List.map (fun result -> result.NormDeltaBestToRest)
+            let next =
+                SearchEngineResult.calcNormDeltaNext results
+                |> List.map (fun result -> result.NormDeltaNext)
+            expectFloatListClose Accuracy.high bestToRest [0.0; 1.5; 3.5] "negative scores yield unclamped best-to-rest deltas"
+            expectFloatListClose Accuracy.high next [1.5; 2.0; 0.0] "negative scores yield unclamped adjacent deltas"
+            // hand-computed from the documented formulas: (10-s)/10 and adjacent gaps /10. A [0,1] clamp would silently distort these ranking features; this pins their absence for legitimate inputs.
+
         testCase "the production composition fills both delta fields without clobbering either" <| fun _ ->
             let results =
                 [ mkResultWith "PEPA" 100.0
