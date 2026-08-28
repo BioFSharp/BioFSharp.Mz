@@ -14,6 +14,7 @@
     <Compile Include="FragmentationTests.fs" />
     <Compile Include="ChargeStateTests.fs" />
     <Compile Include="SearchDBTests.fs" />
+    <Compile Include="MzIdentMLModelTests.fs" />
     <Compile Include="Main.fs" />
   </ItemGroup>
 
