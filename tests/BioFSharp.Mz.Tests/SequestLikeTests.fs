@@ -128,6 +128,20 @@ let tests =
                 // 2+ m/z = (199 + 2*1.007276)/2 = 100.5073, which rounds UP to bin 101 -> index 1 (nearest-integer rounding, .507 > .5 so no midpoint ambiguity).
                 // Bin positions follow the fundamental m/z relation with the published proton mass; intensities cross-check the module's own intensity model rather than pinning constants.
 
+            testCase "theoretical spectra include loss satellites, drop out-of-range fragments, and are duplicate-invariant" <| fun _ ->
+                let mainFam =
+                    Peaks.createPeakFamily
+                        (TaggedMass.createTaggedMass Ions.IonTypeFlag.B 199.0)
+                        [TaggedMass.createTaggedH2OLoss Ions.IonTypeFlag.B 181.0]
+                let outLow = Peaks.createPeakFamily (TaggedMass.createTaggedMass Ions.IonTypeFlag.B 50.0) []
+                let outHigh = Peaks.createPeakFamily (TaggedMass.createTaggedMass Ions.IonTypeFlag.B 350.0) []
+                let v1 = SequestLike.predictOf (100.0, 300.0) 1.0 [mainFam]
+                let v2 = SequestLike.predictOf (100.0, 300.0) 1.0 [mainFam; outLow; outHigh; mainFam]
+                Expect.isTrue (v1.[100] > 0.0) "the main fragment occupies its in-range bin"
+                Expect.isTrue (v1.[82] > 0.0) "the loss satellite occupies its in-range bin"
+                expectVectorClose { Accuracy.absolute = 1e-9; relative = 1e-9 } v2 v1 "duplicating a family does not change the theoretical spectrum"
+                // loss satellites are evidence and must enter the theoretical spectrum; fragments outside the scan window must not; and a duplicated family must not multiply evidence - occupancy semantics keep the max, so the vector is unchanged (documented binning rule).
+
             testCase "autoCorrelation averages the shifted vector over the implemented SEQUEST-like lag window" <| fun _ ->
                 // These scores are SEQUEST-LIKE, not SEQUEST: the background correction is not
                 // required to match the canonical algorithm. The implemented window accumulates
@@ -239,5 +253,87 @@ let tests =
                 // parallelization must not change any score or ordering
                 // the precomputed-spectrum path and the recompute-per-call path implement the same model over identical fragments and must agree
                 // the decoy fragments come from the reversed sequence in both paths
+
+            ptestCase "sequential and parallel scoring order tied candidates identically" <| fun _ ->
+                // PENDING: the sequential fold emits candidates in reversed order while the parallel path
+                // preserves input order; a stable sort then orders exact score TIES differently between
+                // calcSequestScore and calcSequestScoreParallel. Execution strategy must not change results.
+                let lookup2 = SearchDB.createLookUpResult 2 2 pepMass (int64 (pepMass * 1000000.0)) "AGSEK-2" peptide 0
+                let sharedTarget = SequestLike.predictOf scanlimits (float chargeState) fragMasses.TargetMasses
+                let sharedDecoy = SequestLike.predictOf scanlimits (float chargeState) fragMasses.DecoyMasses
+                let theoSpecs =
+                    [ TheoreticalSpectra.createTheoreticalSpectrum lookup sharedTarget sharedDecoy
+                      TheoreticalSpectra.createTheoreticalSpectrum lookup2 sharedTarget sharedDecoy ]
+                let sequential =
+                    SequestLike.calcSequestScore
+                        scanlimits
+                        spectrum
+                        scanTime
+                        chargeState
+                        precursorMz
+                        theoSpecs
+                        "spec1"
+                let parallelResults =
+                    SequestLike.calcSequestScoreParallel
+                        scanlimits
+                        spectrum
+                        scanTime
+                        chargeState
+                        precursorMz
+                        theoSpecs
+                        "spec1"
+                let projection (results: SearchEngineResult.SearchEngineResult<float> list) =
+                    results |> List.map (fun result -> result.PepSequenceID, result.IsTarget, result.Score)
+                Expect.equal (projection sequential) (projection parallelResults) "sequential and parallel scoring preserve tied-candidate order"
+
+            testCase "scoring preserves each candidate's identity fields" <| fun _ ->
+                let peptideA = [AminoAcids.Ala; AminoAcids.Gly; AminoAcids.Ser; AminoAcids.Glu; AminoAcids.Lys]
+                let peptideB = [AminoAcids.Leu; AminoAcids.Val; AminoAcids.Thr; AminoAcids.Lys]
+                let massA = (peptideA |> List.sumBy (fun aa -> mf (aa :> BioFSharp.IBioItem))) + 18.010565
+                let massB = (peptideB |> List.sumBy (fun aa -> mf (aa :> BioFSharp.IBioItem))) + 18.010565
+                let lookupA = SearchDB.createLookUpResult 1 11 massA (int64 (massA * 1000000.0)) "AGSEK" peptideA 0
+                let lookupB = SearchDB.createLookUpResult 2 22 massB (int64 (massB * 1000000.0)) "LVTK" peptideB 1
+                let fragA =
+                    Fragmentation.Series.fragmentMasses
+                        Fragmentation.Series.bOfBioList
+                        Fragmentation.Series.yOfBioList
+                        mf
+                        peptideA
+                let fragB =
+                    Fragmentation.Series.fragmentMasses
+                        Fragmentation.Series.bOfBioList
+                        Fragmentation.Series.yOfBioList
+                        mf
+                        peptideB
+                let theoSpecs = SequestLike.getTheoSpecs scanlimits chargeState [(lookupA, fragA); (lookupB, fragB)]
+                let suppliedSpectrumID = "identity-spectrum"
+                let suppliedScanTime = 47.5
+                let suppliedCharge = 2
+                let suppliedPrecursorMz = 550.0
+                let results =
+                    SequestLike.calcSequestScore
+                        scanlimits
+                        spectrum
+                        suppliedScanTime
+                        suppliedCharge
+                        suppliedPrecursorMz
+                        theoSpecs
+                        suppliedSpectrumID
+                let targetIdentities =
+                    results
+                    |> List.filter (fun result -> result.IsTarget)
+                    |> List.map (fun result -> result.ModSequenceID, result.PepSequenceID, result.GlobalMod, result.StringSequence, result.TheoMass)
+                    |> Set.ofList
+                let expectedIdentities =
+                    set [ (1, 11, 0, "AGSEK", massA)
+                          (2, 22, 1, "LVTK", massB) ]
+                Expect.equal targetIdentities expectedIdentities "target results retain each candidate's identity fields"
+                results
+                |> List.iter (fun result ->
+                    Expect.equal result.SpectrumID suppliedSpectrumID "the supplied spectrum ID is preserved"
+                    Expect.equal result.ScanTime suppliedScanTime "the supplied scan time is preserved"
+                    Expect.equal result.PrecursorCharge suppliedCharge "the supplied precursor charge is preserved"
+                    Expect.equal result.PrecursorMZ suppliedPrecursorMz "the supplied precursor m/z is preserved")
+                // PSM scores are joined back to the database by these identity fields; a candidate scored under another candidate's identity corrupts every downstream table - direct input-to-output provenance.
         ]
     ]
