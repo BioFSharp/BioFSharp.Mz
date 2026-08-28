@@ -21,6 +21,7 @@
     <Compile Include="XScoringTests.fs" />
     <Compile Include="SearchEngineInteractionTests.fs" />
     <Compile Include="QuantificationTests.fs" />
+    <Compile Include="FDRControlTests.fs" />
     <Compile Include="Main.fs" />
   </ItemGroup>
 
