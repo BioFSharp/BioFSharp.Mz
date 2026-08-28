@@ -36,6 +36,64 @@ let tests =
                     (sprintf "b2 is the Ala + Gly residue mass; expected a mass within %g of %g; got %A" 0.001 128.05857 masses)
                 // The b fragment ion of a peptide is the neutral cumulative sum of its N-terminal residue masses - textbook fragment chemistry, values from published residue mass tables.
 
+            testCase "series functions tag every main peak with their own ion type, and combined series are the union of the singles" <| fun _ ->
+                let seriesCases =
+                    [ (Fragmentation.Series.aOfBioList, Ions.IonTypeFlag.A)
+                      (Fragmentation.Series.bOfBioList, Ions.IonTypeFlag.B)
+                      (Fragmentation.Series.cOfBioList, Ions.IonTypeFlag.C)
+                      (Fragmentation.Series.xOfBioList, Ions.IonTypeFlag.X)
+                      (Fragmentation.Series.yOfBioList, Ions.IonTypeFlag.Y)
+                      (Fragmentation.Series.zOfBioList, Ions.IonTypeFlag.Z) ]
+
+                seriesCases
+                |> List.iter (fun (seriesF, expectedFlag) ->
+                    seriesF mf ags
+                    |> List.iter (fun family ->
+                        Expect.equal
+                            family.MainPeak.Iontype
+                            expectedFlag
+                            (sprintf "every main peak from %A carries its own ion flag" expectedFlag)))
+
+                let mainProjection (families: PeakFamily<TaggedMass.TaggedMass> list) =
+                    families
+                    |> List.map (fun family ->
+                        family.MainPeak.Iontype, System.Math.Round(family.MainPeak.Mass, 6))
+                    |> List.sort
+
+                let abcSingles =
+                    [ Fragmentation.Series.aOfBioList
+                      Fragmentation.Series.bOfBioList
+                      Fragmentation.Series.cOfBioList ]
+                    |> List.collect (fun seriesF -> mainProjection (seriesF mf ags))
+                    |> List.sort
+                let xyzSingles =
+                    [ Fragmentation.Series.xOfBioList
+                      Fragmentation.Series.yOfBioList
+                      Fragmentation.Series.zOfBioList ]
+                    |> List.collect (fun seriesF -> mainProjection (seriesF mf ags))
+                    |> List.sort
+
+                Expect.equal
+                    (mainProjection (Fragmentation.Series.abcOfBioList mf ags))
+                    abcSingles
+                    "the abc wrapper is the union of a, b, and c main peaks"
+                Expect.equal
+                    (mainProjection (Fragmentation.Series.xyzOfBioList mf ags))
+                    xyzSingles
+                    "the xyz wrapper is the union of x, y, and z main peaks"
+                // downstream scoring dispatches on ion flags (intensity models, B/Y counting) - chemically correct masses with wrong tags corrupt every score; the union property pins that combined wrappers select exactly the requested series.
+
+            testCase "fragment masses are computed with the SUPPLIED mass function" <| fun _ ->
+                let mfAvg = SearchDB.massFBy SearchDB.MassMode.Average
+                let bAvg = mainMasses (Fragmentation.Series.bOfBioList mfAvg ags)
+                Expect.isTrue
+                    (containsMass 0.001 (mfAvg (AminoAcids.Ala :> BioFSharp.IBioItem)) bAvg)
+                    "b1 equals the supplied function's Ala mass"
+                Expect.isFalse
+                    (containsMass 0.0005 71.03711 bAvg)
+                    "the monoisotopic b1 is absent from the average-mass series"
+                // parametricity: the ladder must consume the caller's mass model; a hard-coded monoisotopic table would pass every existing test and fail this one. Average - monoisotopic Ala differ by ~0.041 Da, far beyond tolerance.
+
             // PENDING: backbone cleavage of a 3-residue peptide produces exactly 2 fragment positions per
             // series; the full-length b3/y3 "fragment" is the intact peptide (y_n equals the precursor
             // neutral mass) and is not a cleavage product - its presence inflates every theoretical
@@ -69,6 +127,25 @@ let tests =
                     (containsMass 0.001 145.085119 cMasses)
                     (sprintf "c2 is b2 + NH3; expected a mass within %g of %g; got %A" 0.001 145.085119 cMasses)
                 // a and c ion relations use the published carbon monoxide and ammonia masses.
+
+            testCase "an oxidized residue shifts exactly the fragments containing it" <| fun _ ->
+                let oxMet = AminoAcids.setModification (SearchDB.getModBy SearchDB.Table.oxidation'Met') AminoAcids.Met
+                let plain = [AminoAcids.Ala; AminoAcids.Met; AminoAcids.Gly]
+                let modified = [AminoAcids.Ala; oxMet; AminoAcids.Gly]
+                let bPlain = mainMasses (Fragmentation.Series.bOfBioList mf plain) |> List.sort
+                let bModified = mainMasses (Fragmentation.Series.bOfBioList mf modified) |> List.sort
+                let yPlain = mainMasses (Fragmentation.Series.yOfBioList mf plain) |> List.sort
+                let yModified = mainMasses (Fragmentation.Series.yOfBioList mf modified) |> List.sort
+                let b1Plain, b2Plain = bPlain.[0], bPlain.[1]
+                let b1Modified, b2Modified = bModified.[0], bModified.[1]
+                let y1Plain, y2Plain = yPlain.[0], yPlain.[1]
+                let y1Modified, y2Modified = yModified.[0], yModified.[1]
+
+                expectWithin 1e-9 b1Modified b1Plain "b1 does not contain the modified Met"
+                expectWithin 1e-9 y1Modified y1Plain "y1 does not contain the modified Met"
+                expectWithin 0.001 (b2Modified - b2Plain) 15.994915 "b2 carries the oxidation delta"
+                expectWithin 0.001 (y2Modified - y2Plain) 15.994915 "y2 carries the oxidation delta"
+                // published Unimod oxidation delta; a PTM must shift precisely the fragments that contain the modified residue - the positional signature every search engine relies on.
 
             testCase "z ions differ from y by ammonia" <| fun _ ->
                 let zMasses = mainMasses (Fragmentation.Series.zOfBioList mf ags)
@@ -131,6 +208,74 @@ let tests =
                          && abs (peak.Mass - (128.09496 - 17.026549)) <= 0.001))
                     "the Lys fragment has an ammonia-loss satellite"
                 // Lys is in the documented ammonia-loss set; published NH3 mass.
+
+            testCase "the residue loss table is complete and exclusive" <| fun _ ->
+                let assertOneLoss residue lossFlag lossMass =
+                    let family =
+                        Fragmentation.Series.bOfBioList mf [residue; AminoAcids.Ala]
+                        |> List.minBy (fun family -> family.MainPeak.Mass)
+                    Expect.equal family.DependentPeaks.Length 1 "the b1 family has exactly one dependent"
+                    let dependent = List.head family.DependentPeaks
+                    Expect.isTrue
+                        (Ions.hasFlag dependent.Iontype lossFlag)
+                        (sprintf "the dependent carries the expected loss flag %A" lossFlag)
+                    expectWithin
+                        0.001
+                        dependent.Mass
+                        (family.MainPeak.Mass - lossMass)
+                        "the dependent has the published neutral-loss mass"
+
+                [ (AminoAcids.Ser, Ions.IonTypeFlag.lossH2O, 18.010565)
+                  (AminoAcids.Thr, Ions.IonTypeFlag.lossH2O, 18.010565)
+                  (AminoAcids.Glu, Ions.IonTypeFlag.lossH2O, 18.010565)
+                  (AminoAcids.Asp, Ions.IonTypeFlag.lossH2O, 18.010565)
+                  (AminoAcids.Arg, Ions.IonTypeFlag.lossNH3, 17.026549)
+                  (AminoAcids.Lys, Ions.IonTypeFlag.lossNH3, 17.026549)
+                  (AminoAcids.Gln, Ions.IonTypeFlag.lossNH3, 17.026549)
+                  (AminoAcids.Asn, Ions.IonTypeFlag.lossNH3, 17.026549) ]
+                |> List.iter (fun (residue, lossFlag, lossMass) -> assertOneLoss residue lossFlag lossMass)
+
+                [AminoAcids.Ala; AminoAcids.Gly]
+                |> List.iter (fun residue ->
+                    let family =
+                        Fragmentation.Series.bOfBioList mf [residue; AminoAcids.Ala]
+                        |> List.minBy (fun family -> family.MainPeak.Mass)
+                    Expect.isEmpty family.DependentPeaks "a residue outside both loss tables has no dependents")
+                // the documented residue-loss convention, table-driven: missing residues, spurious channels, and misassigned channels all fail; published loss masses.
+
+            testCase "water and ammonia loss channels coexist on one fragment" <| fun _ ->
+                let fams = Fragmentation.Series.bOfBioList mf [AminoAcids.Ser; AminoAcids.Lys; AminoAcids.Ala]
+                let b2 = fams |> List.sortBy (fun family -> family.MainPeak.Mass) |> List.item 1
+                expectWithin 0.001 b2.MainPeak.Mass (87.03203 + 128.09496) "the b2 main mass is Ser plus Lys"
+                Expect.equal b2.DependentPeaks.Length 2 "the b2 family has both loss channels"
+                let ammoniaLoss =
+                    b2.DependentPeaks
+                    |> List.find (fun peak -> Ions.hasFlag peak.Iontype Ions.IonTypeFlag.lossNH3)
+                let waterLoss =
+                    b2.DependentPeaks
+                    |> List.find (fun peak -> Ions.hasFlag peak.Iontype Ions.IonTypeFlag.lossH2O)
+                expectWithin 0.001 ammoniaLoss.Mass (b2.MainPeak.Mass - 17.026549) "the ammonia-loss satellite is present"
+                expectWithin 0.001 waterLoss.Mass (b2.MainPeak.Mass - 18.010565) "the water-loss satellite is present"
+                // once both a water-prone and an ammonia-prone residue are inside the fragment, both channels must be offered - published loss masses, hand-summed main.
+
+            testCase "y-series loss channels follow C-terminal suffix membership" <| fun _ ->
+                let yASG = Fragmentation.Series.yOfBioList mf [AminoAcids.Ala; AminoAcids.Ser; AminoAcids.Gly]
+                let ySAG = Fragmentation.Series.yOfBioList mf [AminoAcids.Ser; AminoAcids.Ala; AminoAcids.Gly]
+                let y1ASG = yASG |> List.sortBy (fun family -> family.MainPeak.Mass) |> List.item 0
+                let y2ASG = yASG |> List.sortBy (fun family -> family.MainPeak.Mass) |> List.item 1
+                let y1SAG = ySAG |> List.sortBy (fun family -> family.MainPeak.Mass) |> List.item 0
+                let y2SAG = ySAG |> List.sortBy (fun family -> family.MainPeak.Mass) |> List.item 1
+                expectWithin 0.001 y1ASG.MainPeak.Mass 75.03203 "y1 is Gly plus water"
+                expectWithin 0.001 y1SAG.MainPeak.Mass 75.03203 "y1 is Gly plus water"
+                Expect.isEmpty y1ASG.DependentPeaks "y1 has no loss-prone residue in its suffix"
+                Expect.isEmpty y1SAG.DependentPeaks "y1 has no loss-prone residue in its suffix"
+                expectWithin 0.001 y2ASG.MainPeak.Mass 162.06406 "y2 is Ser plus Gly plus water"
+                Expect.isTrue
+                    (y2ASG.DependentPeaks |> List.exists (fun peak -> Ions.hasFlag peak.Iontype Ions.IonTypeFlag.lossH2O))
+                    "y2 has a water-loss channel when Ser enters the suffix"
+                expectWithin 0.001 y2SAG.MainPeak.Mass 146.06914 "y2 is Ala plus Gly plus water"
+                Expect.isEmpty y2SAG.DependentPeaks "y2 has no loss channel when Ser is outside the suffix"
+                // y ions grow from the C-terminus: the loss channel activates exactly when the loss-prone residue enters the suffix - hand-placed by construction.
         ]
 
         testList "TargetDecoy" [
@@ -215,10 +360,12 @@ let tests =
                 Expect.equal ch 2.0 "target charge is forwarded as a float"
                 Expect.equal n fm.TargetMasses.Length "target mass count is forwarded"
                 Expect.equal ms fm.TargetMasses "target masses are forwarded"
-                let _, _, decoyN, decoyMs = spec.DecoyTheoSpec
+                let decoyScanLimits, decoyCharge, decoyN, decoyMs = spec.DecoyTheoSpec
+                Expect.equal decoyScanLimits (100.0, 1000.0) "decoy scan limits are forwarded"
+                Expect.equal decoyCharge 2.0 "decoy charge is forwarded as a float"
                 Expect.equal decoyN fm.DecoyMasses.Length "decoy mass count is forwarded"
                 Expect.equal decoyMs fm.DecoyMasses "decoy masses are forwarded"
-                // The wrapper's entire contract is separation of target and decoy predictions with faithful forwarding - observed via a spy predictor, no implementation internals asserted.
+                // the decoy prediction must receive the SAME acquisition context as the target - a decoy scored under different limits or charge silently biases FDR.
 
             testCase "getTheoSpecs yields one spectrum per candidate" <| fun _ ->
                 let lookup = SearchDB.createLookUpResult 7 42 328.15 328150000L "AGS" ags 0
@@ -227,17 +374,37 @@ let tests =
                 let fm2 = Fragmentation.Series.fragmentMasses Fragmentation.Series.bOfBioList Fragmentation.Series.yOfBioList mf [AminoAcids.Ala; AminoAcids.Gly]
                 let specs =
                     TheoreticalSpectra.getTheoSpecs
-                        (fun _ _ ms -> List.length ms)
+                        (fun _ _ ms -> ms)
                         (100.0, 1000.0)
                         2
                         [(lookup, fm); (lookup2, fm2)]
                 Expect.equal specs.Length 2 "one spectrum is returned per candidate"
                 let ids = specs |> List.map (fun spec -> spec.LookUpResult.PepSequenceID) |> Set.ofList
                 Expect.equal ids (set [42; 43]) "candidate membership is preserved"
+                specs
+                |> List.iter (fun spec ->
+                    let candidate =
+                        [(lookup, fm); (lookup2, fm2)]
+                        |> List.find (fun (candidateLookup, _) -> candidateLookup.PepSequenceID = spec.LookUpResult.PepSequenceID)
+                    let _, candidateMasses = candidate
+                    let actualTargetMasses = mainMasses spec.TheoSpec
+                    let expectedTargetMasses = mainMasses candidateMasses.TargetMasses
+                    let actualDecoyMasses = mainMasses spec.DecoyTheoSpec
+                    let expectedDecoyMasses = mainMasses candidateMasses.DecoyMasses
+                    Expect.equal actualTargetMasses.Length expectedTargetMasses.Length "target payload lengths match the candidate"
+                    List.iter2
+                        (fun actual expected -> expectWithin 1e-9 actual expected "target payload belongs to the candidate")
+                        actualTargetMasses
+                        expectedTargetMasses
+                    Expect.equal actualDecoyMasses.Length expectedDecoyMasses.Length "decoy payload lengths match the candidate"
+                    List.iter2
+                        (fun actual expected -> expectWithin 1e-9 actual expected "decoy payload belongs to the candidate")
+                        actualDecoyMasses
+                        expectedDecoyMasses)
                 Expect.equal
                     (TheoreticalSpectra.getTheoSpecs (fun _ _ ms -> 0) (100.0, 1000.0) 2 [])
                     []
                     "an empty candidate list returns no spectra"
-                // One output per input candidate; membership asserted order-agnostically (the implementation reverses order via fold - a benign, noted quirk, deliberately not pinned).
+                // count and ID membership alone would pass if payloads were swapped between candidates or one candidate's spectra were reused; per-ID payload identity is the actual association contract.
         ]
     ]
