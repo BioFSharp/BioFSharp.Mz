@@ -9,6 +9,7 @@
   <ItemGroup>
     <Compile Include="PeakTests.fs" />
     <Compile Include="CachingTests.fs" />
+    <Compile Include="StatsExtensionTests.fs" />
     <Compile Include="Main.fs" />
   </ItemGroup>
 
