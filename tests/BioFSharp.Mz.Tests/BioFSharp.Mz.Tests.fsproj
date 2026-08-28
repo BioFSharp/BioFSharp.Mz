@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -25,6 +25,7 @@
     <Compile Include="ProteinInferenceTests.fs" />
     <Compile Include="PercolatorWrapperTests.fs" />
     <Compile Include="ProteinInferenceVisTests.fs" />
+    <Compile Include="ParametersTests.fs" />
     <Compile Include="Main.fs" />
   </ItemGroup>
 
