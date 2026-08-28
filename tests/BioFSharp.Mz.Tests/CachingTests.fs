@@ -88,6 +88,31 @@ let tests =
             Expect.equal (Cache.containsItemsBetween (mkCache()) (15,35)) (Some (1,2)) "keys 20 and 30 occupy indices 1 and 2"
             // keys 20 and 30 lie inside [15,35] and sit at sorted indices 1 and 2 (hand-computed from the sorted key order [10;20;30]).
 
+        testCase "containsItemsBetween index bounds are minimal and maximal for existing endpoints" <| fun _ ->
+            let cache = Cache.createCache<int,string>
+            Cache.addItem cache (10,"a")
+            Cache.addItem cache (20,"b")
+            Cache.addItem cache (30,"c")
+            Cache.addItem cache (45,"d")
+            Cache.addItem cache (60,"e")
+            Cache.addItem cache (80,"f")
+            Expect.equal (Cache.containsItemsBetween cache (20, 60)) (Some (1, 4)) "existing endpoints resolve to their exact sorted indices"
+            Expect.equal (Cache.getValuesByIdx cache (1, 4)) ["b";"c";"d";"e"] "the inclusive bounds return every value in the endpoint range"
+            // both endpoints are existing keys, so by inclusive-interval membership the bounds must be exactly their sorted indices - this pins lower-bound MINIMALITY, which the general invariant test (upper maximality only) cannot: an implementation skipping the first qualifying key would pass it. Consumers feed these indices straight into getValuesByIdx; a high lower bound silently drops candidates.
+
+        testCase "a custom comparer governs ordering and search" <| fun _ ->
+            let reverseComparer = { new System.Collections.Generic.IComparer<int> with member _.Compare(a, b) = compare b a }
+            let cache = Cache.createCacheWith reverseComparer 1
+            Cache.addItem cache (20,"b")
+            Cache.addItem cache (10,"a")
+            Cache.addItem cache (30,"c")
+            Expect.equal (List.ofSeq cache.Keys) [30;20;10] "the supplied comparer orders keys in descending order"
+            Expect.equal (Cache.binarySearch Cache.Border.Upper cache 30) 0 "30 is at sorted index 0 under the custom comparer"
+            Expect.equal (Cache.binarySearch Cache.Border.Upper cache 20) 1 "20 is at sorted index 1 under the custom comparer"
+            Expect.equal (Cache.binarySearch Cache.Border.Upper cache 10) 2 "10 is at sorted index 2 under the custom comparer"
+            Expect.equal cache.Count 3 "all items are retained after automatic growth"
+            // the supplied comparer dictates sorted order (SortedList contract) and binarySearch must consult the cache's own comparer; growing past the initial capacity of 1 also exercises documented automatic growth without pinning a capacity value.
+
         testCase "containsItemsBetween returns None for ranges holding no keys" <| fun _ ->
             let cache = mkCache()
             Expect.equal (Cache.containsItemsBetween cache (12,18)) None "a gap between keys contains no cached key"
