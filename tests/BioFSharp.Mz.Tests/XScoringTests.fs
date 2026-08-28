@@ -46,6 +46,17 @@ let spectrum =
 let qMinAndMax = (1, 10)
 let matchingTolPPM = 20.0
 
+let targetScore (results: SearchEngineResult.SearchEngineResult<float> list) =
+    results |> List.find (fun result -> result.IsTarget) |> fun result -> result.Score
+
+let taggedFamilyAtMz mz =
+    Peaks.createPeakFamily
+        (TaggedPeak.TaggedPeak(Ions.IonTypeFlag.B, mz, nan))
+        []
+
+let lookupB =
+    SearchDB.createLookUpResult 2 2 (pepMass + 1.0) (int64 ((pepMass + 1.0) * 1e6)) "B" peptide 0
+
 [<Tests>]
 let tests =
     testList "XScoringTests" [
@@ -283,5 +294,94 @@ let tests =
                 // unequal intensities produce nonzero local ranks, exercising the duplicated peak-rating and depth machinery through the agreement oracle.
                 // XScoring duplicates the Andromeda-like model for B/Y fragment spectra; the two public implementations must agree on identical inputs - cross-module consistency, the preferred oracle class. If they diverge, one of them is wrong.
                 // agreement guards against divergence of the duplicated code paths, not against their shared defects (hardcoded corrections, dead scanLimits, charge cap); this oracle cannot certify correctness, only consistency.
+
+            testCase "the ppm tolerance bounds XTandem matching" <| fun _ ->
+                let theoSpec =
+                    TheoreticalSpectra.createTheoreticalSpectrum
+                        lookup
+                        [|taggedFamilyAtMz 500.0|]
+                        [|taggedFamilyAtMz 1500.0|]
+                let scoreFor tolerance =
+                    let _, xtandem =
+                        XScoring.calcAndromedaAndXTandemScore
+                            (1, 1)
+                            scanlimits
+                            tolerance
+                            (PeakArray.zipMzInt [|(500.004, 100.0)|])
+                            30.0
+                            2
+                            500.0
+                            [theoSpec]
+                            "s"
+                    xtandem |> targetScore
+                let inside = scoreFor 10.0
+                let outside = scoreFor 5.0
+                // hyperscore for one matched B ion: ln(matchedSum) + ln(1!) = ln 100 - hand-derived; the 0.004 Da offset sits between the two allowances.
+                expectWithin 1e-6 inside (log 100.0) "a 0.004 Da offset is inside the 10 ppm tolerance"
+                Expect.equal outside 0.0 "a 0.004 Da offset is outside the 5 ppm tolerance"
+
+            testCase "XTandem matching honors the local rating window and peak depth" <| fun _ ->
+                let theoSpec =
+                    TheoreticalSpectra.createTheoreticalSpectrum
+                        lookup
+                        [|taggedFamilyAtMz 400.0|]
+                        [|taggedFamilyAtMz 1500.0|]
+                let scoreFor spectrum =
+                    let _, xtandem =
+                        XScoring.calcAndromedaAndXTandemScore
+                            (1, 1)
+                            scanlimits
+                            20.0
+                            (PeakArray.zipMzInt spectrum)
+                            30.0
+                            2
+                            500.0
+                            [theoSpec]
+                            "s"
+                    xtandem |> targetScore
+                let insideWindowCompetitor = scoreFor [|(400.0, 50.0); (440.0, 100.0)|]
+                let outsideWindowCompetitor = scoreFor [|(400.0, 50.0); (460.0, 100.0)|]
+                // same 100-Da window and depth semantics as the Andromeda side, observed through the hyperscore: ln(50) for the sole matched ion.
+                Expect.equal insideWindowCompetitor 0.0 "a more intense peak 40 Da away excludes the lower-ranked match"
+                expectWithin 1e-6 outsideWindowCompetitor (log 50.0) "a more intense peak 60 Da away leaves the match eligible"
+
+            testCase "every candidate is scored under its own identity" <| fun _ ->
+                let candidateA =
+                    TheoreticalSpectra.createTheoreticalSpectrum
+                        lookup
+                        [|taggedFamilyAtMz 400.0|]
+                        [|taggedFamilyAtMz 1500.0|]
+                let candidateB =
+                    TheoreticalSpectra.createTheoreticalSpectrum
+                        lookupB
+                        [|taggedFamilyAtMz 800.0|]
+                        [|taggedFamilyAtMz 1500.0|]
+                let andro, xtandem =
+                    XScoring.calcAndromedaAndXTandemScore
+                        (1, 10)
+                        scanlimits
+                        20.0
+                        (PeakArray.zipMzInt [|(400.0, 100.0)|])
+                        30.0
+                        2
+                        500.0
+                        [candidateA; candidateB]
+                        "s"
+                let assertStream name (stream: SearchEngineResult.SearchEngineResult<float> list) =
+                    Expect.equal stream.Length 4 (sprintf "%s returns target and decoy for both candidates" name)
+                    Expect.equal
+                        (stream |> List.countBy (fun result -> result.PepSequenceID) |> List.sort)
+                        [(1, 2); (2, 2)]
+                        (sprintf "%s contains exactly two records per candidate ID" name)
+                    Expect.equal
+                        (stream |> List.map (fun result -> result.Score))
+                        (stream |> List.map (fun result -> result.Score) |> List.sortDescending)
+                        (sprintf "%s is sorted by descending score" name)
+                    let head = List.head stream
+                    Expect.equal head.PepSequenceID 1 (sprintf "%s ranks candidate A first" name)
+                    Expect.isTrue head.IsTarget (sprintf "%s ranks candidate A's target first" name)
+                // a scorer that processes only the first candidate, or reuses one candidate's spectra, fails the per-ID accounting; A matches and B does not, so A-target must lead both streams.
+                assertStream "Andromeda" andro
+                assertStream "XTandem" xtandem
         ]
     ]
