@@ -23,6 +23,7 @@
     <Compile Include="QuantificationTests.fs" />
     <Compile Include="FDRControlTests.fs" />
     <Compile Include="ProteinInferenceTests.fs" />
+    <Compile Include="PercolatorWrapperTests.fs" />
     <Compile Include="Main.fs" />
   </ItemGroup>
 
