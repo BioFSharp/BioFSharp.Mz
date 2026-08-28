@@ -54,6 +54,18 @@ let tests =
                 Expect.floatClose Accuracy.high tp.Mz 300.0 "m/z is the tagged mass"
                 Expect.floatClose Accuracy.high tp.Intensity 42.0 "intensity is the predicted intensity"
                 Expect.equal tp.Iontype tm.Iontype "ion type is preserved"
+
+            testCase "createTaggedPeakOf forwards the complete composite ion tag to the predictor" <| fun _ ->
+                let tm = TaggedMass.createTaggedH2OLoss Ions.IonTypeFlag.Y 500.0
+                let predictor = fun flag ->
+                    if flag = (Ions.IonTypeFlag.Y ||| Ions.IonTypeFlag.lossH2O) then 0.2
+                    elif flag = Ions.IonTypeFlag.Y then 1.0
+                    else -1.0
+                let tp = TaggedPeak.createTaggedPeakOf tm predictor
+                Expect.floatClose Accuracy.high tp.Intensity 0.2 "predictor receives the complete composite ion tag"
+                Expect.floatClose Accuracy.high tp.Mz 500.0 "m/z is the tagged mass"
+                Expect.isTrue (Ions.hasFlag tp.Iontype Ions.IonTypeFlag.Y && Ions.hasFlag tp.Iontype Ions.IonTypeFlag.lossH2O) "both ion-type flags are preserved"
+                // loss peaks legitimately receive different predicted intensities than their backbone ion, so the predictor must see the COMPLETE composite tag - a predictor answering 0.2 only for exactly Y|||lossH2O distinguishes forwarding from tag-stripping.
         ]
 
         testList "PeakArray" [
@@ -99,6 +111,16 @@ let tests =
                 // peaks far below/above the [minMassBoarder, maxMassBoarder] window must not contribute to any bin (documented filtering); the guard protects the production path where full measured spectra are binned against scan limits. Contribution is asserted via all-zero bins, deliberately NOT via the array length, whose off-by-one is under dispute (see the pending border test).
                 Expect.isTrue (Array.forall (fun v -> v = 0.0) a) "peaks outside the mass borders do not contribute to upper-integer bins"
                 Expect.isTrue (Array.forall (fun v -> v = 0.0) b) "peaks outside the mass borders do not contribute to nearest-dalton bins"
+
+            // PENDING: eligibility comes from the ORIGINAL m/z (the vector variant's doc filters
+            // mz < minMassBoarder); rounding only assigns eligible peaks to bins. The implementation
+            // filters AFTER bin calculation, so 99.9 ceils into bin 100 and contributes although it lies
+            // below the border - the lower-border sibling of the pended upper-border off-by-one.
+            ptestCase "peaks below the lower mass border must not contribute" <| fun _ ->
+                let bins = PeakArray.binToUpperIntergerMass (PeakArray.zipMzInt [|(99.9, 9.0); (100.0, 4.0)|]) 100 104
+                Expect.floatClose Accuracy.high bins.[0] 4.0 "the below-border peak does not contribute to the lower bin"
+                let binsR = PeakArray.peaksToNearestUnitDaltonBin (PeakArray.zipMzInt [|(99.6, 9.0); (100.0, 4.0)|]) 100 104
+                Expect.floatClose Accuracy.high binsR.[0] 4.0 "the below-border peak does not contribute to the nearest lower bin"
 
             // PENDING: the vector variant's doc says peaks with mz > maxMassBoarder are filtered out, i.e.
             // equality with the border is kept. The current allocation (maxMassBoarder - minMassBoarder bins)
