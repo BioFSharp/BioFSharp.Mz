@@ -90,6 +90,16 @@ let tests =
                 // documented elementwise mapping preserves length
                 // explicit clamp in the doc/code: intensities are physically nonnegative
                 // subtracting a smooth baseline from a single-peak signal must keep the apex at the same sample; the input's unique maximum is at index 25 by construction
+
+            testCase "baseline subtraction is invariant to a constant offset and preserves the apex magnitude" <| fun _ ->
+                let y0 = Array.init 50 (fun i -> gauss 100.0 25.0 3.0 (float i))
+                let y10 = y0 |> Array.map ((+) 10.0)
+                let r0 = PeakDetection.Wavelet.substractBaseLine y0
+                let r10 = PeakDetection.Wavelet.substractBaseLine y10
+                Expect.isTrue ((Array.map2 (fun a b -> abs (a - b)) r0 r10 |> Array.max) < 1e-6) "subtracting a constant offset leaves the corrected signals identical"
+                Expect.isTrue (r10.[25] > 90.0) "the constructed apex survives baseline removal"
+                // subtracting a baseline must remove a constant offset entirely: the corrected signals of y and y+10 are identical (translation invariance of baseline subtraction; probe-verified exact)
+                // the 100-unit constructed apex must survive baseline removal nearly intact - a subtraction that eats the peak is not a baseline correction (probe: 98.7)
         ]
 
         testList "IdentifyPeaks" [
@@ -109,6 +119,27 @@ let tests =
                 Expect.isTrue (secondFit |> Option.exists (fun f -> f.Amplitude >= 75.0 && f.Amplitude <= 81.0)) "the fit near the second Gaussian apex has the expected amplitude"
                 // amplitude is the trace height at the fit location; worst case at |XLoc-12| = 0.2 is 80*exp(-0.04/0.72) = 75.7, hand-computed from the constructed Gaussian
                 // every expected number derives from the constructed signal (apex positions 5 and 12), not the implementation. Borderpadding 200 is required: smaller paddings crash.
+
+            testCase "the apex sample survives into the detected peak group's data" <| fun _ ->
+                let group =
+                    twoPeakPeaks.Value
+                    |> List.find (fun p -> p.Start <= 5.0 && 5.0 <= p.End)
+                Expect.isTrue (group.Data |> Array.exists (fun (x, _) -> abs (x - 5.0) <= 1e-9)) "the measured first apex sample is retained in the group's data"
+                // whatever synthetic padding points the group carries (Data contains padder-interpolated values), the MEASURED apex sample itself must be retained - losing the apex would falsify any downstream quantity read from Data.
+
+            // PENDING: with MaxPeakLength 4.2 the scale ceiling is 0.7, comfortably above the constructed
+            // peak's sigma = 0.5 - a functioning width estimator must report ~0.5. Probes show the fitted
+            // Stdev equals the configured ceiling VERBATIM at caps 0.5, 0.667 and 0.7 for this same peak:
+            // the best-correlating scale always saturates at the maximum, so width estimation is non-functional.
+            ptestCase "the fitted width tracks the true peak width when the scale ceiling allows it" <| fun _ ->
+                let peaks =
+                    PeakDetection.Wavelet.identifyPeaksBy 200 Padding.BorderPaddingMethod.Zero Padding.InternalPaddingMethod.LinearInterpolation Padding.HugeGapPaddingMethod.Zero
+                        100.0 4.2 0.5 1.0 twoPeakTrace
+                let fit =
+                    peaks
+                    |> List.collect (fun p -> p.Fits)
+                    |> List.find (fun f -> abs (f.XLoc - 5.0) <= 0.2)
+                Expect.isTrue (abs (fit.Stdev - 0.5) <= 0.15) "the fitted width is close to the constructed sigma"
 
             testCase "identifyPeaks finds no peaks in an all-zero trace" <| fun _ ->
                 let trace = xs |> Array.map (fun x -> x, 0.0)
