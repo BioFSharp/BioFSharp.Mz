@@ -76,6 +76,25 @@ let tests =
             Expect.equal msParametersRoundTripped msParameters "MSParameters JSON round trip preserves the parameter DU"
             // isolation evidence: every BioFSharp.Mz-owned type in a workflow payload (records, options, the parameter DU) serializes and round-trips perfectly on this Newtonsoft version - the pended Operation round trip fails solely on the BioFSharp Operation type's embedded FileInfo.
 
+        testCase "an MS2-only compressed configuration survives construction and JSON round-trips" <| fun _ ->
+            let p = MSProcessing.createPeakPickingParams true None None (Some someWaveletParameters)
+            Expect.equal p.CompressData true "CompressData preserves true"
+            Expect.equal p.Ms1PeakPicking None "MS1 peak picking remains None"
+            Expect.equal p.PaddingParameters None "padding remains None"
+            Expect.equal p.Ms2PeakPicking (Some someWaveletParameters) "MS2 peak picking preserves Some wavelet parameters"
+            let roundTripped =
+                p
+                |> Newtonsoft.Json.JsonConvert.SerializeObject
+                |> Newtonsoft.Json.JsonConvert.DeserializeObject<MSProcessing.PeakPickingParams>
+            let msParameters = MSProcessing.MSParameters.PeakPicking p
+            let msParametersRoundTripped =
+                msParameters
+                |> Newtonsoft.Json.JsonConvert.SerializeObject
+                |> Newtonsoft.Json.JsonConvert.DeserializeObject<MSProcessing.MSParameters>
+            // the existing fixtures never populate Ms2PeakPicking or set CompressData = true, so an implementation pinning MS2 to None or compression to false would pass them; MS2-only workflows are a real configuration whose loss silently changes processing.
+            Expect.equal roundTripped p "an MS2-only PeakPickingParams JSON round trip preserves every field"
+            Expect.equal msParametersRoundTripped msParameters "an MS2-only MSParameters JSON round trip preserves the parameter DU"
+
         ptestCase "a single operation survives the JSON round trip" <| fun _ ->
             let roundTripped = MSProcessing.operationOfJson (MSProcessing.operationToJSon op1)
             let projectOperation (operation: Definition.Operation<MSProcessing.MSParameters>) =
