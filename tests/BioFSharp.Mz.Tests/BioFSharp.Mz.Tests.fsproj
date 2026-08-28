@@ -24,6 +24,7 @@
     <Compile Include="FDRControlTests.fs" />
     <Compile Include="ProteinInferenceTests.fs" />
     <Compile Include="PercolatorWrapperTests.fs" />
+    <Compile Include="ProteinInferenceVisTests.fs" />
     <Compile Include="Main.fs" />
   </ItemGroup>
 
