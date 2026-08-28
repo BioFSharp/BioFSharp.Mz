@@ -251,6 +251,200 @@ let tests =
                         "two modified forms share a PepSequenceID and differ by one methionine oxidation"
                 )
 
+            // PENDING: MaxMass is recorded but never applied during candidate generation.
+            // Observed sequences: ["WWWWK"; "LLVR"].
+            ptestCase "the configured MaxMass excludes over-mass candidates" <| fun _ ->
+                withTemporaryDirectory (fun directory ->
+                    let fastaPath = Path.Combine(directory, "maxmass.fasta")
+                    File.WriteAllText(fastaPath, ">sp|TESTPROT2|T2\r\nLLVRWWWWK\r\n")
+
+                    let sdbParams =
+                        SearchDB.createSearchDbParams
+                            "testdb_maxmass"
+                            directory
+                            fastaPath
+                            id
+                            (Digestion.Table.getProteaseBy "Trypsin")
+                            0
+                            0
+                            600.0
+                            2
+                            20
+                            []
+                            SearchDB.MassMode.Monoisotopic
+                            monoisotopicMass
+                            []
+                            []
+                            0
+
+                    use connection = SearchDB.connectOrCreateDB sdbParams
+                    let lookUp = SearchDB.getThreadSafePeptideLookUpFromFileBy connection sdbParams
+                    let sequences =
+                        lookUp 100.0 5000.0
+                        |> List.map (fun result -> stripBracketedModifications result.StringSequence)
+
+                    Expect.isTrue (List.contains "LLVR" sequences) "the under-MaxMass LLVR candidate is present"
+                    Expect.isFalse (List.contains "WWWWK" sequences) "the over-MaxMass WWWWK candidate is excluded"
+                    // MaxMass defines the search space; admitting over-mass candidates inflates the database and distorts multiple-testing statistics.
+                )
+
+            testCase "fixed modifications are mandatory and site-specific; variable modifications respect sites and the threshold" <| fun _ ->
+                withTemporaryDirectory (fun directory ->
+                    let fastaPath = Path.Combine(directory, "site-mods.fasta")
+                    File.WriteAllText(fastaPath, ">sp|TESTPROT3|T3\r\nACDKMAMR\r\n")
+
+                    let sdbParams =
+                        SearchDB.createSearchDbParams
+                            "testdb_site_mods"
+                            directory
+                            fastaPath
+                            id
+                            (Digestion.Table.getProteaseBy "Trypsin")
+                            0
+                            0
+                            3000.0
+                            2
+                            20
+                            []
+                            SearchDB.MassMode.Monoisotopic
+                            monoisotopicMass
+                            [SearchDB.Table.carbamidomethyl'Cys'; SearchDB.Table.acetylation'ProtNTerm']
+                            [SearchDB.Table.oxidation'Met']
+                            1
+
+                    let baseMass sequence =
+                        SearchDB.initOfModAminoAcidString [] [] 0 sequence
+                        |> List.sumBy (fun residue -> monoisotopicMass (residue :> BioFSharp.IBioItem))
+                        |> (+) 18.010565
+
+                    use connection = SearchDB.connectOrCreateDB sdbParams
+                    let lookUp = SearchDB.getThreadSafePeptideLookUpFromFileBy connection sdbParams
+                    let grouped =
+                        lookUp 100.0 3000.0
+                        |> List.groupBy (fun result -> stripBracketedModifications result.StringSequence)
+
+                    let formsOf sequence =
+                        grouped
+                        |> List.tryFind (fun (plainSequence, _) -> plainSequence = sequence)
+                        |> Option.map snd
+                        |> Option.defaultValue []
+
+                    let acdkForms = formsOf "ACDK"
+                    let acdkBase = baseMass "ACDK"
+                    let acdkExpectedMasses = [acdkBase + 57.021464; acdkBase + 57.021464 + 42.010565]
+                    acdkForms
+                    |> List.iter (fun result ->
+                        Expect.isTrue
+                            (acdkExpectedMasses |> List.exists (fun expected -> abs (result.Mass - expected) <= 0.001))
+                            (sprintf "ACDK form %s carries mandatory Cys carbamidomethylation" result.StringSequence))
+                    // fixed modifications are MANDATORY: with carbamidomethyl and protein-N-terminal
+                    // acetylation both fixed and no variable mod applicable to ACDK, exactly one form
+                    // exists - carrying both deltas (observed and now pinned).
+                    Expect.equal acdkForms.Length 1 "fixed-only modification state yields exactly one ACDK form"
+                    Expect.isTrue
+                        (acdkForms |> List.exists (fun result -> abs (result.Mass - acdkExpectedMasses.[1]) <= 0.001))
+                        "the protein-N-terminal ACDK form additionally carries acetylation"
+
+                    let mamrForms = formsOf "MAMR"
+                    let mamrBase = baseMass "MAMR"
+                    Expect.equal mamrForms.Length 3 "the two Met sites produce base plus two singly oxidized MAMR forms"
+                    if mamrForms.Length = 3 then
+                        let actualMasses = mamrForms |> List.map (fun result -> result.Mass) |> List.sort
+                        let expectedMasses = [mamrBase; mamrBase + 15.994915; mamrBase + 15.994915] |> List.sort
+                        actualMasses
+                        |> List.iter2 (fun actual expected -> expectWithin 0.001 actual expected "the MAMR form has the expected oxidation count") expectedMasses
+                        Expect.isFalse
+                            (mamrForms |> List.exists (fun result -> abs (result.Mass - (mamrBase + 2.0 * 15.994915)) <= 0.001))
+                            "the variable-modification threshold excludes doubly oxidized MAMR"
+                        Expect.isFalse
+                            (mamrForms |> List.exists (fun result -> abs (result.Mass - (mamrBase + 42.010565)) <= 0.001))
+                            "protein-terminal acetylation does not leak onto internal MAMR"
+                    // fixed = mandatory on its site; variable = optional, one per threshold, Met-only; terminal mods bind to the protein terminus - each clause is a distinct search-space contract, all masses hand-composed from published deltas.
+                )
+
+            testCase "the missed-cleavage bounds select the stored candidate set" <| fun _ ->
+                withTemporaryDirectory (fun directory ->
+                    let fastaPath = Path.Combine(directory, "missed-cleavages.fasta")
+                    File.WriteAllText(fastaPath, ">sp|TESTPROT4|T4\r\nAKLLVR\r\n")
+
+                    let sdbParams =
+                        SearchDB.createSearchDbParams
+                            "testdb_missed_cleavages"
+                            directory
+                            fastaPath
+                            id
+                            (Digestion.Table.getProteaseBy "Trypsin")
+                            1
+                            1
+                            3000.0
+                            0
+                            20
+                            []
+                            SearchDB.MassMode.Monoisotopic
+                            monoisotopicMass
+                            []
+                            []
+                            0
+
+                    use connection = SearchDB.connectOrCreateDB sdbParams
+                    let lookUp = SearchDB.getThreadSafePeptideLookUpFromFileBy connection sdbParams
+                    let sequences =
+                        lookUp 100.0 3000.0
+                        |> List.map (fun result -> stripBracketedModifications result.StringSequence)
+
+                    Expect.isTrue (List.contains "AKLLVR" sequences) "the one-missed-cleavage product is present"
+                    Expect.isFalse (List.contains "AK" sequences) "the zero-missed-cleavage AK product is excluded"
+                    Expect.isFalse (List.contains "LLVR" sequences) "the zero-missed-cleavage LLVR product is excluded"
+                    // missed-cleavage bounds are a core digestion contract controlling database size and sensitivity; the products are hand-derived from trypsin specificity (cleave after K/R).
+                )
+
+            testCase "database identity is parameter-sensitive and parameters round-trip" <| fun _ ->
+                withTemporaryDirectory (fun directory ->
+                    let fastaPath = Path.Combine(directory, "identity.fasta")
+                    File.WriteAllText(fastaPath, ">sp|TESTPROT5|T5\r\nAKLLVR\r\n")
+
+                    let creatingParams =
+                        SearchDB.createSearchDbParams
+                            "testdb_identity"
+                            directory
+                            fastaPath
+                            id
+                            (Digestion.Table.getProteaseBy "Trypsin")
+                            0
+                            1
+                            2750.0
+                            2
+                            20
+                            []
+                            SearchDB.MassMode.Monoisotopic
+                            monoisotopicMass
+                            [SearchDB.Table.carbamidomethyl'Cys']
+                            [SearchDB.Table.oxidation'Met']
+                            1
+
+                    use connection = SearchDB.connectOrCreateDB creatingParams
+                    let dbFile = SearchDB.Db.getNameOf creatingParams
+                    let storedParams = SearchDB.getSDBParamsBy dbFile
+                    let projection (p: SearchDB.SearchDbParams) =
+                        p.Name,
+                        p.Protease.Name,
+                        p.MinMissedCleavages,
+                        p.MaxMissedCleavages,
+                        p.MaxMass,
+                        p.MinPepLength,
+                        p.MaxPepLength,
+                        p.MassMode.ToString(),
+                        (p.FixedMods |> List.map (fun modification -> modification.Name)),
+                        (p.VariableMods |> List.map (fun modification -> modification.Name))
+
+                    Expect.equal (projection storedParams) (projection creatingParams) "persisted search parameters round-trip through the database"
+                    let changedParams = { creatingParams with MaxMissedCleavages = 2 }
+                    Expect.isFalse
+                        (SearchDB.Db.isExistsBy changedParams)
+                        "changing a digestion parameter identifies a different database"
+                    // a database is identified by its search parameters, not its file name: a changed digestion setting must not silently reuse an incompatible database, and stored parameters must survive persistence.
+                )
+
             // PENDING: MinPepLength = 4 must admit the 4-residue tryptic peptide LLVR. The digestion
             // filter compares (CleavageEnd - CleavageStart) = length-1 strictly, so the effective minimum
             // is MinPepLength + 2 and LLVR is absent even at MinPepLength 3.
