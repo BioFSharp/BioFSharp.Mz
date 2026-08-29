@@ -4,18 +4,23 @@ open System.IO
 open Expecto
 open BioFSharp.Mz
 
+// active on Windows, pending elsewhere: drive-letter FileInfo fixtures resolve cwd-relative on Unix
+let private windowsOnlyTestCase name test =
+    if System.OperatingSystem.IsWindows() then testCase name test
+    else ptestCase name test
+
 [<Tests>]
 let tests =
     testList "PercolatorWrapperTests" [
-        testCase "fileInfoToWindowsPath returns the full native path" <| fun _ ->
+        windowsOnlyTestCase "fileInfoToWindowsPath returns the full native path" <| fun _ ->
             let fi = FileInfo(@"C:\Data\run.pin")
             Expect.equal
                 (PercolatorWrapper.Parameters.fileInfoToWindowsPath fi)
                 @"C:\Data\run.pin"
                 "FileInfo.FullName is the native full path"
-            // the input path is already canonical, so Windows conversion must be the identity on it - asserted against the literal, not against FileInfo.FullName (which would compare the implementation with itself). Windows-only fixture (drive paths resolve differently on Linux); tests do not run on the ubuntu docs workflow.
+            // the input path is already canonical, so Windows conversion must be the identity on it - asserted against the literal, not against FileInfo.FullName (which would compare the implementation with itself). Windows-only fixture (drive paths resolve differently on Linux), hence the platform guard: CI runs the suite on ubuntu too.
 
-        testCase "fileInfoToLinuxPath maps a drive-letter path to its WSL mount" <| fun _ ->
+        windowsOnlyTestCase "fileInfoToLinuxPath maps a drive-letter path to its WSL mount" <| fun _ ->
             Expect.equal
                 (PercolatorWrapper.Parameters.fileInfoToLinuxPath (FileInfo(@"C:\Data\run.pin")))
                 "/mnt/c/Data/run.pin"
@@ -53,6 +58,7 @@ let tests =
         // serializer emits converted paths UNQUOTED, so standard Windows argument parsing splits them
         // into multiple operands - percolator receives a broken file reference. Argued-correct: the
         // serialized fragment must carry the full path as one operand (quoted).
+        // Windows-only like the guarded tests above: it exercises the real fileInfoToWindowsPath, not a stub converter.
         ptestCase "converted paths containing spaces remain single command-line operands" <| fun _ ->
             let s =
                 PercolatorWrapper.Parameters.stringOf
