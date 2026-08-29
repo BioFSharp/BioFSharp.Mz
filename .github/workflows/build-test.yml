@@ -1,0 +1,50 @@
+name: Build and test
+
+on:
+  push:
+    branches: [ developer, main ]
+  pull_request:
+    branches: [ developer, main ]
+
+jobs:
+  build-and-test-linux:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: |
+          8.x
+          10.x
+    - name: make script executable
+      run: chmod u+x build.sh
+    - name: Build and test
+      working-directory: ./
+      run: ./build.sh runtests
+
+  build-and-test-windows:
+
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: |
+          8.x
+          10.x
+    - name: Build and test
+      working-directory: ./
+      run: ./build.cmd runtestswithcodecov
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v4
+      with:
+        fail_ci_if_error: false # requires the CODECOV_TOKEN secret to be configured
+        files: ./codeCov.xml
+        name: codecov-umbrella # optional
+        token: ${{ secrets.CODECOV_TOKEN }} # required
+        verbose: true # optional (default = false)

@@ -2,34 +2,14 @@
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29806.167
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".paket", ".paket", "{63297B98-5CED-492C-A5B7-A5B4F73CF142}"
-	ProjectSection(SolutionItems) = preProject
-		paket.dependencies = paket.dependencies
-		paket.lock = paket.lock
-		paket.references = paket.references
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{A6A6AF7D-D6E3-442D-9B1E-58CC91879BE1}"
-EndProject
 Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "BioFSharp.Mz", "src\BioFSharp.Mz\BioFSharp.Mz.fsproj", "{C11E9782-6300-40E5-AE37-32197AD9F78D}"
+EndProject
+Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "build", "build\build.fsproj", "{A3C577D1-8E42-4A6B-9F30-6C5D21B0E7A4}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "project", "project", "{BF60BC93-E09B-4E5F-9D85-95A519479D54}"
 	ProjectSection(SolutionItems) = preProject
 		README.md = README.md
 		RELEASE_NOTES.md = RELEASE_NOTES.md
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tools", "tools", "{83F16175-43B1-4C90-A1EE-8E351C33435D}"
-	ProjectSection(SolutionItems) = preProject
-		docsrc\files\styles\CSBStyles.css = docsrc\files\styles\CSBStyles.css
-		docsrc\tools\generate.fsx = docsrc\tools\generate.fsx
-		docsrc\tools\templates\template.cshtml = docsrc\tools\templates\template.cshtml
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "content", "content", "{8E6D5255-776D-4B61-85F9-73C37AA1FB9A}"
-	ProjectSection(SolutionItems) = preProject
-		docsrc\content\index.fsx = docsrc\content\index.fsx
-		docsrc\content\tutorial.fsx = docsrc\content\tutorial.fsx
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{ED8079DD-2B06-4030-9F0F-DC548F98E1C4}"
@@ -48,11 +28,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "git", "git", "{078A9C52-DDC
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".build", ".build", "{7C6D08E7-3EAC-4335-8F4B-252C193C27C9}"
 	ProjectSection(SolutionItems) = preProject
-		.travis.yml = .travis.yml
-		appveyor.yml = appveyor.yml
 		build.cmd = build.cmd
-		build.fsx = build.fsx
-		build.proj = build.proj
 		build.sh = build.sh
 	EndProjectSection
 EndProject
@@ -78,13 +54,15 @@ Global
 		{D83DA3EA-3EBB-42EF-99AB-2E0DDC5A5E70}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D83DA3EA-3EBB-42EF-99AB-2E0DDC5A5E70}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D83DA3EA-3EBB-42EF-99AB-2E0DDC5A5E70}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A3C577D1-8E42-4A6B-9F30-6C5D21B0E7A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3C577D1-8E42-4A6B-9F30-6C5D21B0E7A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A3C577D1-8E42-4A6B-9F30-6C5D21B0E7A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A3C577D1-8E42-4A6B-9F30-6C5D21B0E7A4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{83F16175-43B1-4C90-A1EE-8E351C33435D} = {A6A6AF7D-D6E3-442D-9B1E-58CC91879BE1}
-		{8E6D5255-776D-4B61-85F9-73C37AA1FB9A} = {A6A6AF7D-D6E3-442D-9B1E-58CC91879BE1}
 		{D83DA3EA-3EBB-42EF-99AB-2E0DDC5A5E70} = {ED8079DD-2B06-4030-9F0F-DC548F98E1C4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution

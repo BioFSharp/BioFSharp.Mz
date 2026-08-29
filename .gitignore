@@ -16,7 +16,6 @@
 [Dd]ebug/
 [Rr]elease/
 x64/
-build/
 [Bb]in/
 [Oo]bj/
 
@@ -185,3 +184,8 @@ temp
 /codeCov.xml
 /.fsdocs
 /output
+docs/.fsdocs/
+docs/tmp/watch/
+tmp/watch/
+.fsdocs
+/tests/BioFSharp.Mz.Tests/coverage.xml
