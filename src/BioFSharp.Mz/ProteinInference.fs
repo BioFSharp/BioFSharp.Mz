@@ -3,7 +3,7 @@
 
 open FSharpAux
 open BioFSharp.PeptideClassification
-open BioFSharp.IO.GFF3
+open BioFSharp.FileFormats.GFF3
 open FSharpAux.IO.SchemaReader.Attribute
 open System.Collections.Generic
 open FSharp.Stats
@@ -605,7 +605,7 @@ module ProteinInference =
                 | false -> 1.
             )
         let fdr =
-            if (isNan estimatedFP) || (isInf estimatedFP) || estimatedFP = 0. then
+            if (Ops.isNan estimatedFP) || (Ops.isInf estimatedFP) || estimatedFP = 0. then
                 1.
             elif (estimatedFP / targetCount < 0.) || (estimatedFP / targetCount > 1.) then
                 1.

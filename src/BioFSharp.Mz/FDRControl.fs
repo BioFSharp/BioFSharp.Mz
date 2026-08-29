@@ -12,7 +12,7 @@ module FDRControl =
         // FDR estimation using MAYU
         // Code form 'stirlingLogFactorial' to 'estimatePi0HG' translated from percolator 'ProteinFDREstimator.cpp'
         let private stirlingLogFacorial (n: float) =
-            log(sqrt(2. * pi  *n)) + n * log(n) - n
+            log(sqrt(2. * Ops.pi  *n)) + n * log(n) - n
 
         let private exactLogFactorial (n: float) =
             let rec loop i log_fact =
@@ -57,7 +57,7 @@ module FDRControl =
             let expectation_value_FP_PID =
                 logprob_Norm
                 |> List.foldi (fun i acc x -> acc + x * (float i)) 0.
-            if (isNan expectation_value_FP_PID) || (isInf expectation_value_FP_PID) then
+            if (Ops.isNan expectation_value_FP_PID) || (Ops.isInf expectation_value_FP_PID) then
                 0.
             else
                 expectation_value_FP_PID
@@ -243,7 +243,7 @@ module FDRControl =
             |> Array.sortBy fst
             |> Array.unzip
         // Linear Interpolation
-        let linearSplineCoeff = Interpolation.LinearSpline.initInterpolateSorted score monotoneQVal
+        let linearSplineCoeff = Interpolation.LinearSpline.interpolateSorted score monotoneQVal
         // takes a score from the dataset and assigns it a q value
-        let interpolation = Interpolation.LinearSpline.interpolate linearSplineCoeff
+        let interpolation = Interpolation.LinearSpline.predict linearSplineCoeff
         interpolation

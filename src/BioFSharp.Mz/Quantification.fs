@@ -79,7 +79,7 @@ module Quantification =
                                 else log x
                              )
                 |> Vector.ofArray                          
-            let polCoeff = FSharp.Stats.Fitting.LinearRegression.OrdinaryLeastSquares.Polynomial.coefficient 2 mzData logTransIntensityData 
+            let polCoeff = FSharp.Stats.Fitting.LinearRegression.OLS.Polynomial.fit 2 mzData logTransIntensityData 
             // f(x) = a1 + a2 * x + a3 * x**2
             let a = polCoeff.[0]
             let b = polCoeff.[1]

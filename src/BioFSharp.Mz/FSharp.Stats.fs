@@ -77,7 +77,7 @@ module PeakDetection =
         ///
         let private getScales maxScale averageDistance =
             let tmp =
-                [|averageDistance*2. .. round 2 (averageDistance/2.) .. maxScale|]
+                [|averageDistance*2. .. Ops.roundTo 2 (averageDistance/2.) .. maxScale|]
             tmp
 
         ///
@@ -269,11 +269,13 @@ module PeakDetection =
                 |> List.filter  (List.isEmpty >> not)
                 |> List.map (optimizeWaveletFits origData)
             let final =
-                let m = 
-                    fits 
-                    |> List.map (fun x -> x.SumTrace) 
+                let m =
+                    fits
+                    |> List.map (fun x -> x.SumTrace)
                     |> Array.ofList
-                m 
+                // JaggedArray.transpose requires a non-empty outer array; no fits means no peaks
+                if Array.isEmpty m then [] else
+                m
                 |> JaggedArray.transpose
                 |> Array.map (fun v -> 
                     let max = v |> Seq.max

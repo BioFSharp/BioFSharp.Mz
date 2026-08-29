@@ -162,7 +162,7 @@ let tests =
                 let trace =
                     Regex.Match(
                         html,
-                        "\"y\":\\[([^\\]]*)\\](?:[^{}]|\\{[^{}]*\\})*?\"name\":\"Target\"")
+                        "\"y\":\\[([^\\]]*)\\](?:[^{}]|\\{(?:[^{}]|\\{[^{}]*\\})*\\})*?\"name\":\"Target\"")
                 Expect.isTrue trace.Success "the Target trace with a y array is present"
                 if trace.Success then parseNumbers trace.Groups.[1].Value else [||]
 
@@ -252,7 +252,7 @@ let tests =
                 let y2Traces =
                     Regex.Matches(
                         html,
-                        "\"y\":\\[([^\\]]*)\\](?:[^{}]|\\{[^{}]*\\})*?\"yaxis\":\"y2\"")
+                        "\"y\":\\[([^\\]]*)\\](?:[^{}]|\\{(?:[^{}]|\\{[^{}]*\\})*\\})*?\"yaxis\":\"y2\"")
                     |> Seq.cast<Match>
                     |> Seq.map (fun trace -> parseNumbers trace.Groups.[1].Value)
                     |> Seq.toArray
