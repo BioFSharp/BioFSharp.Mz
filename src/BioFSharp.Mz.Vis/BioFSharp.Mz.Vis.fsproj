@@ -22,7 +22,6 @@
     <Description>BioFSharp.Mz.Vis - modular computational proteomics visualization</Description>
     <Summary>BioFSharp.Mz.Vis - modular computational proteomics visualization</Summary>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageProjectUrl>https://github.com/CSBiology/BioFSharp.Mz/</PackageProjectUrl>
     <!--<PackageIconUrl>https://github.com/CSBiology/BioFSharp.Mz</PackageIconUrl>-->
     <PackageTags>fsharp dotnet proteomics</PackageTags>
     <RepositoryUrl>https://github.com/CSBiology/BioFSharp.Mz</RepositoryUrl>
