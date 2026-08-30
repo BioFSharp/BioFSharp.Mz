@@ -2,6 +2,7 @@ module FDRControlTests
 
 open System
 open Expecto
+open FSharp.Stats
 open BioFSharp.Mz
 
 let private expectWithin tolerance actual expected message =
@@ -345,6 +346,93 @@ let tests =
                 expectWithin 1e-9 (f 19.0) 0.0 "the q-value at score 19.0"
                 expectWithin 1e-9 (f 10.0) 0.0 "the q-value at score 10.0"
                 // domain reading of a perfectly separated target/decoy score distribution.
+        ]
+
+        testList "PEP" [
+            testCase "createTargetDecoyHis bins scores with half-bandwidth-centered labels and per-bin decoy counts" <| fun _ ->
+                let data = [| (0.2, false); (0.7, true); (0.4, false); (1.3, false) |]
+                let bins =
+                    FDRControl.createTargetDecoyHis
+                        1.0
+                        snd
+                        (fun (score, _) -> score)
+                        (fun (score, _) -> score)
+                        data
+                    |> Array.sortBy (fun (bin, _, _, _) -> bin)
+                Expect.equal bins.Length 2 "the data is split into two score bins"
+                let bin0, count0, decoyCount0, median0 = bins.[0]
+                expectFloatClose bin0 0.5 "the non-negative bin label is centered by half the bandwidth"
+                Expect.equal count0 3 "the first bin contains three entries"
+                Expect.equal decoyCount0 1 "the first bin contains one decoy"
+                expectFloatClose median0 0.4 "the first bin median score"
+                let bin1, count1, decoyCount1, median1 = bins.[1]
+                expectFloatClose bin1 1.5 "the second non-negative bin label is centered by half the bandwidth"
+                Expect.equal count1 1 "the second bin contains one entry"
+                Expect.equal decoyCount1 0 "the second bin contains no decoys"
+                expectFloatClose median1 1.3 "the second bin median score"
+                let negativeBin, _, _, _ =
+                    FDRControl.createTargetDecoyHis
+                        1.0
+                        snd
+                        (fun (score, _) -> score)
+                        (fun (score, _) -> score)
+                        [| (-0.3, true) |]
+                    |> Array.exactlyOne
+                expectFloatClose negativeBin -0.5 "the negative bin label uses the negative half-bandwidth branch"
+
+            testCase "calculatePEPValues returns score-sorted decoy/total ratios" <| fun _ ->
+                let dataFreq = [| (2.0, 4.0, 1.0); (1.0, 2.0, 1.0) |]
+                let actual =
+                    FDRControl.calculatePEPValues
+                        (fun (_, total, _) -> total)
+                        (fun (_, _, decoy) -> decoy)
+                        (fun (score, _, _) -> score)
+                        dataFreq
+                Expect.equal actual [ (1.0, 0.5); (2.0, 0.25) ] "PEP values are sorted ascending by score"
+
+            testCase "logitTransformPepValues drops endpoint pep values and log10-logit-transforms the rest" <| fun _ ->
+                let scores, pepValues =
+                    FDRControl.logitTransformPepValues
+                        [| 1.0; 2.0; 3.0; 4.0 |]
+                        [| 0.0; 0.5; 0.9; 1.0 |]
+                Expect.equal scores [| 2.0; 3.0 |] "endpoint PEP values are removed"
+                expectFloatClose pepValues.[0] 0.0 "the PEP 0.5 logit is zero"
+                expectFloatClose pepValues.[1] (log10 9.0) "the PEP 0.9 logit is log10(9)"
+
+            testCase "initCalculateLin yields a monotonically usable PEP mapping on a separable target/decoy set" <| fun _ ->
+                let targets = [| for score in 1.0 .. 0.25 .. 8.0 -> (score, false) |]
+                let decoys =
+                    Array.append
+                        [| for score in -8.0 .. 0.25 .. -1.0 -> (score, true) |]
+                        [| (1.1, true); (1.2, true); (2.1, true); (3.1, true) |]
+                let data = Array.append targets decoys
+                let msgs = ResizeArray<string>()
+                let f =
+                    FDRControl.initCalculateLin
+                        msgs.Add
+                        0.5
+                        snd
+                        (fun (score, _) -> score)
+                        (fun (score, _) -> score)
+                        data
+                let atOne = f 1.0
+                let atEight = f 8.0
+                let atFive = f 5.0
+                Expect.isTrue (not (Double.IsNaN atOne) && not (Double.IsInfinity atOne)) "the PEP at score 1.0 is finite"
+                Expect.isTrue (not (Double.IsNaN atEight) && not (Double.IsInfinity atEight)) "the PEP at score 8.0 is finite"
+                Expect.isTrue (atEight <= atOne) "the PEP does not increase for the better score"
+                Expect.isTrue (0.0 <= atFive && atFive <= 1.0) "the PEP at score 5.0 is a probability"
+                Expect.equal msgs.Count 3 "the initializer emits the two setup traces and chosen bandwidth trace"
+
+            testCase "getLogisticRegressionFunction fits a descending logistic mapping" <| fun _ ->
+                let f =
+                    FDRControl.getLogisticRegressionFunction
+                        (vector [| 1.0; 2.0; 3.0; 4.0; 5.0; 6.0 |])
+                        (vector [| 1.0; 1.0; 1.0; 0.0; 0.0; 0.0 |])
+                        0.0001
+                let atMiddle = f 3.5
+                Expect.isTrue (0.0 <= atMiddle && atMiddle <= 1.0) "the logistic prediction is a probability"
+                Expect.isTrue (f 1.0 > f 6.0) "the logistic prediction is higher on the y=1 side"
         ]
 
         testList "LogisticRegression" [
