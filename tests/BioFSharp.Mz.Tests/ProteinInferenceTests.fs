@@ -3,7 +3,7 @@ module ProteinInferenceTests
 open Expecto
 open BioFSharp.Mz
 open BioFSharp.PeptideClassification
-open BioFSharp.IO.GFF3
+open BioFSharp.FileFormats.GFF3
 
 let private classC1a = BioFSharp.PeptideClassification.PeptideEvidenceClass.C1a
 

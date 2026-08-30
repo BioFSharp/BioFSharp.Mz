@@ -28,21 +28,21 @@ module ProteinInference =
         let histogram =
             [
                 Chart.Column relFreqTarget
-                |> Chart.withTraceName "Target"
+                |> Chart.withTraceInfo (Name = "Target")
                 |> Chart.withAxisAnchor(Y=1);
                 Chart.Column relFreqDecoy
-                |> Chart.withTraceName "Decoy"
+                |> Chart.withTraceInfo (Name = "Decoy")
                 |> Chart.withAxisAnchor(Y=1);
                 Chart.Column absFreqTarget
                 |> Chart.withAxisAnchor(Y=2)
                 |> Chart.withMarkerStyle (Opacity = 0.)
-                |> Chart.withTraceName (Showlegend = false);
+                |> Chart.withTraceInfo (ShowLegend = false);
                 Chart.Column absFreqDecoy
                 |> Chart.withAxisAnchor(Y=2)
                 |> Chart.withMarkerStyle (Opacity = 0.)
-                |> Chart.withTraceName (Showlegend = false)
+                |> Chart.withTraceInfo (ShowLegend = false)
             ]
-            |> Chart.Combine
+            |> Chart.combine
 
         let sortedQValues =
             inferredProteinClassItemQValue
@@ -56,15 +56,15 @@ module ProteinInference =
 
         [
             Chart.Point sortedQValues
-            |> Chart.withTraceName "Q-Values";
+            |> Chart.withTraceInfo (Name = "Q-Values");
             histogram
         ]
-        |> Chart.Combine
-        |> Chart.withY_AxisStyle("Relative Frequency / Q-Value",Side=StyleParam.Side.Left,Id=1, MinMax = (0., 1.))
-        |> Chart.withY_AxisStyle("Absolute Frequency",Side=StyleParam.Side.Right,Id=2,Overlaying=StyleParam.AxisAnchorId.Y 1, MinMax = (0., float target.Length))
-        |> Chart.withX_AxisStyle "Score"
-        |> Chart.withSize (900., 900.)
+        |> Chart.combine
+        |> Chart.withYAxisStyle("Relative Frequency / Q-Value",Side=StyleParam.Side.Left,Id=StyleParam.SubPlotId.YAxis 1, MinMax = (0., 1.))
+        |> Chart.withYAxisStyle("Absolute Frequency",Side=StyleParam.Side.Right,Id=StyleParam.SubPlotId.YAxis 2,Overlaying=StyleParam.LinearAxisId.Y 1, MinMax = (0., float target.Length))
+        |> Chart.withXAxisStyle "Score"
+        |> Chart.withSize (900, 900)
         |> if groupFiles then
-               Chart.SaveHtmlAs (path + @"\QValueGraph")
+               Chart.saveHtml (path + @"\QValueGraph")
            else
-               Chart.SaveHtmlAs (path + @"_QValueGraph")
+               Chart.saveHtml (path + @"_QValueGraph")

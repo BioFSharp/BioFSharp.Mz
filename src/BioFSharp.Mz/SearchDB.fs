@@ -143,7 +143,7 @@ module SearchDB =
         AminoAcid.Arg; 
         AminoAcid.Ser; 
         AminoAcid.Thr; 
-        AminoAcid.Sel; 
+        AminoAcid.Sec; 
         AminoAcid.Val; 
         AminoAcid.Trp; 
         AminoAcid.Tyr
@@ -1535,7 +1535,7 @@ module SearchDB =
                 let currentC = aaStr.[count]
                 match Char.IsUpper currentC with
                 | true ->
-                    let aa = BioItemsConverter.OptionConverter.charToOptionAminoAcid currentC 
+                    let aa = BioItemConverters.AminoAcids.oneLetterToOption currentC 
                     match aaAcc with
                     | Some aaAcc -> 
                         let tmp = setGlobalMods globalMod isotopMods aaAcc 
@@ -1592,15 +1592,16 @@ module SearchDB =
             cn.Close()
             // Read Fasta
             let fasta = 
-                BioFSharp.IO.FastA.fromFile (BioArray.ofAminoAcidString) sdbParams.FastaPath                
+                BioFSharp.IO.Fasta.read (BioArray.ofAminoAcidString) sdbParams.FastaPath                
             // Digest
             let peptideId = ref 1 
             fasta
             |> Seq.mapi 
                 (fun i fastaItem ->
                     let proteinId = i // TODO                        
+                    let fastaSequence = fastaItem.Sequence |> Array.ofSeq
                     let peptideContainer =
-                        Digestion.BioArray.digest sdbParams.Protease proteinId fastaItem.Sequence
+                        Digestion.BioArray.digest sdbParams.Protease proteinId fastaSequence
                         |> Digestion.BioArray.concernMissCleavages sdbParams.MinMissedCleavages sdbParams.MaxMissedCleavages
                         |> Array.filter (fun x -> 
                                             let cleavageRange = x.CleavageEnd - x.CleavageStart
@@ -1610,7 +1611,7 @@ module SearchDB =
                     createProteinContainer 
                         proteinId 
                             (sdbParams.FastaHeaderToName fastaItem.Header) 
-                                (BioArray.toString fastaItem.Sequence) 
+                                (BioArray.toString fastaSequence) 
                                     (peptideContainer |> List.ofArray)
                 ) 
             |> Db.bulkInsert cn

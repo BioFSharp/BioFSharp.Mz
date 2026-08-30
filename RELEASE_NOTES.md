@@ -1,3 +1,9 @@
+#### 0.2.0 (Released 2026-08-29)
+
+* Upgrade to BioFSharp 2.0.0 (bundles the former BioFSharp.IO package) and migrate the codebase over the breaking API changes
+* Align the dependency stack: FSharpAux / FSharpAux.IO 2.1.0, FSharp.Stats 0.6.0, Newtonsoft.Json 13.0.4, Plotly.NET 6.0.0-preview.2
+* Replace the legacy FAKE 5 build script with the FAKE 6 build project ported from BioFSharp (build.cmd / build.sh wrappers, GitHub Actions build-test and gh-pages docs deployment, fsdocs 20 documentation pipeline)
+
 #### 0.1.5 - Friday, February 19, 2021
 * SignalDetection: add option for peak summation and intensity weighted based mz refinement
 

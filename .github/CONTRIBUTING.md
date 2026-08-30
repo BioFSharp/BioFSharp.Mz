@@ -89,14 +89,17 @@ Here is a brief overview of our main projects (also available [here](https://git
 
 ### Build process
 
-Our F# projects use the [ProjectScaffold](https://github.com/fsprojects/ProjectScaffold) layout. To build our projects, you will need [.NET Core SDK](https://dotnet.microsoft.com/download) and an installation of [FAKE5 CLI]().
+The build is driven by a [FAKE](https://fake.build/) build project in `build/`, invoked through the `build.cmd` / `build.sh` wrappers. You need the [.NET SDK](https://dotnet.microsoft.com/download) version pinned in `global.json`.
 
-All projects have at least the following build targets:
+The most important build targets:
 
-|Target|Description|Command Line Arguments|
+|Target|Description|Command Line|
 |---|---|---|
-|Build|Builds the binaries and docs|fake build|
-|ReleaseLocal|Uses Build. Afterwards creates a folder structure so you can see the docs with proper style and relative paths in temp/localDocs. Use this to test documentation. | fake build --target releaselocal|
+|BuildSolution (default)|Cleans and builds the solution|`./build.cmd`|
+|RunTests|Builds and runs the test suite|`./build.cmd runtests`|
+|RunTestsWithCodeCov|Runs the tests with AltCover coverage (writes `codeCov.xml`)|`./build.cmd runtestswithcodecov`|
+|BuildDocs|Builds the documentation site into `output/` (run `dotnet tool restore` once first)|`./build.cmd builddocs`|
+|WatchDocs|Serves the docs locally with live reload (run `dotnet tool restore` once first). Use this to test documentation.|`./build.cmd watchdocs`|
 
 ## How can i contribute?
 
@@ -196,11 +199,11 @@ One of our biggest weakness at the moment are unit tests. We will love everyone 
 
 ### Documentation guidelines
 
-The docs in our repos are built by the [F# Formatting Documentation tools](http://fsprojects.github.io/FSharp.Formatting/) which parse `.fsx` files in the docsrc/content folder to generate html files. Again, no strict rules here, just a few minor guidelines:
+The docs in our repos are built by [fsdocs](https://fsprojects.github.io/FSharp.Formatting/) (the `fsdocs-tool` pinned in `.config/dotnet-tools.json`), which turns `.md` and `.fsx` files in the `docs/` folder into the html site and generates the API reference from the compiled assemblies. Again, no strict rules here, just a few minor guidelines:
 
-* If you add or change functionality to a project, please consider adding/changing the respective documentation script. If you dont have time to do that, please comment it on your pull request.
+* If you add or change functionality to a project, please consider adding/changing the respective documentation page. If you dont have time to do that, please comment it on your pull request.
 
-* Most documentation is written in a tutorial-style manner. If you use external files in your examples, put them into docsrc/content/data.
+* Most documentation is written in a tutorial-style manner. If you use external files in your examples, put them under `docs/`.
 
 * API References are built from triple frontslash comments (`///`), please consider adding those above the functions/types/classes you are adding.
 

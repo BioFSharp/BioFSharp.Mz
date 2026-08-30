@@ -56,13 +56,11 @@
     <Folder Include="scripts\" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="BioFSharp" Version="2.0.0-beta4" />
-    <PackageReference Include="BioFSharp.IO" Version="2.0.0-beta4" />
-    <PackageReference Include="FSharp.Stats" Version="0.4.0" />
-    <PackageReference Include="FSharpAux" Version="1.0.0" />
-    <PackageReference Include="FSharpAux.IO" Version="1.0.0" />
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="BioFSharp" Version="2.0.0" />
+    <PackageReference Include="FSharp.Stats" Version="0.6.0" />
+    <PackageReference Include="FSharpAux" Version="2.1.0" />
+    <PackageReference Include="FSharpAux.IO" Version="2.1.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
     <PackageReference Include="System.Data.SQLite.Core" Version="1.0.119" />
-    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All"/>
   </ItemGroup>
 </Project>
