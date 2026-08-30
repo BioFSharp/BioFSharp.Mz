@@ -1,3 +1,10 @@
+#### 0.2.1 (Released 2026-08-30)
+
+* SparsePeakArray: new module upstreamed from ProteomIQon (sparse binned peak vectors over PeakArray with dot product)
+* SearchDB: add Sequence+GlobalMod ModSequence lookup upstreamed from ProteomIQon (prepareSelectModsequenceBySequenceAndGMod, getThreadSafePeptideLookUpFromFileBySequenceAndGMod)
+* ProteinInference: adopt the newer ProteomIQon behavior - PSMInput reads the ModelScore column (was PercolatorScore), assignTranscriptsToGenes takes a tryParseProteinID function instead of a regex string, createProteinModelInfoFromEntry reads the GFF3 ID attribute (was Name) and tolerates unknown strand characters as Forward (fixes a runtime match failure), isGene/isRNA generalized over the GFF line type parameter
+* FDRControl: add the PEP value machinery upstreamed from ProteomIQon (getLogisticRegressionFunction, createTargetDecoyHis, calculatePEPValues, logitTransformPepValues, initCalculateLin taking a trace callback instead of an NLog logger)
+
 #### 0.2.0 (Released 2026-08-29)
 
 * Upgrade to BioFSharp 2.0.0 (bundles the former BioFSharp.IO package) and migrate the codebase over the breaking API changes
