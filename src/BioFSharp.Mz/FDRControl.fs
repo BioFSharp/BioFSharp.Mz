@@ -1,5 +1,6 @@
 ﻿namespace BioFSharp.Mz
 
+open System
 open FSharp.Stats
 open FSharpAux
 open FSharp.Stats.Fitting
@@ -247,3 +248,114 @@ module FDRControl =
         // takes a score from the dataset and assigns it a q value
         let interpolation = Interpolation.LinearSpline.predict linearSplineCoeff
         interpolation
+
+    /// for given data, creates a logistic regression model and returns a mapping function for this model
+    let getLogisticRegressionFunction (x:vector) (y:vector) epsilon =
+        let alpha =
+            match FSharp.Stats.Fitting.LogisticRegression.Univariable.estimateAlpha epsilon x y with
+            | Some a -> a
+            | None -> failwith "Could not find an alpha for logistic regression of fdr data"
+        let weight = FSharp.Stats.Fitting.LogisticRegression.Univariable.coefficient epsilon alpha x y
+        FSharp.Stats.Fitting.LogisticRegression.Univariable.predict weight
+
+    /// Creates a Histogram based on a given score of a target/decoy dataset. Each bin contains the information of the total count, the decoy count and the median score.
+    /// (Bin, Count, DecoyCount, Median Score)
+    let createTargetDecoyHis bandwidth (isDecoy: 'a -> bool) (decoyScoreF: 'a -> float) (targetScoreF: 'a -> float) (data: 'a[]) =
+        let halfBw = bandwidth / 2.0
+        let scoreDecoyInfo =
+            data
+            |> Array.map (fun x ->
+                if isDecoy x then
+                    {|Score = decoyScoreF x; Decoy = true|}
+                else
+                    {|Score = targetScoreF x; Decoy = false|}
+            )
+        scoreDecoyInfo
+        |> Array.groupBy (fun x ->
+            floor (x.Score / bandwidth))
+        |> Array.map (fun (k,values) ->
+            let count = (Array.length(values))
+            let decoyCount = (values |> Array.filter (fun x -> x.Decoy = true) |> Array.length)
+            let medianScore = values |> Array.map (fun x -> x.Score) |> Array.median
+            // first part of the tuple only needed for debugging
+            if k < 0. then
+                ((k  * bandwidth) + halfBw, count, decoyCount, medianScore)
+            else
+                ((k + 1.) * bandwidth - halfBw, count, decoyCount, medianScore)
+        )
+
+    /// Calculates the PEP value based on the ratio of Decoys to targets at a given score
+    let calculatePEPValues (totalCountF: 'a -> float) (decoyCountF: 'a -> float) (scoreF: 'a -> float) (dataFreq: 'a[]) =
+        dataFreq
+        |> Array.map (fun x ->
+            scoreF x,(decoyCountF x)/(totalCountF x)
+        )
+        |> Array.sortBy fst
+        |> Array.toList
+
+    /// Logit transforms pep values (log10)
+    let logitTransformPepValues score pepVal  =
+        Array.zip score pepVal
+        // 0 and 1 are + and - infinity
+        |> Array.filter (fun (y,x) -> x <> 0. && x <> 1.)
+        |> Array.map (fun (score,pep) ->
+            score,
+            log10 (pep/(1.-pep))
+        )
+        |> Array.unzip
+
+    /// Calculates monotonized PEP values for a target/decoy dataset based on the decoy/target ratio. Entries are binned with a given bandwidth as intital estiamtor based on the scores.
+    /// Returns a function which maps from score to PEP value based on a fit of a linear function using linear regression. The linear regression is performed on the logit transformed
+    /// pep values. The fit focuses on the pep values centered aound the middle of the score distribution
+    let initCalculateLin (trace: string -> unit) bandwidth (isDecoy: 'a -> bool) (decoyScoreF: 'a -> float) (targetScoreF: 'a -> float) (data: 'a[]) =
+        let lowerScore, upperScore =
+            let decoy =
+                data
+                |> Array.filter isDecoy
+                |> Array.map decoyScoreF
+                |> Array.filter (fun x -> x < 0.)
+                |> Array.median
+            let target =
+                data
+                |> Array.filter (isDecoy >> not)
+                |> Array.map targetScoreF
+                |> Array.filter (fun x -> x > 0.)
+                |> Array.median
+            decoy, target
+        trace (sprintf "Lower Score: %f; Upper Score: %f" lowerScore upperScore)
+        let filteredData =
+            data
+            |> Array.filter (fun entry ->
+                if isDecoy entry then
+                    let score = decoyScoreF entry
+                    score >= lowerScore && score <= upperScore
+                else
+                    let score = targetScoreF entry
+                    score >= lowerScore && score <= upperScore
+            )
+        trace (sprintf "Initial Bandwidth: %f" bandwidth)
+        let fittingFunction, score, pep =
+            let xPointRange =
+                let min = Math.Min((Array.minBy targetScoreF filteredData) |> targetScoreF, (Array.minBy decoyScoreF filteredData) |> decoyScoreF)
+                let max = Math.Max((Array.maxBy targetScoreF filteredData) |> targetScoreF, (Array.maxBy decoyScoreF filteredData) |> decoyScoreF)
+                max-min
+            let upperBW = Math.Min(10., xPointRange/10.)
+            [|bandwidth .. 0.1 .. upperBW|]
+            |> Array.choose (fun bw ->
+                let targetDecoyHis = createTargetDecoyHis bw (isDecoy: 'a -> bool) (decoyScoreF: 'a -> float) (targetScoreF: 'a -> float) (filteredData: 'a[])
+                let score',pep' =
+                    calculatePEPValues (fun (_,count,_,_) -> float count) (fun (_,_,decoyCount,_) -> float decoyCount) (fun (_,_,_,medianScore) -> medianScore) targetDecoyHis
+                    |> Array.ofList
+                    |> Array.unzip
+                let logitScore, logitPEPVal = logitTransformPepValues score' pep'
+                let coeff = Fitting.LinearRegression.OLS.Linear.Univariable.fit (vector logitScore) (vector logitPEPVal)
+                let fittingFunction' = (Fitting.LinearRegression.OLS.Linear.Univariable.predict coeff) >> (fun x -> 10.**(x)/(1.+10.**(x)))
+                let sos = FSharp.Stats.Fitting.GoodnessOfFit.calculateSumOfSquares fittingFunction' score' pep'
+                if coeff.[1] < 0. then
+                    Some (sos.Error/sos.Count, fittingFunction', score', pep', bw)
+                else
+                    None
+            )
+            |> Array.minBy (fun (error,_,_,_,_) -> error)
+            |> fun (error, fit,s,p,bw) -> trace (sprintf "Chosen Bandwidth: %f" bw); fit,s,p
+        fittingFunction

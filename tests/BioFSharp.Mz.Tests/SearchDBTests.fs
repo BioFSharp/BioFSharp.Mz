@@ -481,6 +481,45 @@ let tests =
                     Expect.isTrue (List.contains "LLVR" plainSequences) "the configured minimum-length LLVR peptide is present"
                 )
 
+            testCase "getThreadSafePeptideLookUpFromFileBySequenceAndGMod retrieves the same entry as the mass-range lookup" <| fun _ ->
+                withTemporaryDirectory (fun directory ->
+                    let fastaPath = Path.Combine(directory, "t8sg.fasta")
+                    File.WriteAllText(fastaPath, ">sp|TESTPROT1|TEST\r\nMAGSTKLLVR\r\n")
+
+                    let sdbParams =
+                        SearchDB.createSearchDbParams
+                            "t8sg"
+                            directory
+                            fastaPath
+                            id
+                            (Digestion.Table.getProteaseBy "Trypsin")
+                            0
+                            0
+                            2000.0
+                            4
+                            20
+                            []
+                            SearchDB.MassMode.Monoisotopic
+                            monoisotopicMass
+                            []
+                            [SearchDB.Table.oxidation'Met']
+                            1
+
+                    use connection = SearchDB.connectOrCreateDB sdbParams
+                    let byRange = SearchDB.getThreadSafePeptideLookUpFromFileBy connection sdbParams
+                    let expected =
+                        byRange 0.0 2000.0
+                        |> List.sortBy (fun result -> result.ModSequenceID)
+                        |> List.head
+                    let bySeq = SearchDB.getThreadSafePeptideLookUpFromFileBySequenceAndGMod connection sdbParams
+                    let actual = bySeq expected.StringSequence expected.GlobalMod
+
+                    Expect.equal actual.PepSequenceID expected.PepSequenceID "the sequence-and-global-mod lookup returns the same peptide sequence"
+                    Expect.equal actual.StringSequence expected.StringSequence "the sequence-and-global-mod lookup returns the same sequence"
+                    Expect.equal actual.GlobalMod expected.GlobalMod "the sequence-and-global-mod lookup returns the same global modification"
+                    expectWithin 0.000001 actual.Mass expected.Mass "the sequence-and-global-mod lookup returns the same mass"
+                )
+
             // PENDING: the function opens an already-open connection (getDBConnectionBy opens; the
             // function calls Open() again) and throws InvalidOperationException on every call.
             ptestCase "getProteinLookUpFromFileBy returns the protein for a peptide sequence ID" <| fun _ ->

@@ -149,6 +149,158 @@ let tests =
                 Expect.isSome (ProteinInference.isRNA rnaLine) "isRNA recognizes the mRNA feature"
                 Expect.isNone (ProteinInference.isRNA geneLine) "isRNA rejects the gene feature"
                 // The documented feature-string predicates classify GFF lines by feature type.
+
+            testCase "createProteinModelInfoFromEntry reads the ID attribute as splice variant id" <| fun _ ->
+                let entry : GFFEntry =
+                    {
+                        Seqid = "chr1"
+                        Source = "source"
+                        Feature = "mRNA"
+                        StartPos = 1
+                        EndPos = 10
+                        Score = 0.0
+                        Strand = '+'
+                        Phase = 0
+                        Attributes = Map.ofList ["ID", ["Cre01.g000050.t1.1"]]
+                        Supplement = [||]
+                    }
+                let modelInfo = ProteinInference.createProteinModelInfoFromEntry 0 "locusA" entry
+                Expect.equal modelInfo.Id "Cre01.g000050.t1.1" "the ID attribute is used as the splice variant id"
+                Expect.equal modelInfo.Strand StrandDirection.Forward "a plus strand is mapped to Forward"
+                // GFF3's ID attribute identifies the splice variant that is matched against the protein sequence.
+
+            testCase "createProteinModelInfoFromEntry tolerates unknown strand characters as Forward" <| fun _ ->
+                let mkEntry strand : GFFEntry =
+                    {
+                        Seqid = "chr1"
+                        Source = "source"
+                        Feature = "mRNA"
+                        StartPos = 1
+                        EndPos = 10
+                        Score = 0.0
+                        Strand = strand
+                        Phase = 0
+                        Attributes = Map.ofList ["ID", ["Cre01.g000050.t1.1"]]
+                        Supplement = [||]
+                    }
+                let unknownStrandInfo =
+                    ProteinInference.createProteinModelInfoFromEntry 0 "locusA" (mkEntry '.')
+                let reverseStrandInfo =
+                    ProteinInference.createProteinModelInfoFromEntry 0 "locusA" (mkEntry '-')
+                Expect.equal unknownStrandInfo.Strand StrandDirection.Forward "an unknown strand character falls back to Forward"
+                Expect.equal reverseStrandInfo.Strand StrandDirection.Reverse "a minus strand is mapped to Reverse"
+                // Unknown GFF strand characters use the documented Forward fallback while '-' remains Reverse.
+
+            testCase "createProteinModelInfoFromEntry fails when the ID attribute is missing" <| fun _ ->
+                let entry : GFFEntry =
+                    {
+                        Seqid = "chr1"
+                        Source = "source"
+                        Feature = "mRNA"
+                        StartPos = 1
+                        EndPos = 10
+                        Score = 0.0
+                        Strand = '+'
+                        Phase = 0
+                        Attributes = Map.ofList ["Name", ["x"]]
+                        Supplement = [||]
+                    }
+                Expect.throws
+                    (fun () -> ProteinInference.createProteinModelInfoFromEntry 0 "locusA" entry |> ignore)
+                    "an entry without an ID attribute is rejected"
+                // The reader now requires ID and no longer accepts the legacy Name attribute.
+
+            testCase "assignTranscriptsToGenes maps transcripts through the supplied parser" <| fun _ ->
+                let geneEntry : GFFEntry =
+                    {
+                        Seqid = "chr1"
+                        Source = "source"
+                        Feature = "gene"
+                        StartPos = 1
+                        EndPos = 10
+                        Score = 0.0
+                        Strand = '+'
+                        Phase = 0
+                        Attributes = Map.ofList ["ID", ["gene1"]]
+                        Supplement = [||]
+                    }
+                let rnaEntry : GFFEntry =
+                    {
+                        Seqid = "chr1"
+                        Source = "source"
+                        Feature = "mRNA"
+                        StartPos = 1
+                        EndPos = 10
+                        Score = 0.0
+                        Strand = '+'
+                        Phase = 0
+                        Attributes = Map.ofList ["ID", ["gene1.t1"]]
+                        Supplement = [||]
+                    }
+                let geneLine : GFFLine<seq<char>> = GFFEntryLine geneEntry
+                let rnaLine : GFFLine<seq<char>> = GFFEntryLine rnaEntry
+                let result =
+                    ProteinInference.assignTranscriptsToGenes
+                        (fun (s: string) -> Some (s + "!"))
+                        [geneLine; rnaLine]
+                Expect.equal result.Count 1 "one transcript is assigned"
+                Expect.isTrue (result.ContainsKey "gene1.t1!") "the supplied parser determines the map key"
+                Expect.equal result.["gene1.t1!"].Id "gene1.t1" "the model info retains the original GFF3 ID"
+                // Transcript IDs are transformed by the supplied parser before entering the protein-model map.
+
+            testCase "assignTranscriptsToGenes fails when the parser rejects an id" <| fun _ ->
+                let geneEntry : GFFEntry =
+                    {
+                        Seqid = "chr1"
+                        Source = "source"
+                        Feature = "gene"
+                        StartPos = 1
+                        EndPos = 10
+                        Score = 0.0
+                        Strand = '+'
+                        Phase = 0
+                        Attributes = Map.ofList ["ID", ["gene1"]]
+                        Supplement = [||]
+                    }
+                let rnaEntry : GFFEntry =
+                    {
+                        Seqid = "chr1"
+                        Source = "source"
+                        Feature = "mRNA"
+                        StartPos = 1
+                        EndPos = 10
+                        Score = 0.0
+                        Strand = '+'
+                        Phase = 0
+                        Attributes = Map.ofList ["ID", ["gene1.t1"]]
+                        Supplement = [||]
+                    }
+                let geneLine : GFFLine<seq<char>> = GFFEntryLine geneEntry
+                let rnaLine : GFFLine<seq<char>> = GFFEntryLine rnaEntry
+                Expect.throws
+                    (fun () ->
+                        ProteinInference.assignTranscriptsToGenes
+                            (fun (_: string) -> None)
+                            [geneLine; rnaLine]
+                        |> ignore)
+                    "a rejected transcript ID raises an exception"
+                // Every transcript must match the supplied parser or assignment fails with the documented error.
+
+            testCase "PSMInput maps its score field to the ModelScore column" <| fun _ ->
+                let scoreField =
+                    Microsoft.FSharp.Reflection.FSharpType.GetRecordFields typeof<ProteinInference.PSMInput>
+                    |> Array.find (fun field -> field.Name = "Score")
+                let fieldAttributeType = typeof<FSharpAux.IO.SchemaReader.Attribute.FieldAttribute>
+                let fieldAttribute =
+                    scoreField.GetCustomAttributes(fieldAttributeType, false)
+                    |> Array.exactlyOne
+                Expect.isNotNull fieldAttribute "the Score field has a FieldAttribute"
+                let columnIdentifier =
+                    System.Reflection.CustomAttributeData.GetCustomAttributes(scoreField)
+                    |> Seq.find (fun attribute -> attribute.AttributeType = fieldAttributeType)
+                    |> fun attribute -> attribute.ConstructorArguments.[0].Value :?> string
+                Expect.equal columnIdentifier "ModelScore" "the Score field is read from the ModelScore column"
+                // FieldAttribute does not publicly expose its original string identifier, so the constructor metadata is inspected.
         ]
 
         testList "Inference" [

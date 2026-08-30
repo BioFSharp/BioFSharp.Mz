@@ -870,6 +870,20 @@ module SearchDB =
                 | true  -> Some (reader.GetDouble(0))
                 | false -> Option.None)
 
+            /// Prepares statement to select a ModSequence entry by Sequence and GlobalMod
+            let prepareSelectModsequenceBySequenceAndGMod (cn:SQLiteConnection) =
+                let querystring = "SELECT * FROM ModSequence WHERE Sequence=@sequence AND GlobalMod=@globalMod"
+                let cmd = new SQLiteCommand(querystring, cn)
+                cmd.Parameters.Add("@sequence", Data.DbType.String) |> ignore
+                cmd.Parameters.Add("@globalMod", Data.DbType.Int32) |> ignore
+                fun (sequence:string) (globalMod:int) ->
+                    cmd.Parameters.["@sequence"].Value  <- sequence
+                    cmd.Parameters.["@globalMod"].Value <- globalMod
+                    use reader = cmd.ExecuteReader()
+                    match reader.Read() with
+                        | true ->  (reader.GetInt32(0), reader.GetInt32(1),reader.GetDouble(2), reader.GetInt64(3), reader.GetString(4), reader.GetInt32(5))
+                        | false -> -1,-1,nan,-1L,"",-1
+
             /// Prepares statement to select a Protein Accession entry by ID
             let prepareSelectProteinAccessionByID (cn:SQLiteConnection) (tr) =
                 let querystring = "SELECT Accession FROM Protein WHERE ID=@id "
@@ -1671,7 +1685,15 @@ module SearchDB =
                 selectModsequenceByMassRange lowerMass' upperMass'
                 |> List.map (createLookUpResultBy parseAAString)
         )   
-   
+
+    /// Returns a LookUpResult
+    let getThreadSafePeptideLookUpFromFileBySequenceAndGMod (cn:SQLiteConnection) sdbParams =
+        let parseAAString = initOfModAminoAcidString sdbParams.IsotopicMod (sdbParams.FixedMods@sdbParams.VariableMods)
+        let selectModsequenceByID = Db.SQLiteQuery.prepareSelectModsequenceBySequenceAndGMod cn
+        (fun sequence globalMod ->
+            selectModsequenceByID sequence globalMod
+            |> (createLookUpResultBy parseAAString))
+
     let copyDBIntoMemory (cn:SQLiteConnection) = 
         //cn.Open()
         let inMemoryDB = new SQLiteConnection("Data Source=:memory:;cache=shared;Version=3")

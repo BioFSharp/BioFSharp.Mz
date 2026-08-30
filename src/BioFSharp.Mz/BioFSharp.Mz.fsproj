@@ -33,6 +33,7 @@
     <Compile Include="AssemblyInfo.fs" />
     <Compile Include="Peak.fs" />
     <Compile Include="PeakArray.fs" />
+    <Compile Include="SparsePeakArray.fs" />
     <Compile Include="PeakList.fs" />
     <Compile Include="Fragmentation.fs" />
     <Compile Include="Caching.fs" />
