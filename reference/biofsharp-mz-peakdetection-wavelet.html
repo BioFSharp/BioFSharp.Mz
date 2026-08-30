@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en" data-root="https://csbiology.github.io/BioFSharp.Mz/">
+<head>
+    <meta charset="UTF-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="David Zimmer, Caroline Ott, Heinrich Lukas Weil, Timo Muehlhaus" name="author">
+    <!-- Opengraph properties (https://ogp.me/) -->
+    <meta property="og:site_name" content="BioFSharp.Mz">
+    <meta property="og:title" content="Wavelet (BioFSharp.Mz)" />
+    <meta property="og:url" content="https://csbiology.github.io/BioFSharp.Mz/{{fsdocs-source-basename}}.html">
+    <meta property="og:type" content="website" />
+    <!-- Twitter cards (https://developer.twitter.com/en/docs/twitter-for-websites/cards/overview/summary-card-with-large-image) -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="https://csbiology.github.io/BioFSharp.Mz/">
+    <meta name="twitter:title" content="Wavelet (BioFSharp.Mz)">
+    
+    <title>Wavelet (BioFSharp.Mz) | BioFSharp.Mz</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <link href="https://csbiology.github.io/BioFSharp.Mz/img/favicon.ico" rel="icon" sizes="32x32" type="image/png"/>
+    <script type="application/javascript" src="https://csbiology.github.io/BioFSharp.Mz/content/fsdocs-theme-set-dark.js"></script>
+    <link href="https://csbiology.github.io/BioFSharp.Mz/content/fsdocs-default.css" rel="stylesheet" type="text/css"/>
+    <link href="https://csbiology.github.io/BioFSharp.Mz/content/fsdocs-theme.css" rel="stylesheet" type="text/css"/>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js"></script>
+    
+</head>
+<body class="api-docs">
+<header>
+    <div class="start">
+        <div id="menu-toggle">
+            <iconify-icon class="icon closed" height="22" icon="eva:menu-fill" width="22"></iconify-icon>
+            <iconify-icon class="icon open" height="22" icon="mi:close" width="22"></iconify-icon>
+            <input type="checkbox" name="mobile-menu" />
+            <ul class="menu">
+                <li class="nav-header">Links</li>
+                <li class="nav-item"><a class="nav-link" href="https://github.com/CSBiology/BioFSharp.Mz/blob/developer/LICENSE">License</a>
+                </li>
+                <li class="nav-item"><a class="nav-link"
+                                        href="https://github.com/CSBiology/BioFSharp.Mz/blob/developer/RELEASE_NOTES.md">Release
+                    Notes</a></li>
+                <li class="nav-item"><a class="nav-link" href="https://github.com/CSBiology/BioFSharp.Mz/">Source
+                    Repository</a></li>
+                
+                <li class="nav-header">
+  API Reference
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://csbiology.github.io/BioFSharp.Mz/reference/index.html">
+    All Namespaces
+  </a>
+</li>
+            </ul>
+        </div>
+        <a href="https://csbiology.github.io/BioFSharp.Mz/">
+            <img alt="Header menu logo" src="https://csbiology.github.io/BioFSharp.Mz/img/logo.png">
+            <strong>BioFSharp.Mz</strong>
+        </a>
+    </div>
+    <div class="end">
+        <a href="https://github.com/CSBiology/BioFSharp.Mz/" target="_blank">
+            <iconify-icon icon="uil:github" width="26" height="26"></iconify-icon>
+        </a>
+        <iconify-icon id="search-btn" icon="carbon:search" class="search" width="24" height="24"></iconify-icon>
+        <fsdocs-theme-toggle></fsdocs-theme-toggle>
+    </div>
+</header>
+<aside id="fsdocs-main-menu">
+    <ul class="menu">
+        <li class="nav-header">Links</li>
+        <li class="nav-item"><a class="nav-link" href="https://github.com/CSBiology/BioFSharp.Mz/blob/developer/LICENSE">License</a>
+        </li>
+        <li class="nav-item"><a class="nav-link"
+                                href="https://github.com/CSBiology/BioFSharp.Mz/blob/developer/RELEASE_NOTES.md">Release
+            Notes</a></li>
+        <li class="nav-item"><a class="nav-link" href="https://github.com/CSBiology/BioFSharp.Mz/">Source
+            Repository</a></li>
+        
+        <li class="nav-header">
+  API Reference
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://csbiology.github.io/BioFSharp.Mz/reference/index.html">
+    All Namespaces
+  </a>
+</li>
+    </ul>
+</aside>
+<main>
+    <div id="content">
+        <div>
+  <h2>
+    Wavelet Module
+  </h2>
+  <dl class="fsdocs-metadata">
+    <dt>
+      Namespace: 
+      <a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz.html">
+        BioFSharp.Mz
+      </a>
+    </dt>
+    <dt>
+      Assembly: BioFSharp.Mz.dll
+    </dt>
+    <dt>
+      Parent Module: 
+      <a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-peakdetection.html">
+        PeakDetection
+      </a>
+    </dt>
+  </dl>
+  <div class="fsdocs-xmldoc">
+    <div>
+      <p class="fsdocs-summary">
+        
+      </p>
+    </div>
+  </div>
+  <div>
+    <h3>
+      Types
+    </h3>
+    <table class="table outer-list fsdocs-entity-list">
+      <thead>
+        <tr>
+          <td>
+            Type
+          </td>
+          <td>
+            Description
+          </td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="fsdocs-entity-name">
+            <p>
+              <a name="Gaussian">
+                <a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-peakdetection-wavelet-gaussian.html">
+                  Gaussian
+                </a>
+              </a>
+            </p>
+          </td>
+          <td class="fsdocs-entity-xmldoc">
+            <div>
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:BioFSharp.Mz.PeakDetection.Wavelet.Gaussian`')">
+                <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:BioFSharp.Mz.PeakDetection.Wavelet.Gaussian\'/>')">
+                <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+              </div>
+              <a href="https://github.com/CSBiology/BioFSharp.Mz/tree/master/src/BioFSharp.Mz/FSharp.Stats.fs#L29-29" class="fsdocs-source-link" title="Source on GitHub">
+                <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+              </a>
+              <p class="fsdocs-summary">
+                
+              </p>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-entity-name">
+            <p>
+              <a name="Parameters">
+                <a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-peakdetection-wavelet-parameters.html">
+                  Parameters
+                </a>
+              </a>
+            </p>
+          </td>
+          <td class="fsdocs-entity-xmldoc">
+            <div>
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:BioFSharp.Mz.PeakDetection.Wavelet.Parameters`')">
+                <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:BioFSharp.Mz.PeakDetection.Wavelet.Parameters\'/>')">
+                <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+              </div>
+              <a href="https://github.com/CSBiology/BioFSharp.Mz/tree/master/src/BioFSharp.Mz/FSharp.Stats.fs#L46-46" class="fsdocs-source-link" title="Source on GitHub">
+                <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+              </a>
+              <p class="fsdocs-summary">
+                
+              </p>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-entity-name">
+            <p>
+              <a name="PeakGroup">
+                <a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-peakdetection-wavelet-peakgroup.html">
+                  PeakGroup
+                </a>
+              </a>
+            </p>
+          </td>
+          <td class="fsdocs-entity-xmldoc">
+            <div>
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:BioFSharp.Mz.PeakDetection.Wavelet.PeakGroup`')">
+                <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:BioFSharp.Mz.PeakDetection.Wavelet.PeakGroup\'/>')">
+                <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+              </div>
+              <a href="https://github.com/CSBiology/BioFSharp.Mz/tree/master/src/BioFSharp.Mz/FSharp.Stats.fs#L37-37" class="fsdocs-source-link" title="Source on GitHub">
+                <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+              </a>
+              <p class="fsdocs-summary">
+                
+              </p>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-entity-name">
+            <p>
+              <a name="WaveletPeak">
+                <a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-peakdetection-wavelet-waveletpeak.html">
+                  WaveletPeak
+                </a>
+              </a>
+            </p>
+          </td>
+          <td class="fsdocs-entity-xmldoc">
+            <div>
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:BioFSharp.Mz.PeakDetection.Wavelet.WaveletPeak`')">
+                <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:BioFSharp.Mz.PeakDetection.Wavelet.WaveletPeak\'/>')">
+                <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+              </div>
+              <a href="https://github.com/CSBiology/BioFSharp.Mz/tree/master/src/BioFSharp.Mz/FSharp.Stats.fs#L22-22" class="fsdocs-source-link" title="Source on GitHub">
+                <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+              </a>
+              <p class="fsdocs-summary">
+                
+              </p>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div>
+    <h3>
+      Functions and values
+    </h3>
+    <table class="table outer-list fsdocs-member-list">
+      <thead>
+        <tr>
+          <td class="fsdocs-member-list-header">
+            Function or value
+          </td>
+          <td class="fsdocs-member-list-header">
+            Description
+          </td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '411', 411)" onmouseover="showTip(event, '411', 411)">
+                <p>
+                  <a id="identifyPeaks">
+                    <a href="#identifyPeaks">
+                      <code><span>identifyPeaks&#32;<span>parameters&#32;trace</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="411">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>identifyPeaks&#32;<span>parameters&#32;trace</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        parameters
+                      </b>
+                      :
+                      <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-peakdetection-wavelet-parameters.html">Parameters</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        trace
+                      </b>
+                      :
+                      <code><span><span>(<span>float&#32;*&#32;float</span>)</span>[]</span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-peakdetection-wavelet-peakgroup.html">PeakGroup</a>&#32;list</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  parameters
+                </span>
+                :
+                <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-peakdetection-wavelet-parameters.html">Parameters</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  trace
+                </span>
+                :
+                <code><span><span>(<span>float&#32;*&#32;float</span>)</span>[]</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-peakdetection-wavelet-peakgroup.html">PeakGroup</a>&#32;list</span></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '412', 412)" onmouseover="showTip(event, '412', 412)">
+                <p>
+                  <a id="identifyPeaksBy">
+                    <a href="#identifyPeaksBy">
+                      <code><span>identifyPeaksBy&#32;<span>borderpadding&#32;borderPadMethod&#32;internalPaddingMethod&#32;hugeGapPaddingMethod&#32;maxDistance&#32;maxPeakLength&#32;noiseQuantile&#32;minSNR&#32;trace</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="412">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>identifyPeaksBy&#32;<span>borderpadding&#32;borderPadMethod&#32;internalPaddingMethod&#32;hugeGapPaddingMethod&#32;maxDistance&#32;maxPeakLength&#32;noiseQuantile&#32;minSNR&#32;trace</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        borderpadding
+                      </b>
+                      :
+                      <code>int</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        borderPadMethod
+                      </b>
+                      :
+                      <code><a href="https://fsharp.github.io/fsharp-core-docs/reference/fsharp-stats-signal-padding-borderpaddingmethod">BorderPaddingMethod</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        internalPaddingMethod
+                      </b>
+                      :
+                      <code><a href="https://fsharp.github.io/fsharp-core-docs/reference/fsharp-stats-signal-padding-internalpaddingmethod">InternalPaddingMethod</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        hugeGapPaddingMethod
+                      </b>
+                      :
+                      <code><a href="https://fsharp.github.io/fsharp-core-docs/reference/fsharp-stats-signal-padding-hugegappaddingmethod">HugeGapPaddingMethod</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        maxDistance
+                      </b>
+                      :
+                      <code>float</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        maxPeakLength
+                      </b>
+                      :
+                      <code>float</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        noiseQuantile
+                      </b>
+                      :
+                      <code>float</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        minSNR
+                      </b>
+                      :
+                      <code>float</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        trace
+                      </b>
+                      :
+                      <code><span><span>(<span>float&#32;*&#32;float</span>)</span>[]</span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-peakdetection-wavelet-peakgroup.html">PeakGroup</a>&#32;list</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  borderpadding
+                </span>
+                :
+                <code>int</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  borderPadMethod
+                </span>
+                :
+                <code><a href="https://fsharp.github.io/fsharp-core-docs/reference/fsharp-stats-signal-padding-borderpaddingmethod">BorderPaddingMethod</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  internalPaddingMethod
+                </span>
+                :
+                <code><a href="https://fsharp.github.io/fsharp-core-docs/reference/fsharp-stats-signal-padding-internalpaddingmethod">InternalPaddingMethod</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  hugeGapPaddingMethod
+                </span>
+                :
+                <code><a href="https://fsharp.github.io/fsharp-core-docs/reference/fsharp-stats-signal-padding-hugegappaddingmethod">HugeGapPaddingMethod</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  maxDistance
+                </span>
+                :
+                <code>float</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  maxPeakLength
+                </span>
+                :
+                <code>float</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  noiseQuantile
+                </span>
+                :
+                <code>float</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  minSNR
+                </span>
+                :
+                <code>float</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  trace
+                </span>
+                :
+                <code><span><span>(<span>float&#32;*&#32;float</span>)</span>[]</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-peakdetection-wavelet-peakgroup.html">PeakGroup</a>&#32;list</span></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '413', 413)" onmouseover="showTip(event, '413', 413)">
+                <p>
+                  <a id="substractBaseLine">
+                    <a href="#substractBaseLine">
+                      <code><span>substractBaseLine&#32;<span>yData</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="413">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>substractBaseLine&#32;<span>yData</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        yData
+                      </b>
+                      :
+                      <code><span>float[]</span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span>float&#32;array</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  yData
+                </span>
+                :
+                <code><span>float[]</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><span>float&#32;array</span></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+</div>
+        
+    </div>
+</main>
+<aside id="fsdocs-page-menu">
+    <p id="on-this-page">On this page</p>
+    <div class="empty"></div>
+</aside>
+<dialog>
+    <input type="search" placeholder="Search docs" />
+    <div class="results">
+        <ul></ul>
+        <p class="empty">Type something to start searching.</p>
+    </div>
+</dialog>
+<script type="module" src="https://csbiology.github.io/BioFSharp.Mz/content/fsdocs-tips.js"></script>
+<script type="module" src="https://csbiology.github.io/BioFSharp.Mz/content/fsdocs-theme-toggle.js"></script>
+<script type="module" src="https://csbiology.github.io/BioFSharp.Mz/content/fsdocs-theme.js"></script>
+<script type="module" src="https://csbiology.github.io/BioFSharp.Mz/content/fsdocs-search.js"></script>
+
+</body>
+</html>

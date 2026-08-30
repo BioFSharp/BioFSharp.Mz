@@ -1,0 +1,2002 @@
+<!DOCTYPE html>
+<html lang="en" data-root="https://csbiology.github.io/BioFSharp.Mz/">
+<head>
+    <meta charset="UTF-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="David Zimmer, Caroline Ott, Heinrich Lukas Weil, Timo Muehlhaus" name="author">
+    <!-- Opengraph properties (https://ogp.me/) -->
+    <meta property="og:site_name" content="BioFSharp.Mz">
+    <meta property="og:title" content="Wavelet (BioFSharp.Mz)" />
+    <meta property="og:url" content="https://csbiology.github.io/BioFSharp.Mz/{{fsdocs-source-basename}}.html">
+    <meta property="og:type" content="website" />
+    <!-- Twitter cards (https://developer.twitter.com/en/docs/twitter-for-websites/cards/overview/summary-card-with-large-image) -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="https://csbiology.github.io/BioFSharp.Mz/">
+    <meta name="twitter:title" content="Wavelet (BioFSharp.Mz)">
+    
+    <title>Wavelet (BioFSharp.Mz) | BioFSharp.Mz</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <link href="https://csbiology.github.io/BioFSharp.Mz/img/favicon.ico" rel="icon" sizes="32x32" type="image/png"/>
+    <script type="application/javascript" src="https://csbiology.github.io/BioFSharp.Mz/content/fsdocs-theme-set-dark.js"></script>
+    <link href="https://csbiology.github.io/BioFSharp.Mz/content/fsdocs-default.css" rel="stylesheet" type="text/css"/>
+    <link href="https://csbiology.github.io/BioFSharp.Mz/content/fsdocs-theme.css" rel="stylesheet" type="text/css"/>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js"></script>
+    
+</head>
+<body class="api-docs">
+<header>
+    <div class="start">
+        <div id="menu-toggle">
+            <iconify-icon class="icon closed" height="22" icon="eva:menu-fill" width="22"></iconify-icon>
+            <iconify-icon class="icon open" height="22" icon="mi:close" width="22"></iconify-icon>
+            <input type="checkbox" name="mobile-menu" />
+            <ul class="menu">
+                <li class="nav-header">Links</li>
+                <li class="nav-item"><a class="nav-link" href="https://github.com/CSBiology/BioFSharp.Mz/blob/developer/LICENSE">License</a>
+                </li>
+                <li class="nav-item"><a class="nav-link"
+                                        href="https://github.com/CSBiology/BioFSharp.Mz/blob/developer/RELEASE_NOTES.md">Release
+                    Notes</a></li>
+                <li class="nav-item"><a class="nav-link" href="https://github.com/CSBiology/BioFSharp.Mz/">Source
+                    Repository</a></li>
+                
+                <li class="nav-header">
+  API Reference
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://csbiology.github.io/BioFSharp.Mz/reference/index.html">
+    All Namespaces
+  </a>
+</li>
+            </ul>
+        </div>
+        <a href="https://csbiology.github.io/BioFSharp.Mz/">
+            <img alt="Header menu logo" src="https://csbiology.github.io/BioFSharp.Mz/img/logo.png">
+            <strong>BioFSharp.Mz</strong>
+        </a>
+    </div>
+    <div class="end">
+        <a href="https://github.com/CSBiology/BioFSharp.Mz/" target="_blank">
+            <iconify-icon icon="uil:github" width="26" height="26"></iconify-icon>
+        </a>
+        <iconify-icon id="search-btn" icon="carbon:search" class="search" width="24" height="24"></iconify-icon>
+        <fsdocs-theme-toggle></fsdocs-theme-toggle>
+    </div>
+</header>
+<aside id="fsdocs-main-menu">
+    <ul class="menu">
+        <li class="nav-header">Links</li>
+        <li class="nav-item"><a class="nav-link" href="https://github.com/CSBiology/BioFSharp.Mz/blob/developer/LICENSE">License</a>
+        </li>
+        <li class="nav-item"><a class="nav-link"
+                                href="https://github.com/CSBiology/BioFSharp.Mz/blob/developer/RELEASE_NOTES.md">Release
+            Notes</a></li>
+        <li class="nav-item"><a class="nav-link" href="https://github.com/CSBiology/BioFSharp.Mz/">Source
+            Repository</a></li>
+        
+        <li class="nav-header">
+  API Reference
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://csbiology.github.io/BioFSharp.Mz/reference/index.html">
+    All Namespaces
+  </a>
+</li>
+    </ul>
+</aside>
+<main>
+    <div id="content">
+        <div>
+  <h2>
+    Wavelet Module
+  </h2>
+  <dl class="fsdocs-metadata">
+    <dt>
+      Namespace: 
+      <a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz.html">
+        BioFSharp.Mz
+      </a>
+    </dt>
+    <dt>
+      Assembly: BioFSharp.Mz.dll
+    </dt>
+    <dt>
+      Parent Module: 
+      <a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-signaldetection.html">
+        SignalDetection
+      </a>
+    </dt>
+  </dl>
+  <div class="fsdocs-xmldoc">
+    <div>
+      <p class="fsdocs-summary">
+        
+      </p>
+    </div>
+  </div>
+  <div>
+    <h3>
+      Types
+    </h3>
+    <table class="table outer-list fsdocs-entity-list">
+      <thead>
+        <tr>
+          <td>
+            Type
+          </td>
+          <td>
+            Description
+          </td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="fsdocs-entity-name">
+            <p>
+              <a name="RidgeLine">
+                <a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-signaldetection-wavelet-ridgeline.html">
+                  RidgeLine
+                </a>
+              </a>
+            </p>
+          </td>
+          <td class="fsdocs-entity-xmldoc">
+            <div>
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:BioFSharp.Mz.SignalDetection.Wavelet.RidgeLine`')">
+                <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:BioFSharp.Mz.SignalDetection.Wavelet.RidgeLine\'/>')">
+                <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+              </div>
+              <a href="https://github.com/CSBiology/BioFSharp.Mz/tree/master/src/BioFSharp.Mz/SignalDetection.fs#L185-185" class="fsdocs-source-link" title="Source on GitHub">
+                <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+              </a>
+              <p class="fsdocs-summary">
+                
+              </p>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-entity-name">
+            <p>
+              <a name="WaveletParameters">
+                <a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-signaldetection-wavelet-waveletparameters.html">
+                  WaveletParameters
+                </a>
+              </a>
+            </p>
+          </td>
+          <td class="fsdocs-entity-xmldoc">
+            <div>
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:BioFSharp.Mz.SignalDetection.Wavelet.WaveletParameters`')">
+                <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:BioFSharp.Mz.SignalDetection.Wavelet.WaveletParameters\'/>')">
+                <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+              </div>
+              <a href="https://github.com/CSBiology/BioFSharp.Mz/tree/master/src/BioFSharp.Mz/SignalDetection.fs#L197-197" class="fsdocs-source-link" title="Source on GitHub">
+                <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+              </a>
+              <p class="fsdocs-summary">
+                
+              </p>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div>
+    <h3>
+      Functions and values
+    </h3>
+    <table class="table outer-list fsdocs-member-list">
+      <thead>
+        <tr>
+          <td class="fsdocs-member-list-header">
+            Function or value
+          </td>
+          <td class="fsdocs-member-list-header">
+            Description
+          </td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '598', 598)" onmouseover="showTip(event, '598', 598)">
+                <p>
+                  <a id="calcCorrWaveletAndDataMatrix">
+                    <a href="#calcCorrWaveletAndDataMatrix">
+                      <code><span>calcCorrWaveletAndDataMatrix&#32;<span>waveletF&#32;nScales&#32;paddingPoints&#32;mzDataPadded&#32;intensityDataPadded&#32;mzData&#32;intensityData&#32;nPoints&#32;xSpacingAvg&#32;scalings&#32;corrMatrix</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="598">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>calcCorrWaveletAndDataMatrix&#32;<span>waveletF&#32;nScales&#32;paddingPoints&#32;mzDataPadded&#32;intensityDataPadded&#32;mzData&#32;intensityData&#32;nPoints&#32;xSpacingAvg&#32;scalings&#32;corrMatrix</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        waveletF
+                      </b>
+                      :
+                      <code><span><span>float[]</span>&#32;->&#32;<span>float[]</span>&#32;->&#32;int&#32;->&#32;int&#32;->&#32;int&#32;->&#32;float&#32;->&#32;float&#32;->&#32;<span>float[]</span></span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        nScales
+                      </b>
+                      :
+                      <code>int</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        paddingPoints
+                      </b>
+                      :
+                      <code>int</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        mzDataPadded
+                      </b>
+                      :
+                      <code><span>float[]</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        intensityDataPadded
+                      </b>
+                      :
+                      <code><span>float[]</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        mzData
+                      </b>
+                      :
+                      <code><span>float[]</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        intensityData
+                      </b>
+                      :
+                      <code><span>float[]</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        nPoints
+                      </b>
+                      :
+                      <code><span>int[,,]</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        xSpacingAvg
+                      </b>
+                      :
+                      <code><span>float[]</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        scalings
+                      </b>
+                      :
+                      <code><span>float[]</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        corrMatrix
+                      </b>
+                      :
+                      <code><span>float[,]</span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  Modifiers: 
+                  inline
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  waveletF
+                </span>
+                :
+                <code><span><span>float[]</span>&#32;->&#32;<span>float[]</span>&#32;->&#32;int&#32;->&#32;int&#32;->&#32;int&#32;->&#32;float&#32;->&#32;float&#32;->&#32;<span>float[]</span></span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  nScales
+                </span>
+                :
+                <code>int</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  paddingPoints
+                </span>
+                :
+                <code>int</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  mzDataPadded
+                </span>
+                :
+                <code><span>float[]</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  intensityDataPadded
+                </span>
+                :
+                <code><span>float[]</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  mzData
+                </span>
+                :
+                <code><span>float[]</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  intensityData
+                </span>
+                :
+                <code><span>float[]</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  nPoints
+                </span>
+                :
+                <code><span>int[,,]</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  xSpacingAvg
+                </span>
+                :
+                <code><span>float[]</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  scalings
+                </span>
+                :
+                <code><span>float[]</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  corrMatrix
+                </span>
+                :
+                <code><span>float[,]</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '599', 599)" onmouseover="showTip(event, '599', 599)">
+                <p>
+                  <a id="convertColToMz">
+                    <a href="#convertColToMz">
+                      <code><span>convertColToMz&#32;<span>mzData&#32;col</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="599">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>convertColToMz&#32;<span>mzData&#32;col</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        mzData
+                      </b>
+                      :
+                      <code><span>float[]</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        col
+                      </b>
+                      :
+                      <code>int</code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code>float</code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:BioFSharp.Mz.SignalDetection.Wavelet.convertColToMz`')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:BioFSharp.Mz.SignalDetection.Wavelet.convertColToMz\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/CSBiology/BioFSharp.Mz/tree/master/src/BioFSharp.Mz/SignalDetection.fs#L247-247" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                     Helperfunction to get mz back of Columnnumber
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    mzData
+                  </span>
+                  :
+                  <code><span>float[]</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    col
+                  </span>
+                  :
+                  <code>int</code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code>float</code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '600', 600)" onmouseover="showTip(event, '600', 600)">
+                <p>
+                  <a id="createPadding">
+                    <a href="#createPadding">
+                      <code><span>createPadding&#32;<span>paddingPoints&#32;mzDataPadded&#32;intensityDataPadded&#32;mzData&#32;intensityData</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="600">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>createPadding&#32;<span>paddingPoints&#32;mzDataPadded&#32;intensityDataPadded&#32;mzData&#32;intensityData</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        paddingPoints
+                      </b>
+                      :
+                      <code>int</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        mzDataPadded
+                      </b>
+                      :
+                      <code><span>float[]</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        intensityDataPadded
+                      </b>
+                      :
+                      <code><span>float[]</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        mzData
+                      </b>
+                      :
+                      <code><span>float[]</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        intensityData
+                      </b>
+                      :
+                      <code><span>float[]</span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  paddingPoints
+                </span>
+                :
+                <code>int</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  mzDataPadded
+                </span>
+                :
+                <code><span>float[]</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  intensityDataPadded
+                </span>
+                :
+                <code><span>float[]</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  mzData
+                </span>
+                :
+                <code><span>float[]</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  intensityData
+                </span>
+                :
+                <code><span>float[]</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '601', 601)" onmouseover="showTip(event, '601', 601)">
+                <p>
+                  <a id="createRidgeLine">
+                    <a href="#createRidgeLine">
+                      <code><span>createRidgeLine&#32;<span>row&#32;col</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="601">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>createRidgeLine&#32;<span>row&#32;col</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        row
+                      </b>
+                      :
+                      <code>int</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        col
+                      </b>
+                      :
+                      <code>int</code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-signaldetection-wavelet-ridgeline.html">RidgeLine</a></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  row
+                </span>
+                :
+                <code>int</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  col
+                </span>
+                :
+                <code>int</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-signaldetection-wavelet-ridgeline.html">RidgeLine</a></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '602', 602)" onmouseover="showTip(event, '602', 602)">
+                <p>
+                  <a id="createWaveletParameters">
+                    <a href="#createWaveletParameters">
+                      <code><span>createWaveletParameters&#32;<span>numberOfScales&#32;yThreshold&#32;mzTolerance&#32;sNRS_Percentile&#32;minSNR&#32;refineMZ&#32;sumIntensities</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="602">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>createWaveletParameters&#32;<span>numberOfScales&#32;yThreshold&#32;mzTolerance&#32;sNRS_Percentile&#32;minSNR&#32;refineMZ&#32;sumIntensities</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        numberOfScales
+                      </b>
+                      :
+                      <code>int</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        yThreshold
+                      </b>
+                      :
+                      <code>float</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        mzTolerance
+                      </b>
+                      :
+                      <code>float</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        sNRS_Percentile
+                      </b>
+                      :
+                      <code>float</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        minSNR
+                      </b>
+                      :
+                      <code>float</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        refineMZ
+                      </b>
+                      :
+                      <code>bool</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        sumIntensities
+                      </b>
+                      :
+                      <code>bool</code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-signaldetection-wavelet-waveletparameters.html">WaveletParameters</a></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  numberOfScales
+                </span>
+                :
+                <code>int</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  yThreshold
+                </span>
+                :
+                <code>float</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  mzTolerance
+                </span>
+                :
+                <code>float</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  sNRS_Percentile
+                </span>
+                :
+                <code>float</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  minSNR
+                </span>
+                :
+                <code>float</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  refineMZ
+                </span>
+                :
+                <code>bool</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  sumIntensities
+                </span>
+                :
+                <code>bool</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-signaldetection-wavelet-waveletparameters.html">WaveletParameters</a></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '603', 603)" onmouseover="showTip(event, '603', 603)">
+                <p>
+                  <a id="getNpointsX">
+                    <a href="#getNpointsX">
+                      <code><span>getNpointsX&#32;<span>centerIdx&#32;scaling&#32;maxMZwindow&#32;nPoints&#32;mzData</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="603">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>getNpointsX&#32;<span>centerIdx&#32;scaling&#32;maxMZwindow&#32;nPoints&#32;mzData</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        centerIdx
+                      </b>
+                      :
+                      <code>int</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        scaling
+                      </b>
+                      :
+                      <code>int</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        maxMZwindow
+                      </b>
+                      :
+                      <code>float</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        nPoints
+                      </b>
+                      :
+                      <code><span>int[,,]</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        mzData
+                      </b>
+                      :
+                      <code><span>float[]</span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:BioFSharp.Mz.SignalDetection.Wavelet.getNpointsX`')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:BioFSharp.Mz.SignalDetection.Wavelet.getNpointsX\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/CSBiology/BioFSharp.Mz/tree/master/src/BioFSharp.Mz/SignalDetection.fs#L221-221" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                     Helperfunction to calculate the mz values left and right from the target value which will be included in the computation of 
+ the CWT correlation coefficient
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    centerIdx
+                  </span>
+                  :
+                  <code>int</code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    scaling
+                  </span>
+                  :
+                  <code>int</code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    maxMZwindow
+                  </span>
+                  :
+                  <code>float</code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    nPoints
+                  </span>
+                  :
+                  <code><span>int[,,]</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    mzData
+                  </span>
+                  :
+                  <code><span>float[]</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+              </dl>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '604', 604)" onmouseover="showTip(event, '604', 604)">
+                <p>
+                  <a id="getSNRFilteredPeakLines">
+                    <a href="#getSNRFilteredPeakLines">
+                      <code><span>getSNRFilteredPeakLines&#32;<span>noise_perc&#32;minSnr&#32;mzTol&#32;nScales&#32;mzData&#32;allLines&#32;corrMatrix</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="604">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>getSNRFilteredPeakLines&#32;<span>noise_perc&#32;minSnr&#32;mzTol&#32;nScales&#32;mzData&#32;allLines&#32;corrMatrix</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        noise_perc
+                      </b>
+                      :
+                      <code>float</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        minSnr
+                      </b>
+                      :
+                      <code>float</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        mzTol
+                      </b>
+                      :
+                      <code>float</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        nScales
+                      </b>
+                      :
+                      <code>int</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        mzData
+                      </b>
+                      :
+                      <code><span>float[]</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        allLines
+                      </b>
+                      :
+                      <code><span><a href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-signaldetection-wavelet-ridgeline.html">RidgeLine</a>&gt;</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        corrMatrix
+                      </b>
+                      :
+                      <code><span>float[,]</span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  noise_perc
+                </span>
+                :
+                <code>float</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  minSnr
+                </span>
+                :
+                <code>float</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  mzTol
+                </span>
+                :
+                <code>float</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  nScales
+                </span>
+                :
+                <code>int</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  mzData
+                </span>
+                :
+                <code><span>float[]</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  allLines
+                </span>
+                :
+                <code><span><a href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-signaldetection-wavelet-ridgeline.html">RidgeLine</a>&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  corrMatrix
+                </span>
+                :
+                <code><span>float[,]</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '605', 605)" onmouseover="showTip(event, '605', 605)">
+                <p>
+                  <a id="getScales">
+                    <a href="#getScales">
+                      <code><span>getScales&#32;<span>nScales&#32;scalings&#32;windowMaxLow&#32;windowMaxHigh&#32;mzData&#32;intensityData&#32;xSpacingAvg&#32;nPoints&#32;xspaced</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="605">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>getScales&#32;<span>nScales&#32;scalings&#32;windowMaxLow&#32;windowMaxHigh&#32;mzData&#32;intensityData&#32;xSpacingAvg&#32;nPoints&#32;xspaced</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        nScales
+                      </b>
+                      :
+                      <code>int</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        scalings
+                      </b>
+                      :
+                      <code><span>float[]</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        windowMaxLow
+                      </b>
+                      :
+                      <code>int</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        windowMaxHigh
+                      </b>
+                      :
+                      <code>int</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        mzData
+                      </b>
+                      :
+                      <code><span>float[]</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        intensityData
+                      </b>
+                      :
+                      <code><span>float[]</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        xSpacingAvg
+                      </b>
+                      :
+                      <code><span>float[]</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        nPoints
+                      </b>
+                      :
+                      <code><span>int[,,]</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        xspaced
+                      </b>
+                      :
+                      <code><span>float[]</span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  nScales
+                </span>
+                :
+                <code>int</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  scalings
+                </span>
+                :
+                <code><span>float[]</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  windowMaxLow
+                </span>
+                :
+                <code>int</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  windowMaxHigh
+                </span>
+                :
+                <code>int</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  mzData
+                </span>
+                :
+                <code><span>float[]</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  intensityData
+                </span>
+                :
+                <code><span>float[]</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  xSpacingAvg
+                </span>
+                :
+                <code><span>float[]</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  nPoints
+                </span>
+                :
+                <code><span>int[,,]</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  xspaced
+                </span>
+                :
+                <code><span>float[]</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '606', 606)" onmouseover="showTip(event, '606', 606)">
+                <p>
+                  <a id="refinePeaks">
+                    <a href="#refinePeaks">
+                      <code><span>refinePeaks&#32;<span>refineMz&#32;sumIntensities&#32;yThreshold&#32;mzTol&#32;scalings&#32;mzData&#32;intensityData&#32;allLines&#32;xSpacingAvg</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="606">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>refinePeaks&#32;<span>refineMz&#32;sumIntensities&#32;yThreshold&#32;mzTol&#32;scalings&#32;mzData&#32;intensityData&#32;allLines&#32;xSpacingAvg</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        refineMz
+                      </b>
+                      :
+                      <code>bool</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        sumIntensities
+                      </b>
+                      :
+                      <code>bool</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        yThreshold
+                      </b>
+                      :
+                      <code>float</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        mzTol
+                      </b>
+                      :
+                      <code>float</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        scalings
+                      </b>
+                      :
+                      <code><span>float[]</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        mzData
+                      </b>
+                      :
+                      <code><span>float[]</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        intensityData
+                      </b>
+                      :
+                      <code><span>float[]</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        allLines
+                      </b>
+                      :
+                      <code><span>ResizeArray&lt;<a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-signaldetection-wavelet-ridgeline.html">RidgeLine</a>&gt;</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        xSpacingAvg
+                      </b>
+                      :
+                      <code><span>float[]</span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><span>float[]</span>&#32;*&#32;<span>float[]</span></span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  refineMz
+                </span>
+                :
+                <code>bool</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  sumIntensities
+                </span>
+                :
+                <code>bool</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  yThreshold
+                </span>
+                :
+                <code>float</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  mzTol
+                </span>
+                :
+                <code>float</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  scalings
+                </span>
+                :
+                <code><span>float[]</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  mzData
+                </span>
+                :
+                <code><span>float[]</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  intensityData
+                </span>
+                :
+                <code><span>float[]</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  allLines
+                </span>
+                :
+                <code><span>ResizeArray&lt;<a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-signaldetection-wavelet-ridgeline.html">RidgeLine</a>&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  xSpacingAvg
+                </span>
+                :
+                <code><span>float[]</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><span><span>float[]</span>&#32;*&#32;<span>float[]</span></span></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '607', 607)" onmouseover="showTip(event, '607', 607)">
+                <p>
+                  <a id="ricker2d">
+                    <a href="#ricker2d">
+                      <code><span>ricker2d&#32;<span>mzDataPadded&#32;waveletData&#32;centerIdx&#32;nPointsLeft&#32;nPointsRight&#32;focusedPaddedMzValue&#32;width</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="607">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>ricker2d&#32;<span>mzDataPadded&#32;waveletData&#32;centerIdx&#32;nPointsLeft&#32;nPointsRight&#32;focusedPaddedMzValue&#32;width</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        mzDataPadded
+                      </b>
+                      :
+                      <code><span>float[]</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        waveletData
+                      </b>
+                      :
+                      <code><span>float[]</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        centerIdx
+                      </b>
+                      :
+                      <code>int</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        nPointsLeft
+                      </b>
+                      :
+                      <code>int</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        nPointsRight
+                      </b>
+                      :
+                      <code>int</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        focusedPaddedMzValue
+                      </b>
+                      :
+                      <code>float</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        width
+                      </b>
+                      :
+                      <code>float</code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span>float[]</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  mzDataPadded
+                </span>
+                :
+                <code><span>float[]</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  waveletData
+                </span>
+                :
+                <code><span>float[]</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  centerIdx
+                </span>
+                :
+                <code>int</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  nPointsLeft
+                </span>
+                :
+                <code>int</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  nPointsRight
+                </span>
+                :
+                <code>int</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  focusedPaddedMzValue
+                </span>
+                :
+                <code>float</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  width
+                </span>
+                :
+                <code>float</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><span>float[]</span></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '608', 608)" onmouseover="showTip(event, '608', 608)">
+                <p>
+                  <a id="toCentroid">
+                    <a href="#toCentroid">
+                      <code><span>toCentroid&#32;<span>waveletF&#32;nScales&#32;yThreshold&#32;mzTol&#32;snrs_perc&#32;minSnr&#32;refineMZ&#32;sumIntensities&#32;mzData&#32;intensityData</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="608">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>toCentroid&#32;<span>waveletF&#32;nScales&#32;yThreshold&#32;mzTol&#32;snrs_perc&#32;minSnr&#32;refineMZ&#32;sumIntensities&#32;mzData&#32;intensityData</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        waveletF
+                      </b>
+                      :
+                      <code><span><span>float[]</span>&#32;->&#32;<span>float[]</span>&#32;->&#32;int&#32;->&#32;int&#32;->&#32;int&#32;->&#32;float&#32;->&#32;float&#32;->&#32;<span>float[]</span></span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        nScales
+                      </b>
+                      :
+                      <code>int</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        yThreshold
+                      </b>
+                      :
+                      <code>float</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        mzTol
+                      </b>
+                      :
+                      <code>float</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        snrs_perc
+                      </b>
+                      :
+                      <code>float</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        minSnr
+                      </b>
+                      :
+                      <code>float</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        refineMZ
+                      </b>
+                      :
+                      <code>bool</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        sumIntensities
+                      </b>
+                      :
+                      <code>bool</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        mzData
+                      </b>
+                      :
+                      <code><span>float[]</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        intensityData
+                      </b>
+                      :
+                      <code><span>float[]</span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><span>float[]</span>&#32;*&#32;<span>float[]</span></span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:BioFSharp.Mz.SignalDetection.Wavelet.toCentroid`')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:BioFSharp.Mz.SignalDetection.Wavelet.toCentroid\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/CSBiology/BioFSharp.Mz/tree/master/src/BioFSharp.Mz/SignalDetection.fs#L521-521" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                     Returns a MzIntensityArray that containing the spectral centroids of the input spectra. 
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    waveletF
+                  </span>
+                  :
+                  <code><span><span>float[]</span>&#32;->&#32;<span>float[]</span>&#32;->&#32;int&#32;->&#32;int&#32;->&#32;int&#32;->&#32;float&#32;->&#32;float&#32;->&#32;<span>float[]</span></span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    nScales
+                  </span>
+                  :
+                  <code>int</code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    yThreshold
+                  </span>
+                  :
+                  <code>float</code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    mzTol
+                  </span>
+                  :
+                  <code>float</code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    snrs_perc
+                  </span>
+                  :
+                  <code>float</code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    minSnr
+                  </span>
+                  :
+                  <code>float</code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    refineMZ
+                  </span>
+                  :
+                  <code>bool</code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    sumIntensities
+                  </span>
+                  :
+                  <code>bool</code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    mzData
+                  </span>
+                  :
+                  <code><span>float[]</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    intensityData
+                  </span>
+                  :
+                  <code><span>float[]</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><span>float[]</span>&#32;*&#32;<span>float[]</span></span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '609', 609)" onmouseover="showTip(event, '609', 609)">
+                <p>
+                  <a id="toCentroidWithRicker2D">
+                    <a href="#toCentroidWithRicker2D">
+                      <code><span>toCentroidWithRicker2D&#32;<span>centroidParams&#32;mzData&#32;intensityData</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="609">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>toCentroidWithRicker2D&#32;<span>centroidParams&#32;mzData&#32;intensityData</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        centroidParams
+                      </b>
+                      :
+                      <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-signaldetection-wavelet-waveletparameters.html">WaveletParameters</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        mzData
+                      </b>
+                      :
+                      <code><span>float[]</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        intensityData
+                      </b>
+                      :
+                      <code><span>float[]</span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><span>float[]</span>&#32;*&#32;<span>float[]</span></span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  centroidParams
+                </span>
+                :
+                <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-signaldetection-wavelet-waveletparameters.html">WaveletParameters</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  mzData
+                </span>
+                :
+                <code><span>float[]</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  intensityData
+                </span>
+                :
+                <code><span>float[]</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><span><span>float[]</span>&#32;*&#32;<span>float[]</span></span></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+</div>
+        
+    </div>
+</main>
+<aside id="fsdocs-page-menu">
+    <p id="on-this-page">On this page</p>
+    <div class="empty"></div>
+</aside>
+<dialog>
+    <input type="search" placeholder="Search docs" />
+    <div class="results">
+        <ul></ul>
+        <p class="empty">Type something to start searching.</p>
+    </div>
+</dialog>
+<script type="module" src="https://csbiology.github.io/BioFSharp.Mz/content/fsdocs-tips.js"></script>
+<script type="module" src="https://csbiology.github.io/BioFSharp.Mz/content/fsdocs-theme-toggle.js"></script>
+<script type="module" src="https://csbiology.github.io/BioFSharp.Mz/content/fsdocs-theme.js"></script>
+<script type="module" src="https://csbiology.github.io/BioFSharp.Mz/content/fsdocs-search.js"></script>
+
+</body>
+</html>

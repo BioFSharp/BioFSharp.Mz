@@ -1,0 +1,1966 @@
+<!DOCTYPE html>
+<html lang="en" data-root="https://csbiology.github.io/BioFSharp.Mz/">
+<head>
+    <meta charset="UTF-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="David Zimmer, Caroline Ott, Heinrich Lukas Weil, Timo Muehlhaus" name="author">
+    <!-- Opengraph properties (https://ogp.me/) -->
+    <meta property="og:site_name" content="BioFSharp.Mz">
+    <meta property="og:title" content="PeptideEvidence (BioFSharp.Mz)" />
+    <meta property="og:url" content="https://csbiology.github.io/BioFSharp.Mz/{{fsdocs-source-basename}}.html">
+    <meta property="og:type" content="website" />
+    <!-- Twitter cards (https://developer.twitter.com/en/docs/twitter-for-websites/cards/overview/summary-card-with-large-image) -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="https://csbiology.github.io/BioFSharp.Mz/">
+    <meta name="twitter:title" content="PeptideEvidence (BioFSharp.Mz)">
+    
+    <title>PeptideEvidence (BioFSharp.Mz) | BioFSharp.Mz</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <link href="https://csbiology.github.io/BioFSharp.Mz/img/favicon.ico" rel="icon" sizes="32x32" type="image/png"/>
+    <script type="application/javascript" src="https://csbiology.github.io/BioFSharp.Mz/content/fsdocs-theme-set-dark.js"></script>
+    <link href="https://csbiology.github.io/BioFSharp.Mz/content/fsdocs-default.css" rel="stylesheet" type="text/css"/>
+    <link href="https://csbiology.github.io/BioFSharp.Mz/content/fsdocs-theme.css" rel="stylesheet" type="text/css"/>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js"></script>
+    
+</head>
+<body class="api-docs">
+<header>
+    <div class="start">
+        <div id="menu-toggle">
+            <iconify-icon class="icon closed" height="22" icon="eva:menu-fill" width="22"></iconify-icon>
+            <iconify-icon class="icon open" height="22" icon="mi:close" width="22"></iconify-icon>
+            <input type="checkbox" name="mobile-menu" />
+            <ul class="menu">
+                <li class="nav-header">Links</li>
+                <li class="nav-item"><a class="nav-link" href="https://github.com/CSBiology/BioFSharp.Mz/blob/developer/LICENSE">License</a>
+                </li>
+                <li class="nav-item"><a class="nav-link"
+                                        href="https://github.com/CSBiology/BioFSharp.Mz/blob/developer/RELEASE_NOTES.md">Release
+                    Notes</a></li>
+                <li class="nav-item"><a class="nav-link" href="https://github.com/CSBiology/BioFSharp.Mz/">Source
+                    Repository</a></li>
+                
+                <li class="nav-header">
+  API Reference
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://csbiology.github.io/BioFSharp.Mz/reference/index.html">
+    All Namespaces
+  </a>
+</li>
+            </ul>
+        </div>
+        <a href="https://csbiology.github.io/BioFSharp.Mz/">
+            <img alt="Header menu logo" src="https://csbiology.github.io/BioFSharp.Mz/img/logo.png">
+            <strong>BioFSharp.Mz</strong>
+        </a>
+    </div>
+    <div class="end">
+        <a href="https://github.com/CSBiology/BioFSharp.Mz/" target="_blank">
+            <iconify-icon icon="uil:github" width="26" height="26"></iconify-icon>
+        </a>
+        <iconify-icon id="search-btn" icon="carbon:search" class="search" width="24" height="24"></iconify-icon>
+        <fsdocs-theme-toggle></fsdocs-theme-toggle>
+    </div>
+</header>
+<aside id="fsdocs-main-menu">
+    <ul class="menu">
+        <li class="nav-header">Links</li>
+        <li class="nav-item"><a class="nav-link" href="https://github.com/CSBiology/BioFSharp.Mz/blob/developer/LICENSE">License</a>
+        </li>
+        <li class="nav-item"><a class="nav-link"
+                                href="https://github.com/CSBiology/BioFSharp.Mz/blob/developer/RELEASE_NOTES.md">Release
+            Notes</a></li>
+        <li class="nav-item"><a class="nav-link" href="https://github.com/CSBiology/BioFSharp.Mz/">Source
+            Repository</a></li>
+        
+        <li class="nav-header">
+  API Reference
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://csbiology.github.io/BioFSharp.Mz/reference/index.html">
+    All Namespaces
+  </a>
+</li>
+    </ul>
+</aside>
+<main>
+    <div id="content">
+        <div>
+  <h2>
+    PeptideEvidence Module
+  </h2>
+  <dl class="fsdocs-metadata">
+    <dt>
+      Namespace: 
+      <a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz.html">
+        BioFSharp.Mz
+      </a>
+    </dt>
+    <dt>
+      Assembly: BioFSharp.Mz.dll
+    </dt>
+    <dt>
+      Parent Module: 
+      <a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-mzidentmlmodel-db.html">
+        Db
+      </a>
+    </dt>
+  </dl>
+  <div class="fsdocs-xmldoc">
+    <div>
+      <p class="fsdocs-summary">
+        
+      </p>
+    </div>
+  </div>
+  <div>
+    <h3>
+      Types
+    </h3>
+    <table class="table outer-list fsdocs-entity-list">
+      <thead>
+        <tr>
+          <td>
+            Type
+          </td>
+          <td>
+            Description
+          </td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="fsdocs-entity-name">
+            <p>
+              <a name="PeptideEvidence">
+                <a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-mzidentmlmodel-db-peptideevidence-peptideevidence.html">
+                  PeptideEvidence
+                </a>
+              </a>
+            </p>
+          </td>
+          <td class="fsdocs-entity-xmldoc">
+            <div>
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:BioFSharp.Mz.MzIdentMLModel.Db.PeptideEvidence.PeptideEvidence`')">
+                <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:BioFSharp.Mz.MzIdentMLModel.Db.PeptideEvidence.PeptideEvidence\'/>')">
+                <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+              </div>
+              <a href="https://github.com/CSBiology/BioFSharp.Mz/tree/master/src/BioFSharp.Mz/MzIdentMLModel.fs#L374-374" class="fsdocs-source-link" title="Source on GitHub">
+                <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+              </a>
+              <p class="fsdocs-summary">
+                
+              </p>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div>
+    <h3>
+      Functions and values
+    </h3>
+    <table class="table outer-list fsdocs-member-list">
+      <thead>
+        <tr>
+          <td class="fsdocs-member-list-header">
+            Function or value
+          </td>
+          <td class="fsdocs-member-list-header">
+            Description
+          </td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '185', 185)" onmouseover="showTip(event, '185', 185)">
+                <p>
+                  <a id="addOrUpDateInPlace">
+                    <a href="#addOrUpDateInPlace">
+                      <code><span>addOrUpDateInPlace&#32;<span>param&#32;peptideevidence</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="185">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>addOrUpDateInPlace&#32;<span>param&#32;peptideevidence</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        param
+                      </b>
+                      :
+                      <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-mzidentmlmodel-datamodel-cvparam.html">CvParam</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        peptideevidence
+                      </b>
+                      :
+                      <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-mzidentmlmodel-db-peptideevidence-peptideevidence.html">PeptideEvidence</a></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-mzidentmlmodel-db-peptideevidence-peptideevidence.html">PeptideEvidence</a></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  param
+                </span>
+                :
+                <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-mzidentmlmodel-datamodel-cvparam.html">CvParam</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  peptideevidence
+                </span>
+                :
+                <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-mzidentmlmodel-db-peptideevidence-peptideevidence.html">PeptideEvidence</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-mzidentmlmodel-db-peptideevidence-peptideevidence.html">PeptideEvidence</a></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '186', 186)" onmouseover="showTip(event, '186', 186)">
+                <p>
+                  <a id="createPeptideEvidence">
+                    <a href="#createPeptideEvidence">
+                      <code><span>createPeptideEvidence&#32;<span>id&#32;dbsequenceid&#32;peptideid&#32;isdecoy&#32;frame&#32;start&#32;endOf&#32;pre&#32;post&#32;translationsid&#32;rowversion</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="186">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>createPeptideEvidence&#32;<span>id&#32;dbsequenceid&#32;peptideid&#32;isdecoy&#32;frame&#32;start&#32;endOf&#32;pre&#32;post&#32;translationsid&#32;rowversion</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        id
+                      </b>
+                      :
+                      <code>int</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        dbsequenceid
+                      </b>
+                      :
+                      <code>int</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        peptideid
+                      </b>
+                      :
+                      <code>int</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        isdecoy
+                      </b>
+                      :
+                      <code><span>string&#32;option</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        frame
+                      </b>
+                      :
+                      <code><span>string&#32;option</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        start
+                      </b>
+                      :
+                      <code><span>int&#32;option</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        endOf
+                      </b>
+                      :
+                      <code><span>int&#32;option</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        pre
+                      </b>
+                      :
+                      <code><span>string&#32;option</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        post
+                      </b>
+                      :
+                      <code><span>string&#32;option</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        translationsid
+                      </b>
+                      :
+                      <code><span>int&#32;option</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        rowversion
+                      </b>
+                      :
+                      <code><a href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-mzidentmlmodel-db-peptideevidence-peptideevidence.html">PeptideEvidence</a></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  id
+                </span>
+                :
+                <code>int</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  dbsequenceid
+                </span>
+                :
+                <code>int</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  peptideid
+                </span>
+                :
+                <code>int</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  isdecoy
+                </span>
+                :
+                <code><span>string&#32;option</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  frame
+                </span>
+                :
+                <code><span>string&#32;option</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  start
+                </span>
+                :
+                <code><span>int&#32;option</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  endOf
+                </span>
+                :
+                <code><span>int&#32;option</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  pre
+                </span>
+                :
+                <code><span>string&#32;option</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  post
+                </span>
+                :
+                <code><span>string&#32;option</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  translationsid
+                </span>
+                :
+                <code><span>int&#32;option</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  rowversion
+                </span>
+                :
+                <code><a href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-mzidentmlmodel-db-peptideevidence-peptideevidence.html">PeptideEvidence</a></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '187', 187)" onmouseover="showTip(event, '187', 187)">
+                <p>
+                  <a id="createPeptideEvidenceParamTable">
+                    <a href="#createPeptideEvidenceParamTable">
+                      <code><span>createPeptideEvidenceParamTable&#32;<span>cn</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="187">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>createPeptideEvidenceParamTable&#32;<span>cn</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        cn
+                      </b>
+                      :
+                      <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqliteconnection">SQLiteConnection</a></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code>int</code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  cn
+                </span>
+                :
+                <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqliteconnection">SQLiteConnection</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code>int</code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '188', 188)" onmouseover="showTip(event, '188', 188)">
+                <p>
+                  <a id="createPeptideEvidenceTable">
+                    <a href="#createPeptideEvidenceTable">
+                      <code><span>createPeptideEvidenceTable&#32;<span>cn</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="188">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>createPeptideEvidenceTable&#32;<span>cn</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        cn
+                      </b>
+                      :
+                      <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqliteconnection">SQLiteConnection</a></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code>int</code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  cn
+                </span>
+                :
+                <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqliteconnection">SQLiteConnection</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code>int</code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '189', 189)" onmouseover="showTip(event, '189', 189)">
+                <p>
+                  <a id="createPeptideEvidenceWith">
+                    <a href="#createPeptideEvidenceWith">
+                      <code><span>createPeptideEvidenceWith&#32;<span>id&#32;dbsequenceid&#32;peptideid&#32;isdecoy&#32;frame&#32;start&#32;endOf&#32;pre&#32;post&#32;translationsid&#32;rowversion&#32;cvParams</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="189">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>createPeptideEvidenceWith&#32;<span>id&#32;dbsequenceid&#32;peptideid&#32;isdecoy&#32;frame&#32;start&#32;endOf&#32;pre&#32;post&#32;translationsid&#32;rowversion&#32;cvParams</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        id
+                      </b>
+                      :
+                      <code>int</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        dbsequenceid
+                      </b>
+                      :
+                      <code>int</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        peptideid
+                      </b>
+                      :
+                      <code>int</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        isdecoy
+                      </b>
+                      :
+                      <code><span>string&#32;option</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        frame
+                      </b>
+                      :
+                      <code><span>string&#32;option</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        start
+                      </b>
+                      :
+                      <code><span>int&#32;option</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        endOf
+                      </b>
+                      :
+                      <code><span>int&#32;option</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        pre
+                      </b>
+                      :
+                      <code><span>string&#32;option</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        post
+                      </b>
+                      :
+                      <code><span>string&#32;option</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        translationsid
+                      </b>
+                      :
+                      <code><span>int&#32;option</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        rowversion
+                      </b>
+                      :
+                      <code><a href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        cvParams
+                      </b>
+                      :
+                      <code><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-mzidentmlmodel-datamodel-cvparam.html">CvParam</a>&#32;seq</span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-mzidentmlmodel-db-peptideevidence-peptideevidence.html">PeptideEvidence</a></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  id
+                </span>
+                :
+                <code>int</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  dbsequenceid
+                </span>
+                :
+                <code>int</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  peptideid
+                </span>
+                :
+                <code>int</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  isdecoy
+                </span>
+                :
+                <code><span>string&#32;option</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  frame
+                </span>
+                :
+                <code><span>string&#32;option</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  start
+                </span>
+                :
+                <code><span>int&#32;option</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  endOf
+                </span>
+                :
+                <code><span>int&#32;option</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  pre
+                </span>
+                :
+                <code><span>string&#32;option</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  post
+                </span>
+                :
+                <code><span>string&#32;option</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  translationsid
+                </span>
+                :
+                <code><span>int&#32;option</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  rowversion
+                </span>
+                :
+                <code><a href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  cvParams
+                </span>
+                :
+                <code><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-mzidentmlmodel-datamodel-cvparam.html">CvParam</a>&#32;seq</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-mzidentmlmodel-db-peptideevidence-peptideevidence.html">PeptideEvidence</a></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '190', 190)" onmouseover="showTip(event, '190', 190)">
+                <p>
+                  <a id="insertPeptideEvidenceToDb">
+                    <a href="#insertPeptideEvidenceToDb">
+                      <code><span>insertPeptideEvidenceToDb&#32;<span>insertInTableF&#32;insertInParamTableF&#32;peptideevidence</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="190">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>insertPeptideEvidenceToDb&#32;<span>insertInTableF&#32;insertInParamTableF&#32;peptideevidence</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        insertInTableF
+                      </b>
+                      :
+                      <code><span>int&#32;->&#32;int&#32;->&#32;int&#32;->&#32;<span>string&#32;option</span>&#32;->&#32;<span>string&#32;option</span>&#32;->&#32;<span>int&#32;option</span>&#32;->&#32;<span>int&#32;option</span>&#32;->&#32;<span>string&#32;option</span>&#32;->&#32;<span>string&#32;option</span>&#32;->&#32;<span>int&#32;option</span>&#32;->&#32;<a href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a>&#32;->&#32;unit</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        insertInParamTableF
+                      </b>
+                      :
+                      <code><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-mzidentmlmodel-paramcontainer-paramcontainer.html">ParamContainer</a>&#32;->&#32;'a</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        peptideevidence
+                      </b>
+                      :
+                      <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-mzidentmlmodel-db-peptideevidence-peptideevidence.html">PeptideEvidence</a></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code>'a</code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  insertInTableF
+                </span>
+                :
+                <code><span>int&#32;->&#32;int&#32;->&#32;int&#32;->&#32;<span>string&#32;option</span>&#32;->&#32;<span>string&#32;option</span>&#32;->&#32;<span>int&#32;option</span>&#32;->&#32;<span>int&#32;option</span>&#32;->&#32;<span>string&#32;option</span>&#32;->&#32;<span>string&#32;option</span>&#32;->&#32;<span>int&#32;option</span>&#32;->&#32;<a href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a>&#32;->&#32;unit</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  insertInParamTableF
+                </span>
+                :
+                <code><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-mzidentmlmodel-paramcontainer-paramcontainer.html">ParamContainer</a>&#32;->&#32;'a</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  peptideevidence
+                </span>
+                :
+                <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-mzidentmlmodel-db-peptideevidence-peptideevidence.html">PeptideEvidence</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code>'a</code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '191', 191)" onmouseover="showTip(event, '191', 191)">
+                <p>
+                  <a id="prepareInsertPeptideEvidence">
+                    <a href="#prepareInsertPeptideEvidence">
+                      <code><span>prepareInsertPeptideEvidence&#32;<span>cn&#32;tr</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="191">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>prepareInsertPeptideEvidence&#32;<span>cn&#32;tr</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        cn
+                      </b>
+                      :
+                      <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqliteconnection">SQLiteConnection</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        tr
+                      </b>
+                      :
+                      <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqlitetransaction">SQLiteTransaction</a></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span>'a&#32;->&#32;'b&#32;->&#32;'c&#32;->&#32;'d&#32;->&#32;'e&#32;->&#32;'f&#32;->&#32;'g&#32;->&#32;'h&#32;->&#32;'i&#32;->&#32;'j&#32;->&#32;'k&#32;->&#32;int</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  cn
+                </span>
+                :
+                <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqliteconnection">SQLiteConnection</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  tr
+                </span>
+                :
+                <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqlitetransaction">SQLiteTransaction</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><span>'a&#32;->&#32;'b&#32;->&#32;'c&#32;->&#32;'d&#32;->&#32;'e&#32;->&#32;'f&#32;->&#32;'g&#32;->&#32;'h&#32;->&#32;'i&#32;->&#32;'j&#32;->&#32;'k&#32;->&#32;int</span></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '192', 192)" onmouseover="showTip(event, '192', 192)">
+                <p>
+                  <a id="prepareInsertPeptideEvidenceParam">
+                    <a href="#prepareInsertPeptideEvidenceParam">
+                      <code><span>prepareInsertPeptideEvidenceParam&#32;<span>cn&#32;tr</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="192">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>prepareInsertPeptideEvidenceParam&#32;<span>cn&#32;tr</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        cn
+                      </b>
+                      :
+                      <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqliteconnection">SQLiteConnection</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        tr
+                      </b>
+                      :
+                      <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqlitetransaction">SQLiteTransaction</a></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span>'a&#32;->&#32;'b&#32;->&#32;'c&#32;->&#32;'d&#32;->&#32;'e&#32;->&#32;'f&#32;->&#32;int</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  cn
+                </span>
+                :
+                <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqliteconnection">SQLiteConnection</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  tr
+                </span>
+                :
+                <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqlitetransaction">SQLiteTransaction</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><span>'a&#32;->&#32;'b&#32;->&#32;'c&#32;->&#32;'d&#32;->&#32;'e&#32;->&#32;'f&#32;->&#32;int</span></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '193', 193)" onmouseover="showTip(event, '193', 193)">
+                <p>
+                  <a id="prepareSelectPeptideEvidencebyDBSequenceID">
+                    <a href="#prepareSelectPeptideEvidencebyDBSequenceID">
+                      <code><span>prepareSelectPeptideEvidencebyDBSequenceID&#32;<span>cn&#32;tr</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="193">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>prepareSelectPeptideEvidencebyDBSequenceID&#32;<span>cn&#32;tr</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        cn
+                      </b>
+                      :
+                      <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqliteconnection">SQLiteConnection</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        tr
+                      </b>
+                      :
+                      <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqlitetransaction">SQLiteTransaction</a></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span>'a&#32;->&#32;<span><span>(<span>int&#32;*&#32;int&#32;*&#32;int&#32;*&#32;string&#32;*&#32;string&#32;*&#32;int&#32;*&#32;int&#32;*&#32;string&#32;*&#32;string&#32;*&#32;int&#32;*&#32;<a href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a></span>)</span>&#32;list</span></span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  cn
+                </span>
+                :
+                <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqliteconnection">SQLiteConnection</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  tr
+                </span>
+                :
+                <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqlitetransaction">SQLiteTransaction</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><span>'a&#32;->&#32;<span><span>(<span>int&#32;*&#32;int&#32;*&#32;int&#32;*&#32;string&#32;*&#32;string&#32;*&#32;int&#32;*&#32;int&#32;*&#32;string&#32;*&#32;string&#32;*&#32;int&#32;*&#32;<a href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a></span>)</span>&#32;list</span></span></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '194', 194)" onmouseover="showTip(event, '194', 194)">
+                <p>
+                  <a id="prepareSelectPeptideEvidencebyEnd">
+                    <a href="#prepareSelectPeptideEvidencebyEnd">
+                      <code><span>prepareSelectPeptideEvidencebyEnd&#32;<span>cn&#32;tr</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="194">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>prepareSelectPeptideEvidencebyEnd&#32;<span>cn&#32;tr</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        cn
+                      </b>
+                      :
+                      <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqliteconnection">SQLiteConnection</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        tr
+                      </b>
+                      :
+                      <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqlitetransaction">SQLiteTransaction</a></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span>'a&#32;->&#32;<span><span>(<span>int&#32;*&#32;int&#32;*&#32;int&#32;*&#32;string&#32;*&#32;string&#32;*&#32;int&#32;*&#32;int&#32;*&#32;string&#32;*&#32;string&#32;*&#32;int&#32;*&#32;<a href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a></span>)</span>&#32;list</span></span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  cn
+                </span>
+                :
+                <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqliteconnection">SQLiteConnection</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  tr
+                </span>
+                :
+                <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqlitetransaction">SQLiteTransaction</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><span>'a&#32;->&#32;<span><span>(<span>int&#32;*&#32;int&#32;*&#32;int&#32;*&#32;string&#32;*&#32;string&#32;*&#32;int&#32;*&#32;int&#32;*&#32;string&#32;*&#32;string&#32;*&#32;int&#32;*&#32;<a href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a></span>)</span>&#32;list</span></span></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '195', 195)" onmouseover="showTip(event, '195', 195)">
+                <p>
+                  <a id="prepareSelectPeptideEvidencebyFrame">
+                    <a href="#prepareSelectPeptideEvidencebyFrame">
+                      <code><span>prepareSelectPeptideEvidencebyFrame&#32;<span>cn&#32;tr</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="195">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>prepareSelectPeptideEvidencebyFrame&#32;<span>cn&#32;tr</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        cn
+                      </b>
+                      :
+                      <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqliteconnection">SQLiteConnection</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        tr
+                      </b>
+                      :
+                      <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqlitetransaction">SQLiteTransaction</a></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span>'a&#32;->&#32;<span><span>(<span>int&#32;*&#32;int&#32;*&#32;int&#32;*&#32;string&#32;*&#32;string&#32;*&#32;int&#32;*&#32;int&#32;*&#32;string&#32;*&#32;string&#32;*&#32;int&#32;*&#32;<a href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a></span>)</span>&#32;list</span></span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  cn
+                </span>
+                :
+                <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqliteconnection">SQLiteConnection</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  tr
+                </span>
+                :
+                <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqlitetransaction">SQLiteTransaction</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><span>'a&#32;->&#32;<span><span>(<span>int&#32;*&#32;int&#32;*&#32;int&#32;*&#32;string&#32;*&#32;string&#32;*&#32;int&#32;*&#32;int&#32;*&#32;string&#32;*&#32;string&#32;*&#32;int&#32;*&#32;<a href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a></span>)</span>&#32;list</span></span></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '196', 196)" onmouseover="showTip(event, '196', 196)">
+                <p>
+                  <a id="prepareSelectPeptideEvidencebyID">
+                    <a href="#prepareSelectPeptideEvidencebyID">
+                      <code><span>prepareSelectPeptideEvidencebyID&#32;<span>cn&#32;tr</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="196">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>prepareSelectPeptideEvidencebyID&#32;<span>cn&#32;tr</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        cn
+                      </b>
+                      :
+                      <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqliteconnection">SQLiteConnection</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        tr
+                      </b>
+                      :
+                      <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqlitetransaction">SQLiteTransaction</a></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span>'a&#32;->&#32;<span><span>(<span>int&#32;*&#32;int&#32;*&#32;int&#32;*&#32;string&#32;*&#32;string&#32;*&#32;int&#32;*&#32;int&#32;*&#32;string&#32;*&#32;string&#32;*&#32;int&#32;*&#32;<a href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a></span>)</span>&#32;list</span></span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  cn
+                </span>
+                :
+                <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqliteconnection">SQLiteConnection</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  tr
+                </span>
+                :
+                <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqlitetransaction">SQLiteTransaction</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><span>'a&#32;->&#32;<span><span>(<span>int&#32;*&#32;int&#32;*&#32;int&#32;*&#32;string&#32;*&#32;string&#32;*&#32;int&#32;*&#32;int&#32;*&#32;string&#32;*&#32;string&#32;*&#32;int&#32;*&#32;<a href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a></span>)</span>&#32;list</span></span></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '197', 197)" onmouseover="showTip(event, '197', 197)">
+                <p>
+                  <a id="prepareSelectPeptideEvidencebyPeptideID">
+                    <a href="#prepareSelectPeptideEvidencebyPeptideID">
+                      <code><span>prepareSelectPeptideEvidencebyPeptideID&#32;<span>cn&#32;tr</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="197">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>prepareSelectPeptideEvidencebyPeptideID&#32;<span>cn&#32;tr</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        cn
+                      </b>
+                      :
+                      <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqliteconnection">SQLiteConnection</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        tr
+                      </b>
+                      :
+                      <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqlitetransaction">SQLiteTransaction</a></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span>'a&#32;->&#32;<span><span>(<span>int&#32;*&#32;int&#32;*&#32;int&#32;*&#32;string&#32;*&#32;string&#32;*&#32;int&#32;*&#32;int&#32;*&#32;string&#32;*&#32;string&#32;*&#32;int&#32;*&#32;<a href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a></span>)</span>&#32;list</span></span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  cn
+                </span>
+                :
+                <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqliteconnection">SQLiteConnection</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  tr
+                </span>
+                :
+                <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqlitetransaction">SQLiteTransaction</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><span>'a&#32;->&#32;<span><span>(<span>int&#32;*&#32;int&#32;*&#32;int&#32;*&#32;string&#32;*&#32;string&#32;*&#32;int&#32;*&#32;int&#32;*&#32;string&#32;*&#32;string&#32;*&#32;int&#32;*&#32;<a href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a></span>)</span>&#32;list</span></span></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '198', 198)" onmouseover="showTip(event, '198', 198)">
+                <p>
+                  <a id="prepareSelectPeptideEvidencebyPost">
+                    <a href="#prepareSelectPeptideEvidencebyPost">
+                      <code><span>prepareSelectPeptideEvidencebyPost&#32;<span>cn&#32;tr</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="198">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>prepareSelectPeptideEvidencebyPost&#32;<span>cn&#32;tr</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        cn
+                      </b>
+                      :
+                      <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqliteconnection">SQLiteConnection</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        tr
+                      </b>
+                      :
+                      <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqlitetransaction">SQLiteTransaction</a></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span>'a&#32;->&#32;<span><span>(<span>int&#32;*&#32;int&#32;*&#32;int&#32;*&#32;string&#32;*&#32;string&#32;*&#32;int&#32;*&#32;int&#32;*&#32;string&#32;*&#32;string&#32;*&#32;int&#32;*&#32;<a href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a></span>)</span>&#32;list</span></span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  cn
+                </span>
+                :
+                <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqliteconnection">SQLiteConnection</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  tr
+                </span>
+                :
+                <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqlitetransaction">SQLiteTransaction</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><span>'a&#32;->&#32;<span><span>(<span>int&#32;*&#32;int&#32;*&#32;int&#32;*&#32;string&#32;*&#32;string&#32;*&#32;int&#32;*&#32;int&#32;*&#32;string&#32;*&#32;string&#32;*&#32;int&#32;*&#32;<a href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a></span>)</span>&#32;list</span></span></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '199', 199)" onmouseover="showTip(event, '199', 199)">
+                <p>
+                  <a id="prepareSelectPeptideEvidencebyPre">
+                    <a href="#prepareSelectPeptideEvidencebyPre">
+                      <code><span>prepareSelectPeptideEvidencebyPre&#32;<span>cn&#32;tr</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="199">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>prepareSelectPeptideEvidencebyPre&#32;<span>cn&#32;tr</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        cn
+                      </b>
+                      :
+                      <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqliteconnection">SQLiteConnection</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        tr
+                      </b>
+                      :
+                      <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqlitetransaction">SQLiteTransaction</a></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span>'a&#32;->&#32;<span><span>(<span>int&#32;*&#32;int&#32;*&#32;int&#32;*&#32;string&#32;*&#32;string&#32;*&#32;int&#32;*&#32;int&#32;*&#32;string&#32;*&#32;string&#32;*&#32;int&#32;*&#32;<a href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a></span>)</span>&#32;list</span></span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  cn
+                </span>
+                :
+                <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqliteconnection">SQLiteConnection</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  tr
+                </span>
+                :
+                <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqlitetransaction">SQLiteTransaction</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><span>'a&#32;->&#32;<span><span>(<span>int&#32;*&#32;int&#32;*&#32;int&#32;*&#32;string&#32;*&#32;string&#32;*&#32;int&#32;*&#32;int&#32;*&#32;string&#32;*&#32;string&#32;*&#32;int&#32;*&#32;<a href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a></span>)</span>&#32;list</span></span></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '200', 200)" onmouseover="showTip(event, '200', 200)">
+                <p>
+                  <a id="prepareSelectPeptideEvidencebyRowVersion">
+                    <a href="#prepareSelectPeptideEvidencebyRowVersion">
+                      <code><span>prepareSelectPeptideEvidencebyRowVersion&#32;<span>cn&#32;tr</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="200">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>prepareSelectPeptideEvidencebyRowVersion&#32;<span>cn&#32;tr</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        cn
+                      </b>
+                      :
+                      <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqliteconnection">SQLiteConnection</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        tr
+                      </b>
+                      :
+                      <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqlitetransaction">SQLiteTransaction</a></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span>'a&#32;->&#32;<span><span>(<span>int&#32;*&#32;int&#32;*&#32;int&#32;*&#32;string&#32;*&#32;string&#32;*&#32;int&#32;*&#32;int&#32;*&#32;string&#32;*&#32;string&#32;*&#32;int&#32;*&#32;<a href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a></span>)</span>&#32;list</span></span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  cn
+                </span>
+                :
+                <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqliteconnection">SQLiteConnection</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  tr
+                </span>
+                :
+                <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqlitetransaction">SQLiteTransaction</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><span>'a&#32;->&#32;<span><span>(<span>int&#32;*&#32;int&#32;*&#32;int&#32;*&#32;string&#32;*&#32;string&#32;*&#32;int&#32;*&#32;int&#32;*&#32;string&#32;*&#32;string&#32;*&#32;int&#32;*&#32;<a href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a></span>)</span>&#32;list</span></span></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '201', 201)" onmouseover="showTip(event, '201', 201)">
+                <p>
+                  <a id="prepareSelectPeptideEvidencebyStart">
+                    <a href="#prepareSelectPeptideEvidencebyStart">
+                      <code><span>prepareSelectPeptideEvidencebyStart&#32;<span>cn&#32;tr</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="201">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>prepareSelectPeptideEvidencebyStart&#32;<span>cn&#32;tr</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        cn
+                      </b>
+                      :
+                      <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqliteconnection">SQLiteConnection</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        tr
+                      </b>
+                      :
+                      <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqlitetransaction">SQLiteTransaction</a></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span>'a&#32;->&#32;<span><span>(<span>int&#32;*&#32;int&#32;*&#32;int&#32;*&#32;string&#32;*&#32;string&#32;*&#32;int&#32;*&#32;int&#32;*&#32;string&#32;*&#32;string&#32;*&#32;int&#32;*&#32;<a href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a></span>)</span>&#32;list</span></span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  cn
+                </span>
+                :
+                <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqliteconnection">SQLiteConnection</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  tr
+                </span>
+                :
+                <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqlitetransaction">SQLiteTransaction</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><span>'a&#32;->&#32;<span><span>(<span>int&#32;*&#32;int&#32;*&#32;int&#32;*&#32;string&#32;*&#32;string&#32;*&#32;int&#32;*&#32;int&#32;*&#32;string&#32;*&#32;string&#32;*&#32;int&#32;*&#32;<a href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a></span>)</span>&#32;list</span></span></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '202', 202)" onmouseover="showTip(event, '202', 202)">
+                <p>
+                  <a id="prepareSelectPeptideEvidencebyTranslationsID">
+                    <a href="#prepareSelectPeptideEvidencebyTranslationsID">
+                      <code><span>prepareSelectPeptideEvidencebyTranslationsID&#32;<span>cn&#32;tr</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="202">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>prepareSelectPeptideEvidencebyTranslationsID&#32;<span>cn&#32;tr</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        cn
+                      </b>
+                      :
+                      <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqliteconnection">SQLiteConnection</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        tr
+                      </b>
+                      :
+                      <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqlitetransaction">SQLiteTransaction</a></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span>'a&#32;->&#32;<span><span>(<span>int&#32;*&#32;int&#32;*&#32;int&#32;*&#32;string&#32;*&#32;string&#32;*&#32;int&#32;*&#32;int&#32;*&#32;string&#32;*&#32;string&#32;*&#32;int&#32;*&#32;<a href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a></span>)</span>&#32;list</span></span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  cn
+                </span>
+                :
+                <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqliteconnection">SQLiteConnection</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  tr
+                </span>
+                :
+                <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqlitetransaction">SQLiteTransaction</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><span>'a&#32;->&#32;<span><span>(<span>int&#32;*&#32;int&#32;*&#32;int&#32;*&#32;string&#32;*&#32;string&#32;*&#32;int&#32;*&#32;int&#32;*&#32;string&#32;*&#32;string&#32;*&#32;int&#32;*&#32;<a href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a></span>)</span>&#32;list</span></span></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '203', 203)" onmouseover="showTip(event, '203', 203)">
+                <p>
+                  <a id="prepareSelectPeptideEvidencebyisDecoy">
+                    <a href="#prepareSelectPeptideEvidencebyisDecoy">
+                      <code><span>prepareSelectPeptideEvidencebyisDecoy&#32;<span>cn&#32;tr</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="203">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>prepareSelectPeptideEvidencebyisDecoy&#32;<span>cn&#32;tr</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        cn
+                      </b>
+                      :
+                      <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqliteconnection">SQLiteConnection</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        tr
+                      </b>
+                      :
+                      <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqlitetransaction">SQLiteTransaction</a></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span>'a&#32;->&#32;<span><span>(<span>int&#32;*&#32;int&#32;*&#32;int&#32;*&#32;string&#32;*&#32;string&#32;*&#32;int&#32;*&#32;int&#32;*&#32;string&#32;*&#32;string&#32;*&#32;int&#32;*&#32;<a href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a></span>)</span>&#32;list</span></span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  cn
+                </span>
+                :
+                <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqliteconnection">SQLiteConnection</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  tr
+                </span>
+                :
+                <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqlitetransaction">SQLiteTransaction</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><span>'a&#32;->&#32;<span><span>(<span>int&#32;*&#32;int&#32;*&#32;int&#32;*&#32;string&#32;*&#32;string&#32;*&#32;int&#32;*&#32;int&#32;*&#32;string&#32;*&#32;string&#32;*&#32;int&#32;*&#32;<a href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a></span>)</span>&#32;list</span></span></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+</div>
+        
+    </div>
+</main>
+<aside id="fsdocs-page-menu">
+    <p id="on-this-page">On this page</p>
+    <div class="empty"></div>
+</aside>
+<dialog>
+    <input type="search" placeholder="Search docs" />
+    <div class="results">
+        <ul></ul>
+        <p class="empty">Type something to start searching.</p>
+    </div>
+</dialog>
+<script type="module" src="https://csbiology.github.io/BioFSharp.Mz/content/fsdocs-tips.js"></script>
+<script type="module" src="https://csbiology.github.io/BioFSharp.Mz/content/fsdocs-theme-toggle.js"></script>
+<script type="module" src="https://csbiology.github.io/BioFSharp.Mz/content/fsdocs-theme.js"></script>
+<script type="module" src="https://csbiology.github.io/BioFSharp.Mz/content/fsdocs-search.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="en" data-root="https://csbiology.github.io/BioFSharp.Mz/">
+<head>
+    <meta charset="UTF-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="David Zimmer, Caroline Ott, Heinrich Lukas Weil, Timo Muehlhaus" name="author">
+    <!-- Opengraph properties (https://ogp.me/) -->
+    <meta property="og:site_name" content="BioFSharp.Mz">
+    <meta property="og:title" content="PercolatorParams (BioFSharp.Mz)" />
+    <meta property="og:url" content="https://csbiology.github.io/BioFSharp.Mz/{{fsdocs-source-basename}}.html">
+    <meta property="og:type" content="website" />
+    <!-- Twitter cards (https://developer.twitter.com/en/docs/twitter-for-websites/cards/overview/summary-card-with-large-image) -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="https://csbiology.github.io/BioFSharp.Mz/">
+    <meta name="twitter:title" content="PercolatorParams (BioFSharp.Mz)">
+    
+    <title>PercolatorParams (BioFSharp.Mz) | BioFSharp.Mz</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <link href="https://csbiology.github.io/BioFSharp.Mz/img/favicon.ico" rel="icon" sizes="32x32" type="image/png"/>
+    <script type="application/javascript" src="https://csbiology.github.io/BioFSharp.Mz/content/fsdocs-theme-set-dark.js"></script>
+    <link href="https://csbiology.github.io/BioFSharp.Mz/content/fsdocs-default.css" rel="stylesheet" type="text/css"/>
+    <link href="https://csbiology.github.io/BioFSharp.Mz/content/fsdocs-theme.css" rel="stylesheet" type="text/css"/>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js"></script>
+    
+</head>
+<body class="api-docs">
+<header>
+    <div class="start">
+        <div id="menu-toggle">
+            <iconify-icon class="icon closed" height="22" icon="eva:menu-fill" width="22"></iconify-icon>
+            <iconify-icon class="icon open" height="22" icon="mi:close" width="22"></iconify-icon>
+            <input type="checkbox" name="mobile-menu" />
+            <ul class="menu">
+                <li class="nav-header">Links</li>
+                <li class="nav-item"><a class="nav-link" href="https://github.com/CSBiology/BioFSharp.Mz/blob/developer/LICENSE">License</a>
+                </li>
+                <li class="nav-item"><a class="nav-link"
+                                        href="https://github.com/CSBiology/BioFSharp.Mz/blob/developer/RELEASE_NOTES.md">Release
+                    Notes</a></li>
+                <li class="nav-item"><a class="nav-link" href="https://github.com/CSBiology/BioFSharp.Mz/">Source
+                    Repository</a></li>
+                
+                <li class="nav-header">
+  API Reference
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://csbiology.github.io/BioFSharp.Mz/reference/index.html">
+    All Namespaces
+  </a>
+</li>
+            </ul>
+        </div>
+        <a href="https://csbiology.github.io/BioFSharp.Mz/">
+            <img alt="Header menu logo" src="https://csbiology.github.io/BioFSharp.Mz/img/logo.png">
+            <strong>BioFSharp.Mz</strong>
+        </a>
+    </div>
+    <div class="end">
+        <a href="https://github.com/CSBiology/BioFSharp.Mz/" target="_blank">
+            <iconify-icon icon="uil:github" width="26" height="26"></iconify-icon>
+        </a>
+        <iconify-icon id="search-btn" icon="carbon:search" class="search" width="24" height="24"></iconify-icon>
+        <fsdocs-theme-toggle></fsdocs-theme-toggle>
+    </div>
+</header>
+<aside id="fsdocs-main-menu">
+    <ul class="menu">
+        <li class="nav-header">Links</li>
+        <li class="nav-item"><a class="nav-link" href="https://github.com/CSBiology/BioFSharp.Mz/blob/developer/LICENSE">License</a>
+        </li>
+        <li class="nav-item"><a class="nav-link"
+                                href="https://github.com/CSBiology/BioFSharp.Mz/blob/developer/RELEASE_NOTES.md">Release
+            Notes</a></li>
+        <li class="nav-item"><a class="nav-link" href="https://github.com/CSBiology/BioFSharp.Mz/">Source
+            Repository</a></li>
+        
+        <li class="nav-header">
+  API Reference
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://csbiology.github.io/BioFSharp.Mz/reference/index.html">
+    All Namespaces
+  </a>
+</li>
+    </ul>
+</aside>
+<main>
+    <div id="content">
+        <div>
+  <h2>
+    PercolatorParams Type
+  </h2>
+  <dl class="fsdocs-metadata">
+    <dt>
+      Namespace: 
+      <a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz.html">
+        BioFSharp.Mz
+      </a>
+    </dt>
+    <dt>
+      Assembly: BioFSharp.Mz.dll
+    </dt>
+    <dt>
+      Parent Module: 
+      <a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-percolatorwrapper-parameters.html">
+        Parameters
+      </a>
+    </dt>
+    <dt>
+      Base Type: 
+      <code>obj</code>
+    </dt>
+    <dt>
+      All Interfaces: 
+      <code><span><a href="https://learn.microsoft.com/dotnet/api/system.iequatable-1">IEquatable</a>&lt;<a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-percolatorwrapper-parameters-percolatorparams.html">PercolatorParams</a>&gt;</span></code>
+      , 
+      <code><a href="https://learn.microsoft.com/dotnet/api/system.collections.istructuralequatable">IStructuralEquatable</a></code>
+    </dt>
+  </dl>
+  <div class="fsdocs-xmldoc">
+    <div>
+      <p class="fsdocs-summary">
+        
+      </p>
+    </div>
+  </div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div>
+    <h3>
+      Union cases
+    </h3>
+    <table class="table outer-list fsdocs-member-list">
+      <thead>
+        <tr>
+          <td class="fsdocs-member-list-header">
+            Union case
+          </td>
+          <td class="fsdocs-member-list-header">
+            Description
+          </td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '945', 945)" onmouseover="showTip(event, '945', 945)">
+                <p>
+                  <a id="FileInputOptions">
+                    <a href="#FileInputOptions">
+                      <code><span>FileInputOptions&#32;<span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-percolatorwrapper-parameters-fileinputoptions.html">FileInputOptions</a>&#32;seq</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="945">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>FileInputOptions&#32;<span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-percolatorwrapper-parameters-fileinputoptions.html">FileInputOptions</a>&#32;seq</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        Item
+                      </b>
+                      :
+                      <code><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-percolatorwrapper-parameters-fileinputoptions.html">FileInputOptions</a>&#32;seq</span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  Item
+                </span>
+                :
+                <code><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-percolatorwrapper-parameters-fileinputoptions.html">FileInputOptions</a>&#32;seq</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '946', 946)" onmouseover="showTip(event, '946', 946)">
+                <p>
+                  <a id="FileOutputOptions">
+                    <a href="#FileOutputOptions">
+                      <code><span>FileOutputOptions&#32;<span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-percolatorwrapper-parameters-fileoutputoptions.html">FileOutputOptions</a>&#32;seq</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="946">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>FileOutputOptions&#32;<span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-percolatorwrapper-parameters-fileoutputoptions.html">FileOutputOptions</a>&#32;seq</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        Item
+                      </b>
+                      :
+                      <code><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-percolatorwrapper-parameters-fileoutputoptions.html">FileOutputOptions</a>&#32;seq</span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  Item
+                </span>
+                :
+                <code><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-percolatorwrapper-parameters-fileoutputoptions.html">FileOutputOptions</a>&#32;seq</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '947', 947)" onmouseover="showTip(event, '947', 947)">
+                <p>
+                  <a id="GeneralOptions">
+                    <a href="#GeneralOptions">
+                      <code><span>GeneralOptions&#32;<span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-percolatorwrapper-parameters-generaloptions.html">GeneralOptions</a>&#32;seq</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="947">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>GeneralOptions&#32;<span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-percolatorwrapper-parameters-generaloptions.html">GeneralOptions</a>&#32;seq</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        Item
+                      </b>
+                      :
+                      <code><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-percolatorwrapper-parameters-generaloptions.html">GeneralOptions</a>&#32;seq</span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  Item
+                </span>
+                :
+                <code><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-percolatorwrapper-parameters-generaloptions.html">GeneralOptions</a>&#32;seq</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '948', 948)" onmouseover="showTip(event, '948', 948)">
+                <p>
+                  <a id="ProteinInferenceOptions_FIDO">
+                    <a href="#ProteinInferenceOptions_FIDO">
+                      <code><span>ProteinInferenceOptions_FIDO&#32;<span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-percolatorwrapper-parameters-proteininferenceoptions_fido.html">ProteinInferenceOptions_FIDO</a>&#32;seq</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="948">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>ProteinInferenceOptions_FIDO&#32;<span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-percolatorwrapper-parameters-proteininferenceoptions_fido.html">ProteinInferenceOptions_FIDO</a>&#32;seq</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        Item
+                      </b>
+                      :
+                      <code><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-percolatorwrapper-parameters-proteininferenceoptions_fido.html">ProteinInferenceOptions_FIDO</a>&#32;seq</span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  Item
+                </span>
+                :
+                <code><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-percolatorwrapper-parameters-proteininferenceoptions_fido.html">ProteinInferenceOptions_FIDO</a>&#32;seq</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '949', 949)" onmouseover="showTip(event, '949', 949)">
+                <p>
+                  <a id="ProteinInferenceOptions_Percolator">
+                    <a href="#ProteinInferenceOptions_Percolator">
+                      <code><span>ProteinInferenceOptions_Percolator&#32;<span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-percolatorwrapper-parameters-proteininferenceoptions_percolator.html">ProteinInferenceOptions_Percolator</a>&#32;seq</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="949">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>ProteinInferenceOptions_Percolator&#32;<span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-percolatorwrapper-parameters-proteininferenceoptions_percolator.html">ProteinInferenceOptions_Percolator</a>&#32;seq</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        Item
+                      </b>
+                      :
+                      <code><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-percolatorwrapper-parameters-proteininferenceoptions_percolator.html">ProteinInferenceOptions_Percolator</a>&#32;seq</span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  Item
+                </span>
+                :
+                <code><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-percolatorwrapper-parameters-proteininferenceoptions_percolator.html">ProteinInferenceOptions_Percolator</a>&#32;seq</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '950', 950)" onmouseover="showTip(event, '950', 950)">
+                <p>
+                  <a id="SVMFeatureOptions">
+                    <a href="#SVMFeatureOptions">
+                      <code><span>SVMFeatureOptions&#32;<span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-percolatorwrapper-parameters-svmfeatureoptions.html">SVMFeatureOptions</a>&#32;seq</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="950">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>SVMFeatureOptions&#32;<span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-percolatorwrapper-parameters-svmfeatureoptions.html">SVMFeatureOptions</a>&#32;seq</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        Item
+                      </b>
+                      :
+                      <code><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-percolatorwrapper-parameters-svmfeatureoptions.html">SVMFeatureOptions</a>&#32;seq</span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  Item
+                </span>
+                :
+                <code><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-percolatorwrapper-parameters-svmfeatureoptions.html">SVMFeatureOptions</a>&#32;seq</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '951', 951)" onmouseover="showTip(event, '951', 951)">
+                <p>
+                  <a id="SVMTrainingOptions">
+                    <a href="#SVMTrainingOptions">
+                      <code><span>SVMTrainingOptions&#32;<span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-percolatorwrapper-parameters-svmtrainingoptions.html">SVMTrainingOptions</a>&#32;seq</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="951">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>SVMTrainingOptions&#32;<span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-percolatorwrapper-parameters-svmtrainingoptions.html">SVMTrainingOptions</a>&#32;seq</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        Item
+                      </b>
+                      :
+                      <code><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-percolatorwrapper-parameters-svmtrainingoptions.html">SVMTrainingOptions</a>&#32;seq</span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  Item
+                </span>
+                :
+                <code><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-percolatorwrapper-parameters-svmtrainingoptions.html">SVMTrainingOptions</a>&#32;seq</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div>
+    <h3>
+      Instance members
+    </h3>
+    <table class="table outer-list fsdocs-member-list">
+      <thead>
+        <tr>
+          <td class="fsdocs-member-list-header">
+            Instance member
+          </td>
+          <td class="fsdocs-member-list-header">
+            Description
+          </td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '952', 952)" onmouseover="showTip(event, '952', 952)">
+                <p>
+                  <a id="IsFileInputOptions">
+                    <a href="#IsFileInputOptions">
+                      <code><span>this.IsFileInputOptions</span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="952">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>this.IsFileInputOptions</span></code>
+                  <br/>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code>bool</code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code>bool</code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '953', 953)" onmouseover="showTip(event, '953', 953)">
+                <p>
+                  <a id="IsFileOutputOptions">
+                    <a href="#IsFileOutputOptions">
+                      <code><span>this.IsFileOutputOptions</span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="953">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>this.IsFileOutputOptions</span></code>
+                  <br/>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code>bool</code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code>bool</code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '954', 954)" onmouseover="showTip(event, '954', 954)">
+                <p>
+                  <a id="IsGeneralOptions">
+                    <a href="#IsGeneralOptions">
+                      <code><span>this.IsGeneralOptions</span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="954">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>this.IsGeneralOptions</span></code>
+                  <br/>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code>bool</code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code>bool</code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '955', 955)" onmouseover="showTip(event, '955', 955)">
+                <p>
+                  <a id="IsProteinInferenceOptions_FIDO">
+                    <a href="#IsProteinInferenceOptions_FIDO">
+                      <code><span>this.IsProteinInferenceOptions_FIDO</span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="955">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>this.IsProteinInferenceOptions_FIDO</span></code>
+                  <br/>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code>bool</code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code>bool</code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '956', 956)" onmouseover="showTip(event, '956', 956)">
+                <p>
+                  <a id="IsProteinInferenceOptions_Percolator">
+                    <a href="#IsProteinInferenceOptions_Percolator">
+                      <code><span>this.IsProteinInferenceOptions_Percolator</span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="956">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>this.IsProteinInferenceOptions_Percolator</span></code>
+                  <br/>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code>bool</code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code>bool</code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '957', 957)" onmouseover="showTip(event, '957', 957)">
+                <p>
+                  <a id="IsSVMFeatureOptions">
+                    <a href="#IsSVMFeatureOptions">
+                      <code><span>this.IsSVMFeatureOptions</span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="957">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>this.IsSVMFeatureOptions</span></code>
+                  <br/>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code>bool</code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code>bool</code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '958', 958)" onmouseover="showTip(event, '958', 958)">
+                <p>
+                  <a id="IsSVMTrainingOptions">
+                    <a href="#IsSVMTrainingOptions">
+                      <code><span>this.IsSVMTrainingOptions</span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="958">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>this.IsSVMTrainingOptions</span></code>
+                  <br/>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code>bool</code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code>bool</code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div></div>
+</div>
+        
+    </div>
+</main>
+<aside id="fsdocs-page-menu">
+    <p id="on-this-page">On this page</p>
+    <div class="empty"></div>
+</aside>
+<dialog>
+    <input type="search" placeholder="Search docs" />
+    <div class="results">
+        <ul></ul>
+        <p class="empty">Type something to start searching.</p>
+    </div>
+</dialog>
+<script type="module" src="https://csbiology.github.io/BioFSharp.Mz/content/fsdocs-tips.js"></script>
+<script type="module" src="https://csbiology.github.io/BioFSharp.Mz/content/fsdocs-theme-toggle.js"></script>
+<script type="module" src="https://csbiology.github.io/BioFSharp.Mz/content/fsdocs-theme.js"></script>
+<script type="module" src="https://csbiology.github.io/BioFSharp.Mz/content/fsdocs-search.js"></script>
+
+</body>
+</html>

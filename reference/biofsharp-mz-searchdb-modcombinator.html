@@ -1,0 +1,1496 @@
+<!DOCTYPE html>
+<html lang="en" data-root="https://csbiology.github.io/BioFSharp.Mz/">
+<head>
+    <meta charset="UTF-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="David Zimmer, Caroline Ott, Heinrich Lukas Weil, Timo Muehlhaus" name="author">
+    <!-- Opengraph properties (https://ogp.me/) -->
+    <meta property="og:site_name" content="BioFSharp.Mz">
+    <meta property="og:title" content="ModCombinator (BioFSharp.Mz)" />
+    <meta property="og:url" content="https://csbiology.github.io/BioFSharp.Mz/{{fsdocs-source-basename}}.html">
+    <meta property="og:type" content="website" />
+    <!-- Twitter cards (https://developer.twitter.com/en/docs/twitter-for-websites/cards/overview/summary-card-with-large-image) -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="https://csbiology.github.io/BioFSharp.Mz/">
+    <meta name="twitter:title" content="ModCombinator (BioFSharp.Mz)">
+    
+    <title>ModCombinator (BioFSharp.Mz) | BioFSharp.Mz</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <link href="https://csbiology.github.io/BioFSharp.Mz/img/favicon.ico" rel="icon" sizes="32x32" type="image/png"/>
+    <script type="application/javascript" src="https://csbiology.github.io/BioFSharp.Mz/content/fsdocs-theme-set-dark.js"></script>
+    <link href="https://csbiology.github.io/BioFSharp.Mz/content/fsdocs-default.css" rel="stylesheet" type="text/css"/>
+    <link href="https://csbiology.github.io/BioFSharp.Mz/content/fsdocs-theme.css" rel="stylesheet" type="text/css"/>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js"></script>
+    
+</head>
+<body class="api-docs">
+<header>
+    <div class="start">
+        <div id="menu-toggle">
+            <iconify-icon class="icon closed" height="22" icon="eva:menu-fill" width="22"></iconify-icon>
+            <iconify-icon class="icon open" height="22" icon="mi:close" width="22"></iconify-icon>
+            <input type="checkbox" name="mobile-menu" />
+            <ul class="menu">
+                <li class="nav-header">Links</li>
+                <li class="nav-item"><a class="nav-link" href="https://github.com/CSBiology/BioFSharp.Mz/blob/developer/LICENSE">License</a>
+                </li>
+                <li class="nav-item"><a class="nav-link"
+                                        href="https://github.com/CSBiology/BioFSharp.Mz/blob/developer/RELEASE_NOTES.md">Release
+                    Notes</a></li>
+                <li class="nav-item"><a class="nav-link" href="https://github.com/CSBiology/BioFSharp.Mz/">Source
+                    Repository</a></li>
+                
+                <li class="nav-header">
+  API Reference
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://csbiology.github.io/BioFSharp.Mz/reference/index.html">
+    All Namespaces
+  </a>
+</li>
+            </ul>
+        </div>
+        <a href="https://csbiology.github.io/BioFSharp.Mz/">
+            <img alt="Header menu logo" src="https://csbiology.github.io/BioFSharp.Mz/img/logo.png">
+            <strong>BioFSharp.Mz</strong>
+        </a>
+    </div>
+    <div class="end">
+        <a href="https://github.com/CSBiology/BioFSharp.Mz/" target="_blank">
+            <iconify-icon icon="uil:github" width="26" height="26"></iconify-icon>
+        </a>
+        <iconify-icon id="search-btn" icon="carbon:search" class="search" width="24" height="24"></iconify-icon>
+        <fsdocs-theme-toggle></fsdocs-theme-toggle>
+    </div>
+</header>
+<aside id="fsdocs-main-menu">
+    <ul class="menu">
+        <li class="nav-header">Links</li>
+        <li class="nav-item"><a class="nav-link" href="https://github.com/CSBiology/BioFSharp.Mz/blob/developer/LICENSE">License</a>
+        </li>
+        <li class="nav-item"><a class="nav-link"
+                                href="https://github.com/CSBiology/BioFSharp.Mz/blob/developer/RELEASE_NOTES.md">Release
+            Notes</a></li>
+        <li class="nav-item"><a class="nav-link" href="https://github.com/CSBiology/BioFSharp.Mz/">Source
+            Repository</a></li>
+        
+        <li class="nav-header">
+  API Reference
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://csbiology.github.io/BioFSharp.Mz/reference/index.html">
+    All Namespaces
+  </a>
+</li>
+    </ul>
+</aside>
+<main>
+    <div id="content">
+        <div>
+  <h2>
+    ModCombinator Module
+  </h2>
+  <dl class="fsdocs-metadata">
+    <dt>
+      Namespace: 
+      <a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz.html">
+        BioFSharp.Mz
+      </a>
+    </dt>
+    <dt>
+      Assembly: BioFSharp.Mz.dll
+    </dt>
+    <dt>
+      Parent Module: 
+      <a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-searchdb.html">
+        SearchDB
+      </a>
+    </dt>
+  </dl>
+  <div class="fsdocs-xmldoc">
+    <div>
+      <p class="fsdocs-summary">
+        
+      </p>
+    </div>
+  </div>
+  <div>
+    <h3>
+      Types
+    </h3>
+    <table class="table outer-list fsdocs-entity-list">
+      <thead>
+        <tr>
+          <td>
+            Type
+          </td>
+          <td>
+            Description
+          </td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="fsdocs-entity-name">
+            <p>
+              <a name="AminoAcidWithFlag">
+                <a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-searchdb-modcombinator-aminoacidwithflag.html">
+                  AminoAcidWithFlag
+                </a>
+              </a>
+            </p>
+          </td>
+          <td class="fsdocs-entity-xmldoc">
+            <div>
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:BioFSharp.Mz.SearchDB.ModCombinator.AminoAcidWithFlag`')">
+                <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:BioFSharp.Mz.SearchDB.ModCombinator.AminoAcidWithFlag\'/>')">
+                <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+              </div>
+              <a href="https://github.com/CSBiology/BioFSharp.Mz/tree/master/src/BioFSharp.Mz/SearchDB.fs#L1077-1077" class="fsdocs-source-link" title="Source on GitHub">
+                <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+              </a>
+              <p class="fsdocs-summary">
+                 Flag indicates if potential modification is fixed
+              </p>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-entity-name">
+            <p>
+              <a name="ModLookUp">
+                <a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-searchdb-modcombinator-modlookup.html">
+                  ModLookUp
+                </a>
+              </a>
+            </p>
+          </td>
+          <td class="fsdocs-entity-xmldoc">
+            <div>
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:BioFSharp.Mz.SearchDB.ModCombinator.ModLookUp`')">
+                <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:BioFSharp.Mz.SearchDB.ModCombinator.ModLookUp\'/>')">
+                <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+              </div>
+              <a href="https://github.com/CSBiology/BioFSharp.Mz/tree/master/src/BioFSharp.Mz/SearchDB.fs#L1060-1060" class="fsdocs-source-link" title="Source on GitHub">
+                <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+              </a>
+              <p class="fsdocs-summary">
+                
+              </p>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-entity-name">
+            <p>
+              <a name="ModLookUpFunc">
+                <a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-searchdb-modcombinator-modlookupfunc.html">
+                  ModLookUpFunc
+                </a>
+              </a>
+            </p>
+          </td>
+          <td class="fsdocs-entity-xmldoc">
+            <div>
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:BioFSharp.Mz.SearchDB.ModCombinator.ModLookUpFunc`')">
+                <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:BioFSharp.Mz.SearchDB.ModCombinator.ModLookUpFunc\'/>')">
+                <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+              </div>
+              <a href="https://github.com/CSBiology/BioFSharp.Mz/tree/master/src/BioFSharp.Mz/SearchDB.fs#L1058-1058" class="fsdocs-source-link" title="Source on GitHub">
+                <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+              </a>
+              <p class="fsdocs-summary">
+                 Type abreviation
+              </p>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div>
+    <h3>
+      Functions and values
+    </h3>
+    <table class="table outer-list fsdocs-member-list">
+      <thead>
+        <tr>
+          <td class="fsdocs-member-list-header">
+            Function or value
+          </td>
+          <td class="fsdocs-member-list-header">
+            Description
+          </td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '545', 545)" onmouseover="showTip(event, '545', 545)">
+                <p>
+                  <a id="ToModStringBy">
+                    <a href="#ToModStringBy">
+                      <code><span>ToModStringBy&#32;<span>xModLookUp&#32;aa</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="545">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>ToModStringBy&#32;<span>xModLookUp&#32;aa</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        xModLookUp
+                      </b>
+                      :
+                      <code><span>string&#32;->&#32;<span>string&#32;option</span></span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        aa
+                      </b>
+                      :
+                      <code><a href="https://learn.microsoft.com/dotnet/api/biofsharp.aminoacids.aminoacid">AminoAcid</a></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code>string</code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:BioFSharp.Mz.SearchDB.ModCombinator.ToModStringBy`')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:BioFSharp.Mz.SearchDB.ModCombinator.ToModStringBy\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/CSBiology/BioFSharp.Mz/tree/master/src/BioFSharp.Mz/SearchDB.fs#L1453-1453" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                     Returns a ModString representation. 
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    xModLookUp
+                  </span>
+                  :
+                  <code><span>string&#32;->&#32;<span>string&#32;option</span></span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    aa
+                  </span>
+                  :
+                  <code><a href="https://learn.microsoft.com/dotnet/api/biofsharp.aminoacids.aminoacid">AminoAcid</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code>string</code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '546', 546)" onmouseover="showTip(event, '546', 546)">
+                <p>
+                  <a id="addProteinTerminalModifications">
+                    <a href="#addProteinTerminalModifications">
+                      <code><span>addProteinTerminalModifications&#32;<span>minPos&#32;maxPos&#32;modLookUp&#32;digPep</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="546">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>addProteinTerminalModifications&#32;<span>minPos&#32;maxPos&#32;modLookUp&#32;digPep</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        minPos
+                      </b>
+                      :
+                      <code>int</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        maxPos
+                      </b>
+                      :
+                      <code>int</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        modLookUp
+                      </b>
+                      :
+                      <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-searchdb-modcombinator-modlookup.html">ModLookUp</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        digPep
+                      </b>
+                      :
+                      <code><span><a href="https://learn.microsoft.com/dotnet/api/biofsharp.digestion.digestedpeptide-1">DigestedPeptide</a>&lt;'a&gt;</span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><span><a href="https://learn.microsoft.com/dotnet/api/biofsharp.digestion.digestedpeptide-1">DigestedPeptide</a>&lt;'a&gt;</span>&#32;list</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  minPos
+                </span>
+                :
+                <code>int</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  maxPos
+                </span>
+                :
+                <code>int</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  modLookUp
+                </span>
+                :
+                <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-searchdb-modcombinator-modlookup.html">ModLookUp</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  digPep
+                </span>
+                :
+                <code><span><a href="https://learn.microsoft.com/dotnet/api/biofsharp.digestion.digestedpeptide-1">DigestedPeptide</a>&lt;'a&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><span><span><a href="https://learn.microsoft.com/dotnet/api/biofsharp.digestion.digestedpeptide-1">DigestedPeptide</a>&lt;'a&gt;</span>&#32;list</span></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '547', 547)" onmouseover="showTip(event, '547', 547)">
+                <p>
+                  <a id="combine">
+                    <a href="#combine">
+                      <code><span>combine&#32;<span>modLookUp&#32;threshold&#32;massfunction&#32;seqfunction&#32;state&#32;aal</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="547">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>combine&#32;<span>modLookUp&#32;threshold&#32;massfunction&#32;seqfunction&#32;state&#32;aal</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        modLookUp
+                      </b>
+                      :
+                      <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-searchdb-modcombinator-modlookup.html">ModLookUp</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        threshold
+                      </b>
+                      :
+                      <code>int</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        massfunction
+                      </b>
+                      :
+                      <code><span><a href="https://learn.microsoft.com/dotnet/api/biofsharp.ibioitem">IBioItem</a>&#32;->&#32;float</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        seqfunction
+                      </b>
+                      :
+                      <code><span>string&#32;->&#32;<a href="https://learn.microsoft.com/dotnet/api/biofsharp.aminoacids.aminoacid">AminoAcid</a>&#32;->&#32;string</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        state
+                      </b>
+                      :
+                      <code>'a</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        aal
+                      </b>
+                      :
+                      <code><span><a href="https://learn.microsoft.com/dotnet/api/biofsharp.aminoacids.aminoacid">AminoAcid</a>&#32;list</span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-searchdb-peptidewithfeature-2.html">PeptideWithFeature</a>&lt;<span>string,&#32;float</span>&gt;</span>&#32;list</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:BioFSharp.Mz.SearchDB.ModCombinator.combine``1```')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:BioFSharp.Mz.SearchDB.ModCombinator.combine``1\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/CSBiology/BioFSharp.Mz/tree/master/src/BioFSharp.Mz/SearchDB.fs#L1351-1351" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                     Returns a list of all possible modified petide sequences and its masses according to the given modification-lookUp.
+ It uses the given bioitem -> mass function and a function to aggregate the sequence.
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    modLookUp
+                  </span>
+                  :
+                  <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-searchdb-modcombinator-modlookup.html">ModLookUp</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    threshold
+                  </span>
+                  :
+                  <code>int</code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    massfunction
+                  </span>
+                  :
+                  <code><span><a href="https://learn.microsoft.com/dotnet/api/biofsharp.ibioitem">IBioItem</a>&#32;->&#32;float</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    seqfunction
+                  </span>
+                  :
+                  <code><span>string&#32;->&#32;<a href="https://learn.microsoft.com/dotnet/api/biofsharp.aminoacids.aminoacid">AminoAcid</a>&#32;->&#32;string</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    state
+                  </span>
+                  :
+                  <code>'a</code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    aal
+                  </span>
+                  :
+                  <code><span><a href="https://learn.microsoft.com/dotnet/api/biofsharp.aminoacids.aminoacid">AminoAcid</a>&#32;list</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-searchdb-peptidewithfeature-2.html">PeptideWithFeature</a>&lt;<span>string,&#32;float</span>&gt;</span>&#32;list</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '548', 548)" onmouseover="showTip(event, '548', 548)">
+                <p>
+                  <a id="combineToModString">
+                    <a href="#combineToModString">
+                      <code><span>combineToModString&#32;<span>modLookUp&#32;threshold&#32;massfunction&#32;aal</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="548">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>combineToModString&#32;<span>modLookUp&#32;threshold&#32;massfunction&#32;aal</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        modLookUp
+                      </b>
+                      :
+                      <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-searchdb-modcombinator-modlookup.html">ModLookUp</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        threshold
+                      </b>
+                      :
+                      <code>int</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        massfunction
+                      </b>
+                      :
+                      <code><span><a href="https://learn.microsoft.com/dotnet/api/biofsharp.ibioitem">IBioItem</a>&#32;->&#32;float</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        aal
+                      </b>
+                      :
+                      <code><span><a href="https://learn.microsoft.com/dotnet/api/biofsharp.aminoacids.aminoacid">AminoAcid</a>&#32;list</span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-searchdb-peptidewithfeature-2.html">PeptideWithFeature</a>&lt;<span>string,&#32;float</span>&gt;</span>&#32;list</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:BioFSharp.Mz.SearchDB.ModCombinator.combineToModString`')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:BioFSharp.Mz.SearchDB.ModCombinator.combineToModString\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/CSBiology/BioFSharp.Mz/tree/master/src/BioFSharp.Mz/SearchDB.fs#L1468-1468" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                     Returns a list of all possible modified petide sequences and its masses according to the given modification-lookUp.
+ The peptide sequence representation is ModString.
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    modLookUp
+                  </span>
+                  :
+                  <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-searchdb-modcombinator-modlookup.html">ModLookUp</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    threshold
+                  </span>
+                  :
+                  <code>int</code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    massfunction
+                  </span>
+                  :
+                  <code><span><a href="https://learn.microsoft.com/dotnet/api/biofsharp.ibioitem">IBioItem</a>&#32;->&#32;float</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    aal
+                  </span>
+                  :
+                  <code><span><a href="https://learn.microsoft.com/dotnet/api/biofsharp.aminoacids.aminoacid">AminoAcid</a>&#32;list</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-searchdb-peptidewithfeature-2.html">PeptideWithFeature</a>&lt;<span>string,&#32;float</span>&gt;</span>&#32;list</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '549', 549)" onmouseover="showTip(event, '549', 549)">
+                <p>
+                  <a id="convertSearchModification">
+                    <a href="#convertSearchModification">
+                      <code><span>convertSearchModification&#32;<span>aminoAcids&#32;searchModification</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="549">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>convertSearchModification&#32;<span>aminoAcids&#32;searchModification</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        aminoAcids
+                      </b>
+                      :
+                      <code><span><a href="https://learn.microsoft.com/dotnet/api/biofsharp.aminoacids.aminoacid">AminoAcid</a>&#32;list</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        searchModification
+                      </b>
+                      :
+                      <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-searchdb-searchmodification.html">SearchModification</a></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><span>(<span><a href="https://learn.microsoft.com/dotnet/api/biofsharp.aminoacids.aminoacid">AminoAcid</a>&#32;*&#32;<a href="https://learn.microsoft.com/dotnet/api/biofsharp.modificationinfo.modification">Modification</a></span>)</span>&#32;list</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:BioFSharp.Mz.SearchDB.ModCombinator.convertSearchModification`')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:BioFSharp.Mz.SearchDB.ModCombinator.convertSearchModification\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/CSBiology/BioFSharp.Mz/tree/master/src/BioFSharp.Mz/SearchDB.fs#L1093-1093" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                     Returns a list of all possible modified AminoAcids given the particular Searchmodification
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    aminoAcids
+                  </span>
+                  :
+                  <code><span><a href="https://learn.microsoft.com/dotnet/api/biofsharp.aminoacids.aminoacid">AminoAcid</a>&#32;list</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    searchModification
+                  </span>
+                  :
+                  <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-searchdb-searchmodification.html">SearchModification</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><span>(<span><a href="https://learn.microsoft.com/dotnet/api/biofsharp.aminoacids.aminoacid">AminoAcid</a>&#32;*&#32;<a href="https://learn.microsoft.com/dotnet/api/biofsharp.modificationinfo.modification">Modification</a></span>)</span>&#32;list</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '550', 550)" onmouseover="showTip(event, '550', 550)">
+                <p>
+                  <a id="getModSequencesOf">
+                    <a href="#getModSequencesOf">
+                      <code><span>getModSequencesOf&#32;<span>peptideId&#32;modLookUp&#32;threshold&#32;massfunction&#32;digPeps</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="550">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>getModSequencesOf&#32;<span>peptideId&#32;modLookUp&#32;threshold&#32;massfunction&#32;digPeps</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        peptideId
+                      </b>
+                      :
+                      <code><span>int&#32;ref</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        modLookUp
+                      </b>
+                      :
+                      <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-searchdb-modcombinator-modlookup.html">ModLookUp</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        threshold
+                      </b>
+                      :
+                      <code>int</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        massfunction
+                      </b>
+                      :
+                      <code><span><a href="https://learn.microsoft.com/dotnet/api/biofsharp.ibioitem">IBioItem</a>&#32;->&#32;float</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        digPeps
+                      </b>
+                      :
+                      <code><span><span><a href="https://learn.microsoft.com/dotnet/api/biofsharp.digestion.digestedpeptide-1">DigestedPeptide</a>&lt;'a&gt;</span>[]</span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-searchdb-peptidecontainer.html">PeptideContainer</a>[]</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  peptideId
+                </span>
+                :
+                <code><span>int&#32;ref</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  modLookUp
+                </span>
+                :
+                <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-searchdb-modcombinator-modlookup.html">ModLookUp</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  threshold
+                </span>
+                :
+                <code>int</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  massfunction
+                </span>
+                :
+                <code><span><a href="https://learn.microsoft.com/dotnet/api/biofsharp.ibioitem">IBioItem</a>&#32;->&#32;float</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  digPeps
+                </span>
+                :
+                <code><span><span><a href="https://learn.microsoft.com/dotnet/api/biofsharp.digestion.digestedpeptide-1">DigestedPeptide</a>&lt;'a&gt;</span>[]</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-searchdb-peptidecontainer.html">PeptideContainer</a>[]</span></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '551', 551)" onmouseover="showTip(event, '551', 551)">
+                <p>
+                  <a id="isVarModified">
+                    <a href="#isVarModified">
+                      <code><span>isVarModified&#32;<span>a</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="551">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>isVarModified&#32;<span>a</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        a
+                      </b>
+                      :
+                      <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-searchdb-modcombinator-aminoacidwithflag.html">AminoAcidWithFlag</a></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code>bool</code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  a
+                </span>
+                :
+                <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-searchdb-modcombinator-aminoacidwithflag.html">AminoAcidWithFlag</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code>bool</code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '552', 552)" onmouseover="showTip(event, '552', 552)">
+                <p>
+                  <a id="mapModLocation">
+                    <a href="#mapModLocation">
+                      <code><span>mapModLocation&#32;<span>loc</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="552">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>mapModLocation&#32;<span>loc</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        loc
+                      </b>
+                      :
+                      <code><a href="https://learn.microsoft.com/dotnet/api/biofsharp.modificationinfo.modlocation">ModLocation</a></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><a href="https://learn.microsoft.com/dotnet/api/biofsharp.modificationinfo.modlocation">ModLocation</a></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  loc
+                </span>
+                :
+                <code><a href="https://learn.microsoft.com/dotnet/api/biofsharp.modificationinfo.modlocation">ModLocation</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><a href="https://learn.microsoft.com/dotnet/api/biofsharp.modificationinfo.modlocation">ModLocation</a></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '553', 553)" onmouseover="showTip(event, '553', 553)">
+                <p>
+                  <a id="modLookUpOf">
+                    <a href="#modLookUpOf">
+                      <code><span>modLookUpOf&#32;<span>dbParams</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="553">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>modLookUpOf&#32;<span>dbParams</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        dbParams
+                      </b>
+                      :
+                      <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-searchdb-searchdbparams.html">SearchDbParams</a></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-searchdb-modcombinator-modlookup.html">ModLookUp</a></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:BioFSharp.Mz.SearchDB.ModCombinator.modLookUpOf`')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:BioFSharp.Mz.SearchDB.ModCombinator.modLookUpOf\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/CSBiology/BioFSharp.Mz/tree/master/src/BioFSharp.Mz/SearchDB.fs#L1114-1114" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                     Returns the ModLookup according to given SearchDbParams
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    dbParams
+                  </span>
+                  :
+                  <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-searchdb-searchdbparams.html">SearchDbParams</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-searchdb-modcombinator-modlookup.html">ModLookUp</a></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '554', 554)" onmouseover="showTip(event, '554', 554)">
+                <p>
+                  <a id="setFixModByLookUp">
+                    <a href="#setFixModByLookUp">
+                      <code><span>setFixModByLookUp&#32;<span>modLookUpFunc&#32;aa</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="554">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>setFixModByLookUp&#32;<span>modLookUpFunc&#32;aa</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        modLookUpFunc
+                      </b>
+                      :
+                      <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-searchdb-modcombinator-modlookupfunc.html">ModLookUpFunc</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        aa
+                      </b>
+                      :
+                      <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-searchdb-modcombinator-aminoacidwithflag.html">AminoAcidWithFlag</a></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-searchdb-modcombinator-aminoacidwithflag.html">AminoAcidWithFlag</a></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:BioFSharp.Mz.SearchDB.ModCombinator.setFixModByLookUp`')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:BioFSharp.Mz.SearchDB.ModCombinator.setFixModByLookUp\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/CSBiology/BioFSharp.Mz/tree/master/src/BioFSharp.Mz/SearchDB.fs#L1189-1189" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                    Returns modified or unmodified AminoAcid depending on the matching expression in a AminoAcidWithFlag struct
+The boolean value "false" is used to state that the Modification is fixed
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    modLookUpFunc
+                  </span>
+                  :
+                  <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-searchdb-modcombinator-modlookupfunc.html">ModLookUpFunc</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    aa
+                  </span>
+                  :
+                  <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-searchdb-modcombinator-aminoacidwithflag.html">AminoAcidWithFlag</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-searchdb-modcombinator-aminoacidwithflag.html">AminoAcidWithFlag</a></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '555', 555)" onmouseover="showTip(event, '555', 555)">
+                <p>
+                  <a id="setFixedModifiedFlagOf">
+                    <a href="#setFixedModifiedFlagOf">
+                      <code><span>setFixedModifiedFlagOf&#32;<span>a</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="555">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>setFixedModifiedFlagOf&#32;<span>a</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        a
+                      </b>
+                      :
+                      <code><a href="https://learn.microsoft.com/dotnet/api/biofsharp.aminoacids.aminoacid">AminoAcid</a></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-searchdb-modcombinator-aminoacidwithflag.html">AminoAcidWithFlag</a></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  a
+                </span>
+                :
+                <code><a href="https://learn.microsoft.com/dotnet/api/biofsharp.aminoacids.aminoacid">AminoAcid</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-searchdb-modcombinator-aminoacidwithflag.html">AminoAcidWithFlag</a></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '556', 556)" onmouseover="showTip(event, '556', 556)">
+                <p>
+                  <a id="setVarModByLookUp">
+                    <a href="#setVarModByLookUp">
+                      <code><span>setVarModByLookUp&#32;<span>modLookUpFunc&#32;aa</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="556">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>setVarModByLookUp&#32;<span>modLookUpFunc&#32;aa</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        modLookUpFunc
+                      </b>
+                      :
+                      <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-searchdb-modcombinator-modlookupfunc.html">ModLookUpFunc</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        aa
+                      </b>
+                      :
+                      <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-searchdb-modcombinator-aminoacidwithflag.html">AminoAcidWithFlag</a></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-searchdb-modcombinator-aminoacidwithflag.html">AminoAcidWithFlag</a>&#32;list</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:BioFSharp.Mz.SearchDB.ModCombinator.setVarModByLookUp`')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:BioFSharp.Mz.SearchDB.ModCombinator.setVarModByLookUp\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/CSBiology/BioFSharp.Mz/tree/master/src/BioFSharp.Mz/SearchDB.fs#L1207-1207" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                    Returns modified or unmodified AminoAcid depending on the matching expression in a AminoAcidWithFlag struct
+The boolean value "false" is used to state that the Modification is fixed
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    modLookUpFunc
+                  </span>
+                  :
+                  <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-searchdb-modcombinator-modlookupfunc.html">ModLookUpFunc</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    aa
+                  </span>
+                  :
+                  <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-searchdb-modcombinator-aminoacidwithflag.html">AminoAcidWithFlag</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-searchdb-modcombinator-aminoacidwithflag.html">AminoAcidWithFlag</a>&#32;list</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '557', 557)" onmouseover="showTip(event, '557', 557)">
+                <p>
+                  <a id="setVarModifiedFlagOf">
+                    <a href="#setVarModifiedFlagOf">
+                      <code><span>setVarModifiedFlagOf&#32;<span>a</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="557">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>setVarModifiedFlagOf&#32;<span>a</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        a
+                      </b>
+                      :
+                      <code><a href="https://learn.microsoft.com/dotnet/api/biofsharp.aminoacids.aminoacid">AminoAcid</a></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-searchdb-modcombinator-aminoacidwithflag.html">AminoAcidWithFlag</a></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  a
+                </span>
+                :
+                <code><a href="https://learn.microsoft.com/dotnet/api/biofsharp.aminoacids.aminoacid">AminoAcid</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-searchdb-modcombinator-aminoacidwithflag.html">AminoAcidWithFlag</a></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+</div>
+        
+    </div>
+</main>
+<aside id="fsdocs-page-menu">
+    <p id="on-this-page">On this page</p>
+    <div class="empty"></div>
+</aside>
+<dialog>
+    <input type="search" placeholder="Search docs" />
+    <div class="results">
+        <ul></ul>
+        <p class="empty">Type something to start searching.</p>
+    </div>
+</dialog>
+<script type="module" src="https://csbiology.github.io/BioFSharp.Mz/content/fsdocs-tips.js"></script>
+<script type="module" src="https://csbiology.github.io/BioFSharp.Mz/content/fsdocs-theme-toggle.js"></script>
+<script type="module" src="https://csbiology.github.io/BioFSharp.Mz/content/fsdocs-theme.js"></script>
+<script type="module" src="https://csbiology.github.io/BioFSharp.Mz/content/fsdocs-search.js"></script>
+
+</body>
+</html>

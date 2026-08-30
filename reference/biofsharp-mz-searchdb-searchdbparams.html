@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="en" data-root="https://csbiology.github.io/BioFSharp.Mz/">
+<head>
+    <meta charset="UTF-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="David Zimmer, Caroline Ott, Heinrich Lukas Weil, Timo Muehlhaus" name="author">
+    <!-- Opengraph properties (https://ogp.me/) -->
+    <meta property="og:site_name" content="BioFSharp.Mz">
+    <meta property="og:title" content="SearchDbParams (BioFSharp.Mz)" />
+    <meta property="og:url" content="https://csbiology.github.io/BioFSharp.Mz/{{fsdocs-source-basename}}.html">
+    <meta property="og:type" content="website" />
+    <!-- Twitter cards (https://developer.twitter.com/en/docs/twitter-for-websites/cards/overview/summary-card-with-large-image) -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="https://csbiology.github.io/BioFSharp.Mz/">
+    <meta name="twitter:title" content="SearchDbParams (BioFSharp.Mz)">
+    
+    <title>SearchDbParams (BioFSharp.Mz) | BioFSharp.Mz</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <link href="https://csbiology.github.io/BioFSharp.Mz/img/favicon.ico" rel="icon" sizes="32x32" type="image/png"/>
+    <script type="application/javascript" src="https://csbiology.github.io/BioFSharp.Mz/content/fsdocs-theme-set-dark.js"></script>
+    <link href="https://csbiology.github.io/BioFSharp.Mz/content/fsdocs-default.css" rel="stylesheet" type="text/css"/>
+    <link href="https://csbiology.github.io/BioFSharp.Mz/content/fsdocs-theme.css" rel="stylesheet" type="text/css"/>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js"></script>
+    
+</head>
+<body class="api-docs">
+<header>
+    <div class="start">
+        <div id="menu-toggle">
+            <iconify-icon class="icon closed" height="22" icon="eva:menu-fill" width="22"></iconify-icon>
+            <iconify-icon class="icon open" height="22" icon="mi:close" width="22"></iconify-icon>
+            <input type="checkbox" name="mobile-menu" />
+            <ul class="menu">
+                <li class="nav-header">Links</li>
+                <li class="nav-item"><a class="nav-link" href="https://github.com/CSBiology/BioFSharp.Mz/blob/developer/LICENSE">License</a>
+                </li>
+                <li class="nav-item"><a class="nav-link"
+                                        href="https://github.com/CSBiology/BioFSharp.Mz/blob/developer/RELEASE_NOTES.md">Release
+                    Notes</a></li>
+                <li class="nav-item"><a class="nav-link" href="https://github.com/CSBiology/BioFSharp.Mz/">Source
+                    Repository</a></li>
+                
+                <li class="nav-header">
+  API Reference
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://csbiology.github.io/BioFSharp.Mz/reference/index.html">
+    All Namespaces
+  </a>
+</li>
+            </ul>
+        </div>
+        <a href="https://csbiology.github.io/BioFSharp.Mz/">
+            <img alt="Header menu logo" src="https://csbiology.github.io/BioFSharp.Mz/img/logo.png">
+            <strong>BioFSharp.Mz</strong>
+        </a>
+    </div>
+    <div class="end">
+        <a href="https://github.com/CSBiology/BioFSharp.Mz/" target="_blank">
+            <iconify-icon icon="uil:github" width="26" height="26"></iconify-icon>
+        </a>
+        <iconify-icon id="search-btn" icon="carbon:search" class="search" width="24" height="24"></iconify-icon>
+        <fsdocs-theme-toggle></fsdocs-theme-toggle>
+    </div>
+</header>
+<aside id="fsdocs-main-menu">
+    <ul class="menu">
+        <li class="nav-header">Links</li>
+        <li class="nav-item"><a class="nav-link" href="https://github.com/CSBiology/BioFSharp.Mz/blob/developer/LICENSE">License</a>
+        </li>
+        <li class="nav-item"><a class="nav-link"
+                                href="https://github.com/CSBiology/BioFSharp.Mz/blob/developer/RELEASE_NOTES.md">Release
+            Notes</a></li>
+        <li class="nav-item"><a class="nav-link" href="https://github.com/CSBiology/BioFSharp.Mz/">Source
+            Repository</a></li>
+        
+        <li class="nav-header">
+  API Reference
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://csbiology.github.io/BioFSharp.Mz/reference/index.html">
+    All Namespaces
+  </a>
+</li>
+    </ul>
+</aside>
+<main>
+    <div id="content">
+        <div>
+  <h2>
+    SearchDbParams Type
+  </h2>
+  <dl class="fsdocs-metadata">
+    <dt>
+      Namespace: 
+      <a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz.html">
+        BioFSharp.Mz
+      </a>
+    </dt>
+    <dt>
+      Assembly: BioFSharp.Mz.dll
+    </dt>
+    <dt>
+      Parent Module: 
+      <a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-searchdb.html">
+        SearchDB
+      </a>
+    </dt>
+    <dt>
+      Base Type: 
+      <code>obj</code>
+    </dt>
+  </dl>
+  <div class="fsdocs-xmldoc">
+    <div>
+      <p class="fsdocs-summary">
+        
+      </p>
+    </div>
+  </div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div>
+    <h3>
+      Record fields
+    </h3>
+    <table class="table outer-list fsdocs-member-list">
+      <thead>
+        <tr>
+          <td class="fsdocs-member-list-header">
+            Record Field
+          </td>
+          <td class="fsdocs-member-list-header">
+            Description
+          </td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '1103', 1103)" onmouseover="showTip(event, '1103', 1103)">
+                <p>
+                  <a id="DbFolder">
+                    <a href="#DbFolder">
+                      <code>DbFolder</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="1103">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>DbFolder</code>
+                  <br/>
+                  <br/>
+                  <span>
+                    Field type: 
+                    <code>string</code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Field type: 
+                </span>
+                <code>string</code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '1104', 1104)" onmouseover="showTip(event, '1104', 1104)">
+                <p>
+                  <a id="FastaHeaderToName">
+                    <a href="#FastaHeaderToName">
+                      <code>FastaHeaderToName</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="1104">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>FastaHeaderToName</code>
+                  <br/>
+                  <br/>
+                  <span>
+                    Field type: 
+                    <code><span>string&#32;->&#32;string</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Field type: 
+                </span>
+                <code><span>string&#32;->&#32;string</span></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '1105', 1105)" onmouseover="showTip(event, '1105', 1105)">
+                <p>
+                  <a id="FastaPath">
+                    <a href="#FastaPath">
+                      <code>FastaPath</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="1105">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>FastaPath</code>
+                  <br/>
+                  <br/>
+                  <span>
+                    Field type: 
+                    <code>string</code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Field type: 
+                </span>
+                <code>string</code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '1106', 1106)" onmouseover="showTip(event, '1106', 1106)">
+                <p>
+                  <a id="FixedMods">
+                    <a href="#FixedMods">
+                      <code>FixedMods</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="1106">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>FixedMods</code>
+                  <br/>
+                  <br/>
+                  <span>
+                    Field type: 
+                    <code><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-searchdb-searchmodification.html">SearchModification</a>&#32;list</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Field type: 
+                </span>
+                <code><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-searchdb-searchmodification.html">SearchModification</a>&#32;list</span></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '1107', 1107)" onmouseover="showTip(event, '1107', 1107)">
+                <p>
+                  <a id="IsotopicMod">
+                    <a href="#IsotopicMod">
+                      <code>IsotopicMod</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="1107">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>IsotopicMod</code>
+                  <br/>
+                  <br/>
+                  <span>
+                    Field type: 
+                    <code><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-searchdb-searchinfoisotopic.html">SearchInfoIsotopic</a>&#32;list</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Field type: 
+                </span>
+                <code><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-searchdb-searchinfoisotopic.html">SearchInfoIsotopic</a>&#32;list</span></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '1108', 1108)" onmouseover="showTip(event, '1108', 1108)">
+                <p>
+                  <a id="MassFunction">
+                    <a href="#MassFunction">
+                      <code>MassFunction</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="1108">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>MassFunction</code>
+                  <br/>
+                  <br/>
+                  <span>
+                    Field type: 
+                    <code><span><a href="https://learn.microsoft.com/dotnet/api/biofsharp.ibioitem">IBioItem</a>&#32;->&#32;float</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Field type: 
+                </span>
+                <code><span><a href="https://learn.microsoft.com/dotnet/api/biofsharp.ibioitem">IBioItem</a>&#32;->&#32;float</span></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '1109', 1109)" onmouseover="showTip(event, '1109', 1109)">
+                <p>
+                  <a id="MassMode">
+                    <a href="#MassMode">
+                      <code>MassMode</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="1109">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>MassMode</code>
+                  <br/>
+                  <br/>
+                  <span>
+                    Field type: 
+                    <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-searchdb-massmode.html">MassMode</a></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Field type: 
+                </span>
+                <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-searchdb-massmode.html">MassMode</a></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '1110', 1110)" onmouseover="showTip(event, '1110', 1110)">
+                <p>
+                  <a id="MaxMass">
+                    <a href="#MaxMass">
+                      <code>MaxMass</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="1110">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>MaxMass</code>
+                  <br/>
+                  <br/>
+                  <span>
+                    Field type: 
+                    <code>float</code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Field type: 
+                </span>
+                <code>float</code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '1111', 1111)" onmouseover="showTip(event, '1111', 1111)">
+                <p>
+                  <a id="MaxMissedCleavages">
+                    <a href="#MaxMissedCleavages">
+                      <code>MaxMissedCleavages</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="1111">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>MaxMissedCleavages</code>
+                  <br/>
+                  <br/>
+                  <span>
+                    Field type: 
+                    <code>int</code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Field type: 
+                </span>
+                <code>int</code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '1112', 1112)" onmouseover="showTip(event, '1112', 1112)">
+                <p>
+                  <a id="MaxPepLength">
+                    <a href="#MaxPepLength">
+                      <code>MaxPepLength</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="1112">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>MaxPepLength</code>
+                  <br/>
+                  <br/>
+                  <span>
+                    Field type: 
+                    <code>int</code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Field type: 
+                </span>
+                <code>int</code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '1113', 1113)" onmouseover="showTip(event, '1113', 1113)">
+                <p>
+                  <a id="MinMissedCleavages">
+                    <a href="#MinMissedCleavages">
+                      <code>MinMissedCleavages</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="1113">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>MinMissedCleavages</code>
+                  <br/>
+                  <br/>
+                  <span>
+                    Field type: 
+                    <code>int</code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Field type: 
+                </span>
+                <code>int</code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '1114', 1114)" onmouseover="showTip(event, '1114', 1114)">
+                <p>
+                  <a id="MinPepLength">
+                    <a href="#MinPepLength">
+                      <code>MinPepLength</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="1114">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>MinPepLength</code>
+                  <br/>
+                  <br/>
+                  <span>
+                    Field type: 
+                    <code>int</code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Field type: 
+                </span>
+                <code>int</code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '1115', 1115)" onmouseover="showTip(event, '1115', 1115)">
+                <p>
+                  <a id="Name">
+                    <a href="#Name">
+                      <code>Name</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="1115">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>Name</code>
+                  <br/>
+                  <br/>
+                  <span>
+                    Field type: 
+                    <code>string</code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Field type: 
+                </span>
+                <code>string</code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '1116', 1116)" onmouseover="showTip(event, '1116', 1116)">
+                <p>
+                  <a id="Protease">
+                    <a href="#Protease">
+                      <code>Protease</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="1116">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>Protease</code>
+                  <br/>
+                  <br/>
+                  <span>
+                    Field type: 
+                    <code><a href="https://learn.microsoft.com/dotnet/api/biofsharp.digestion.protease">Protease</a></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Field type: 
+                </span>
+                <code><a href="https://learn.microsoft.com/dotnet/api/biofsharp.digestion.protease">Protease</a></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '1117', 1117)" onmouseover="showTip(event, '1117', 1117)">
+                <p>
+                  <a id="VarModThreshold">
+                    <a href="#VarModThreshold">
+                      <code>VarModThreshold</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="1117">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>VarModThreshold</code>
+                  <br/>
+                  <br/>
+                  <span>
+                    Field type: 
+                    <code>int</code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Field type: 
+                </span>
+                <code>int</code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '1118', 1118)" onmouseover="showTip(event, '1118', 1118)">
+                <p>
+                  <a id="VariableMods">
+                    <a href="#VariableMods">
+                      <code>VariableMods</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="1118">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>VariableMods</code>
+                  <br/>
+                  <br/>
+                  <span>
+                    Field type: 
+                    <code><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-searchdb-searchmodification.html">SearchModification</a>&#32;list</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Field type: 
+                </span>
+                <code><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-searchdb-searchmodification.html">SearchModification</a>&#32;list</span></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+</div>
+        
+    </div>
+</main>
+<aside id="fsdocs-page-menu">
+    <p id="on-this-page">On this page</p>
+    <div class="empty"></div>
+</aside>
+<dialog>
+    <input type="search" placeholder="Search docs" />
+    <div class="results">
+        <ul></ul>
+        <p class="empty">Type something to start searching.</p>
+    </div>
+</dialog>
+<script type="module" src="https://csbiology.github.io/BioFSharp.Mz/content/fsdocs-tips.js"></script>
+<script type="module" src="https://csbiology.github.io/BioFSharp.Mz/content/fsdocs-theme-toggle.js"></script>
+<script type="module" src="https://csbiology.github.io/BioFSharp.Mz/content/fsdocs-theme.js"></script>
+<script type="module" src="https://csbiology.github.io/BioFSharp.Mz/content/fsdocs-search.js"></script>
+
+</body>
+</html>

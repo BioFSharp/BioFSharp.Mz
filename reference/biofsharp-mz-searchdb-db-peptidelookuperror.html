@@ -1,0 +1,1487 @@
+<!DOCTYPE html>
+<html lang="en" data-root="https://csbiology.github.io/BioFSharp.Mz/">
+<head>
+    <meta charset="UTF-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="David Zimmer, Caroline Ott, Heinrich Lukas Weil, Timo Muehlhaus" name="author">
+    <!-- Opengraph properties (https://ogp.me/) -->
+    <meta property="og:site_name" content="BioFSharp.Mz">
+    <meta property="og:title" content="PeptideLookUpError (BioFSharp.Mz)" />
+    <meta property="og:url" content="https://csbiology.github.io/BioFSharp.Mz/{{fsdocs-source-basename}}.html">
+    <meta property="og:type" content="website" />
+    <!-- Twitter cards (https://developer.twitter.com/en/docs/twitter-for-websites/cards/overview/summary-card-with-large-image) -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="https://csbiology.github.io/BioFSharp.Mz/">
+    <meta name="twitter:title" content="PeptideLookUpError (BioFSharp.Mz)">
+    
+    <title>PeptideLookUpError (BioFSharp.Mz) | BioFSharp.Mz</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <link href="https://csbiology.github.io/BioFSharp.Mz/img/favicon.ico" rel="icon" sizes="32x32" type="image/png"/>
+    <script type="application/javascript" src="https://csbiology.github.io/BioFSharp.Mz/content/fsdocs-theme-set-dark.js"></script>
+    <link href="https://csbiology.github.io/BioFSharp.Mz/content/fsdocs-default.css" rel="stylesheet" type="text/css"/>
+    <link href="https://csbiology.github.io/BioFSharp.Mz/content/fsdocs-theme.css" rel="stylesheet" type="text/css"/>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js"></script>
+    
+</head>
+<body class="api-docs">
+<header>
+    <div class="start">
+        <div id="menu-toggle">
+            <iconify-icon class="icon closed" height="22" icon="eva:menu-fill" width="22"></iconify-icon>
+            <iconify-icon class="icon open" height="22" icon="mi:close" width="22"></iconify-icon>
+            <input type="checkbox" name="mobile-menu" />
+            <ul class="menu">
+                <li class="nav-header">Links</li>
+                <li class="nav-item"><a class="nav-link" href="https://github.com/CSBiology/BioFSharp.Mz/blob/developer/LICENSE">License</a>
+                </li>
+                <li class="nav-item"><a class="nav-link"
+                                        href="https://github.com/CSBiology/BioFSharp.Mz/blob/developer/RELEASE_NOTES.md">Release
+                    Notes</a></li>
+                <li class="nav-item"><a class="nav-link" href="https://github.com/CSBiology/BioFSharp.Mz/">Source
+                    Repository</a></li>
+                
+                <li class="nav-header">
+  API Reference
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://csbiology.github.io/BioFSharp.Mz/reference/index.html">
+    All Namespaces
+  </a>
+</li>
+            </ul>
+        </div>
+        <a href="https://csbiology.github.io/BioFSharp.Mz/">
+            <img alt="Header menu logo" src="https://csbiology.github.io/BioFSharp.Mz/img/logo.png">
+            <strong>BioFSharp.Mz</strong>
+        </a>
+    </div>
+    <div class="end">
+        <a href="https://github.com/CSBiology/BioFSharp.Mz/" target="_blank">
+            <iconify-icon icon="uil:github" width="26" height="26"></iconify-icon>
+        </a>
+        <iconify-icon id="search-btn" icon="carbon:search" class="search" width="24" height="24"></iconify-icon>
+        <fsdocs-theme-toggle></fsdocs-theme-toggle>
+    </div>
+</header>
+<aside id="fsdocs-main-menu">
+    <ul class="menu">
+        <li class="nav-header">Links</li>
+        <li class="nav-item"><a class="nav-link" href="https://github.com/CSBiology/BioFSharp.Mz/blob/developer/LICENSE">License</a>
+        </li>
+        <li class="nav-item"><a class="nav-link"
+                                href="https://github.com/CSBiology/BioFSharp.Mz/blob/developer/RELEASE_NOTES.md">Release
+            Notes</a></li>
+        <li class="nav-item"><a class="nav-link" href="https://github.com/CSBiology/BioFSharp.Mz/">Source
+            Repository</a></li>
+        
+        <li class="nav-header">
+  API Reference
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://csbiology.github.io/BioFSharp.Mz/reference/index.html">
+    All Namespaces
+  </a>
+</li>
+    </ul>
+</aside>
+<main>
+    <div id="content">
+        <div>
+  <h2>
+    PeptideLookUpError Type
+  </h2>
+  <dl class="fsdocs-metadata">
+    <dt>
+      Namespace: 
+      <a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz.html">
+        BioFSharp.Mz
+      </a>
+    </dt>
+    <dt>
+      Assembly: BioFSharp.Mz.dll
+    </dt>
+    <dt>
+      Parent Module: 
+      <a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-searchdb-db.html">
+        Db
+      </a>
+    </dt>
+    <dt>
+      Base Type: 
+      <code>obj</code>
+    </dt>
+    <dt>
+      All Interfaces: 
+      <code><span><a href="https://learn.microsoft.com/dotnet/api/system.iequatable-1">IEquatable</a>&lt;<a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-searchdb-db-peptidelookuperror.html">PeptideLookUpError</a>&gt;</span></code>
+      , 
+      <code><a href="https://learn.microsoft.com/dotnet/api/system.collections.istructuralequatable">IStructuralEquatable</a></code>
+    </dt>
+  </dl>
+  <div class="fsdocs-xmldoc">
+    <div>
+      <p class="fsdocs-summary">
+        
+      </p>
+    </div>
+  </div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div>
+    <h3>
+      Union cases
+    </h3>
+    <table class="table outer-list fsdocs-member-list">
+      <thead>
+        <tr>
+          <td class="fsdocs-member-list-header">
+            Union case
+          </td>
+          <td class="fsdocs-member-list-header">
+            Description
+          </td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '1138', 1138)" onmouseover="showTip(event, '1138', 1138)">
+                <p>
+                  <a id="DbCleavageIndex">
+                    <a href="#DbCleavageIndex">
+                      <code><span>DbCleavageIndex(<span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-searchdb-db-sqlaction.html">SqlAction</a>,&#32;<a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-searchdb-db-sqlerrorcode.html">SqlErrorCode</a></span>)</span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="1138">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>DbCleavageIndex(<span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-searchdb-db-sqlaction.html">SqlAction</a>,&#32;<a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-searchdb-db-sqlerrorcode.html">SqlErrorCode</a></span>)</span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        Item1
+                      </b>
+                      :
+                      <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-searchdb-db-sqlaction.html">SqlAction</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        Item2
+                      </b>
+                      :
+                      <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-searchdb-db-sqlerrorcode.html">SqlErrorCode</a></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  Item1
+                </span>
+                :
+                <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-searchdb-db-sqlaction.html">SqlAction</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  Item2
+                </span>
+                :
+                <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-searchdb-db-sqlerrorcode.html">SqlErrorCode</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '1139', 1139)" onmouseover="showTip(event, '1139', 1139)">
+                <p>
+                  <a id="DbCleavageIndexItemNotFound">
+                    <a href="#DbCleavageIndexItemNotFound">
+                      <code><span>DbCleavageIndexItemNotFound</span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="1139">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>DbCleavageIndexItemNotFound</span></code>
+                  <br/>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <a href="https://github.com/CSBiology/BioFSharp.Mz/tree/master/src/BioFSharp.Mz/SearchDB.fs#L234-234" class="fsdocs-source-link" title="Source on GitHub">
+                <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+              </a>
+              <p class="fsdocs-summary">
+                
+              </p>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '1140', 1140)" onmouseover="showTip(event, '1140', 1140)">
+                <p>
+                  <a id="DbInitialisation">
+                    <a href="#DbInitialisation">
+                      <code><span>DbInitialisation(<span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-searchdb-db-sqlaction.html">SqlAction</a>,&#32;<a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-searchdb-db-sqlerrorcode.html">SqlErrorCode</a></span>)</span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="1140">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>DbInitialisation(<span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-searchdb-db-sqlaction.html">SqlAction</a>,&#32;<a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-searchdb-db-sqlerrorcode.html">SqlErrorCode</a></span>)</span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        Item1
+                      </b>
+                      :
+                      <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-searchdb-db-sqlaction.html">SqlAction</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        Item2
+                      </b>
+                      :
+                      <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-searchdb-db-sqlerrorcode.html">SqlErrorCode</a></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  Item1
+                </span>
+                :
+                <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-searchdb-db-sqlaction.html">SqlAction</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  Item2
+                </span>
+                :
+                <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-searchdb-db-sqlerrorcode.html">SqlErrorCode</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '1141', 1141)" onmouseover="showTip(event, '1141', 1141)">
+                <p>
+                  <a id="DbInitialisation_Database_Matching_The_Selected_Parameters_Already_Exists">
+                    <a href="#DbInitialisation_Database_Matching_The_Selected_Parameters_Already_Exists">
+                      <code><span>DbInitialisation_Database_Matching_The_Selected_Parameters_Already_Exists</span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="1141">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>DbInitialisation_Database_Matching_The_Selected_Parameters_Already_Exists</span></code>
+                  <br/>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <a href="https://github.com/CSBiology/BioFSharp.Mz/tree/master/src/BioFSharp.Mz/SearchDB.fs#L244-244" class="fsdocs-source-link" title="Source on GitHub">
+                <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+              </a>
+              <p class="fsdocs-summary">
+                
+              </p>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '1142', 1142)" onmouseover="showTip(event, '1142', 1142)">
+                <p>
+                  <a id="DbInitialisation_Database_With_Identical_Name_But_Different_Parameters_Already_Exists">
+                    <a href="#DbInitialisation_Database_With_Identical_Name_But_Different_Parameters_Already_Exists">
+                      <code><span>DbInitialisation_Database_With_Identical_Name_But_Different_Parameters_Already_Exists</span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="1142">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>DbInitialisation_Database_With_Identical_Name_But_Different_Parameters_Already_Exists</span></code>
+                  <br/>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <a href="https://github.com/CSBiology/BioFSharp.Mz/tree/master/src/BioFSharp.Mz/SearchDB.fs#L245-245" class="fsdocs-source-link" title="Source on GitHub">
+                <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+              </a>
+              <p class="fsdocs-summary">
+                
+              </p>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '1143', 1143)" onmouseover="showTip(event, '1143', 1143)">
+                <p>
+                  <a id="DbModSequence">
+                    <a href="#DbModSequence">
+                      <code><span>DbModSequence(<span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-searchdb-db-sqlaction.html">SqlAction</a>,&#32;<a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-searchdb-db-sqlerrorcode.html">SqlErrorCode</a></span>)</span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="1143">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>DbModSequence(<span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-searchdb-db-sqlaction.html">SqlAction</a>,&#32;<a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-searchdb-db-sqlerrorcode.html">SqlErrorCode</a></span>)</span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        Item1
+                      </b>
+                      :
+                      <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-searchdb-db-sqlaction.html">SqlAction</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        Item2
+                      </b>
+                      :
+                      <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-searchdb-db-sqlerrorcode.html">SqlErrorCode</a></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  Item1
+                </span>
+                :
+                <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-searchdb-db-sqlaction.html">SqlAction</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  Item2
+                </span>
+                :
+                <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-searchdb-db-sqlerrorcode.html">SqlErrorCode</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '1144', 1144)" onmouseover="showTip(event, '1144', 1144)">
+                <p>
+                  <a id="DbModSequenceItemNotFound">
+                    <a href="#DbModSequenceItemNotFound">
+                      <code><span>DbModSequenceItemNotFound</span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="1144">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>DbModSequenceItemNotFound</span></code>
+                  <br/>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <a href="https://github.com/CSBiology/BioFSharp.Mz/tree/master/src/BioFSharp.Mz/SearchDB.fs#L238-238" class="fsdocs-source-link" title="Source on GitHub">
+                <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+              </a>
+              <p class="fsdocs-summary">
+                
+              </p>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '1145', 1145)" onmouseover="showTip(event, '1145', 1145)">
+                <p>
+                  <a id="DbPepSequence">
+                    <a href="#DbPepSequence">
+                      <code><span>DbPepSequence(<span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-searchdb-db-sqlaction.html">SqlAction</a>,&#32;<a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-searchdb-db-sqlerrorcode.html">SqlErrorCode</a></span>)</span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="1145">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>DbPepSequence(<span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-searchdb-db-sqlaction.html">SqlAction</a>,&#32;<a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-searchdb-db-sqlerrorcode.html">SqlErrorCode</a></span>)</span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        Item1
+                      </b>
+                      :
+                      <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-searchdb-db-sqlaction.html">SqlAction</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        Item2
+                      </b>
+                      :
+                      <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-searchdb-db-sqlerrorcode.html">SqlErrorCode</a></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  Item1
+                </span>
+                :
+                <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-searchdb-db-sqlaction.html">SqlAction</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  Item2
+                </span>
+                :
+                <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-searchdb-db-sqlerrorcode.html">SqlErrorCode</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '1146', 1146)" onmouseover="showTip(event, '1146', 1146)">
+                <p>
+                  <a id="DbPepSequenceItemNotFound">
+                    <a href="#DbPepSequenceItemNotFound">
+                      <code><span>DbPepSequenceItemNotFound</span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="1146">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>DbPepSequenceItemNotFound</span></code>
+                  <br/>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <a href="https://github.com/CSBiology/BioFSharp.Mz/tree/master/src/BioFSharp.Mz/SearchDB.fs#L236-236" class="fsdocs-source-link" title="Source on GitHub">
+                <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+              </a>
+              <p class="fsdocs-summary">
+                
+              </p>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '1147', 1147)" onmouseover="showTip(event, '1147', 1147)">
+                <p>
+                  <a id="DbProtein">
+                    <a href="#DbProtein">
+                      <code><span>DbProtein(<span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-searchdb-db-sqlaction.html">SqlAction</a>,&#32;<a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-searchdb-db-sqlerrorcode.html">SqlErrorCode</a></span>)</span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="1147">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>DbProtein(<span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-searchdb-db-sqlaction.html">SqlAction</a>,&#32;<a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-searchdb-db-sqlerrorcode.html">SqlErrorCode</a></span>)</span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        Item1
+                      </b>
+                      :
+                      <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-searchdb-db-sqlaction.html">SqlAction</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        Item2
+                      </b>
+                      :
+                      <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-searchdb-db-sqlerrorcode.html">SqlErrorCode</a></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  Item1
+                </span>
+                :
+                <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-searchdb-db-sqlaction.html">SqlAction</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  Item2
+                </span>
+                :
+                <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-searchdb-db-sqlerrorcode.html">SqlErrorCode</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '1148', 1148)" onmouseover="showTip(event, '1148', 1148)">
+                <p>
+                  <a id="DbProteinItemNotFound">
+                    <a href="#DbProteinItemNotFound">
+                      <code><span>DbProteinItemNotFound</span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="1148">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>DbProteinItemNotFound</span></code>
+                  <br/>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <a href="https://github.com/CSBiology/BioFSharp.Mz/tree/master/src/BioFSharp.Mz/SearchDB.fs#L232-232" class="fsdocs-source-link" title="Source on GitHub">
+                <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+              </a>
+              <p class="fsdocs-summary">
+                
+              </p>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '1149', 1149)" onmouseover="showTip(event, '1149', 1149)">
+                <p>
+                  <a id="DbSearchParams">
+                    <a href="#DbSearchParams">
+                      <code><span>DbSearchParams(<span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-searchdb-db-sqlaction.html">SqlAction</a>,&#32;<a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-searchdb-db-sqlerrorcode.html">SqlErrorCode</a></span>)</span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="1149">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>DbSearchParams(<span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-searchdb-db-sqlaction.html">SqlAction</a>,&#32;<a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-searchdb-db-sqlerrorcode.html">SqlErrorCode</a></span>)</span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        Item1
+                      </b>
+                      :
+                      <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-searchdb-db-sqlaction.html">SqlAction</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        Item2
+                      </b>
+                      :
+                      <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-searchdb-db-sqlerrorcode.html">SqlErrorCode</a></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  Item1
+                </span>
+                :
+                <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-searchdb-db-sqlaction.html">SqlAction</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  Item2
+                </span>
+                :
+                <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-searchdb-db-sqlerrorcode.html">SqlErrorCode</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '1150', 1150)" onmouseover="showTip(event, '1150', 1150)">
+                <p>
+                  <a id="DbSearchParamsItemNotFound">
+                    <a href="#DbSearchParamsItemNotFound">
+                      <code><span>DbSearchParamsItemNotFound</span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="1150">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>DbSearchParamsItemNotFound</span></code>
+                  <br/>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <a href="https://github.com/CSBiology/BioFSharp.Mz/tree/master/src/BioFSharp.Mz/SearchDB.fs#L242-242" class="fsdocs-source-link" title="Source on GitHub">
+                <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+              </a>
+              <p class="fsdocs-summary">
+                
+              </p>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '1151', 1151)" onmouseover="showTip(event, '1151', 1151)">
+                <p>
+                  <a id="DbSearchmodification">
+                    <a href="#DbSearchmodification">
+                      <code><span>DbSearchmodification(<span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-searchdb-db-sqlaction.html">SqlAction</a>,&#32;<a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-searchdb-db-sqlerrorcode.html">SqlErrorCode</a></span>)</span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="1151">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>DbSearchmodification(<span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-searchdb-db-sqlaction.html">SqlAction</a>,&#32;<a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-searchdb-db-sqlerrorcode.html">SqlErrorCode</a></span>)</span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        Item1
+                      </b>
+                      :
+                      <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-searchdb-db-sqlaction.html">SqlAction</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        Item2
+                      </b>
+                      :
+                      <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-searchdb-db-sqlerrorcode.html">SqlErrorCode</a></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  Item1
+                </span>
+                :
+                <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-searchdb-db-sqlaction.html">SqlAction</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  Item2
+                </span>
+                :
+                <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-searchdb-db-sqlerrorcode.html">SqlErrorCode</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '1152', 1152)" onmouseover="showTip(event, '1152', 1152)">
+                <p>
+                  <a id="DbSearchmodificationItemNotFound">
+                    <a href="#DbSearchmodificationItemNotFound">
+                      <code><span>DbSearchmodificationItemNotFound</span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="1152">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>DbSearchmodificationItemNotFound</span></code>
+                  <br/>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <a href="https://github.com/CSBiology/BioFSharp.Mz/tree/master/src/BioFSharp.Mz/SearchDB.fs#L240-240" class="fsdocs-source-link" title="Source on GitHub">
+                <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+              </a>
+              <p class="fsdocs-summary">
+                
+              </p>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div>
+    <h3>
+      Instance members
+    </h3>
+    <table class="table outer-list fsdocs-member-list">
+      <thead>
+        <tr>
+          <td class="fsdocs-member-list-header">
+            Instance member
+          </td>
+          <td class="fsdocs-member-list-header">
+            Description
+          </td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '1153', 1153)" onmouseover="showTip(event, '1153', 1153)">
+                <p>
+                  <a id="IsDbCleavageIndex">
+                    <a href="#IsDbCleavageIndex">
+                      <code><span>this.IsDbCleavageIndex</span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="1153">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>this.IsDbCleavageIndex</span></code>
+                  <br/>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code>bool</code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code>bool</code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '1154', 1154)" onmouseover="showTip(event, '1154', 1154)">
+                <p>
+                  <a id="IsDbCleavageIndexItemNotFound">
+                    <a href="#IsDbCleavageIndexItemNotFound">
+                      <code><span>this.IsDbCleavageIndexItemNotFound</span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="1154">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>this.IsDbCleavageIndexItemNotFound</span></code>
+                  <br/>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code>bool</code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code>bool</code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '1155', 1155)" onmouseover="showTip(event, '1155', 1155)">
+                <p>
+                  <a id="IsDbInitialisation">
+                    <a href="#IsDbInitialisation">
+                      <code><span>this.IsDbInitialisation</span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="1155">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>this.IsDbInitialisation</span></code>
+                  <br/>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code>bool</code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code>bool</code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '1156', 1156)" onmouseover="showTip(event, '1156', 1156)">
+                <p>
+                  <a id="IsDbInitialisation_Database_Matching_The_Selected_Parameters_Already_Exists">
+                    <a href="#IsDbInitialisation_Database_Matching_The_Selected_Parameters_Already_Exists">
+                      <code><span>this.IsDbInitialisation_Database_Matching_The_Selected_Parameters_Already_Exists</span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="1156">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>this.IsDbInitialisation_Database_Matching_The_Selected_Parameters_Already_Exists</span></code>
+                  <br/>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code>bool</code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code>bool</code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '1157', 1157)" onmouseover="showTip(event, '1157', 1157)">
+                <p>
+                  <a id="IsDbInitialisation_Database_With_Identical_Name_But_Different_Parameters_Already_Exists">
+                    <a href="#IsDbInitialisation_Database_With_Identical_Name_But_Different_Parameters_Already_Exists">
+                      <code><span>this.IsDbInitialisation_Database_With_Identical_Name_But_Different_Parameters_Already_Exists</span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="1157">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>this.IsDbInitialisation_Database_With_Identical_Name_But_Different_Parameters_Already_Exists</span></code>
+                  <br/>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code>bool</code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code>bool</code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '1158', 1158)" onmouseover="showTip(event, '1158', 1158)">
+                <p>
+                  <a id="IsDbModSequence">
+                    <a href="#IsDbModSequence">
+                      <code><span>this.IsDbModSequence</span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="1158">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>this.IsDbModSequence</span></code>
+                  <br/>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code>bool</code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code>bool</code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '1159', 1159)" onmouseover="showTip(event, '1159', 1159)">
+                <p>
+                  <a id="IsDbModSequenceItemNotFound">
+                    <a href="#IsDbModSequenceItemNotFound">
+                      <code><span>this.IsDbModSequenceItemNotFound</span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="1159">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>this.IsDbModSequenceItemNotFound</span></code>
+                  <br/>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code>bool</code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code>bool</code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '1160', 1160)" onmouseover="showTip(event, '1160', 1160)">
+                <p>
+                  <a id="IsDbPepSequence">
+                    <a href="#IsDbPepSequence">
+                      <code><span>this.IsDbPepSequence</span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="1160">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>this.IsDbPepSequence</span></code>
+                  <br/>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code>bool</code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code>bool</code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '1161', 1161)" onmouseover="showTip(event, '1161', 1161)">
+                <p>
+                  <a id="IsDbPepSequenceItemNotFound">
+                    <a href="#IsDbPepSequenceItemNotFound">
+                      <code><span>this.IsDbPepSequenceItemNotFound</span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="1161">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>this.IsDbPepSequenceItemNotFound</span></code>
+                  <br/>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code>bool</code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code>bool</code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '1162', 1162)" onmouseover="showTip(event, '1162', 1162)">
+                <p>
+                  <a id="IsDbProtein">
+                    <a href="#IsDbProtein">
+                      <code><span>this.IsDbProtein</span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="1162">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>this.IsDbProtein</span></code>
+                  <br/>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code>bool</code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code>bool</code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '1163', 1163)" onmouseover="showTip(event, '1163', 1163)">
+                <p>
+                  <a id="IsDbProteinItemNotFound">
+                    <a href="#IsDbProteinItemNotFound">
+                      <code><span>this.IsDbProteinItemNotFound</span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="1163">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>this.IsDbProteinItemNotFound</span></code>
+                  <br/>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code>bool</code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code>bool</code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '1164', 1164)" onmouseover="showTip(event, '1164', 1164)">
+                <p>
+                  <a id="IsDbSearchParams">
+                    <a href="#IsDbSearchParams">
+                      <code><span>this.IsDbSearchParams</span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="1164">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>this.IsDbSearchParams</span></code>
+                  <br/>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code>bool</code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code>bool</code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '1165', 1165)" onmouseover="showTip(event, '1165', 1165)">
+                <p>
+                  <a id="IsDbSearchParamsItemNotFound">
+                    <a href="#IsDbSearchParamsItemNotFound">
+                      <code><span>this.IsDbSearchParamsItemNotFound</span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="1165">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>this.IsDbSearchParamsItemNotFound</span></code>
+                  <br/>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code>bool</code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code>bool</code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '1166', 1166)" onmouseover="showTip(event, '1166', 1166)">
+                <p>
+                  <a id="IsDbSearchmodification">
+                    <a href="#IsDbSearchmodification">
+                      <code><span>this.IsDbSearchmodification</span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="1166">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>this.IsDbSearchmodification</span></code>
+                  <br/>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code>bool</code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code>bool</code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '1167', 1167)" onmouseover="showTip(event, '1167', 1167)">
+                <p>
+                  <a id="IsDbSearchmodificationItemNotFound">
+                    <a href="#IsDbSearchmodificationItemNotFound">
+                      <code><span>this.IsDbSearchmodificationItemNotFound</span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="1167">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>this.IsDbSearchmodificationItemNotFound</span></code>
+                  <br/>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code>bool</code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code>bool</code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div></div>
+</div>
+        
+    </div>
+</main>
+<aside id="fsdocs-page-menu">
+    <p id="on-this-page">On this page</p>
+    <div class="empty"></div>
+</aside>
+<dialog>
+    <input type="search" placeholder="Search docs" />
+    <div class="results">
+        <ul></ul>
+        <p class="empty">Type something to start searching.</p>
+    </div>
+</dialog>
+<script type="module" src="https://csbiology.github.io/BioFSharp.Mz/content/fsdocs-tips.js"></script>
+<script type="module" src="https://csbiology.github.io/BioFSharp.Mz/content/fsdocs-theme-toggle.js"></script>
+<script type="module" src="https://csbiology.github.io/BioFSharp.Mz/content/fsdocs-theme.js"></script>
+<script type="module" src="https://csbiology.github.io/BioFSharp.Mz/content/fsdocs-search.js"></script>
+
+</body>
+</html>

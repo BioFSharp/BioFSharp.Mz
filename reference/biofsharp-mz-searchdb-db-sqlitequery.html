@@ -1,0 +1,3132 @@
+<!DOCTYPE html>
+<html lang="en" data-root="https://csbiology.github.io/BioFSharp.Mz/">
+<head>
+    <meta charset="UTF-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="David Zimmer, Caroline Ott, Heinrich Lukas Weil, Timo Muehlhaus" name="author">
+    <!-- Opengraph properties (https://ogp.me/) -->
+    <meta property="og:site_name" content="BioFSharp.Mz">
+    <meta property="og:title" content="SQLiteQuery (BioFSharp.Mz)" />
+    <meta property="og:url" content="https://csbiology.github.io/BioFSharp.Mz/{{fsdocs-source-basename}}.html">
+    <meta property="og:type" content="website" />
+    <!-- Twitter cards (https://developer.twitter.com/en/docs/twitter-for-websites/cards/overview/summary-card-with-large-image) -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="https://csbiology.github.io/BioFSharp.Mz/">
+    <meta name="twitter:title" content="SQLiteQuery (BioFSharp.Mz)">
+    
+    <title>SQLiteQuery (BioFSharp.Mz) | BioFSharp.Mz</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <link href="https://csbiology.github.io/BioFSharp.Mz/img/favicon.ico" rel="icon" sizes="32x32" type="image/png"/>
+    <script type="application/javascript" src="https://csbiology.github.io/BioFSharp.Mz/content/fsdocs-theme-set-dark.js"></script>
+    <link href="https://csbiology.github.io/BioFSharp.Mz/content/fsdocs-default.css" rel="stylesheet" type="text/css"/>
+    <link href="https://csbiology.github.io/BioFSharp.Mz/content/fsdocs-theme.css" rel="stylesheet" type="text/css"/>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js"></script>
+    
+</head>
+<body class="api-docs">
+<header>
+    <div class="start">
+        <div id="menu-toggle">
+            <iconify-icon class="icon closed" height="22" icon="eva:menu-fill" width="22"></iconify-icon>
+            <iconify-icon class="icon open" height="22" icon="mi:close" width="22"></iconify-icon>
+            <input type="checkbox" name="mobile-menu" />
+            <ul class="menu">
+                <li class="nav-header">Links</li>
+                <li class="nav-item"><a class="nav-link" href="https://github.com/CSBiology/BioFSharp.Mz/blob/developer/LICENSE">License</a>
+                </li>
+                <li class="nav-item"><a class="nav-link"
+                                        href="https://github.com/CSBiology/BioFSharp.Mz/blob/developer/RELEASE_NOTES.md">Release
+                    Notes</a></li>
+                <li class="nav-item"><a class="nav-link" href="https://github.com/CSBiology/BioFSharp.Mz/">Source
+                    Repository</a></li>
+                
+                <li class="nav-header">
+  API Reference
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://csbiology.github.io/BioFSharp.Mz/reference/index.html">
+    All Namespaces
+  </a>
+</li>
+            </ul>
+        </div>
+        <a href="https://csbiology.github.io/BioFSharp.Mz/">
+            <img alt="Header menu logo" src="https://csbiology.github.io/BioFSharp.Mz/img/logo.png">
+            <strong>BioFSharp.Mz</strong>
+        </a>
+    </div>
+    <div class="end">
+        <a href="https://github.com/CSBiology/BioFSharp.Mz/" target="_blank">
+            <iconify-icon icon="uil:github" width="26" height="26"></iconify-icon>
+        </a>
+        <iconify-icon id="search-btn" icon="carbon:search" class="search" width="24" height="24"></iconify-icon>
+        <fsdocs-theme-toggle></fsdocs-theme-toggle>
+    </div>
+</header>
+<aside id="fsdocs-main-menu">
+    <ul class="menu">
+        <li class="nav-header">Links</li>
+        <li class="nav-item"><a class="nav-link" href="https://github.com/CSBiology/BioFSharp.Mz/blob/developer/LICENSE">License</a>
+        </li>
+        <li class="nav-item"><a class="nav-link"
+                                href="https://github.com/CSBiology/BioFSharp.Mz/blob/developer/RELEASE_NOTES.md">Release
+            Notes</a></li>
+        <li class="nav-item"><a class="nav-link" href="https://github.com/CSBiology/BioFSharp.Mz/">Source
+            Repository</a></li>
+        
+        <li class="nav-header">
+  API Reference
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://csbiology.github.io/BioFSharp.Mz/reference/index.html">
+    All Namespaces
+  </a>
+</li>
+    </ul>
+</aside>
+<main>
+    <div id="content">
+        <div>
+  <h2>
+    SQLiteQuery Module
+  </h2>
+  <dl class="fsdocs-metadata">
+    <dt>
+      Namespace: 
+      <a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz.html">
+        BioFSharp.Mz
+      </a>
+    </dt>
+    <dt>
+      Assembly: BioFSharp.Mz.dll
+    </dt>
+    <dt>
+      Parent Module: 
+      <a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-searchdb-db.html">
+        Db
+      </a>
+    </dt>
+  </dl>
+  <div class="fsdocs-xmldoc">
+    <div>
+      <p class="fsdocs-summary">
+          Prepared statements via Closure
+      </p>
+    </div>
+  </div>
+  <div>
+    <h3>
+      Functions and values
+    </h3>
+    <table class="table outer-list fsdocs-member-list">
+      <thead>
+        <tr>
+          <td class="fsdocs-member-list-header">
+            Function or value
+          </td>
+          <td class="fsdocs-member-list-header">
+            Description
+          </td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '510', 510)" onmouseover="showTip(event, '510', 510)">
+                <p>
+                  <a id="createTableCleavageIndex">
+                    <a href="#createTableCleavageIndex">
+                      <code><span>createTableCleavageIndex&#32;<span>cn</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="510">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>createTableCleavageIndex&#32;<span>cn</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        cn
+                      </b>
+                      :
+                      <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqliteconnection">SQLiteConnection</a></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code>int</code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:BioFSharp.Mz.SearchDB.Db.SQLiteQuery.createTableCleavageIndex`')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:BioFSharp.Mz.SearchDB.Db.SQLiteQuery.createTableCleavageIndex\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/CSBiology/BioFSharp.Mz/tree/master/src/BioFSharp.Mz/SearchDB.fs#L292-292" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                     Creates Table CleavageIndex
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    cn
+                  </span>
+                  :
+                  <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqliteconnection">SQLiteConnection</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code>int</code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '511', 511)" onmouseover="showTip(event, '511', 511)">
+                <p>
+                  <a id="createTableModSequence">
+                    <a href="#createTableModSequence">
+                      <code><span>createTableModSequence&#32;<span>cn</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="511">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>createTableModSequence&#32;<span>cn</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        cn
+                      </b>
+                      :
+                      <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqliteconnection">SQLiteConnection</a></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code>int</code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:BioFSharp.Mz.SearchDB.Db.SQLiteQuery.createTableModSequence`')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:BioFSharp.Mz.SearchDB.Db.SQLiteQuery.createTableModSequence\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/CSBiology/BioFSharp.Mz/tree/master/src/BioFSharp.Mz/SearchDB.fs#L323-323" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                     Creates Table ModSequence
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    cn
+                  </span>
+                  :
+                  <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqliteconnection">SQLiteConnection</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code>int</code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '512', 512)" onmouseover="showTip(event, '512', 512)">
+                <p>
+                  <a id="createTablePepSequence">
+                    <a href="#createTablePepSequence">
+                      <code><span>createTablePepSequence&#32;<span>cn</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="512">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>createTablePepSequence&#32;<span>cn</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        cn
+                      </b>
+                      :
+                      <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqliteconnection">SQLiteConnection</a></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code>int</code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:BioFSharp.Mz.SearchDB.Db.SQLiteQuery.createTablePepSequence`')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:BioFSharp.Mz.SearchDB.Db.SQLiteQuery.createTablePepSequence\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/CSBiology/BioFSharp.Mz/tree/master/src/BioFSharp.Mz/SearchDB.fs#L310-310" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                     Creates Table PepSequence
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    cn
+                  </span>
+                  :
+                  <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqliteconnection">SQLiteConnection</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code>int</code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '513', 513)" onmouseover="showTip(event, '513', 513)">
+                <p>
+                  <a id="createTableProtein">
+                    <a href="#createTableProtein">
+                      <code><span>createTableProtein&#32;<span>cn</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="513">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>createTableProtein&#32;<span>cn</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        cn
+                      </b>
+                      :
+                      <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqliteconnection">SQLiteConnection</a></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code>int</code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:BioFSharp.Mz.SearchDB.Db.SQLiteQuery.createTableProtein`')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:BioFSharp.Mz.SearchDB.Db.SQLiteQuery.createTableProtein\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/CSBiology/BioFSharp.Mz/tree/master/src/BioFSharp.Mz/SearchDB.fs#L279-279" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                     Creates Table Protein
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    cn
+                  </span>
+                  :
+                  <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqliteconnection">SQLiteConnection</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code>int</code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '514', 514)" onmouseover="showTip(event, '514', 514)">
+                <p>
+                  <a id="createTableSearchDbParams">
+                    <a href="#createTableSearchDbParams">
+                      <code><span>createTableSearchDbParams&#32;<span>cn</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="514">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>createTableSearchDbParams&#32;<span>cn</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        cn
+                      </b>
+                      :
+                      <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqliteconnection">SQLiteConnection</a></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code>int</code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:BioFSharp.Mz.SearchDB.Db.SQLiteQuery.createTableSearchDbParams`')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:BioFSharp.Mz.SearchDB.Db.SQLiteQuery.createTableSearchDbParams\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/CSBiology/BioFSharp.Mz/tree/master/src/BioFSharp.Mz/SearchDB.fs#L256-256" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                     Creates Table SearchDbParams
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    cn
+                  </span>
+                  :
+                  <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqliteconnection">SQLiteConnection</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code>int</code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '515', 515)" onmouseover="showTip(event, '515', 515)">
+                <p>
+                  <a id="pragmaSynchronousOFF">
+                    <a href="#pragmaSynchronousOFF">
+                      <code><span>pragmaSynchronousOFF&#32;<span>cn</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="515">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>pragmaSynchronousOFF&#32;<span>cn</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        cn
+                      </b>
+                      :
+                      <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqliteconnection">SQLiteConnection</a></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code>int</code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  cn
+                </span>
+                :
+                <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqliteconnection">SQLiteConnection</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code>int</code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '516', 516)" onmouseover="showTip(event, '516', 516)">
+                <p>
+                  <a id="prepareInsertCleavageIndex">
+                    <a href="#prepareInsertCleavageIndex">
+                      <code><span>prepareInsertCleavageIndex&#32;<span>cn&#32;tr</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="516">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>prepareInsertCleavageIndex&#32;<span>cn&#32;tr</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        cn
+                      </b>
+                      :
+                      <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqliteconnection">SQLiteConnection</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        tr
+                      </b>
+                      :
+                      <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqlitetransaction">SQLiteTransaction</a></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span>int32&#32;->&#32;int32&#32;->&#32;int32&#32;->&#32;int32&#32;->&#32;int32&#32;->&#32;int</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:BioFSharp.Mz.SearchDB.Db.SQLiteQuery.prepareInsertCleavageIndex`')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:BioFSharp.Mz.SearchDB.Db.SQLiteQuery.prepareInsertCleavageIndex\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/CSBiology/BioFSharp.Mz/tree/master/src/BioFSharp.Mz/SearchDB.fs#L408-408" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                     Prepares statement to insert a CleavageIndex entry
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    cn
+                  </span>
+                  :
+                  <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqliteconnection">SQLiteConnection</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    tr
+                  </span>
+                  :
+                  <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqlitetransaction">SQLiteTransaction</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span>int32&#32;->&#32;int32&#32;->&#32;int32&#32;->&#32;int32&#32;->&#32;int32&#32;->&#32;int</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '517', 517)" onmouseover="showTip(event, '517', 517)">
+                <p>
+                  <a id="prepareInsertModSequence">
+                    <a href="#prepareInsertModSequence">
+                      <code><span>prepareInsertModSequence&#32;<span>cn&#32;tr</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="517">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>prepareInsertModSequence&#32;<span>cn&#32;tr</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        cn
+                      </b>
+                      :
+                      <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqliteconnection">SQLiteConnection</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        tr
+                      </b>
+                      :
+                      <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqlitetransaction">SQLiteTransaction</a></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span>int32&#32;->&#32;float&#32;->&#32;int64&#32;->&#32;string&#32;->&#32;int&#32;->&#32;int</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:BioFSharp.Mz.SearchDB.Db.SQLiteQuery.prepareInsertModSequence`')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:BioFSharp.Mz.SearchDB.Db.SQLiteQuery.prepareInsertModSequence\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/CSBiology/BioFSharp.Mz/tree/master/src/BioFSharp.Mz/SearchDB.fs#L456-456" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                     Prepares statement to insert a ModSequence entry
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    cn
+                  </span>
+                  :
+                  <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqliteconnection">SQLiteConnection</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    tr
+                  </span>
+                  :
+                  <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqlitetransaction">SQLiteTransaction</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span>int32&#32;->&#32;float&#32;->&#32;int64&#32;->&#32;string&#32;->&#32;int&#32;->&#32;int</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '518', 518)" onmouseover="showTip(event, '518', 518)">
+                <p>
+                  <a id="prepareInsertPepSequence">
+                    <a href="#prepareInsertPepSequence">
+                      <code><span>prepareInsertPepSequence&#32;<span>cn&#32;tr</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="518">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>prepareInsertPepSequence&#32;<span>cn&#32;tr</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        cn
+                      </b>
+                      :
+                      <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqliteconnection">SQLiteConnection</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        tr
+                      </b>
+                      :
+                      <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqlitetransaction">SQLiteTransaction</a></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span>int32&#32;->&#32;string&#32;->&#32;int</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:BioFSharp.Mz.SearchDB.Db.SQLiteQuery.prepareInsertPepSequence`')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:BioFSharp.Mz.SearchDB.Db.SQLiteQuery.prepareInsertPepSequence\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/CSBiology/BioFSharp.Mz/tree/master/src/BioFSharp.Mz/SearchDB.fs#L440-440" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                     Prepares statement to insert a PepSequence entry
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    cn
+                  </span>
+                  :
+                  <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqliteconnection">SQLiteConnection</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    tr
+                  </span>
+                  :
+                  <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqlitetransaction">SQLiteTransaction</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span>int32&#32;->&#32;string&#32;->&#32;int</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '519', 519)" onmouseover="showTip(event, '519', 519)">
+                <p>
+                  <a id="prepareInsertProtein">
+                    <a href="#prepareInsertProtein">
+                      <code><span>prepareInsertProtein&#32;<span>cn&#32;tr</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="519">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>prepareInsertProtein&#32;<span>cn&#32;tr</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        cn
+                      </b>
+                      :
+                      <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqliteconnection">SQLiteConnection</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        tr
+                      </b>
+                      :
+                      <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqlitetransaction">SQLiteTransaction</a></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span>int32&#32;->&#32;string&#32;->&#32;string&#32;->&#32;int</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:BioFSharp.Mz.SearchDB.Db.SQLiteQuery.prepareInsertProtein`')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:BioFSharp.Mz.SearchDB.Db.SQLiteQuery.prepareInsertProtein\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/CSBiology/BioFSharp.Mz/tree/master/src/BioFSharp.Mz/SearchDB.fs#L391-391" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                     Prepares statement to insert a Protein entry
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    cn
+                  </span>
+                  :
+                  <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqliteconnection">SQLiteConnection</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    tr
+                  </span>
+                  :
+                  <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqlitetransaction">SQLiteTransaction</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span>int32&#32;->&#32;string&#32;->&#32;string&#32;->&#32;int</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '520', 520)" onmouseover="showTip(event, '520', 520)">
+                <p>
+                  <a id="prepareInsertSearchDbParams">
+                    <a href="#prepareInsertSearchDbParams">
+                      <code><span>prepareInsertSearchDbParams&#32;<span>cn</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="520">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>prepareInsertSearchDbParams&#32;<span>cn</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        cn
+                      </b>
+                      :
+                      <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqliteconnection">SQLiteConnection</a></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span>string&#32;->&#32;string&#32;->&#32;string&#32;->&#32;string&#32;->&#32;int32&#32;->&#32;int32&#32;->&#32;double&#32;->&#32;int32&#32;->&#32;int32&#32;->&#32;string&#32;->&#32;string&#32;->&#32;string&#32;->&#32;string&#32;->&#32;int32&#32;->&#32;int</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:BioFSharp.Mz.SearchDB.Db.SQLiteQuery.prepareInsertSearchDbParams`')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:BioFSharp.Mz.SearchDB.Db.SQLiteQuery.prepareInsertSearchDbParams\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/CSBiology/BioFSharp.Mz/tree/master/src/BioFSharp.Mz/SearchDB.fs#L487-487" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                     Prepares statement to insert a SearchDBParams entry
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    cn
+                  </span>
+                  :
+                  <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqliteconnection">SQLiteConnection</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span>string&#32;->&#32;string&#32;->&#32;string&#32;->&#32;string&#32;->&#32;int32&#32;->&#32;int32&#32;->&#32;double&#32;->&#32;int32&#32;->&#32;int32&#32;->&#32;string&#32;->&#32;string&#32;->&#32;string&#32;->&#32;string&#32;->&#32;int32&#32;->&#32;int</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '521', 521)" onmouseover="showTip(event, '521', 521)">
+                <p>
+                  <a id="prepareSelectCleavageIndexByPepSequenceID">
+                    <a href="#prepareSelectCleavageIndexByPepSequenceID">
+                      <code><span>prepareSelectCleavageIndexByPepSequenceID&#32;<span>cn&#32;tr</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="521">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>prepareSelectCleavageIndexByPepSequenceID&#32;<span>cn&#32;tr</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        cn
+                      </b>
+                      :
+                      <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqliteconnection">SQLiteConnection</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        tr
+                      </b>
+                      :
+                      <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqlitetransaction">SQLiteTransaction</a></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span>int32&#32;->&#32;<span><span>(<span>int&#32;*&#32;int&#32;*&#32;int&#32;*&#32;int&#32;*&#32;int&#32;*&#32;int</span>)</span>&#32;list</span></span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:BioFSharp.Mz.SearchDB.Db.SQLiteQuery.prepareSelectCleavageIndexByPepSequenceID`')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:BioFSharp.Mz.SearchDB.Db.SQLiteQuery.prepareSelectCleavageIndexByPepSequenceID\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/CSBiology/BioFSharp.Mz/tree/master/src/BioFSharp.Mz/SearchDB.fs#L733-733" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                     Prepares statement to select a CleavageIndex entry PepSequenceID 
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    cn
+                  </span>
+                  :
+                  <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqliteconnection">SQLiteConnection</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    tr
+                  </span>
+                  :
+                  <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqlitetransaction">SQLiteTransaction</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span>int32&#32;->&#32;<span><span>(<span>int&#32;*&#32;int&#32;*&#32;int&#32;*&#32;int&#32;*&#32;int&#32;*&#32;int</span>)</span>&#32;list</span></span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '522', 522)" onmouseover="showTip(event, '522', 522)">
+                <p>
+                  <a id="prepareSelectCleavageIndexByProteinID">
+                    <a href="#prepareSelectCleavageIndexByProteinID">
+                      <code><span>prepareSelectCleavageIndexByProteinID&#32;<span>cn&#32;tr</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="522">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>prepareSelectCleavageIndexByProteinID&#32;<span>cn&#32;tr</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        cn
+                      </b>
+                      :
+                      <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqliteconnection">SQLiteConnection</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        tr
+                      </b>
+                      :
+                      <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqlitetransaction">SQLiteTransaction</a></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span>int32&#32;->&#32;<span>int&#32;*&#32;int&#32;*&#32;int&#32;*&#32;int&#32;*&#32;int&#32;*&#32;int</span></span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:BioFSharp.Mz.SearchDB.Db.SQLiteQuery.prepareSelectCleavageIndexByProteinID`')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:BioFSharp.Mz.SearchDB.Db.SQLiteQuery.prepareSelectCleavageIndexByProteinID\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/CSBiology/BioFSharp.Mz/tree/master/src/BioFSharp.Mz/SearchDB.fs#L720-720" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                     Prepares statement to select a CleavageIndex entry ProteinID 
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    cn
+                  </span>
+                  :
+                  <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqliteconnection">SQLiteConnection</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    tr
+                  </span>
+                  :
+                  <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqlitetransaction">SQLiteTransaction</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span>int32&#32;->&#32;<span>int&#32;*&#32;int&#32;*&#32;int&#32;*&#32;int&#32;*&#32;int&#32;*&#32;int</span></span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '523', 523)" onmouseover="showTip(event, '523', 523)">
+                <p>
+                  <a id="prepareSelectMassByModSequenceAndGlobalMod">
+                    <a href="#prepareSelectMassByModSequenceAndGlobalMod">
+                      <code><span>prepareSelectMassByModSequenceAndGlobalMod&#32;<span>cn</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="523">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>prepareSelectMassByModSequenceAndGlobalMod&#32;<span>cn</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        cn
+                      </b>
+                      :
+                      <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqliteconnection">SQLiteConnection</a></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span>string&#32;->&#32;int&#32;->&#32;<span>float&#32;option</span></span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:BioFSharp.Mz.SearchDB.Db.SQLiteQuery.prepareSelectMassByModSequenceAndGlobalMod`')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:BioFSharp.Mz.SearchDB.Db.SQLiteQuery.prepareSelectMassByModSequenceAndGlobalMod\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/CSBiology/BioFSharp.Mz/tree/master/src/BioFSharp.Mz/SearchDB.fs#L860-860" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                     Prepares statement to select a ModSequence entry by Massrange (Between selected Mass -/+ the selected toleranceWidth)
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    cn
+                  </span>
+                  :
+                  <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqliteconnection">SQLiteConnection</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span>string&#32;->&#32;int&#32;->&#32;<span>float&#32;option</span></span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '524', 524)" onmouseover="showTip(event, '524', 524)">
+                <p>
+                  <a id="prepareSelectModsequenceByMass">
+                    <a href="#prepareSelectModsequenceByMass">
+                      <code><span>prepareSelectModsequenceByMass&#32;<span>cn&#32;tr</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="524">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>prepareSelectModsequenceByMass&#32;<span>cn&#32;tr</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        cn
+                      </b>
+                      :
+                      <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqliteconnection">SQLiteConnection</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        tr
+                      </b>
+                      :
+                      <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqlitetransaction">SQLiteTransaction</a></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span>int&#32;->&#32;<span>int&#32;*&#32;int&#32;*&#32;float&#32;*&#32;int64&#32;*&#32;string&#32;*&#32;string</span></span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:BioFSharp.Mz.SearchDB.Db.SQLiteQuery.prepareSelectModsequenceByMass`')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:BioFSharp.Mz.SearchDB.Db.SQLiteQuery.prepareSelectModsequenceByMass\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/CSBiology/BioFSharp.Mz/tree/master/src/BioFSharp.Mz/SearchDB.fs#L802-802" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                     Prepares statement to select a ModSequence entry by Mass
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    cn
+                  </span>
+                  :
+                  <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqliteconnection">SQLiteConnection</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    tr
+                  </span>
+                  :
+                  <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqlitetransaction">SQLiteTransaction</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span>int&#32;->&#32;<span>int&#32;*&#32;int&#32;*&#32;float&#32;*&#32;int64&#32;*&#32;string&#32;*&#32;string</span></span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '525', 525)" onmouseover="showTip(event, '525', 525)">
+                <p>
+                  <a id="prepareSelectModsequenceByMassRange">
+                    <a href="#prepareSelectModsequenceByMassRange">
+                      <code><span>prepareSelectModsequenceByMassRange&#32;<span>cn</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="525">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>prepareSelectModsequenceByMassRange&#32;<span>cn</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        cn
+                      </b>
+                      :
+                      <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqliteconnection">SQLiteConnection</a></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span>int64&#32;->&#32;int64&#32;->&#32;<span><span>(<span>int&#32;*&#32;int&#32;*&#32;float&#32;*&#32;int64&#32;*&#32;string&#32;*&#32;int</span>)</span>&#32;list</span></span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:BioFSharp.Mz.SearchDB.Db.SQLiteQuery.prepareSelectModsequenceByMassRange`')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:BioFSharp.Mz.SearchDB.Db.SQLiteQuery.prepareSelectModsequenceByMassRange\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/CSBiology/BioFSharp.Mz/tree/master/src/BioFSharp.Mz/SearchDB.fs#L831-831" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                     Prepares statement to select a ModSequence entry by Massrange (Between selected Mass -/+ the selected toleranceWidth)
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    cn
+                  </span>
+                  :
+                  <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqliteconnection">SQLiteConnection</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span>int64&#32;->&#32;int64&#32;->&#32;<span><span>(<span>int&#32;*&#32;int&#32;*&#32;float&#32;*&#32;int64&#32;*&#32;string&#32;*&#32;int</span>)</span>&#32;list</span></span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '526', 526)" onmouseover="showTip(event, '526', 526)">
+                <p>
+                  <a id="prepareSelectModsequenceByMassRangeWith">
+                    <a href="#prepareSelectModsequenceByMassRangeWith">
+                      <code><span>prepareSelectModsequenceByMassRangeWith&#32;<span>cn&#32;tr</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="526">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>prepareSelectModsequenceByMassRangeWith&#32;<span>cn&#32;tr</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        cn
+                      </b>
+                      :
+                      <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqliteconnection">SQLiteConnection</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        tr
+                      </b>
+                      :
+                      <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqlitetransaction">SQLiteTransaction</a></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span>int64&#32;->&#32;int64&#32;->&#32;<span><span>(<span>int&#32;*&#32;int&#32;*&#32;float&#32;*&#32;int64&#32;*&#32;string&#32;*&#32;int</span>)</span>&#32;list</span></span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:BioFSharp.Mz.SearchDB.Db.SQLiteQuery.prepareSelectModsequenceByMassRangeWith`')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:BioFSharp.Mz.SearchDB.Db.SQLiteQuery.prepareSelectModsequenceByMassRangeWith\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/CSBiology/BioFSharp.Mz/tree/master/src/BioFSharp.Mz/SearchDB.fs#L815-815" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                     Prepares statement to select a ModSequence entry by Massrange (Between selected Mass -/+ the selected toleranceWidth)
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    cn
+                  </span>
+                  :
+                  <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqliteconnection">SQLiteConnection</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    tr
+                  </span>
+                  :
+                  <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqlitetransaction">SQLiteTransaction</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span>int64&#32;->&#32;int64&#32;->&#32;<span><span>(<span>int&#32;*&#32;int&#32;*&#32;float&#32;*&#32;int64&#32;*&#32;string&#32;*&#32;int</span>)</span>&#32;list</span></span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '527', 527)" onmouseover="showTip(event, '527', 527)">
+                <p>
+                  <a id="prepareSelectModsequenceByModSequenceID">
+                    <a href="#prepareSelectModsequenceByModSequenceID">
+                      <code><span>prepareSelectModsequenceByModSequenceID&#32;<span>cn&#32;tr</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="527">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>prepareSelectModsequenceByModSequenceID&#32;<span>cn&#32;tr</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        cn
+                      </b>
+                      :
+                      <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqliteconnection">SQLiteConnection</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        tr
+                      </b>
+                      :
+                      <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqlitetransaction">SQLiteTransaction</a></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span>int32&#32;->&#32;<span>int&#32;*&#32;int&#32;*&#32;float&#32;*&#32;int64&#32;*&#32;string&#32;*&#32;int</span></span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:BioFSharp.Mz.SearchDB.Db.SQLiteQuery.prepareSelectModsequenceByModSequenceID`')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:BioFSharp.Mz.SearchDB.Db.SQLiteQuery.prepareSelectModsequenceByModSequenceID\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/CSBiology/BioFSharp.Mz/tree/master/src/BioFSharp.Mz/SearchDB.fs#L774-774" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                     Prepares statement to select a ModSequence entry by ModSequenceID
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    cn
+                  </span>
+                  :
+                  <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqliteconnection">SQLiteConnection</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    tr
+                  </span>
+                  :
+                  <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqlitetransaction">SQLiteTransaction</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span>int32&#32;->&#32;<span>int&#32;*&#32;int&#32;*&#32;float&#32;*&#32;int64&#32;*&#32;string&#32;*&#32;int</span></span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '528', 528)" onmouseover="showTip(event, '528', 528)">
+                <p>
+                  <a id="prepareSelectModsequenceByPepSequenceID">
+                    <a href="#prepareSelectModsequenceByPepSequenceID">
+                      <code><span>prepareSelectModsequenceByPepSequenceID&#32;<span>cn&#32;tr</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="528">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>prepareSelectModsequenceByPepSequenceID&#32;<span>cn&#32;tr</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        cn
+                      </b>
+                      :
+                      <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqliteconnection">SQLiteConnection</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        tr
+                      </b>
+                      :
+                      <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqlitetransaction">SQLiteTransaction</a></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span>int32&#32;->&#32;<span>int&#32;*&#32;int&#32;*&#32;float&#32;*&#32;int64&#32;*&#32;string&#32;*&#32;string</span></span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:BioFSharp.Mz.SearchDB.Db.SQLiteQuery.prepareSelectModsequenceByPepSequenceID`')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:BioFSharp.Mz.SearchDB.Db.SQLiteQuery.prepareSelectModsequenceByPepSequenceID\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/CSBiology/BioFSharp.Mz/tree/master/src/BioFSharp.Mz/SearchDB.fs#L788-788" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                     Prepares statement to select a ModSequence entry by PepSequenceID
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    cn
+                  </span>
+                  :
+                  <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqliteconnection">SQLiteConnection</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    tr
+                  </span>
+                  :
+                  <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqlitetransaction">SQLiteTransaction</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span>int32&#32;->&#32;<span>int&#32;*&#32;int&#32;*&#32;float&#32;*&#32;int64&#32;*&#32;string&#32;*&#32;string</span></span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '529', 529)" onmouseover="showTip(event, '529', 529)">
+                <p>
+                  <a id="prepareSelectModsequenceBySequence">
+                    <a href="#prepareSelectModsequenceBySequence">
+                      <code><span>prepareSelectModsequenceBySequence&#32;<span>cn&#32;tr</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="529">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>prepareSelectModsequenceBySequence&#32;<span>cn&#32;tr</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        cn
+                      </b>
+                      :
+                      <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqliteconnection">SQLiteConnection</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        tr
+                      </b>
+                      :
+                      <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqlitetransaction">SQLiteTransaction</a></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span>string&#32;->&#32;<span>int&#32;*&#32;int&#32;*&#32;float&#32;*&#32;int64&#32;*&#32;string&#32;*&#32;string</span></span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:BioFSharp.Mz.SearchDB.Db.SQLiteQuery.prepareSelectModsequenceBySequence`')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:BioFSharp.Mz.SearchDB.Db.SQLiteQuery.prepareSelectModsequenceBySequence\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/CSBiology/BioFSharp.Mz/tree/master/src/BioFSharp.Mz/SearchDB.fs#L847-847" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                     Prepares statement to select a ModSequence entry by Sequence
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    cn
+                  </span>
+                  :
+                  <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqliteconnection">SQLiteConnection</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    tr
+                  </span>
+                  :
+                  <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqlitetransaction">SQLiteTransaction</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span>string&#32;->&#32;<span>int&#32;*&#32;int&#32;*&#32;float&#32;*&#32;int64&#32;*&#32;string&#32;*&#32;string</span></span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '530', 530)" onmouseover="showTip(event, '530', 530)">
+                <p>
+                  <a id="prepareSelectPepSequenceByPepSequenceID">
+                    <a href="#prepareSelectPepSequenceByPepSequenceID">
+                      <code><span>prepareSelectPepSequenceByPepSequenceID&#32;<span>cn&#32;tr</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="530">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>prepareSelectPepSequenceByPepSequenceID&#32;<span>cn&#32;tr</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        cn
+                      </b>
+                      :
+                      <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqliteconnection">SQLiteConnection</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        tr
+                      </b>
+                      :
+                      <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqlitetransaction">SQLiteTransaction</a></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span>int&#32;->&#32;string</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:BioFSharp.Mz.SearchDB.Db.SQLiteQuery.prepareSelectPepSequenceByPepSequenceID`')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:BioFSharp.Mz.SearchDB.Db.SQLiteQuery.prepareSelectPepSequenceByPepSequenceID\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/CSBiology/BioFSharp.Mz/tree/master/src/BioFSharp.Mz/SearchDB.fs#L887-887" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                     Prepares statement to select a Peptide Sequence entry by ID
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    cn
+                  </span>
+                  :
+                  <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqliteconnection">SQLiteConnection</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    tr
+                  </span>
+                  :
+                  <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqlitetransaction">SQLiteTransaction</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span>int&#32;->&#32;string</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '531', 531)" onmouseover="showTip(event, '531', 531)">
+                <p>
+                  <a id="prepareSelectPepSequenceBySequence">
+                    <a href="#prepareSelectPepSequenceBySequence">
+                      <code><span>prepareSelectPepSequenceBySequence&#32;<span>cn&#32;tr</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="531">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>prepareSelectPepSequenceBySequence&#32;<span>cn&#32;tr</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        cn
+                      </b>
+                      :
+                      <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqliteconnection">SQLiteConnection</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        tr
+                      </b>
+                      :
+                      <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqlitetransaction">SQLiteTransaction</a></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span>string&#32;->&#32;int</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:BioFSharp.Mz.SearchDB.Db.SQLiteQuery.prepareSelectPepSequenceBySequence`')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:BioFSharp.Mz.SearchDB.Db.SQLiteQuery.prepareSelectPepSequenceBySequence\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/CSBiology/BioFSharp.Mz/tree/master/src/BioFSharp.Mz/SearchDB.fs#L761-761" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                     Prepares statement to select a PepSequence entry by PepSequence - Version without try.. with pattern to enhance the Select performance
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    cn
+                  </span>
+                  :
+                  <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqliteconnection">SQLiteConnection</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    tr
+                  </span>
+                  :
+                  <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqlitetransaction">SQLiteTransaction</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span>string&#32;->&#32;int</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '532', 532)" onmouseover="showTip(event, '532', 532)">
+                <p>
+                  <a id="prepareSelectPepSequenceBySequence'">
+                    <a href="#prepareSelectPepSequenceBySequence'">
+                      <code><span>prepareSelectPepSequenceBySequence'&#32;<span>cn&#32;tr</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="532">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>prepareSelectPepSequenceBySequence'&#32;<span>cn&#32;tr</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        cn
+                      </b>
+                      :
+                      <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqliteconnection">SQLiteConnection</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        tr
+                      </b>
+                      :
+                      <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqlitetransaction">SQLiteTransaction</a></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span>string&#32;->&#32;int</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:BioFSharp.Mz.SearchDB.Db.SQLiteQuery.prepareSelectPepSequenceBySequence'`')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:BioFSharp.Mz.SearchDB.Db.SQLiteQuery.prepareSelectPepSequenceBySequence'\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/CSBiology/BioFSharp.Mz/tree/master/src/BioFSharp.Mz/SearchDB.fs#L749-749" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                     Prepares statement to select a PepSequence entry by PepSequence 
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    cn
+                  </span>
+                  :
+                  <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqliteconnection">SQLiteConnection</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    tr
+                  </span>
+                  :
+                  <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqlitetransaction">SQLiteTransaction</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span>string&#32;->&#32;int</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '533', 533)" onmouseover="showTip(event, '533', 533)">
+                <p>
+                  <a id="prepareSelectProteinAccessionByID">
+                    <a href="#prepareSelectProteinAccessionByID">
+                      <code><span>prepareSelectProteinAccessionByID&#32;<span>cn&#32;tr</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="533">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>prepareSelectProteinAccessionByID&#32;<span>cn&#32;tr</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        cn
+                      </b>
+                      :
+                      <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqliteconnection">SQLiteConnection</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        tr
+                      </b>
+                      :
+                      <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqlitetransaction">SQLiteTransaction</a></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span>int32&#32;->&#32;string</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:BioFSharp.Mz.SearchDB.Db.SQLiteQuery.prepareSelectProteinAccessionByID`')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:BioFSharp.Mz.SearchDB.Db.SQLiteQuery.prepareSelectProteinAccessionByID\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/CSBiology/BioFSharp.Mz/tree/master/src/BioFSharp.Mz/SearchDB.fs#L874-874" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                     Prepares statement to select a Protein Accession entry by ID
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    cn
+                  </span>
+                  :
+                  <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqliteconnection">SQLiteConnection</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    tr
+                  </span>
+                  :
+                  <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqlitetransaction">SQLiteTransaction</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span>int32&#32;->&#32;string</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '534', 534)" onmouseover="showTip(event, '534', 534)">
+                <p>
+                  <a id="prepareSelectProteinByAccession">
+                    <a href="#prepareSelectProteinByAccession">
+                      <code><span>prepareSelectProteinByAccession&#32;<span>cn&#32;tr</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="534">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>prepareSelectProteinByAccession&#32;<span>cn&#32;tr</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        cn
+                      </b>
+                      :
+                      <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqliteconnection">SQLiteConnection</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        tr
+                      </b>
+                      :
+                      <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqlitetransaction">SQLiteTransaction</a></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span>string&#32;->&#32;<span>int&#32;*&#32;string&#32;*&#32;string</span></span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:BioFSharp.Mz.SearchDB.Db.SQLiteQuery.prepareSelectProteinByAccession`')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:BioFSharp.Mz.SearchDB.Db.SQLiteQuery.prepareSelectProteinByAccession\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/CSBiology/BioFSharp.Mz/tree/master/src/BioFSharp.Mz/SearchDB.fs#L690-690" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                     Prepares statement to select a Protein entry by Accession     
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    cn
+                  </span>
+                  :
+                  <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqliteconnection">SQLiteConnection</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    tr
+                  </span>
+                  :
+                  <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqlitetransaction">SQLiteTransaction</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span>string&#32;->&#32;<span>int&#32;*&#32;string&#32;*&#32;string</span></span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '535', 535)" onmouseover="showTip(event, '535', 535)">
+                <p>
+                  <a id="prepareSelectProteinByID">
+                    <a href="#prepareSelectProteinByID">
+                      <code><span>prepareSelectProteinByID&#32;<span>cn&#32;tr</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="535">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>prepareSelectProteinByID&#32;<span>cn&#32;tr</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        cn
+                      </b>
+                      :
+                      <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqliteconnection">SQLiteConnection</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        tr
+                      </b>
+                      :
+                      <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqlitetransaction">SQLiteTransaction</a></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span>int32&#32;->&#32;<span>int&#32;*&#32;string&#32;*&#32;string</span></span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:BioFSharp.Mz.SearchDB.Db.SQLiteQuery.prepareSelectProteinByID`')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:BioFSharp.Mz.SearchDB.Db.SQLiteQuery.prepareSelectProteinByID\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/CSBiology/BioFSharp.Mz/tree/master/src/BioFSharp.Mz/SearchDB.fs#L677-677" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                     Prepares statement to select a Protein entry by ID        
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    cn
+                  </span>
+                  :
+                  <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqliteconnection">SQLiteConnection</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    tr
+                  </span>
+                  :
+                  <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqlitetransaction">SQLiteTransaction</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span>int32&#32;->&#32;<span>int&#32;*&#32;string&#32;*&#32;string</span></span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '536', 536)" onmouseover="showTip(event, '536', 536)">
+                <p>
+                  <a id="prepareSelectProteinBySequence">
+                    <a href="#prepareSelectProteinBySequence">
+                      <code><span>prepareSelectProteinBySequence&#32;<span>cn&#32;tr</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="536">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>prepareSelectProteinBySequence&#32;<span>cn&#32;tr</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        cn
+                      </b>
+                      :
+                      <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqliteconnection">SQLiteConnection</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        tr
+                      </b>
+                      :
+                      <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqlitetransaction">SQLiteTransaction</a></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span>string&#32;->&#32;<span>int&#32;*&#32;string&#32;*&#32;string</span></span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:BioFSharp.Mz.SearchDB.Db.SQLiteQuery.prepareSelectProteinBySequence`')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:BioFSharp.Mz.SearchDB.Db.SQLiteQuery.prepareSelectProteinBySequence\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/CSBiology/BioFSharp.Mz/tree/master/src/BioFSharp.Mz/SearchDB.fs#L704-704" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                     Prepares statement to select a Protein entry by Sequence     
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    cn
+                  </span>
+                  :
+                  <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqliteconnection">SQLiteConnection</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    tr
+                  </span>
+                  :
+                  <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqlitetransaction">SQLiteTransaction</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span>string&#32;->&#32;<span>int&#32;*&#32;string&#32;*&#32;string</span></span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '537', 537)" onmouseover="showTip(event, '537', 537)">
+                <p>
+                  <a id="prepareSelectSearchDbParamsbyParams">
+                    <a href="#prepareSelectSearchDbParamsbyParams">
+                      <code><span>prepareSelectSearchDbParamsbyParams&#32;<span>cn</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="537">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>prepareSelectSearchDbParamsbyParams&#32;<span>cn</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        cn
+                      </b>
+                      :
+                      <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqliteconnection">SQLiteConnection</a></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span>string&#32;->&#32;string&#32;->&#32;int32&#32;->&#32;int32&#32;->&#32;float&#32;->&#32;int32&#32;->&#32;int32&#32;->&#32;string&#32;->&#32;string&#32;->&#32;string&#32;->&#32;string&#32;->&#32;int32&#32;->&#32;<span><span>(<span>int&#32;*&#32;string&#32;*&#32;string&#32;*&#32;string&#32;*&#32;string&#32;*&#32;int&#32;*&#32;int&#32;*&#32;float&#32;*&#32;int&#32;*&#32;int&#32;*&#32;string&#32;*&#32;string&#32;*&#32;string&#32;*&#32;string&#32;*&#32;int</span>)</span>&#32;option</span></span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:BioFSharp.Mz.SearchDB.Db.SQLiteQuery.prepareSelectSearchDbParamsbyParams`')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:BioFSharp.Mz.SearchDB.Db.SQLiteQuery.prepareSelectSearchDbParamsbyParams\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/CSBiology/BioFSharp.Mz/tree/master/src/BioFSharp.Mz/SearchDB.fs#L578-578" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                     Prepares statement to select all SearchDbParams entries by FastaPath, Protease, MinmissedCleavages, MaxmissedCleavages, MaxMass, MinPepLength, MaxPepLength, IsotopicLabel, MassMode, FixedMods, VariableMods, VarModsThreshold
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    cn
+                  </span>
+                  :
+                  <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqliteconnection">SQLiteConnection</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span>string&#32;->&#32;string&#32;->&#32;int32&#32;->&#32;int32&#32;->&#32;float&#32;->&#32;int32&#32;->&#32;int32&#32;->&#32;string&#32;->&#32;string&#32;->&#32;string&#32;->&#32;string&#32;->&#32;int32&#32;->&#32;<span><span>(<span>int&#32;*&#32;string&#32;*&#32;string&#32;*&#32;string&#32;*&#32;string&#32;*&#32;int&#32;*&#32;int&#32;*&#32;float&#32;*&#32;int&#32;*&#32;int&#32;*&#32;string&#32;*&#32;string&#32;*&#32;string&#32;*&#32;string&#32;*&#32;int</span>)</span>&#32;option</span></span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '538', 538)" onmouseover="showTip(event, '538', 538)">
+                <p>
+                  <a id="prepareSelectSearchModsbyParams">
+                    <a href="#prepareSelectSearchModsbyParams">
+                      <code><span>prepareSelectSearchModsbyParams&#32;<span>cn</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="538">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>prepareSelectSearchModsbyParams&#32;<span>cn</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        cn
+                      </b>
+                      :
+                      <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqliteconnection">SQLiteConnection</a></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span>string&#32;->&#32;string&#32;->&#32;int32&#32;->&#32;int32&#32;->&#32;float&#32;->&#32;int32&#32;->&#32;int32&#32;->&#32;string&#32;->&#32;string&#32;->&#32;string&#32;->&#32;string&#32;->&#32;int32&#32;->&#32;<span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-searchdb-searchmodification.html">SearchModification</a>&#32;list</span></span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:BioFSharp.Mz.SearchDB.Db.SQLiteQuery.prepareSelectSearchModsbyParams`')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:BioFSharp.Mz.SearchDB.Db.SQLiteQuery.prepareSelectSearchModsbyParams\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/CSBiology/BioFSharp.Mz/tree/master/src/BioFSharp.Mz/SearchDB.fs#L627-627" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                     Prepares statement to select all SearchModifications by SearchDbParams
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    cn
+                  </span>
+                  :
+                  <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqliteconnection">SQLiteConnection</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span>string&#32;->&#32;string&#32;->&#32;int32&#32;->&#32;int32&#32;->&#32;float&#32;->&#32;int32&#32;->&#32;int32&#32;->&#32;string&#32;->&#32;string&#32;->&#32;string&#32;->&#32;string&#32;->&#32;int32&#32;->&#32;<span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-searchdb-searchmodification.html">SearchModification</a>&#32;list</span></span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '539', 539)" onmouseover="showTip(event, '539', 539)">
+                <p>
+                  <a id="selectProteins">
+                    <a href="#selectProteins">
+                      <code><span>selectProteins&#32;<span>cn</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="539">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>selectProteins&#32;<span>cn</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        cn
+                      </b>
+                      :
+                      <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqliteconnection">SQLiteConnection</a></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><span>(<span>string&#32;*&#32;string</span>)</span>&#32;list</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:BioFSharp.Mz.SearchDB.Db.SQLiteQuery.selectProteins`')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:BioFSharp.Mz.SearchDB.Db.SQLiteQuery.selectProteins\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/CSBiology/BioFSharp.Mz/tree/master/src/BioFSharp.Mz/SearchDB.fs#L564-564" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                     Prepares statement to select Accession and Sequence of Proteins from SearchDB
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    cn
+                  </span>
+                  :
+                  <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqliteconnection">SQLiteConnection</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><span>(<span>string&#32;*&#32;string</span>)</span>&#32;list</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '540', 540)" onmouseover="showTip(event, '540', 540)">
+                <p>
+                  <a id="selectSearchDbParams">
+                    <a href="#selectSearchDbParams">
+                      <code><span>selectSearchDbParams&#32;<span>cn</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="540">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>selectSearchDbParams&#32;<span>cn</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        cn
+                      </b>
+                      :
+                      <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqliteconnection">SQLiteConnection</a></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><span>(<span>int&#32;*&#32;string&#32;*&#32;string&#32;*&#32;string&#32;*&#32;string&#32;*&#32;int&#32;*&#32;int&#32;*&#32;float&#32;*&#32;int&#32;*&#32;int&#32;*&#32;string&#32;*&#32;string&#32;*&#32;string&#32;*&#32;string&#32;*&#32;int</span>)</span>&#32;option</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:BioFSharp.Mz.SearchDB.Db.SQLiteQuery.selectSearchDbParams`')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:BioFSharp.Mz.SearchDB.Db.SQLiteQuery.selectSearchDbParams\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/CSBiology/BioFSharp.Mz/tree/master/src/BioFSharp.Mz/SearchDB.fs#L554-554" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                     Prepares statement to select all SearchDbParams 
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    cn
+                  </span>
+                  :
+                  <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqliteconnection">SQLiteConnection</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><span>(<span>int&#32;*&#32;string&#32;*&#32;string&#32;*&#32;string&#32;*&#32;string&#32;*&#32;int&#32;*&#32;int&#32;*&#32;float&#32;*&#32;int&#32;*&#32;int&#32;*&#32;string&#32;*&#32;string&#32;*&#32;string&#32;*&#32;string&#32;*&#32;int</span>)</span>&#32;option</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '541', 541)" onmouseover="showTip(event, '541', 541)">
+                <p>
+                  <a id="setIndexOnModSequenceAndGlobalMod">
+                    <a href="#setIndexOnModSequenceAndGlobalMod">
+                      <code><span>setIndexOnModSequenceAndGlobalMod&#32;<span>cn</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="541">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>setIndexOnModSequenceAndGlobalMod&#32;<span>cn</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        cn
+                      </b>
+                      :
+                      <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqliteconnection">SQLiteConnection</a></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code>int</code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  cn
+                </span>
+                :
+                <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqliteconnection">SQLiteConnection</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code>int</code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '542', 542)" onmouseover="showTip(event, '542', 542)">
+                <p>
+                  <a id="setMassIndexOnModSequence">
+                    <a href="#setMassIndexOnModSequence">
+                      <code><span>setMassIndexOnModSequence&#32;<span>cn</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="542">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>setMassIndexOnModSequence&#32;<span>cn</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        cn
+                      </b>
+                      :
+                      <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqliteconnection">SQLiteConnection</a></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code>int</code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  cn
+                </span>
+                :
+                <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqliteconnection">SQLiteConnection</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code>int</code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '543', 543)" onmouseover="showTip(event, '543', 543)">
+                <p>
+                  <a id="setPepSequenceIDIndexOnCleavageIndex">
+                    <a href="#setPepSequenceIDIndexOnCleavageIndex">
+                      <code><span>setPepSequenceIDIndexOnCleavageIndex&#32;<span>cn</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="543">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>setPepSequenceIDIndexOnCleavageIndex&#32;<span>cn</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        cn
+                      </b>
+                      :
+                      <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqliteconnection">SQLiteConnection</a></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code>int</code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  cn
+                </span>
+                :
+                <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqliteconnection">SQLiteConnection</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code>int</code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '544', 544)" onmouseover="showTip(event, '544', 544)">
+                <p>
+                  <a id="setSequenceIndexOnPepSequence">
+                    <a href="#setSequenceIndexOnPepSequence">
+                      <code><span>setSequenceIndexOnPepSequence&#32;<span>cn</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="544">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>setSequenceIndexOnPepSequence&#32;<span>cn</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        cn
+                      </b>
+                      :
+                      <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqliteconnection">SQLiteConnection</a></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code>int</code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  cn
+                </span>
+                :
+                <code><a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqliteconnection">SQLiteConnection</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code>int</code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+</div>
+        
+    </div>
+</main>
+<aside id="fsdocs-page-menu">
+    <p id="on-this-page">On this page</p>
+    <div class="empty"></div>
+</aside>
+<dialog>
+    <input type="search" placeholder="Search docs" />
+    <div class="results">
+        <ul></ul>
+        <p class="empty">Type something to start searching.</p>
+    </div>
+</dialog>
+<script type="module" src="https://csbiology.github.io/BioFSharp.Mz/content/fsdocs-tips.js"></script>
+<script type="module" src="https://csbiology.github.io/BioFSharp.Mz/content/fsdocs-theme-toggle.js"></script>
+<script type="module" src="https://csbiology.github.io/BioFSharp.Mz/content/fsdocs-theme.js"></script>
+<script type="module" src="https://csbiology.github.io/BioFSharp.Mz/content/fsdocs-search.js"></script>
+
+</body>
+</html>

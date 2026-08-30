@@ -1,0 +1,1577 @@
+<!DOCTYPE html>
+<html lang="en" data-root="https://csbiology.github.io/BioFSharp.Mz/">
+<head>
+    <meta charset="UTF-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="David Zimmer, Caroline Ott, Heinrich Lukas Weil, Timo Muehlhaus" name="author">
+    <!-- Opengraph properties (https://ogp.me/) -->
+    <meta property="og:site_name" content="BioFSharp.Mz">
+    <meta property="og:title" content="Cache (BioFSharp.Mz)" />
+    <meta property="og:url" content="https://csbiology.github.io/BioFSharp.Mz/{{fsdocs-source-basename}}.html">
+    <meta property="og:type" content="website" />
+    <!-- Twitter cards (https://developer.twitter.com/en/docs/twitter-for-websites/cards/overview/summary-card-with-large-image) -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="https://csbiology.github.io/BioFSharp.Mz/">
+    <meta name="twitter:title" content="Cache (BioFSharp.Mz)">
+    
+    <title>Cache (BioFSharp.Mz) | BioFSharp.Mz</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <link href="https://csbiology.github.io/BioFSharp.Mz/img/favicon.ico" rel="icon" sizes="32x32" type="image/png"/>
+    <script type="application/javascript" src="https://csbiology.github.io/BioFSharp.Mz/content/fsdocs-theme-set-dark.js"></script>
+    <link href="https://csbiology.github.io/BioFSharp.Mz/content/fsdocs-default.css" rel="stylesheet" type="text/css"/>
+    <link href="https://csbiology.github.io/BioFSharp.Mz/content/fsdocs-theme.css" rel="stylesheet" type="text/css"/>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js"></script>
+    
+</head>
+<body class="api-docs">
+<header>
+    <div class="start">
+        <div id="menu-toggle">
+            <iconify-icon class="icon closed" height="22" icon="eva:menu-fill" width="22"></iconify-icon>
+            <iconify-icon class="icon open" height="22" icon="mi:close" width="22"></iconify-icon>
+            <input type="checkbox" name="mobile-menu" />
+            <ul class="menu">
+                <li class="nav-header">Links</li>
+                <li class="nav-item"><a class="nav-link" href="https://github.com/CSBiology/BioFSharp.Mz/blob/developer/LICENSE">License</a>
+                </li>
+                <li class="nav-item"><a class="nav-link"
+                                        href="https://github.com/CSBiology/BioFSharp.Mz/blob/developer/RELEASE_NOTES.md">Release
+                    Notes</a></li>
+                <li class="nav-item"><a class="nav-link" href="https://github.com/CSBiology/BioFSharp.Mz/">Source
+                    Repository</a></li>
+                
+                <li class="nav-header">
+  API Reference
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://csbiology.github.io/BioFSharp.Mz/reference/index.html">
+    All Namespaces
+  </a>
+</li>
+            </ul>
+        </div>
+        <a href="https://csbiology.github.io/BioFSharp.Mz/">
+            <img alt="Header menu logo" src="https://csbiology.github.io/BioFSharp.Mz/img/logo.png">
+            <strong>BioFSharp.Mz</strong>
+        </a>
+    </div>
+    <div class="end">
+        <a href="https://github.com/CSBiology/BioFSharp.Mz/" target="_blank">
+            <iconify-icon icon="uil:github" width="26" height="26"></iconify-icon>
+        </a>
+        <iconify-icon id="search-btn" icon="carbon:search" class="search" width="24" height="24"></iconify-icon>
+        <fsdocs-theme-toggle></fsdocs-theme-toggle>
+    </div>
+</header>
+<aside id="fsdocs-main-menu">
+    <ul class="menu">
+        <li class="nav-header">Links</li>
+        <li class="nav-item"><a class="nav-link" href="https://github.com/CSBiology/BioFSharp.Mz/blob/developer/LICENSE">License</a>
+        </li>
+        <li class="nav-item"><a class="nav-link"
+                                href="https://github.com/CSBiology/BioFSharp.Mz/blob/developer/RELEASE_NOTES.md">Release
+            Notes</a></li>
+        <li class="nav-item"><a class="nav-link" href="https://github.com/CSBiology/BioFSharp.Mz/">Source
+            Repository</a></li>
+        
+        <li class="nav-header">
+  API Reference
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://csbiology.github.io/BioFSharp.Mz/reference/index.html">
+    All Namespaces
+  </a>
+</li>
+    </ul>
+</aside>
+<main>
+    <div id="content">
+        <div>
+  <h2>
+    Cache Module
+  </h2>
+  <dl class="fsdocs-metadata">
+    <dt>
+      Namespace: 
+      <a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz.html">
+        BioFSharp.Mz
+      </a>
+    </dt>
+    <dt>
+      Assembly: BioFSharp.Mz.dll
+    </dt>
+  </dl>
+  <div class="fsdocs-xmldoc">
+    <div>
+      <p class="fsdocs-summary">
+        
+      </p>
+    </div>
+  </div>
+  <div>
+    <h3>
+      Types
+    </h3>
+    <table class="table outer-list fsdocs-entity-list">
+      <thead>
+        <tr>
+          <td>
+            Type
+          </td>
+          <td>
+            Description
+          </td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="fsdocs-entity-name">
+            <p>
+              <a name="Border">
+                <a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-cache-border.html">
+                  Border
+                </a>
+              </a>
+            </p>
+          </td>
+          <td class="fsdocs-entity-xmldoc">
+            <div>
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:BioFSharp.Mz.Cache.Border`')">
+                <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:BioFSharp.Mz.Cache.Border\'/>')">
+                <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+              </div>
+              <a href="https://github.com/CSBiology/BioFSharp.Mz/tree/master/src/BioFSharp.Mz/Caching.fs#L26-26" class="fsdocs-source-link" title="Source on GitHub">
+                <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+              </a>
+              <p class="fsdocs-summary">
+                
+              </p>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-entity-name">
+            <p>
+              <a name="Cache<'a, 'b>">
+                <a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-cache-cache-2.html">
+                  Cache<'a, 'b>
+                </a>
+              </a>
+            </p>
+          </td>
+          <td class="fsdocs-entity-xmldoc">
+            <div>
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('``cref:T:BioFSharp.Mz.Cache.Cache`2``')">
+                <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:BioFSharp.Mz.Cache.Cache`2\'/>')">
+                <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+              </div>
+              <a href="https://github.com/CSBiology/BioFSharp.Mz/tree/master/src/BioFSharp.Mz/Caching.fs#L10-10" class="fsdocs-source-link" title="Source on GitHub">
+                <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+              </a>
+              <p class="fsdocs-summary">
+                 Wraps a SortedList to be used as a in memory cache. Especially usefull if computed theoretical fragmentation pattern
+ or spectra are to be reused
+              </p>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div>
+    <h3>
+      Functions and values
+    </h3>
+    <table class="table outer-list fsdocs-member-list">
+      <thead>
+        <tr>
+          <td class="fsdocs-member-list-header">
+            Function or value
+          </td>
+          <td class="fsdocs-member-list-header">
+            Description
+          </td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '8', 8)" onmouseover="showTip(event, '8', 8)">
+                <p>
+                  <a id="addItem">
+                    <a href="#addItem">
+                      <code><span>addItem&#32;<span>cache&#32;<span>(<span>arg2,&#32;arg3</span>)</span></span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="8">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>addItem&#32;<span>cache&#32;<span>(<span>arg2,&#32;arg3</span>)</span></span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        cache
+                      </b>
+                      :
+                      <code><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-cache-cache-2.html">Cache</a>&lt;<span>'a,&#32;'b</span>&gt;</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        arg1
+                      </b>
+                      :
+                      <code>'a</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        arg2
+                      </b>
+                      :
+                      <code>'b</code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:BioFSharp.Mz.Cache.addItem``2```')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:BioFSharp.Mz.Cache.addItem``2\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/CSBiology/BioFSharp.Mz/tree/master/src/BioFSharp.Mz/Caching.fs#L64-64" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                     Adds item to the Cache
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    cache
+                  </span>
+                  :
+                  <code><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-cache-cache-2.html">Cache</a>&lt;<span>'a,&#32;'b</span>&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    arg1
+                  </span>
+                  :
+                  <code>'a</code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    arg2
+                  </span>
+                  :
+                  <code>'b</code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+              </dl>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '9', 9)" onmouseover="showTip(event, '9', 9)">
+                <p>
+                  <a id="binarySearch">
+                    <a href="#binarySearch">
+                      <code><span>binarySearch&#32;<span>border&#32;cache&#32;value</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="9">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>binarySearch&#32;<span>border&#32;cache&#32;value</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        border
+                      </b>
+                      :
+                      <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-cache-border.html">Border</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        cache
+                      </b>
+                      :
+                      <code><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-cache-cache-2.html">Cache</a>&lt;<span>'a,&#32;'b</span>&gt;</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        value
+                      </b>
+                      :
+                      <code>'a</code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code>int</code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  border
+                </span>
+                :
+                <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-cache-border.html">Border</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  cache
+                </span>
+                :
+                <code><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-cache-cache-2.html">Cache</a>&lt;<span>'a,&#32;'b</span>&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  value
+                </span>
+                :
+                <code>'a</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code>int</code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '10', 10)" onmouseover="showTip(event, '10', 10)">
+                <p>
+                  <a id="bulkDeleteBy">
+                    <a href="#bulkDeleteBy">
+                      <code><span>bulkDeleteBy&#32;<span>cache&#32;cutOff</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="10">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>bulkDeleteBy&#32;<span>cache&#32;cutOff</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        cache
+                      </b>
+                      :
+                      <code><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-cache-cache-2.html">Cache</a>&lt;<span>'a,&#32;'b</span>&gt;</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        cutOff
+                      </b>
+                      :
+                      <code>'a</code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-cache-cache-2.html">Cache</a>&lt;<span>'a,&#32;'a0</span>&gt;</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:BioFSharp.Mz.Cache.bulkDeleteBy``3```')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:BioFSharp.Mz.Cache.bulkDeleteBy``3\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/CSBiology/BioFSharp.Mz/tree/master/src/BioFSharp.Mz/Caching.fs#L81-81" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                     Deletes list of items to the cache. Deletes all items with a key smaller than the defined cutOff.
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    cache
+                  </span>
+                  :
+                  <code><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-cache-cache-2.html">Cache</a>&lt;<span>'a,&#32;'b</span>&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    cutOff
+                  </span>
+                  :
+                  <code>'a</code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-cache-cache-2.html">Cache</a>&lt;<span>'a,&#32;'a0</span>&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '11', 11)" onmouseover="showTip(event, '11', 11)">
+                <p>
+                  <a id="bulkInsertBy">
+                    <a href="#bulkInsertBy">
+                      <code><span>bulkInsertBy&#32;<span>cache&#32;items</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="11">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>bulkInsertBy&#32;<span>cache&#32;items</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        cache
+                      </b>
+                      :
+                      <code><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-cache-cache-2.html">Cache</a>&lt;<span>'a,&#32;'b</span>&gt;</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        items
+                      </b>
+                      :
+                      <code><span><span>(<span>'a&#32;*&#32;'b</span>)</span>&#32;list</span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span>unit&#32;list</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:BioFSharp.Mz.Cache.bulkInsertBy``2```')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:BioFSharp.Mz.Cache.bulkInsertBy``2\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/CSBiology/BioFSharp.Mz/tree/master/src/BioFSharp.Mz/Caching.fs#L76-76" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                     Adds list of items to the cache
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    cache
+                  </span>
+                  :
+                  <code><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-cache-cache-2.html">Cache</a>&lt;<span>'a,&#32;'b</span>&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    items
+                  </span>
+                  :
+                  <code><span><span>(<span>'a&#32;*&#32;'b</span>)</span>&#32;list</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span>unit&#32;list</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '12', 12)" onmouseover="showTip(event, '12', 12)">
+                <p>
+                  <a id="containsItemsBetween">
+                    <a href="#containsItemsBetween">
+                      <code><span>containsItemsBetween&#32;<span>cache&#32;<span>(<span>arg2,&#32;arg3</span>)</span></span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="12">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>containsItemsBetween&#32;<span>cache&#32;<span>(<span>arg2,&#32;arg3</span>)</span></span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        cache
+                      </b>
+                      :
+                      <code><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-cache-cache-2.html">Cache</a>&lt;<span>'a,&#32;'b</span>&gt;</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        arg1
+                      </b>
+                      :
+                      <code>'a</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        arg2
+                      </b>
+                      :
+                      <code>'a</code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><span>(<span>int&#32;*&#32;int</span>)</span>&#32;option</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:BioFSharp.Mz.Cache.containsItemsBetween``2```')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:BioFSharp.Mz.Cache.containsItemsBetween``2\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/CSBiology/BioFSharp.Mz/tree/master/src/BioFSharp.Mz/Caching.fs#L129-129" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                     Returns the indices of the items in the sorted cache including items at the border of the input range of keys. 
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    cache
+                  </span>
+                  :
+                  <code><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-cache-cache-2.html">Cache</a>&lt;<span>'a,&#32;'b</span>&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    arg1
+                  </span>
+                  :
+                  <code>'a</code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    arg2
+                  </span>
+                  :
+                  <code>'a</code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><span>(<span>int&#32;*&#32;int</span>)</span>&#32;option</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '13', 13)" onmouseover="showTip(event, '13', 13)">
+                <p>
+                  <a id="createCache">
+                    <a href="#createCache">
+                      <code><span>createCache&#32;<span></span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="13">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>createCache&#32;<span></span></span></code>
+                  <br/>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-cache-cache-2.html">Cache</a>&lt;<span>'a,&#32;'b</span>&gt;</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:BioFSharp.Mz.Cache.createCache``2```')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:BioFSharp.Mz.Cache.createCache``2\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/CSBiology/BioFSharp.Mz/tree/master/src/BioFSharp.Mz/Caching.fs#L13-13" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                     Creates cache with default constructor 
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-cache-cache-2.html">Cache</a>&lt;<span>'a,&#32;'b</span>&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '14', 14)" onmouseover="showTip(event, '14', 14)">
+                <p>
+                  <a id="createCacheWith">
+                    <a href="#createCacheWith">
+                      <code><span>createCacheWith&#32;<span>comparer&#32;capacity</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="14">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>createCacheWith&#32;<span>comparer&#32;capacity</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        comparer
+                      </b>
+                      :
+                      <code><span><a href="https://learn.microsoft.com/dotnet/api/system.collections.generic.icomparer-1">IComparer</a>&lt;'a&gt;</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        capacity
+                      </b>
+                      :
+                      <code>int</code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-cache-cache-2.html">Cache</a>&lt;<span>'a,&#32;'b</span>&gt;</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:BioFSharp.Mz.Cache.createCacheWith``2```')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:BioFSharp.Mz.Cache.createCacheWith``2\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/CSBiology/BioFSharp.Mz/tree/master/src/BioFSharp.Mz/Caching.fs#L23-23" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                     Creates cache with defined comparer and defined capacity of items the list can contain, gets automatically increased if the limit is reached.
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    comparer
+                  </span>
+                  :
+                  <code><span><a href="https://learn.microsoft.com/dotnet/api/system.collections.generic.icomparer-1">IComparer</a>&lt;'a&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    capacity
+                  </span>
+                  :
+                  <code>int</code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-cache-cache-2.html">Cache</a>&lt;<span>'a,&#32;'b</span>&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '15', 15)" onmouseover="showTip(event, '15', 15)">
+                <p>
+                  <a id="createCacheWithCap">
+                    <a href="#createCacheWithCap">
+                      <code><span>createCacheWithCap&#32;<span>capacity</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="15">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>createCacheWithCap&#32;<span>capacity</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        capacity
+                      </b>
+                      :
+                      <code>int</code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-cache-cache-2.html">Cache</a>&lt;<span>'a,&#32;'b</span>&gt;</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:BioFSharp.Mz.Cache.createCacheWithCap``2```')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:BioFSharp.Mz.Cache.createCacheWithCap``2\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/CSBiology/BioFSharp.Mz/tree/master/src/BioFSharp.Mz/Caching.fs#L16-16" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                     Creates cache with defined capacity of items the list can contain, gets automatically increased if the limit is reached.
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    capacity
+                  </span>
+                  :
+                  <code>int</code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-cache-cache-2.html">Cache</a>&lt;<span>'a,&#32;'b</span>&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '16', 16)" onmouseover="showTip(event, '16', 16)">
+                <p>
+                  <a id="createCacheWithComp">
+                    <a href="#createCacheWithComp">
+                      <code><span>createCacheWithComp&#32;<span>comparer</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="16">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>createCacheWithComp&#32;<span>comparer</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        comparer
+                      </b>
+                      :
+                      <code><span><a href="https://learn.microsoft.com/dotnet/api/system.collections.generic.icomparer-1">IComparer</a>&lt;'a&gt;</span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-cache-cache-2.html">Cache</a>&lt;<span>'a,&#32;'b</span>&gt;</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:BioFSharp.Mz.Cache.createCacheWithComp``2```')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:BioFSharp.Mz.Cache.createCacheWithComp``2\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/CSBiology/BioFSharp.Mz/tree/master/src/BioFSharp.Mz/Caching.fs#L20-20" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                     Creates cache with defined comparer
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    comparer
+                  </span>
+                  :
+                  <code><span><a href="https://learn.microsoft.com/dotnet/api/system.collections.generic.icomparer-1">IComparer</a>&lt;'a&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-cache-cache-2.html">Cache</a>&lt;<span>'a,&#32;'b</span>&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '17', 17)" onmouseover="showTip(event, '17', 17)">
+                <p>
+                  <a id="getItemBy">
+                    <a href="#getItemBy">
+                      <code><span>getItemBy&#32;<span>cache&#32;key</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="17">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>getItemBy&#32;<span>cache&#32;key</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        cache
+                      </b>
+                      :
+                      <code><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-cache-cache-2.html">Cache</a>&lt;<span>'a,&#32;'b</span>&gt;</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        key
+                      </b>
+                      :
+                      <code>'a</code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span>bool&#32;*&#32;'b</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:BioFSharp.Mz.Cache.getItemBy``2```')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:BioFSharp.Mz.Cache.getItemBy``2\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/CSBiology/BioFSharp.Mz/tree/master/src/BioFSharp.Mz/Caching.fs#L89-89" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                     Returns with defined key
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    cache
+                  </span>
+                  :
+                  <code><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-cache-cache-2.html">Cache</a>&lt;<span>'a,&#32;'b</span>&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    key
+                  </span>
+                  :
+                  <code>'a</code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span>bool&#32;*&#32;'b</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '18', 18)" onmouseover="showTip(event, '18', 18)">
+                <p>
+                  <a id="getItemsByIdx">
+                    <a href="#getItemsByIdx">
+                      <code><span>getItemsByIdx&#32;<span>cache&#32;<span>(<span>arg2,&#32;arg3</span>)</span></span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="18">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>getItemsByIdx&#32;<span>cache&#32;<span>(<span>arg2,&#32;arg3</span>)</span></span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        cache
+                      </b>
+                      :
+                      <code><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-cache-cache-2.html">Cache</a>&lt;<span>'a,&#32;'b</span>&gt;</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        arg1
+                      </b>
+                      :
+                      <code>int</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        arg2
+                      </b>
+                      :
+                      <code>int</code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><span>(<span>'a&#32;*&#32;'b</span>)</span>&#32;list</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:BioFSharp.Mz.Cache.getItemsByIdx``2```')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:BioFSharp.Mz.Cache.getItemsByIdx``2\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/CSBiology/BioFSharp.Mz/tree/master/src/BioFSharp.Mz/Caching.fs#L102-102" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                     Returns list of items with indices in the defined range. 
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    cache
+                  </span>
+                  :
+                  <code><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-cache-cache-2.html">Cache</a>&lt;<span>'a,&#32;'b</span>&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    arg1
+                  </span>
+                  :
+                  <code>int</code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    arg2
+                  </span>
+                  :
+                  <code>int</code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><span>(<span>'a&#32;*&#32;'b</span>)</span>&#32;list</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '19', 19)" onmouseover="showTip(event, '19', 19)">
+                <p>
+                  <a id="getItemsByRange">
+                    <a href="#getItemsByRange">
+                      <code><span>getItemsByRange&#32;<span>cache&#32;<span>(<span>arg2,&#32;arg3</span>)</span></span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="19">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>getItemsByRange&#32;<span>cache&#32;<span>(<span>arg2,&#32;arg3</span>)</span></span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        cache
+                      </b>
+                      :
+                      <code><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-cache-cache-2.html">Cache</a>&lt;<span>'a,&#32;'b</span>&gt;</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        arg1
+                      </b>
+                      :
+                      <code>'a</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        arg2
+                      </b>
+                      :
+                      <code>'a</code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><span>(<span>'a&#32;*&#32;'b</span>)</span>&#32;list</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:BioFSharp.Mz.Cache.getItemsByRange``2```')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:BioFSharp.Mz.Cache.getItemsByRange``2\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/CSBiology/BioFSharp.Mz/tree/master/src/BioFSharp.Mz/Caching.fs#L93-93" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                     Returns list of items with keys in the defined range. 
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    cache
+                  </span>
+                  :
+                  <code><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-cache-cache-2.html">Cache</a>&lt;<span>'a,&#32;'b</span>&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    arg1
+                  </span>
+                  :
+                  <code>'a</code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    arg2
+                  </span>
+                  :
+                  <code>'a</code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><span>(<span>'a&#32;*&#32;'b</span>)</span>&#32;list</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '20', 20)" onmouseover="showTip(event, '20', 20)">
+                <p>
+                  <a id="getValuesBy">
+                    <a href="#getValuesBy">
+                      <code><span>getValuesBy&#32;<span>cache&#32;<span>(<span>arg2,&#32;arg3</span>)</span></span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="20">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>getValuesBy&#32;<span>cache&#32;<span>(<span>arg2,&#32;arg3</span>)</span></span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        cache
+                      </b>
+                      :
+                      <code><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-cache-cache-2.html">Cache</a>&lt;<span>'a,&#32;'b</span>&gt;</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        arg1
+                      </b>
+                      :
+                      <code>'a</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        arg2
+                      </b>
+                      :
+                      <code>'a</code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span>'b&#32;list</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:BioFSharp.Mz.Cache.getValuesBy``2```')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:BioFSharp.Mz.Cache.getValuesBy``2\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/CSBiology/BioFSharp.Mz/tree/master/src/BioFSharp.Mz/Caching.fs#L111-111" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                     Returns list of values of items with keys in the defined range. 
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    cache
+                  </span>
+                  :
+                  <code><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-cache-cache-2.html">Cache</a>&lt;<span>'a,&#32;'b</span>&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    arg1
+                  </span>
+                  :
+                  <code>'a</code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    arg2
+                  </span>
+                  :
+                  <code>'a</code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span>'b&#32;list</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '21', 21)" onmouseover="showTip(event, '21', 21)">
+                <p>
+                  <a id="getValuesByIdx">
+                    <a href="#getValuesByIdx">
+                      <code><span>getValuesByIdx&#32;<span>cache&#32;<span>(<span>arg2,&#32;arg3</span>)</span></span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="21">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>getValuesByIdx&#32;<span>cache&#32;<span>(<span>arg2,&#32;arg3</span>)</span></span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        cache
+                      </b>
+                      :
+                      <code><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-cache-cache-2.html">Cache</a>&lt;<span>'a,&#32;'b</span>&gt;</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        arg1
+                      </b>
+                      :
+                      <code>int</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        arg2
+                      </b>
+                      :
+                      <code>int</code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span>'b&#32;list</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:BioFSharp.Mz.Cache.getValuesByIdx``2```')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:BioFSharp.Mz.Cache.getValuesByIdx``2\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/CSBiology/BioFSharp.Mz/tree/master/src/BioFSharp.Mz/Caching.fs#L120-120" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                     Returns list of values of items with indices in the defined range. 
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    cache
+                  </span>
+                  :
+                  <code><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-cache-cache-2.html">Cache</a>&lt;<span>'a,&#32;'b</span>&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    arg1
+                  </span>
+                  :
+                  <code>int</code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    arg2
+                  </span>
+                  :
+                  <code>int</code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span>'b&#32;list</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+</div>
+        
+    </div>
+</main>
+<aside id="fsdocs-page-menu">
+    <p id="on-this-page">On this page</p>
+    <div class="empty"></div>
+</aside>
+<dialog>
+    <input type="search" placeholder="Search docs" />
+    <div class="results">
+        <ul></ul>
+        <p class="empty">Type something to start searching.</p>
+    </div>
+</dialog>
+<script type="module" src="https://csbiology.github.io/BioFSharp.Mz/content/fsdocs-tips.js"></script>
+<script type="module" src="https://csbiology.github.io/BioFSharp.Mz/content/fsdocs-theme-toggle.js"></script>
+<script type="module" src="https://csbiology.github.io/BioFSharp.Mz/content/fsdocs-theme.js"></script>
+<script type="module" src="https://csbiology.github.io/BioFSharp.Mz/content/fsdocs-search.js"></script>
+
+</body>
+</html>
