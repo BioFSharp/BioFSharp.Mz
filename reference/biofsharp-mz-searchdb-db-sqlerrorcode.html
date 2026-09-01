@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-root="https://csbiology.github.io/BioFSharp.Mz/">
+<html lang="en" data-root="https://biofsharp.com/BioFSharp.Mz/">
 <head>
     <meta charset="UTF-8">
     <meta content="IE=edge" http-equiv="X-UA-Compatible">
@@ -8,11 +8,11 @@
     <!-- Opengraph properties (https://ogp.me/) -->
     <meta property="og:site_name" content="BioFSharp.Mz">
     <meta property="og:title" content="SqlErrorCode (BioFSharp.Mz)" />
-    <meta property="og:url" content="https://csbiology.github.io/BioFSharp.Mz/{{fsdocs-source-basename}}.html">
+    <meta property="og:url" content="https://biofsharp.com/BioFSharp.Mz/{{fsdocs-source-basename}}.html">
     <meta property="og:type" content="website" />
     <!-- Twitter cards (https://developer.twitter.com/en/docs/twitter-for-websites/cards/overview/summary-card-with-large-image) -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:site" content="https://csbiology.github.io/BioFSharp.Mz/">
+    <meta name="twitter:site" content="https://biofsharp.com/BioFSharp.Mz/">
     <meta name="twitter:title" content="SqlErrorCode (BioFSharp.Mz)">
     
     <title>SqlErrorCode (BioFSharp.Mz) | BioFSharp.Mz</title>
@@ -20,11 +20,12 @@
     <link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
     <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
-    <link href="https://csbiology.github.io/BioFSharp.Mz/img/favicon.ico" rel="icon" sizes="32x32" type="image/png"/>
-    <script type="application/javascript" src="https://csbiology.github.io/BioFSharp.Mz/content/fsdocs-theme-set-dark.js"></script>
-    <link href="https://csbiology.github.io/BioFSharp.Mz/content/fsdocs-default.css" rel="stylesheet" type="text/css"/>
-    <link href="https://csbiology.github.io/BioFSharp.Mz/content/fsdocs-theme.css" rel="stylesheet" type="text/css"/>
+    <link href="https://biofsharp.com/BioFSharp.Mz/img/favicon.ico" rel="icon" sizes="32x32" type="image/png"/>
+    <script type="application/javascript" src="https://biofsharp.com/BioFSharp.Mz/content/fsdocs-theme-set-dark.js"></script>
+    <link href="https://biofsharp.com/BioFSharp.Mz/content/fsdocs-default.css" rel="stylesheet" type="text/css"/>
+    <link href="https://biofsharp.com/BioFSharp.Mz/content/fsdocs-theme.css" rel="stylesheet" type="text/css"/>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js"></script>
+<style>header .start a img { background-color: #2f3337; border-radius: 6px; padding: 3px; }</style>
     
 </head>
 <body class="api-docs">
@@ -43,19 +44,80 @@
                     Notes</a></li>
                 <li class="nav-item"><a class="nav-link" href="https://github.com/CSBiology/BioFSharp.Mz/">Source
                     Repository</a></li>
-                
+                <li class="nav-header ">
+  Spectrum processing
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/01_01_peaks_and_peak_arrays.html">
+    Peaks and peak arrays
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/01_02_signal_detection.html">
+    Signal detection and centroiding
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/01_03_charge_state_determination.html">
+    Charge state determination
+  </a>
+</li>             
+<li class="nav-header ">
+  Peptide identification
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/02_01_fragmentation.html">
+    In silico fragmentation
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/02_02_search_databases.html">
+    Peptide search databases
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/02_03_sequest_like_scoring.html">
+    SEQUEST-like scoring
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/02_04_andromeda_like_scoring.html">
+    Andromeda-like and X!Tandem-like scoring
+  </a>
+</li>             
+<li class="nav-header ">
+  Quantification
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/03_01_quantification.html">
+    Peak quantification
+  </a>
+</li>             
+<li class="nav-header ">
+  Validation and inference
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/04_01_fdr_control.html">
+    False discovery rate control
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/04_02_protein_inference.html">
+    Protein inference
+  </a>
+</li>
                 <li class="nav-header">
   API Reference
 </li>             
 <li class="nav-item">
-  <a class="nav-link" href="https://csbiology.github.io/BioFSharp.Mz/reference/index.html">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/reference/index.html">
     All Namespaces
   </a>
 </li>
             </ul>
         </div>
         <a href="https://csbiology.github.io/BioFSharp.Mz/">
-            <img alt="Header menu logo" src="https://csbiology.github.io/BioFSharp.Mz/img/logo.png">
+            <img alt="Header menu logo" src="https://biofsharp.com/BioFSharp.Mz/img/logo.png">
             <strong>BioFSharp.Mz</strong>
         </a>
     </div>
@@ -77,12 +139,73 @@
             Notes</a></li>
         <li class="nav-item"><a class="nav-link" href="https://github.com/CSBiology/BioFSharp.Mz/">Source
             Repository</a></li>
-        
+        <li class="nav-header ">
+  Spectrum processing
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/01_01_peaks_and_peak_arrays.html">
+    Peaks and peak arrays
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/01_02_signal_detection.html">
+    Signal detection and centroiding
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/01_03_charge_state_determination.html">
+    Charge state determination
+  </a>
+</li>             
+<li class="nav-header ">
+  Peptide identification
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/02_01_fragmentation.html">
+    In silico fragmentation
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/02_02_search_databases.html">
+    Peptide search databases
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/02_03_sequest_like_scoring.html">
+    SEQUEST-like scoring
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/02_04_andromeda_like_scoring.html">
+    Andromeda-like and X!Tandem-like scoring
+  </a>
+</li>             
+<li class="nav-header ">
+  Quantification
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/03_01_quantification.html">
+    Peak quantification
+  </a>
+</li>             
+<li class="nav-header ">
+  Validation and inference
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/04_01_fdr_control.html">
+    False discovery rate control
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/04_02_protein_inference.html">
+    Protein inference
+  </a>
+</li>
         <li class="nav-header">
   API Reference
 </li>             
 <li class="nav-item">
-  <a class="nav-link" href="https://csbiology.github.io/BioFSharp.Mz/reference/index.html">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/reference/index.html">
     All Namespaces
   </a>
 </li>
@@ -97,7 +220,7 @@
   <dl class="fsdocs-metadata">
     <dt>
       Namespace: 
-      <a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz.html">
+      <a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz.html">
         BioFSharp.Mz
       </a>
     </dt>
@@ -106,7 +229,7 @@
     </dt>
     <dt>
       Parent Module: 
-      <a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-searchdb-db.html">
+      <a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-searchdb-db.html">
         Db
       </a>
     </dt>
@@ -116,7 +239,7 @@
     </dt>
     <dt>
       All Interfaces: 
-      <code><span><a href="https://learn.microsoft.com/dotnet/api/system.iequatable-1">IEquatable</a>&lt;<a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-searchdb-db-sqlerrorcode.html">SqlErrorCode</a>&gt;</span></code>
+      <code><span><a href="https://learn.microsoft.com/dotnet/api/system.iequatable-1">IEquatable</a>&lt;<a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-searchdb-db-sqlerrorcode.html">SqlErrorCode</a>&gt;</span></code>
       , 
       <code><a href="https://learn.microsoft.com/dotnet/api/system.collections.istructuralequatable">IStructuralEquatable</a></code>
     </dt>
@@ -150,7 +273,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '1178', 1178)" onmouseover="showTip(event, '1178', 1178)">
+              <code onmouseout="hideTip(event, '1189', 1189)" onmouseover="showTip(event, '1189', 1189)">
                 <p>
                   <a id="DBGeneric">
                     <a href="#DBGeneric">
@@ -159,7 +282,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="1178">
+              <div class="fsdocs-tip" id="1189">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>DBGeneric(<span>string,&#32;int</span>)</span></code>
@@ -213,7 +336,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '1179', 1179)" onmouseover="showTip(event, '1179', 1179)">
+              <code onmouseout="hideTip(event, '1190', 1190)" onmouseover="showTip(event, '1190', 1190)">
                 <p>
                   <a id="DbAccessDenied">
                     <a href="#DbAccessDenied">
@@ -222,7 +345,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="1179">
+              <div class="fsdocs-tip" id="1190">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>DbAccessDenied</span></code>
@@ -246,7 +369,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '1180', 1180)" onmouseover="showTip(event, '1180', 1180)">
+              <code onmouseout="hideTip(event, '1191', 1191)" onmouseover="showTip(event, '1191', 1191)">
                 <p>
                   <a id="DbDataBaseNotFound">
                     <a href="#DbDataBaseNotFound">
@@ -255,7 +378,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="1180">
+              <div class="fsdocs-tip" id="1191">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>DbDataBaseNotFound</span></code>
@@ -279,7 +402,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '1181', 1181)" onmouseover="showTip(event, '1181', 1181)">
+              <code onmouseout="hideTip(event, '1192', 1192)" onmouseover="showTip(event, '1192', 1192)">
                 <p>
                   <a id="DbInternalLogicError">
                     <a href="#DbInternalLogicError">
@@ -288,7 +411,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="1181">
+              <div class="fsdocs-tip" id="1192">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>DbInternalLogicError</span></code>
@@ -312,7 +435,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '1182', 1182)" onmouseover="showTip(event, '1182', 1182)">
+              <code onmouseout="hideTip(event, '1193', 1193)" onmouseover="showTip(event, '1193', 1193)">
                 <p>
                   <a id="Unknown">
                     <a href="#Unknown">
@@ -321,7 +444,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="1182">
+              <div class="fsdocs-tip" id="1193">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>Unknown&#32;<a href="https://learn.microsoft.com/dotnet/api/system.exception">Exception</a></span></code>
@@ -359,7 +482,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '1183', 1183)" onmouseover="showTip(event, '1183', 1183)">
+              <code onmouseout="hideTip(event, '1194', 1194)" onmouseover="showTip(event, '1194', 1194)">
                 <p>
                   <a id="UnknownSqlException">
                     <a href="#UnknownSqlException">
@@ -368,7 +491,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="1183">
+              <div class="fsdocs-tip" id="1194">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>UnknownSqlException&#32;<a href="https://learn.microsoft.com/dotnet/api/system.data.sqlite.sqliteexception">SQLiteException</a></span></code>
@@ -428,7 +551,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '1184', 1184)" onmouseover="showTip(event, '1184', 1184)">
+              <code onmouseout="hideTip(event, '1195', 1195)" onmouseover="showTip(event, '1195', 1195)">
                 <p>
                   <a id="IsDBGeneric">
                     <a href="#IsDBGeneric">
@@ -437,7 +560,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="1184">
+              <div class="fsdocs-tip" id="1195">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>this.IsDBGeneric</span></code>
@@ -467,7 +590,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '1185', 1185)" onmouseover="showTip(event, '1185', 1185)">
+              <code onmouseout="hideTip(event, '1196', 1196)" onmouseover="showTip(event, '1196', 1196)">
                 <p>
                   <a id="IsDbAccessDenied">
                     <a href="#IsDbAccessDenied">
@@ -476,7 +599,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="1185">
+              <div class="fsdocs-tip" id="1196">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>this.IsDbAccessDenied</span></code>
@@ -506,7 +629,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '1186', 1186)" onmouseover="showTip(event, '1186', 1186)">
+              <code onmouseout="hideTip(event, '1197', 1197)" onmouseover="showTip(event, '1197', 1197)">
                 <p>
                   <a id="IsDbDataBaseNotFound">
                     <a href="#IsDbDataBaseNotFound">
@@ -515,7 +638,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="1186">
+              <div class="fsdocs-tip" id="1197">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>this.IsDbDataBaseNotFound</span></code>
@@ -545,7 +668,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '1187', 1187)" onmouseover="showTip(event, '1187', 1187)">
+              <code onmouseout="hideTip(event, '1198', 1198)" onmouseover="showTip(event, '1198', 1198)">
                 <p>
                   <a id="IsDbInternalLogicError">
                     <a href="#IsDbInternalLogicError">
@@ -554,7 +677,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="1187">
+              <div class="fsdocs-tip" id="1198">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>this.IsDbInternalLogicError</span></code>
@@ -584,7 +707,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '1188', 1188)" onmouseover="showTip(event, '1188', 1188)">
+              <code onmouseout="hideTip(event, '1199', 1199)" onmouseover="showTip(event, '1199', 1199)">
                 <p>
                   <a id="IsUnknown">
                     <a href="#IsUnknown">
@@ -593,7 +716,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="1188">
+              <div class="fsdocs-tip" id="1199">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>this.IsUnknown</span></code>
@@ -623,7 +746,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '1189', 1189)" onmouseover="showTip(event, '1189', 1189)">
+              <code onmouseout="hideTip(event, '1200', 1200)" onmouseover="showTip(event, '1200', 1200)">
                 <p>
                   <a id="IsUnknownSqlException">
                     <a href="#IsUnknownSqlException">
@@ -632,7 +755,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="1189">
+              <div class="fsdocs-tip" id="1200">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>this.IsUnknownSqlException</span></code>
@@ -678,10 +801,10 @@
         <p class="empty">Type something to start searching.</p>
     </div>
 </dialog>
-<script type="module" src="https://csbiology.github.io/BioFSharp.Mz/content/fsdocs-tips.js"></script>
-<script type="module" src="https://csbiology.github.io/BioFSharp.Mz/content/fsdocs-theme-toggle.js"></script>
-<script type="module" src="https://csbiology.github.io/BioFSharp.Mz/content/fsdocs-theme.js"></script>
-<script type="module" src="https://csbiology.github.io/BioFSharp.Mz/content/fsdocs-search.js"></script>
+<script type="module" src="https://biofsharp.com/BioFSharp.Mz/content/fsdocs-tips.js"></script>
+<script type="module" src="https://biofsharp.com/BioFSharp.Mz/content/fsdocs-theme-toggle.js"></script>
+<script type="module" src="https://biofsharp.com/BioFSharp.Mz/content/fsdocs-theme.js"></script>
+<script type="module" src="https://biofsharp.com/BioFSharp.Mz/content/fsdocs-search.js"></script>
 
 </body>
 </html>

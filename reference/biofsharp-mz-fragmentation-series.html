@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-root="https://csbiology.github.io/BioFSharp.Mz/">
+<html lang="en" data-root="https://biofsharp.com/BioFSharp.Mz/">
 <head>
     <meta charset="UTF-8">
     <meta content="IE=edge" http-equiv="X-UA-Compatible">
@@ -8,11 +8,11 @@
     <!-- Opengraph properties (https://ogp.me/) -->
     <meta property="og:site_name" content="BioFSharp.Mz">
     <meta property="og:title" content="Series (BioFSharp.Mz)" />
-    <meta property="og:url" content="https://csbiology.github.io/BioFSharp.Mz/{{fsdocs-source-basename}}.html">
+    <meta property="og:url" content="https://biofsharp.com/BioFSharp.Mz/{{fsdocs-source-basename}}.html">
     <meta property="og:type" content="website" />
     <!-- Twitter cards (https://developer.twitter.com/en/docs/twitter-for-websites/cards/overview/summary-card-with-large-image) -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:site" content="https://csbiology.github.io/BioFSharp.Mz/">
+    <meta name="twitter:site" content="https://biofsharp.com/BioFSharp.Mz/">
     <meta name="twitter:title" content="Series (BioFSharp.Mz)">
     
     <title>Series (BioFSharp.Mz) | BioFSharp.Mz</title>
@@ -20,11 +20,12 @@
     <link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
     <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
-    <link href="https://csbiology.github.io/BioFSharp.Mz/img/favicon.ico" rel="icon" sizes="32x32" type="image/png"/>
-    <script type="application/javascript" src="https://csbiology.github.io/BioFSharp.Mz/content/fsdocs-theme-set-dark.js"></script>
-    <link href="https://csbiology.github.io/BioFSharp.Mz/content/fsdocs-default.css" rel="stylesheet" type="text/css"/>
-    <link href="https://csbiology.github.io/BioFSharp.Mz/content/fsdocs-theme.css" rel="stylesheet" type="text/css"/>
+    <link href="https://biofsharp.com/BioFSharp.Mz/img/favicon.ico" rel="icon" sizes="32x32" type="image/png"/>
+    <script type="application/javascript" src="https://biofsharp.com/BioFSharp.Mz/content/fsdocs-theme-set-dark.js"></script>
+    <link href="https://biofsharp.com/BioFSharp.Mz/content/fsdocs-default.css" rel="stylesheet" type="text/css"/>
+    <link href="https://biofsharp.com/BioFSharp.Mz/content/fsdocs-theme.css" rel="stylesheet" type="text/css"/>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js"></script>
+<style>header .start a img { background-color: #2f3337; border-radius: 6px; padding: 3px; }</style>
     
 </head>
 <body class="api-docs">
@@ -43,19 +44,80 @@
                     Notes</a></li>
                 <li class="nav-item"><a class="nav-link" href="https://github.com/CSBiology/BioFSharp.Mz/">Source
                     Repository</a></li>
-                
+                <li class="nav-header ">
+  Spectrum processing
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/01_01_peaks_and_peak_arrays.html">
+    Peaks and peak arrays
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/01_02_signal_detection.html">
+    Signal detection and centroiding
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/01_03_charge_state_determination.html">
+    Charge state determination
+  </a>
+</li>             
+<li class="nav-header ">
+  Peptide identification
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/02_01_fragmentation.html">
+    In silico fragmentation
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/02_02_search_databases.html">
+    Peptide search databases
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/02_03_sequest_like_scoring.html">
+    SEQUEST-like scoring
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/02_04_andromeda_like_scoring.html">
+    Andromeda-like and X!Tandem-like scoring
+  </a>
+</li>             
+<li class="nav-header ">
+  Quantification
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/03_01_quantification.html">
+    Peak quantification
+  </a>
+</li>             
+<li class="nav-header ">
+  Validation and inference
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/04_01_fdr_control.html">
+    False discovery rate control
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/04_02_protein_inference.html">
+    Protein inference
+  </a>
+</li>
                 <li class="nav-header">
   API Reference
 </li>             
 <li class="nav-item">
-  <a class="nav-link" href="https://csbiology.github.io/BioFSharp.Mz/reference/index.html">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/reference/index.html">
     All Namespaces
   </a>
 </li>
             </ul>
         </div>
         <a href="https://csbiology.github.io/BioFSharp.Mz/">
-            <img alt="Header menu logo" src="https://csbiology.github.io/BioFSharp.Mz/img/logo.png">
+            <img alt="Header menu logo" src="https://biofsharp.com/BioFSharp.Mz/img/logo.png">
             <strong>BioFSharp.Mz</strong>
         </a>
     </div>
@@ -77,12 +139,73 @@
             Notes</a></li>
         <li class="nav-item"><a class="nav-link" href="https://github.com/CSBiology/BioFSharp.Mz/">Source
             Repository</a></li>
-        
+        <li class="nav-header ">
+  Spectrum processing
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/01_01_peaks_and_peak_arrays.html">
+    Peaks and peak arrays
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/01_02_signal_detection.html">
+    Signal detection and centroiding
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/01_03_charge_state_determination.html">
+    Charge state determination
+  </a>
+</li>             
+<li class="nav-header ">
+  Peptide identification
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/02_01_fragmentation.html">
+    In silico fragmentation
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/02_02_search_databases.html">
+    Peptide search databases
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/02_03_sequest_like_scoring.html">
+    SEQUEST-like scoring
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/02_04_andromeda_like_scoring.html">
+    Andromeda-like and X!Tandem-like scoring
+  </a>
+</li>             
+<li class="nav-header ">
+  Quantification
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/03_01_quantification.html">
+    Peak quantification
+  </a>
+</li>             
+<li class="nav-header ">
+  Validation and inference
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/04_01_fdr_control.html">
+    False discovery rate control
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/04_02_protein_inference.html">
+    Protein inference
+  </a>
+</li>
         <li class="nav-header">
   API Reference
 </li>             
 <li class="nav-item">
-  <a class="nav-link" href="https://csbiology.github.io/BioFSharp.Mz/reference/index.html">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/reference/index.html">
     All Namespaces
   </a>
 </li>
@@ -97,7 +220,7 @@
   <dl class="fsdocs-metadata">
     <dt>
       Namespace: 
-      <a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz.html">
+      <a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz.html">
         BioFSharp.Mz
       </a>
     </dt>
@@ -106,7 +229,7 @@
     </dt>
     <dt>
       Parent Module: 
-      <a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-fragmentation.html">
+      <a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-fragmentation.html">
         Fragmentation
       </a>
     </dt>
@@ -137,7 +260,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '61', 61)" onmouseover="showTip(event, '61', 61)">
+              <code onmouseout="hideTip(event, '66', 66)" onmouseover="showTip(event, '66', 66)">
                 <p>
                   <a id="aOfBioList">
                     <a href="#aOfBioList">
@@ -146,7 +269,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="61">
+              <div class="fsdocs-tip" id="66">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>aOfBioList&#32;<span>massfunction&#32;aal</span></span></code>
@@ -174,7 +297,7 @@
                   <br/>
                   <span>
                     Returns: 
-                    <code><span><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-peakfamily-1.html">PeakFamily</a>&lt;<a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-taggedmass-taggedmass.html">TaggedMass</a>&gt;</span>&#32;list</span></code>
+                    <code><span><span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-peakfamily-1.html">PeakFamily</a>&lt;<a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-taggedmass-taggedmass.html">TaggedMass</a>&gt;</span>&#32;list</span></code>
                   </span>
                   <br/>
                 </div>
@@ -222,7 +345,7 @@
                   <span class="fsdocs-return-name">
                     Returns: 
                   </span>
-                  <code><span><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-peakfamily-1.html">PeakFamily</a>&lt;<a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-taggedmass-taggedmass.html">TaggedMass</a>&gt;</span>&#32;list</span></code>
+                  <code><span><span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-peakfamily-1.html">PeakFamily</a>&lt;<a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-taggedmass-taggedmass.html">TaggedMass</a>&gt;</span>&#32;list</span></code>
                 </dt>
                 <dd class="fsdocs-return-docs"></dd>
               </dl>
@@ -232,7 +355,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '62', 62)" onmouseover="showTip(event, '62', 62)">
+              <code onmouseout="hideTip(event, '67', 67)" onmouseover="showTip(event, '67', 67)">
                 <p>
                   <a id="abOfBioList">
                     <a href="#abOfBioList">
@@ -241,7 +364,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="62">
+              <div class="fsdocs-tip" id="67">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>abOfBioList&#32;<span>massfunction&#32;aal</span></span></code>
@@ -269,7 +392,7 @@
                   <br/>
                   <span>
                     Returns: 
-                    <code><span><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-peakfamily-1.html">PeakFamily</a>&lt;<a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-taggedmass-taggedmass.html">TaggedMass</a>&gt;</span>&#32;list</span></code>
+                    <code><span><span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-peakfamily-1.html">PeakFamily</a>&lt;<a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-taggedmass-taggedmass.html">TaggedMass</a>&gt;</span>&#32;list</span></code>
                   </span>
                   <br/>
                 </div>
@@ -317,7 +440,7 @@
                   <span class="fsdocs-return-name">
                     Returns: 
                   </span>
-                  <code><span><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-peakfamily-1.html">PeakFamily</a>&lt;<a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-taggedmass-taggedmass.html">TaggedMass</a>&gt;</span>&#32;list</span></code>
+                  <code><span><span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-peakfamily-1.html">PeakFamily</a>&lt;<a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-taggedmass-taggedmass.html">TaggedMass</a>&gt;</span>&#32;list</span></code>
                 </dt>
                 <dd class="fsdocs-return-docs"></dd>
               </dl>
@@ -327,7 +450,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '63', 63)" onmouseover="showTip(event, '63', 63)">
+              <code onmouseout="hideTip(event, '68', 68)" onmouseover="showTip(event, '68', 68)">
                 <p>
                   <a id="abcOfBioList">
                     <a href="#abcOfBioList">
@@ -336,7 +459,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="63">
+              <div class="fsdocs-tip" id="68">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>abcOfBioList&#32;<span>massfunction&#32;aal</span></span></code>
@@ -364,7 +487,7 @@
                   <br/>
                   <span>
                     Returns: 
-                    <code><span><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-peakfamily-1.html">PeakFamily</a>&lt;<a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-taggedmass-taggedmass.html">TaggedMass</a>&gt;</span>&#32;list</span></code>
+                    <code><span><span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-peakfamily-1.html">PeakFamily</a>&lt;<a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-taggedmass-taggedmass.html">TaggedMass</a>&gt;</span>&#32;list</span></code>
                   </span>
                   <br/>
                 </div>
@@ -412,7 +535,7 @@
                   <span class="fsdocs-return-name">
                     Returns: 
                   </span>
-                  <code><span><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-peakfamily-1.html">PeakFamily</a>&lt;<a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-taggedmass-taggedmass.html">TaggedMass</a>&gt;</span>&#32;list</span></code>
+                  <code><span><span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-peakfamily-1.html">PeakFamily</a>&lt;<a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-taggedmass-taggedmass.html">TaggedMass</a>&gt;</span>&#32;list</span></code>
                 </dt>
                 <dd class="fsdocs-return-docs"></dd>
               </dl>
@@ -422,7 +545,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '64', 64)" onmouseover="showTip(event, '64', 64)">
+              <code onmouseout="hideTip(event, '69', 69)" onmouseover="showTip(event, '69', 69)">
                 <p>
                   <a id="acOfBioList">
                     <a href="#acOfBioList">
@@ -431,7 +554,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="64">
+              <div class="fsdocs-tip" id="69">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>acOfBioList&#32;<span>massfunction&#32;aal</span></span></code>
@@ -459,7 +582,7 @@
                   <br/>
                   <span>
                     Returns: 
-                    <code><span><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-peakfamily-1.html">PeakFamily</a>&lt;<a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-taggedmass-taggedmass.html">TaggedMass</a>&gt;</span>&#32;list</span></code>
+                    <code><span><span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-peakfamily-1.html">PeakFamily</a>&lt;<a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-taggedmass-taggedmass.html">TaggedMass</a>&gt;</span>&#32;list</span></code>
                   </span>
                   <br/>
                 </div>
@@ -507,7 +630,7 @@
                   <span class="fsdocs-return-name">
                     Returns: 
                   </span>
-                  <code><span><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-peakfamily-1.html">PeakFamily</a>&lt;<a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-taggedmass-taggedmass.html">TaggedMass</a>&gt;</span>&#32;list</span></code>
+                  <code><span><span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-peakfamily-1.html">PeakFamily</a>&lt;<a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-taggedmass-taggedmass.html">TaggedMass</a>&gt;</span>&#32;list</span></code>
                 </dt>
                 <dd class="fsdocs-return-docs"></dd>
               </dl>
@@ -517,7 +640,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '65', 65)" onmouseover="showTip(event, '65', 65)">
+              <code onmouseout="hideTip(event, '70', 70)" onmouseover="showTip(event, '70', 70)">
                 <p>
                   <a id="bOfBioList">
                     <a href="#bOfBioList">
@@ -526,7 +649,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="65">
+              <div class="fsdocs-tip" id="70">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>bOfBioList&#32;<span>massfunction&#32;aal</span></span></code>
@@ -554,7 +677,7 @@
                   <br/>
                   <span>
                     Returns: 
-                    <code><span><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-peakfamily-1.html">PeakFamily</a>&lt;<a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-taggedmass-taggedmass.html">TaggedMass</a>&gt;</span>&#32;list</span></code>
+                    <code><span><span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-peakfamily-1.html">PeakFamily</a>&lt;<a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-taggedmass-taggedmass.html">TaggedMass</a>&gt;</span>&#32;list</span></code>
                   </span>
                   <br/>
                 </div>
@@ -602,7 +725,7 @@
                   <span class="fsdocs-return-name">
                     Returns: 
                   </span>
-                  <code><span><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-peakfamily-1.html">PeakFamily</a>&lt;<a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-taggedmass-taggedmass.html">TaggedMass</a>&gt;</span>&#32;list</span></code>
+                  <code><span><span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-peakfamily-1.html">PeakFamily</a>&lt;<a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-taggedmass-taggedmass.html">TaggedMass</a>&gt;</span>&#32;list</span></code>
                 </dt>
                 <dd class="fsdocs-return-docs"></dd>
               </dl>
@@ -612,7 +735,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '66', 66)" onmouseover="showTip(event, '66', 66)">
+              <code onmouseout="hideTip(event, '71', 71)" onmouseover="showTip(event, '71', 71)">
                 <p>
                   <a id="bcOfBioList">
                     <a href="#bcOfBioList">
@@ -621,7 +744,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="66">
+              <div class="fsdocs-tip" id="71">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>bcOfBioList&#32;<span>massfunction&#32;aal</span></span></code>
@@ -649,7 +772,7 @@
                   <br/>
                   <span>
                     Returns: 
-                    <code><span><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-peakfamily-1.html">PeakFamily</a>&lt;<a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-taggedmass-taggedmass.html">TaggedMass</a>&gt;</span>&#32;list</span></code>
+                    <code><span><span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-peakfamily-1.html">PeakFamily</a>&lt;<a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-taggedmass-taggedmass.html">TaggedMass</a>&gt;</span>&#32;list</span></code>
                   </span>
                   <br/>
                 </div>
@@ -697,7 +820,7 @@
                   <span class="fsdocs-return-name">
                     Returns: 
                   </span>
-                  <code><span><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-peakfamily-1.html">PeakFamily</a>&lt;<a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-taggedmass-taggedmass.html">TaggedMass</a>&gt;</span>&#32;list</span></code>
+                  <code><span><span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-peakfamily-1.html">PeakFamily</a>&lt;<a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-taggedmass-taggedmass.html">TaggedMass</a>&gt;</span>&#32;list</span></code>
                 </dt>
                 <dd class="fsdocs-return-docs"></dd>
               </dl>
@@ -707,7 +830,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '67', 67)" onmouseover="showTip(event, '67', 67)">
+              <code onmouseout="hideTip(event, '72', 72)" onmouseover="showTip(event, '72', 72)">
                 <p>
                   <a id="cOfBioList">
                     <a href="#cOfBioList">
@@ -716,7 +839,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="67">
+              <div class="fsdocs-tip" id="72">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>cOfBioList&#32;<span>massfunction&#32;aal</span></span></code>
@@ -744,7 +867,7 @@
                   <br/>
                   <span>
                     Returns: 
-                    <code><span><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-peakfamily-1.html">PeakFamily</a>&lt;<a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-taggedmass-taggedmass.html">TaggedMass</a>&gt;</span>&#32;list</span></code>
+                    <code><span><span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-peakfamily-1.html">PeakFamily</a>&lt;<a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-taggedmass-taggedmass.html">TaggedMass</a>&gt;</span>&#32;list</span></code>
                   </span>
                   <br/>
                 </div>
@@ -792,7 +915,7 @@
                   <span class="fsdocs-return-name">
                     Returns: 
                   </span>
-                  <code><span><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-peakfamily-1.html">PeakFamily</a>&lt;<a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-taggedmass-taggedmass.html">TaggedMass</a>&gt;</span>&#32;list</span></code>
+                  <code><span><span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-peakfamily-1.html">PeakFamily</a>&lt;<a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-taggedmass-taggedmass.html">TaggedMass</a>&gt;</span>&#32;list</span></code>
                 </dt>
                 <dd class="fsdocs-return-docs"></dd>
               </dl>
@@ -802,7 +925,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '68', 68)" onmouseover="showTip(event, '68', 68)">
+              <code onmouseout="hideTip(event, '73', 73)" onmouseover="showTip(event, '73', 73)">
                 <p>
                   <a id="fragmentMasses">
                     <a href="#fragmentMasses">
@@ -811,7 +934,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="68">
+              <div class="fsdocs-tip" id="73">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>fragmentMasses&#32;<span>nTerminalSeries&#32;cTerminalSeries&#32;massFunction&#32;aal</span></span></code>
@@ -824,7 +947,7 @@
                         nTerminalSeries
                       </b>
                       :
-                      <code><span><span>(<span>'a&#32;->&#32;float</span>)</span>&#32;->&#32;<span><a href="https://learn.microsoft.com/dotnet/api/biofsharp.aminoacids.aminoacid">AminoAcid</a>&#32;list</span>&#32;->&#32;<span><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-peakfamily-1.html">PeakFamily</a>&lt;<a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-taggedmass-taggedmass.html">TaggedMass</a>&gt;</span>&#32;list</span></span></code>
+                      <code><span><span>(<span>'a&#32;->&#32;float</span>)</span>&#32;->&#32;<span><a href="https://learn.microsoft.com/dotnet/api/biofsharp.aminoacids.aminoacid">AminoAcid</a>&#32;list</span>&#32;->&#32;<span><span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-peakfamily-1.html">PeakFamily</a>&lt;<a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-taggedmass-taggedmass.html">TaggedMass</a>&gt;</span>&#32;list</span></span></code>
                     </span>
                     <br/>
                     <span>
@@ -832,7 +955,7 @@
                         cTerminalSeries
                       </b>
                       :
-                      <code><span><span>(<span>'b&#32;->&#32;float</span>)</span>&#32;->&#32;<span><a href="https://learn.microsoft.com/dotnet/api/biofsharp.aminoacids.aminoacid">AminoAcid</a>&#32;list</span>&#32;->&#32;<span><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-peakfamily-1.html">PeakFamily</a>&lt;<a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-taggedmass-taggedmass.html">TaggedMass</a>&gt;</span>&#32;list</span></span></code>
+                      <code><span><span>(<span>'b&#32;->&#32;float</span>)</span>&#32;->&#32;<span><a href="https://learn.microsoft.com/dotnet/api/biofsharp.aminoacids.aminoacid">AminoAcid</a>&#32;list</span>&#32;->&#32;<span><span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-peakfamily-1.html">PeakFamily</a>&lt;<a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-taggedmass-taggedmass.html">TaggedMass</a>&gt;</span>&#32;list</span></span></code>
                     </span>
                     <br/>
                     <span>
@@ -855,7 +978,7 @@
                   <br/>
                   <span>
                     Returns: 
-                    <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-fragmentation-fragmentmasses.html">FragmentMasses</a></code>
+                    <code><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-fragmentation-fragmentmasses.html">FragmentMasses</a></code>
                   </span>
                   <br/>
                   Modifiers: 
@@ -892,7 +1015,7 @@
                     nTerminalSeries
                   </span>
                   :
-                  <code><span><span>(<span>'a&#32;->&#32;float</span>)</span>&#32;->&#32;<span><a href="https://learn.microsoft.com/dotnet/api/biofsharp.aminoacids.aminoacid">AminoAcid</a>&#32;list</span>&#32;->&#32;<span><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-peakfamily-1.html">PeakFamily</a>&lt;<a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-taggedmass-taggedmass.html">TaggedMass</a>&gt;</span>&#32;list</span></span></code>
+                  <code><span><span>(<span>'a&#32;->&#32;float</span>)</span>&#32;->&#32;<span><a href="https://learn.microsoft.com/dotnet/api/biofsharp.aminoacids.aminoacid">AminoAcid</a>&#32;list</span>&#32;->&#32;<span><span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-peakfamily-1.html">PeakFamily</a>&lt;<a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-taggedmass-taggedmass.html">TaggedMass</a>&gt;</span>&#32;list</span></span></code>
                 </dt>
                 <dd class="fsdocs-param-docs"></dd>
                 <dt class="fsdocs-param">
@@ -900,7 +1023,7 @@
                     cTerminalSeries
                   </span>
                   :
-                  <code><span><span>(<span>'b&#32;->&#32;float</span>)</span>&#32;->&#32;<span><a href="https://learn.microsoft.com/dotnet/api/biofsharp.aminoacids.aminoacid">AminoAcid</a>&#32;list</span>&#32;->&#32;<span><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-peakfamily-1.html">PeakFamily</a>&lt;<a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-taggedmass-taggedmass.html">TaggedMass</a>&gt;</span>&#32;list</span></span></code>
+                  <code><span><span>(<span>'b&#32;->&#32;float</span>)</span>&#32;->&#32;<span><a href="https://learn.microsoft.com/dotnet/api/biofsharp.aminoacids.aminoacid">AminoAcid</a>&#32;list</span>&#32;->&#32;<span><span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-peakfamily-1.html">PeakFamily</a>&lt;<a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-taggedmass-taggedmass.html">TaggedMass</a>&gt;</span>&#32;list</span></span></code>
                 </dt>
                 <dd class="fsdocs-param-docs"></dd>
                 <dt class="fsdocs-param">
@@ -925,7 +1048,7 @@
                   <span class="fsdocs-return-name">
                     Returns: 
                   </span>
-                  <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-fragmentation-fragmentmasses.html">FragmentMasses</a></code>
+                  <code><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-fragmentation-fragmentmasses.html">FragmentMasses</a></code>
                 </dt>
                 <dd class="fsdocs-return-docs"></dd>
               </dl>
@@ -935,7 +1058,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '69', 69)" onmouseover="showTip(event, '69', 69)">
+              <code onmouseout="hideTip(event, '74', 74)" onmouseover="showTip(event, '74', 74)">
                 <p>
                   <a id="xOfBioList">
                     <a href="#xOfBioList">
@@ -944,7 +1067,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="69">
+              <div class="fsdocs-tip" id="74">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>xOfBioList&#32;<span>massfunction&#32;aal</span></span></code>
@@ -972,7 +1095,7 @@
                   <br/>
                   <span>
                     Returns: 
-                    <code><span><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-peakfamily-1.html">PeakFamily</a>&lt;<a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-taggedmass-taggedmass.html">TaggedMass</a>&gt;</span>&#32;list</span></code>
+                    <code><span><span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-peakfamily-1.html">PeakFamily</a>&lt;<a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-taggedmass-taggedmass.html">TaggedMass</a>&gt;</span>&#32;list</span></code>
                   </span>
                   <br/>
                 </div>
@@ -1020,7 +1143,7 @@
                   <span class="fsdocs-return-name">
                     Returns: 
                   </span>
-                  <code><span><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-peakfamily-1.html">PeakFamily</a>&lt;<a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-taggedmass-taggedmass.html">TaggedMass</a>&gt;</span>&#32;list</span></code>
+                  <code><span><span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-peakfamily-1.html">PeakFamily</a>&lt;<a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-taggedmass-taggedmass.html">TaggedMass</a>&gt;</span>&#32;list</span></code>
                 </dt>
                 <dd class="fsdocs-return-docs"></dd>
               </dl>
@@ -1030,7 +1153,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '70', 70)" onmouseover="showTip(event, '70', 70)">
+              <code onmouseout="hideTip(event, '75', 75)" onmouseover="showTip(event, '75', 75)">
                 <p>
                   <a id="xyOfBioList">
                     <a href="#xyOfBioList">
@@ -1039,7 +1162,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="70">
+              <div class="fsdocs-tip" id="75">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>xyOfBioList&#32;<span>massfunction&#32;aal</span></span></code>
@@ -1067,7 +1190,7 @@
                   <br/>
                   <span>
                     Returns: 
-                    <code><span><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-peakfamily-1.html">PeakFamily</a>&lt;<a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-taggedmass-taggedmass.html">TaggedMass</a>&gt;</span>&#32;list</span></code>
+                    <code><span><span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-peakfamily-1.html">PeakFamily</a>&lt;<a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-taggedmass-taggedmass.html">TaggedMass</a>&gt;</span>&#32;list</span></code>
                   </span>
                   <br/>
                 </div>
@@ -1115,7 +1238,7 @@
                   <span class="fsdocs-return-name">
                     Returns: 
                   </span>
-                  <code><span><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-peakfamily-1.html">PeakFamily</a>&lt;<a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-taggedmass-taggedmass.html">TaggedMass</a>&gt;</span>&#32;list</span></code>
+                  <code><span><span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-peakfamily-1.html">PeakFamily</a>&lt;<a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-taggedmass-taggedmass.html">TaggedMass</a>&gt;</span>&#32;list</span></code>
                 </dt>
                 <dd class="fsdocs-return-docs"></dd>
               </dl>
@@ -1125,7 +1248,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '71', 71)" onmouseover="showTip(event, '71', 71)">
+              <code onmouseout="hideTip(event, '76', 76)" onmouseover="showTip(event, '76', 76)">
                 <p>
                   <a id="xyzOfBioList">
                     <a href="#xyzOfBioList">
@@ -1134,7 +1257,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="71">
+              <div class="fsdocs-tip" id="76">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>xyzOfBioList&#32;<span>massfunction&#32;aal</span></span></code>
@@ -1162,7 +1285,7 @@
                   <br/>
                   <span>
                     Returns: 
-                    <code><span><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-peakfamily-1.html">PeakFamily</a>&lt;<a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-taggedmass-taggedmass.html">TaggedMass</a>&gt;</span>&#32;list</span></code>
+                    <code><span><span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-peakfamily-1.html">PeakFamily</a>&lt;<a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-taggedmass-taggedmass.html">TaggedMass</a>&gt;</span>&#32;list</span></code>
                   </span>
                   <br/>
                 </div>
@@ -1210,7 +1333,7 @@
                   <span class="fsdocs-return-name">
                     Returns: 
                   </span>
-                  <code><span><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-peakfamily-1.html">PeakFamily</a>&lt;<a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-taggedmass-taggedmass.html">TaggedMass</a>&gt;</span>&#32;list</span></code>
+                  <code><span><span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-peakfamily-1.html">PeakFamily</a>&lt;<a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-taggedmass-taggedmass.html">TaggedMass</a>&gt;</span>&#32;list</span></code>
                 </dt>
                 <dd class="fsdocs-return-docs"></dd>
               </dl>
@@ -1220,7 +1343,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '72', 72)" onmouseover="showTip(event, '72', 72)">
+              <code onmouseout="hideTip(event, '77', 77)" onmouseover="showTip(event, '77', 77)">
                 <p>
                   <a id="xzOfBioList">
                     <a href="#xzOfBioList">
@@ -1229,7 +1352,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="72">
+              <div class="fsdocs-tip" id="77">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>xzOfBioList&#32;<span>massfunction&#32;aal</span></span></code>
@@ -1257,7 +1380,7 @@
                   <br/>
                   <span>
                     Returns: 
-                    <code><span><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-peakfamily-1.html">PeakFamily</a>&lt;<a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-taggedmass-taggedmass.html">TaggedMass</a>&gt;</span>&#32;list</span></code>
+                    <code><span><span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-peakfamily-1.html">PeakFamily</a>&lt;<a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-taggedmass-taggedmass.html">TaggedMass</a>&gt;</span>&#32;list</span></code>
                   </span>
                   <br/>
                 </div>
@@ -1305,7 +1428,7 @@
                   <span class="fsdocs-return-name">
                     Returns: 
                   </span>
-                  <code><span><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-peakfamily-1.html">PeakFamily</a>&lt;<a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-taggedmass-taggedmass.html">TaggedMass</a>&gt;</span>&#32;list</span></code>
+                  <code><span><span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-peakfamily-1.html">PeakFamily</a>&lt;<a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-taggedmass-taggedmass.html">TaggedMass</a>&gt;</span>&#32;list</span></code>
                 </dt>
                 <dd class="fsdocs-return-docs"></dd>
               </dl>
@@ -1315,7 +1438,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '73', 73)" onmouseover="showTip(event, '73', 73)">
+              <code onmouseout="hideTip(event, '78', 78)" onmouseover="showTip(event, '78', 78)">
                 <p>
                   <a id="yOfBioList">
                     <a href="#yOfBioList">
@@ -1324,7 +1447,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="73">
+              <div class="fsdocs-tip" id="78">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>yOfBioList&#32;<span>massfunction&#32;aal</span></span></code>
@@ -1352,7 +1475,7 @@
                   <br/>
                   <span>
                     Returns: 
-                    <code><span><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-peakfamily-1.html">PeakFamily</a>&lt;<a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-taggedmass-taggedmass.html">TaggedMass</a>&gt;</span>&#32;list</span></code>
+                    <code><span><span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-peakfamily-1.html">PeakFamily</a>&lt;<a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-taggedmass-taggedmass.html">TaggedMass</a>&gt;</span>&#32;list</span></code>
                   </span>
                   <br/>
                 </div>
@@ -1400,7 +1523,7 @@
                   <span class="fsdocs-return-name">
                     Returns: 
                   </span>
-                  <code><span><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-peakfamily-1.html">PeakFamily</a>&lt;<a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-taggedmass-taggedmass.html">TaggedMass</a>&gt;</span>&#32;list</span></code>
+                  <code><span><span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-peakfamily-1.html">PeakFamily</a>&lt;<a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-taggedmass-taggedmass.html">TaggedMass</a>&gt;</span>&#32;list</span></code>
                 </dt>
                 <dd class="fsdocs-return-docs"></dd>
               </dl>
@@ -1410,7 +1533,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '74', 74)" onmouseover="showTip(event, '74', 74)">
+              <code onmouseout="hideTip(event, '79', 79)" onmouseover="showTip(event, '79', 79)">
                 <p>
                   <a id="yzOfBioList">
                     <a href="#yzOfBioList">
@@ -1419,7 +1542,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="74">
+              <div class="fsdocs-tip" id="79">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>yzOfBioList&#32;<span>massfunction&#32;aal</span></span></code>
@@ -1447,7 +1570,7 @@
                   <br/>
                   <span>
                     Returns: 
-                    <code><span><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-peakfamily-1.html">PeakFamily</a>&lt;<a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-taggedmass-taggedmass.html">TaggedMass</a>&gt;</span>&#32;list</span></code>
+                    <code><span><span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-peakfamily-1.html">PeakFamily</a>&lt;<a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-taggedmass-taggedmass.html">TaggedMass</a>&gt;</span>&#32;list</span></code>
                   </span>
                   <br/>
                 </div>
@@ -1495,7 +1618,7 @@
                   <span class="fsdocs-return-name">
                     Returns: 
                   </span>
-                  <code><span><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-peakfamily-1.html">PeakFamily</a>&lt;<a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-taggedmass-taggedmass.html">TaggedMass</a>&gt;</span>&#32;list</span></code>
+                  <code><span><span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-peakfamily-1.html">PeakFamily</a>&lt;<a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-taggedmass-taggedmass.html">TaggedMass</a>&gt;</span>&#32;list</span></code>
                 </dt>
                 <dd class="fsdocs-return-docs"></dd>
               </dl>
@@ -1505,7 +1628,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '75', 75)" onmouseover="showTip(event, '75', 75)">
+              <code onmouseout="hideTip(event, '80', 80)" onmouseover="showTip(event, '80', 80)">
                 <p>
                   <a id="zOfBioList">
                     <a href="#zOfBioList">
@@ -1514,7 +1637,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="75">
+              <div class="fsdocs-tip" id="80">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>zOfBioList&#32;<span>massfunction&#32;aal</span></span></code>
@@ -1542,7 +1665,7 @@
                   <br/>
                   <span>
                     Returns: 
-                    <code><span><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-peakfamily-1.html">PeakFamily</a>&lt;<a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-taggedmass-taggedmass.html">TaggedMass</a>&gt;</span>&#32;list</span></code>
+                    <code><span><span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-peakfamily-1.html">PeakFamily</a>&lt;<a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-taggedmass-taggedmass.html">TaggedMass</a>&gt;</span>&#32;list</span></code>
                   </span>
                   <br/>
                 </div>
@@ -1590,7 +1713,7 @@
                   <span class="fsdocs-return-name">
                     Returns: 
                   </span>
-                  <code><span><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-peakfamily-1.html">PeakFamily</a>&lt;<a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-taggedmass-taggedmass.html">TaggedMass</a>&gt;</span>&#32;list</span></code>
+                  <code><span><span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-peakfamily-1.html">PeakFamily</a>&lt;<a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-taggedmass-taggedmass.html">TaggedMass</a>&gt;</span>&#32;list</span></code>
                 </dt>
                 <dd class="fsdocs-return-docs"></dd>
               </dl>
@@ -1623,10 +1746,10 @@
         <p class="empty">Type something to start searching.</p>
     </div>
 </dialog>
-<script type="module" src="https://csbiology.github.io/BioFSharp.Mz/content/fsdocs-tips.js"></script>
-<script type="module" src="https://csbiology.github.io/BioFSharp.Mz/content/fsdocs-theme-toggle.js"></script>
-<script type="module" src="https://csbiology.github.io/BioFSharp.Mz/content/fsdocs-theme.js"></script>
-<script type="module" src="https://csbiology.github.io/BioFSharp.Mz/content/fsdocs-search.js"></script>
+<script type="module" src="https://biofsharp.com/BioFSharp.Mz/content/fsdocs-tips.js"></script>
+<script type="module" src="https://biofsharp.com/BioFSharp.Mz/content/fsdocs-theme-toggle.js"></script>
+<script type="module" src="https://biofsharp.com/BioFSharp.Mz/content/fsdocs-theme.js"></script>
+<script type="module" src="https://biofsharp.com/BioFSharp.Mz/content/fsdocs-search.js"></script>
 
 </body>
 </html>

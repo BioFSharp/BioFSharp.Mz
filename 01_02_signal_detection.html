@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en" data-root="https://biofsharp.com/BioFSharp.Mz/">
+<head>
+    <meta charset="UTF-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="David Zimmer, Caroline Ott, Heinrich Lukas Weil, Timo Muehlhaus" name="author">
+    <!-- Opengraph properties (https://ogp.me/) -->
+    <meta property="og:site_name" content="BioFSharp.Mz">
+    <meta property="og:title" content="Signal detection and centroiding" />
+    <meta property="og:url" content="https://biofsharp.com/BioFSharp.Mz/01_02_signal_detection.html">
+    <meta property="og:type" content="website" />
+    <!-- Twitter cards (https://developer.twitter.com/en/docs/twitter-for-websites/cards/overview/summary-card-with-large-image) -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="https://biofsharp.com/BioFSharp.Mz/">
+    <meta name="twitter:title" content="Signal detection and centroiding">
+    
+    <title>Signal detection and centroiding | BioFSharp.Mz</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <link href="https://biofsharp.com/BioFSharp.Mz/img/favicon.ico" rel="icon" sizes="32x32" type="image/png"/>
+    <script type="application/javascript" src="https://biofsharp.com/BioFSharp.Mz/content/fsdocs-theme-set-dark.js"></script>
+    <link href="https://biofsharp.com/BioFSharp.Mz/content/fsdocs-default.css" rel="stylesheet" type="text/css"/>
+    <link href="https://biofsharp.com/BioFSharp.Mz/content/fsdocs-theme.css" rel="stylesheet" type="text/css"/>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js"></script>
+<style>header .start a img { background-color: #2f3337; border-radius: 6px; padding: 3px; }</style>
+    
+</head>
+<body class="content">
+<header>
+    <div class="start">
+        <div id="menu-toggle">
+            <iconify-icon class="icon closed" height="22" icon="eva:menu-fill" width="22"></iconify-icon>
+            <iconify-icon class="icon open" height="22" icon="mi:close" width="22"></iconify-icon>
+            <input type="checkbox" name="mobile-menu" />
+            <ul class="menu">
+                <li class="nav-header">Links</li>
+                <li class="nav-item"><a class="nav-link" href="https://github.com/CSBiology/BioFSharp.Mz/blob/developer/LICENSE">License</a>
+                </li>
+                <li class="nav-item"><a class="nav-link"
+                                        href="https://github.com/CSBiology/BioFSharp.Mz/blob/developer/RELEASE_NOTES.md">Release
+                    Notes</a></li>
+                <li class="nav-item"><a class="nav-link" href="https://github.com/CSBiology/BioFSharp.Mz/">Source
+                    Repository</a></li>
+                <li class="nav-header active">
+  Spectrum processing
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/01_01_peaks_and_peak_arrays.html">
+    Peaks and peak arrays
+  </a>
+</li>             
+<li class="nav-item active">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/01_02_signal_detection.html">
+    Signal detection and centroiding
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/01_03_charge_state_determination.html">
+    Charge state determination
+  </a>
+</li>             
+<li class="nav-header ">
+  Peptide identification
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/02_01_fragmentation.html">
+    In silico fragmentation
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/02_02_search_databases.html">
+    Peptide search databases
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/02_03_sequest_like_scoring.html">
+    SEQUEST-like scoring
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/02_04_andromeda_like_scoring.html">
+    Andromeda-like and X!Tandem-like scoring
+  </a>
+</li>             
+<li class="nav-header ">
+  Quantification
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/03_01_quantification.html">
+    Peak quantification
+  </a>
+</li>             
+<li class="nav-header ">
+  Validation and inference
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/04_01_fdr_control.html">
+    False discovery rate control
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/04_02_protein_inference.html">
+    Protein inference
+  </a>
+</li>
+                <li class="nav-header">
+  API Reference
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/reference/index.html">
+    All Namespaces
+  </a>
+</li>
+            </ul>
+        </div>
+        <a href="https://csbiology.github.io/BioFSharp.Mz/">
+            <img alt="Header menu logo" src="https://biofsharp.com/BioFSharp.Mz/img/logo.png">
+            <strong>BioFSharp.Mz</strong>
+        </a>
+    </div>
+    <div class="end">
+        <a href="https://github.com/CSBiology/BioFSharp.Mz/" target="_blank">
+            <iconify-icon icon="uil:github" width="26" height="26"></iconify-icon>
+        </a>
+        <iconify-icon id="search-btn" icon="carbon:search" class="search" width="24" height="24"></iconify-icon>
+        <fsdocs-theme-toggle></fsdocs-theme-toggle>
+    </div>
+</header>
+<aside id="fsdocs-main-menu">
+    <ul class="menu">
+        <li class="nav-header">Links</li>
+        <li class="nav-item"><a class="nav-link" href="https://github.com/CSBiology/BioFSharp.Mz/blob/developer/LICENSE">License</a>
+        </li>
+        <li class="nav-item"><a class="nav-link"
+                                href="https://github.com/CSBiology/BioFSharp.Mz/blob/developer/RELEASE_NOTES.md">Release
+            Notes</a></li>
+        <li class="nav-item"><a class="nav-link" href="https://github.com/CSBiology/BioFSharp.Mz/">Source
+            Repository</a></li>
+        <li class="nav-header active">
+  Spectrum processing
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/01_01_peaks_and_peak_arrays.html">
+    Peaks and peak arrays
+  </a>
+</li>             
+<li class="nav-item active">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/01_02_signal_detection.html">
+    Signal detection and centroiding
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/01_03_charge_state_determination.html">
+    Charge state determination
+  </a>
+</li>             
+<li class="nav-header ">
+  Peptide identification
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/02_01_fragmentation.html">
+    In silico fragmentation
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/02_02_search_databases.html">
+    Peptide search databases
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/02_03_sequest_like_scoring.html">
+    SEQUEST-like scoring
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/02_04_andromeda_like_scoring.html">
+    Andromeda-like and X!Tandem-like scoring
+  </a>
+</li>             
+<li class="nav-header ">
+  Quantification
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/03_01_quantification.html">
+    Peak quantification
+  </a>
+</li>             
+<li class="nav-header ">
+  Validation and inference
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/04_01_fdr_control.html">
+    False discovery rate control
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/04_02_protein_inference.html">
+    Protein inference
+  </a>
+</li>
+        <li class="nav-header">
+  API Reference
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/reference/index.html">
+    All Namespaces
+  </a>
+</li>
+    </ul>
+</aside>
+<main>
+    <div id="content">
+        
+<p><a href="https://mybinder.org/v2/gh/BioFSharp/BioFSharp.Mz/gh-pages?filepath=01_02_signal_detection.ipynb"><img src="https://biofsharp.com/BioFSharp.Mz/img/badge-binder.svg" alt="Binder" /></a>&emsp;
+<a href="https://biofsharp.com/BioFSharp.Mz/01_02_signal_detection.fsx"><img src="https://biofsharp.com/BioFSharp.Mz/img/badge-script.svg" alt="Script" /></a>&emsp;
+<a href="https://biofsharp.com/BioFSharp.Mz/01_02_signal_detection.ipynb"><img src="https://biofsharp.com/BioFSharp.Mz/img/badge-notebook.svg" alt="Notebook" /></a></p>
+<h1><a name="Signal-detection-and-centroiding" class="anchor" href="#Signal-detection-and-centroiding">Signal detection and centroiding</a></h1>
+<p>A mass spectrometer in profile mode writes down the detector signal as a
+continuous-looking trace: many m/z and intensity pairs per true ion signal. Every ion
+species shows up as a roughly Gaussian bump that is a few dozen points wide, with its
+apex at the ion's m/z. Charge state determination, database search, spectrum scoring and
+quantification all expect one peak per ion species. Centroiding reduces every bump to a
+single representative peak, an m/z position plus an apex or summed intensity.</p>
+<p><code>SignalDetection</code> implements a wavelet-based peak picker modeled after French et al.
+(doi: <a href="https://doi.org/10.1021/pr500886y">10.1021/pr500886y</a>). The idea: a Mexican hat
+wavelet (a Ricker wavelet, which looks like a Gaussian bump with dips on both sides) is
+slid along the m/z axis at several widths and correlated with the intensity trace.
+Wherever the trace contains a bump of matching width, the correlation is high. True
+peaks score well across scales while single-point noise spikes do not, which is what
+makes the approach less trigger-happy than simple local maxima. This page covers the
+wavelet approach.</p>
+<h2><a name="Loading-a-profile-MS1-spectrum" class="anchor" href="#Loading-a-profile-MS1-spectrum">Loading a profile MS1 spectrum</a></h2>
+<p>The example file holds one MS1 survey scan (a full scan over the precursor mass range,
+recorded before the instrument picks ions for fragmentation) stored in mgf format. We
+load it with the reader from BioFSharp, as on the
+<a href="https://biofsharp.com/BioFSharp.Mz/01_01_peaks_and_peak_arrays.html">peaks and peak arrays</a> page, and check
+empirically that it really is profile data by looking at the number of points and the
+spacing between neighboring points.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="k">open</span> <span onmouseout="hideTip(event, 'fs1', 1)" onmouseover="showTip(event, 'fs1', 1)" class="id">BioFSharp</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs2', 2)" onmouseover="showTip(event, 'fs2', 2)" class="id">FileFormats</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs3', 3)" onmouseover="showTip(event, 'fs3', 3)" class="m">MGF</span>
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs1', 4)" onmouseover="showTip(event, 'fs1', 4)" class="id">BioFSharp</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs4', 5)" onmouseover="showTip(event, 'fs4', 5)" class="id">IO</span>
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs1', 6)" onmouseover="showTip(event, 'fs1', 6)" class="id">BioFSharp</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs5', 7)" onmouseover="showTip(event, 'fs5', 7)" class="id">Mz</span>
+
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs6', 8)" onmouseover="showTip(event, 'fs6', 8)" class="id">ms1</span> <span class="o">=</span>
+    <span onmouseout="hideTip(event, 'fs7', 9)" onmouseover="showTip(event, 'fs7', 9)" class="m">MGF</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs8', 10)" onmouseover="showTip(event, 'fs8', 10)" class="id">read</span> <span class="pn">(</span><span class="k">__SOURCE_DIRECTORY__</span> <span class="o">+</span> <span class="s">&quot;/data/ms1Example.mgf&quot;</span><span class="pn">)</span>
+    <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs9', 11)" onmouseover="showTip(event, 'fs9', 11)" class="m">List</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs10', 12)" onmouseover="showTip(event, 'fs10', 12)" class="id">head</span>
+
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs11', 13)" onmouseover="showTip(event, 'fs11', 13)" class="id">profileMz</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs6', 14)" onmouseover="showTip(event, 'fs6', 14)" class="id">ms1</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs12', 15)" onmouseover="showTip(event, 'fs12', 15)" class="id">Mass</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs13', 16)" onmouseover="showTip(event, 'fs13', 16)" class="id">profileIntensity</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs6', 17)" onmouseover="showTip(event, 'fs6', 17)" class="id">ms1</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs14', 18)" onmouseover="showTip(event, 'fs14', 18)" class="id">Intensity</span>
+
+<span onmouseout="hideTip(event, 'fs15', 19)" onmouseover="showTip(event, 'fs15', 19)" class="fn">printfn</span> <span class="s">&quot;</span><span class="pf">%s</span><span class="s">&quot;</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs16', 20)" onmouseover="showTip(event, 'fs16', 20)" class="rt">MGFEntry</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs17', 21)" onmouseover="showTip(event, 'fs17', 21)" class="id">tryGetTitle</span> <span onmouseout="hideTip(event, 'fs6', 22)" onmouseover="showTip(event, 'fs6', 22)" class="id">ms1</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs18', 23)" onmouseover="showTip(event, 'fs18', 23)" class="m">Option</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs19', 24)" onmouseover="showTip(event, 'fs19', 24)" class="id">defaultValue</span> <span class="s">&quot;no title&quot;</span><span class="pn">)</span>
+<span onmouseout="hideTip(event, 'fs15', 25)" onmouseover="showTip(event, 'fs15', 25)" class="fn">printfn</span> <span class="s">&quot;points in scan: </span><span class="pf">%i</span><span class="s">&quot;</span> <span onmouseout="hideTip(event, 'fs11', 26)" onmouseover="showTip(event, 'fs11', 26)" class="id">profileMz</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs20', 27)" onmouseover="showTip(event, 'fs20', 27)" class="id">Length</span>
+<span onmouseout="hideTip(event, 'fs15', 28)" onmouseover="showTip(event, 'fs15', 28)" class="fn">printfn</span> <span class="s">&quot;m/z range:      </span><span class="pf">%f</span><span class="s"> to </span><span class="pf">%f</span><span class="s">&quot;</span> <span onmouseout="hideTip(event, 'fs11', 29)" onmouseover="showTip(event, 'fs11', 29)" class="id">profileMz</span><span class="pn">.</span><span class="pn">[</span><span class="n">0</span><span class="pn">]</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs21', 30)" onmouseover="showTip(event, 'fs21', 30)" class="m">Array</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs22', 31)" onmouseover="showTip(event, 'fs22', 31)" class="id">last</span> <span onmouseout="hideTip(event, 'fs11', 32)" onmouseover="showTip(event, 'fs11', 32)" class="id">profileMz</span><span class="pn">)</span>
+
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs23', 33)" onmouseover="showTip(event, 'fs23', 33)" class="id">spacings</span> <span class="o">=</span>
+    <span onmouseout="hideTip(event, 'fs11', 34)" onmouseover="showTip(event, 'fs11', 34)" class="id">profileMz</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs21', 35)" onmouseover="showTip(event, 'fs21', 35)" class="m">Array</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs24', 36)" onmouseover="showTip(event, 'fs24', 36)" class="id">pairwise</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs21', 37)" onmouseover="showTip(event, 'fs21', 37)" class="m">Array</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs25', 38)" onmouseover="showTip(event, 'fs25', 38)" class="id">map</span> <span class="pn">(</span><span class="k">fun</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs26', 39)" onmouseover="showTip(event, 'fs26', 39)" class="fn">a</span><span class="pn">,</span> <span onmouseout="hideTip(event, 'fs27', 40)" onmouseover="showTip(event, 'fs27', 40)" class="fn">b</span><span class="pn">)</span> <span class="k">-&gt;</span> <span onmouseout="hideTip(event, 'fs27', 41)" onmouseover="showTip(event, 'fs27', 41)" class="fn">b</span> <span class="o">-</span> <span onmouseout="hideTip(event, 'fs26', 42)" onmouseover="showTip(event, 'fs26', 42)" class="fn">a</span><span class="pn">)</span>
+
+<span onmouseout="hideTip(event, 'fs23', 43)" onmouseover="showTip(event, 'fs23', 43)" class="id">spacings</span>
+<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs21', 44)" onmouseover="showTip(event, 'fs21', 44)" class="m">Array</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs28', 45)" onmouseover="showTip(event, 'fs28', 45)" class="id">skip</span> <span class="n">2</span>
+<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs21', 46)" onmouseover="showTip(event, 'fs21', 46)" class="m">Array</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs29', 47)" onmouseover="showTip(event, 'fs29', 47)" class="id">truncate</span> <span class="n">3</span>
+<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs21', 48)" onmouseover="showTip(event, 'fs21', 48)" class="m">Array</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs30', 49)" onmouseover="showTip(event, 'fs30', 49)" class="id">iter</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs15', 50)" onmouseover="showTip(event, 'fs15', 50)" class="fn">printfn</span> <span class="s">&quot;spacing between adjacent points: </span><span class="pf">%f</span><span class="s">&quot;</span><span class="pn">)</span>
+
+<span onmouseout="hideTip(event, 'fs15', 51)" onmouseover="showTip(event, 'fs15', 51)" class="fn">printfn</span> <span class="s">&quot;median spacing: </span><span class="pf">%f</span><span class="s">&quot;</span> <span class="pn">(</span><span class="pn">(</span><span onmouseout="hideTip(event, 'fs21', 52)" onmouseover="showTip(event, 'fs21', 52)" class="m">Array</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs31', 53)" onmouseover="showTip(event, 'fs31', 53)" class="id">sort</span> <span onmouseout="hideTip(event, 'fs23', 54)" onmouseover="showTip(event, 'fs23', 54)" class="id">spacings</span><span class="pn">)</span><span class="pn">.</span><span class="pn">[</span><span onmouseout="hideTip(event, 'fs23', 55)" onmouseover="showTip(event, 'fs23', 55)" class="id">spacings</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs20', 56)" onmouseover="showTip(event, 'fs20', 56)" class="id">Length</span> <span class="o">/</span> <span class="n">2</span><span class="pn">]</span><span class="pn">)</span>
+<span onmouseout="hideTip(event, 'fs15', 57)" onmouseover="showTip(event, 'fs15', 57)" class="fn">printfn</span> <span class="s">&quot;largest gap:    </span><span class="pf">%f</span><span class="s">&quot;</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs21', 58)" onmouseover="showTip(event, 'fs21', 58)" class="m">Array</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs32', 59)" onmouseover="showTip(event, 'fs32', 59)" class="id">max</span> <span onmouseout="hideTip(event, 'fs23', 60)" onmouseover="showTip(event, 'fs23', 60)" class="id">spacings</span><span class="pn">)</span>
+</code></pre>
+<table class="pre"><tr><td class="snippet"><pre class="fssnip"><code lang="text">MS scan at 20.91351667 min
+points in scan: 78170
+m/z range:      400.001711 to 1249.609952
+spacing between adjacent points: 0.005613
+spacing between adjacent points: 0.005614
+spacing between adjacent points: 0.002807
+median spacing: 0.003504
+largest gap:    1.481318
+</code></pre></td></tr></table>
+<p>78170 points with a median spacing of about 0.0035 Da is profile data. A centroided MS1
+scan of the same range would have a few hundred to a few thousand peaks, one per
+detected ion signal. The largest gap tells the second half of the story: the
+instrument leaves out stretches where it saw nothing, so the sampling is dense inside
+peak regions and sparse between them.</p>
+<h2><a name="Padding-sparse-regions" class="anchor" href="#Padding-sparse-regions">Padding sparse regions</a></h2>
+<p>The wavelet correlation assumes reasonably dense, gap-free sampling, because the width
+of the wavelet is derived from the local point spacing. A 1.5 Da hole in the data would
+inflate that estimate and distort the correlation around the hole. <code>Padding.paddDataBy</code>
+therefore fills sparse regions with artificial points at a fixed base intensity before
+the peak picker runs.</p>
+<p>Its parameters, built with <code>Padding.createPaddingParameters</code>: <code>paddingYValue</code> is the
+intensity written into every inserted point, typically 0. or the minimum intensity of
+the data. <code>maximumPaddingPoints</code> caps how many points may be inserted into one gap,
+and <code>None</code> fills gaps completely. <code>mzTolerance</code> sets the m/z distance at which the
+inserted points are placed, here 0.05 Da, finer than any real peak width.
+<code>windowSize</code> and <code>spacingPerc</code> set the points per window and the percentile of the
+spacings inside it used to estimate the typical local point spacing. A spacing is
+padded as a gap when it stands out against this local estimate and exceeds
+<code>mzTolerance</code>.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs33', 61)" onmouseover="showTip(event, 'fs33', 61)" class="id">paddingParams</span> <span class="o">=</span>
+    <span onmouseout="hideTip(event, 'fs34', 62)" onmouseover="showTip(event, 'fs34', 62)" class="m">SignalDetection</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs35', 63)" onmouseover="showTip(event, 'fs35', 63)" class="m">Padding</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs36', 64)" onmouseover="showTip(event, 'fs36', 64)" class="id">createPaddingParameters</span> <span class="n">0.</span> <span onmouseout="hideTip(event, 'fs37', 65)" onmouseover="showTip(event, 'fs37', 65)" class="uc">None</span> <span class="n">0.05</span> <span class="n">150</span> <span class="n">95.</span>
+
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs38', 66)" onmouseover="showTip(event, 'fs38', 66)" class="id">paddedMz</span><span class="pn">,</span> <span onmouseout="hideTip(event, 'fs39', 67)" onmouseover="showTip(event, 'fs39', 67)" class="id">paddedIntensity</span> <span class="o">=</span>
+    <span onmouseout="hideTip(event, 'fs34', 68)" onmouseover="showTip(event, 'fs34', 68)" class="m">SignalDetection</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs35', 69)" onmouseover="showTip(event, 'fs35', 69)" class="m">Padding</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs40', 70)" onmouseover="showTip(event, 'fs40', 70)" class="id">paddDataBy</span> <span onmouseout="hideTip(event, 'fs33', 71)" onmouseover="showTip(event, 'fs33', 71)" class="id">paddingParams</span> <span onmouseout="hideTip(event, 'fs11', 72)" onmouseover="showTip(event, 'fs11', 72)" class="id">profileMz</span> <span onmouseout="hideTip(event, 'fs13', 73)" onmouseover="showTip(event, 'fs13', 73)" class="id">profileIntensity</span>
+
+<span onmouseout="hideTip(event, 'fs15', 74)" onmouseover="showTip(event, 'fs15', 74)" class="fn">printfn</span> <span class="s">&quot;points before padding: </span><span class="pf">%i</span><span class="s">&quot;</span> <span onmouseout="hideTip(event, 'fs11', 75)" onmouseover="showTip(event, 'fs11', 75)" class="id">profileMz</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs20', 76)" onmouseover="showTip(event, 'fs20', 76)" class="id">Length</span>
+<span onmouseout="hideTip(event, 'fs15', 77)" onmouseover="showTip(event, 'fs15', 77)" class="fn">printfn</span> <span class="s">&quot;points after padding:  </span><span class="pf">%i</span><span class="s">&quot;</span> <span onmouseout="hideTip(event, 'fs38', 78)" onmouseover="showTip(event, 'fs38', 78)" class="id">paddedMz</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs20', 79)" onmouseover="showTip(event, 'fs20', 79)" class="id">Length</span>
+</code></pre>
+<table class="pre"><tr><td class="snippet"><pre class="fssnip"><code lang="text">points before padding: 78170
+points after padding:  83672
+</code></pre></td></tr></table>
+<p>The added points all carry intensity 0. and only exist so the wavelet sees a continuous
+baseline between the real peak regions.</p>
+<h2><a name="Centroiding-with-the-wavelet-peak-picker" class="anchor" href="#Centroiding-with-the-wavelet-peak-picker">Centroiding with the wavelet peak picker</a></h2>
+<p><code>Wavelet.toCentroidWithRicker2D</code> takes a <code>WaveletParameters</code> record and the padded
+arrays and returns the centroided m/z and intensity arrays. The parameters, built with
+<code>Wavelet.createWaveletParameters</code>:</p>
+<p><code>numberOfScales</code> is the number of wavelet widths tried at every position. The widths
+span a fixed range from one to seven times the local point spacing, so larger values
+sample that range more finely at more cost. <code>yThreshold</code> is an absolute intensity
+floor below which a bump's apex is dropped, and with 0. the filtering is left to the
+signal-to-noise criterion. <code>mzTolerance</code> is the grouping tolerance in m/z: candidate
+peaks closer together than this compete, and only the best-scoring one survives.
+<code>sNRS_Percentile</code> sets which percentile of the local correlation scores is taken as
+the noise estimate, and <code>minSNR</code> is the minimum ratio between a candidate's
+correlation score and that estimate. <code>refineMZ</code> reports the m/z as the
+intensity-weighted mean over the bump (<code>true</code>) or the position of the apex point
+(<code>false</code>), and <code>sumIntensities</code> reports the intensity as the sum over the bump
+(<code>true</code>) or the apex intensity (<code>false</code>).</p>
+<p>The values below are what a production proteomics pipeline uses for MS1 scans: 3
+scales, mzTolerance 0.1, the 95th percentile for the noise estimate and a minimum SNR
+of 1. For the denser features of MS2 spectra the same pipeline raises the number of
+scales to 10. We report apex positions and apex intensities first.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs41', 80)" onmouseover="showTip(event, 'fs41', 80)" class="id">waveletParams</span> <span class="o">=</span>
+    <span onmouseout="hideTip(event, 'fs34', 81)" onmouseover="showTip(event, 'fs34', 81)" class="m">SignalDetection</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs42', 82)" onmouseover="showTip(event, 'fs42', 82)" class="m">Wavelet</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs43', 83)" onmouseover="showTip(event, 'fs43', 83)" class="id">createWaveletParameters</span> <span class="n">3</span> <span class="n">0.</span> <span class="n">0.1</span> <span class="n">95.</span> <span class="n">1.</span> <span class="k">false</span> <span class="k">false</span>
+
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs44', 84)" onmouseover="showTip(event, 'fs44', 84)" class="id">centroidMz</span><span class="pn">,</span> <span onmouseout="hideTip(event, 'fs45', 85)" onmouseover="showTip(event, 'fs45', 85)" class="id">centroidIntensity</span> <span class="o">=</span>
+    <span onmouseout="hideTip(event, 'fs34', 86)" onmouseover="showTip(event, 'fs34', 86)" class="m">SignalDetection</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs42', 87)" onmouseover="showTip(event, 'fs42', 87)" class="m">Wavelet</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs46', 88)" onmouseover="showTip(event, 'fs46', 88)" class="id">toCentroidWithRicker2D</span> <span onmouseout="hideTip(event, 'fs41', 89)" onmouseover="showTip(event, 'fs41', 89)" class="id">waveletParams</span> <span onmouseout="hideTip(event, 'fs38', 90)" onmouseover="showTip(event, 'fs38', 90)" class="id">paddedMz</span> <span onmouseout="hideTip(event, 'fs39', 91)" onmouseover="showTip(event, 'fs39', 91)" class="id">paddedIntensity</span>
+
+<span onmouseout="hideTip(event, 'fs15', 92)" onmouseover="showTip(event, 'fs15', 92)" class="fn">printfn</span> <span class="s">&quot;profile points: </span><span class="pf">%i</span><span class="s">&quot;</span> <span onmouseout="hideTip(event, 'fs11', 93)" onmouseover="showTip(event, 'fs11', 93)" class="id">profileMz</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs20', 94)" onmouseover="showTip(event, 'fs20', 94)" class="id">Length</span>
+<span onmouseout="hideTip(event, 'fs15', 95)" onmouseover="showTip(event, 'fs15', 95)" class="fn">printfn</span> <span class="s">&quot;centroids:      </span><span class="pf">%i</span><span class="s">&quot;</span> <span onmouseout="hideTip(event, 'fs44', 96)" onmouseover="showTip(event, 'fs44', 96)" class="id">centroidMz</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs20', 97)" onmouseover="showTip(event, 'fs20', 97)" class="id">Length</span>
+</code></pre>
+<table class="pre"><tr><td class="snippet"><pre class="fssnip"><code lang="text">profile points: 78170
+centroids:      1454
+</code></pre></td></tr></table>
+<p>78170 profile points become 1454 centroids, one per detected ion signal, a reduction of
+roughly a factor of fifty on this scan.</p>
+<h2><a name="Watching-a-bump-collapse-to-a-centroid" class="anchor" href="#Watching-a-bump-collapse-to-a-centroid">Watching a bump collapse to a centroid</a></h2>
+<p>Numbers over the whole scan hide what happens locally, so we zoom into a 1.5 Da window
+around the most intense signal of the scan. First the profile points near its apex.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs47', 98)" onmouseover="showTip(event, 'fs47', 98)" class="fn">inWindow</span> <span onmouseout="hideTip(event, 'fs48', 99)" onmouseover="showTip(event, 'fs48', 99)" class="fn">lo</span> <span onmouseout="hideTip(event, 'fs49', 100)" onmouseover="showTip(event, 'fs49', 100)" class="fn">hi</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs50', 101)" onmouseover="showTip(event, 'fs50', 101)" class="fn">mz</span><span class="pn">,</span> <span class="id">_</span><span class="pn">)</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs50', 102)" onmouseover="showTip(event, 'fs50', 102)" class="fn">mz</span> <span class="o">&gt;</span><span class="o">=</span> <span onmouseout="hideTip(event, 'fs48', 103)" onmouseover="showTip(event, 'fs48', 103)" class="fn">lo</span> <span class="o">&amp;&amp;</span> <span onmouseout="hideTip(event, 'fs50', 104)" onmouseover="showTip(event, 'fs50', 104)" class="fn">mz</span> <span class="o">&lt;=</span> <span onmouseout="hideTip(event, 'fs49', 105)" onmouseover="showTip(event, 'fs49', 105)" class="fn">hi</span>
+
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs51', 106)" onmouseover="showTip(event, 'fs51', 106)" class="id">profileWindow</span> <span class="o">=</span>
+    <span onmouseout="hideTip(event, 'fs21', 107)" onmouseover="showTip(event, 'fs21', 107)" class="m">Array</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs52', 108)" onmouseover="showTip(event, 'fs52', 108)" class="id">zip</span> <span onmouseout="hideTip(event, 'fs11', 109)" onmouseover="showTip(event, 'fs11', 109)" class="id">profileMz</span> <span onmouseout="hideTip(event, 'fs13', 110)" onmouseover="showTip(event, 'fs13', 110)" class="id">profileIntensity</span>
+    <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs21', 111)" onmouseover="showTip(event, 'fs21', 111)" class="m">Array</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs53', 112)" onmouseover="showTip(event, 'fs53', 112)" class="id">filter</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs47', 113)" onmouseover="showTip(event, 'fs47', 113)" class="fn">inWindow</span> <span class="n">434.9</span> <span class="n">436.4</span><span class="pn">)</span>
+
+<span onmouseout="hideTip(event, 'fs15', 114)" onmouseover="showTip(event, 'fs15', 114)" class="fn">printfn</span> <span class="s">&quot;profile points between m/z 434.9 and 436.4: </span><span class="pf">%i</span><span class="s">&quot;</span> <span onmouseout="hideTip(event, 'fs51', 115)" onmouseover="showTip(event, 'fs51', 115)" class="id">profileWindow</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs20', 116)" onmouseover="showTip(event, 'fs20', 116)" class="id">Length</span>
+
+<span onmouseout="hideTip(event, 'fs51', 117)" onmouseover="showTip(event, 'fs51', 117)" class="id">profileWindow</span>
+<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs21', 118)" onmouseover="showTip(event, 'fs21', 118)" class="m">Array</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs53', 119)" onmouseover="showTip(event, 'fs53', 119)" class="id">filter</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs47', 120)" onmouseover="showTip(event, 'fs47', 120)" class="fn">inWindow</span> <span class="n">435.18</span> <span class="n">435.21</span><span class="pn">)</span>
+<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs21', 121)" onmouseover="showTip(event, 'fs21', 121)" class="m">Array</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs30', 122)" onmouseover="showTip(event, 'fs30', 122)" class="id">iter</span> <span class="pn">(</span><span class="k">fun</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs54', 123)" onmouseover="showTip(event, 'fs54', 123)" class="fn">mz</span><span class="pn">,</span> <span onmouseout="hideTip(event, 'fs55', 124)" onmouseover="showTip(event, 'fs55', 124)" class="fn">i</span><span class="pn">)</span> <span class="k">-&gt;</span> <span onmouseout="hideTip(event, 'fs15', 125)" onmouseover="showTip(event, 'fs15', 125)" class="fn">printfn</span> <span class="s">&quot;m/z </span><span class="pf">%f</span><span class="s">  intensity </span><span class="pf">%8.1f</span><span class="s">&quot;</span> <span onmouseout="hideTip(event, 'fs54', 126)" onmouseover="showTip(event, 'fs54', 126)" class="fn">mz</span> <span onmouseout="hideTip(event, 'fs55', 127)" onmouseover="showTip(event, 'fs55', 127)" class="fn">i</span><span class="pn">)</span>
+</code></pre>
+<table class="pre"><tr><td class="snippet"><pre class="fssnip"><code lang="text">profile points between m/z 434.9 and 436.4: 398
+m/z 435.180270  intensity   1791.0
+m/z 435.183197  intensity   4332.0
+m/z 435.186125  intensity   7143.0
+m/z 435.189052  intensity  10025.0
+m/z 435.191980  intensity   9749.0
+m/z 435.194907  intensity   7993.0
+m/z 435.197835  intensity   6344.0
+m/z 435.200762  intensity   3923.0
+m/z 435.203690  intensity   2902.0
+m/z 435.206617  intensity   1836.0
+m/z 435.209545  intensity   1337.0
+</code></pre></td></tr></table>
+<p>The intensity rises point by point to an apex at m/z 435.189 and falls off again, the
+Gaussian bump from the introduction in the flesh. Now the centroids the wavelet produced
+for the same window.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs21', 128)" onmouseover="showTip(event, 'fs21', 128)" class="m">Array</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs52', 129)" onmouseover="showTip(event, 'fs52', 129)" class="id">zip</span> <span onmouseout="hideTip(event, 'fs44', 130)" onmouseover="showTip(event, 'fs44', 130)" class="id">centroidMz</span> <span onmouseout="hideTip(event, 'fs45', 131)" onmouseover="showTip(event, 'fs45', 131)" class="id">centroidIntensity</span>
+<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs21', 132)" onmouseover="showTip(event, 'fs21', 132)" class="m">Array</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs53', 133)" onmouseover="showTip(event, 'fs53', 133)" class="id">filter</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs47', 134)" onmouseover="showTip(event, 'fs47', 134)" class="fn">inWindow</span> <span class="n">434.9</span> <span class="n">436.4</span><span class="pn">)</span>
+<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs21', 135)" onmouseover="showTip(event, 'fs21', 135)" class="m">Array</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs30', 136)" onmouseover="showTip(event, 'fs30', 136)" class="id">iter</span> <span class="pn">(</span><span class="k">fun</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs54', 137)" onmouseover="showTip(event, 'fs54', 137)" class="fn">mz</span><span class="pn">,</span> <span onmouseout="hideTip(event, 'fs55', 138)" onmouseover="showTip(event, 'fs55', 138)" class="fn">i</span><span class="pn">)</span> <span class="k">-&gt;</span> <span onmouseout="hideTip(event, 'fs15', 139)" onmouseover="showTip(event, 'fs15', 139)" class="fn">printfn</span> <span class="s">&quot;m/z </span><span class="pf">%f</span><span class="s">  intensity </span><span class="pf">%8.1f</span><span class="s">&quot;</span> <span onmouseout="hideTip(event, 'fs54', 140)" onmouseover="showTip(event, 'fs54', 140)" class="fn">mz</span> <span onmouseout="hideTip(event, 'fs55', 141)" onmouseover="showTip(event, 'fs55', 141)" class="fn">i</span><span class="pn">)</span>
+</code></pre>
+<table class="pre"><tr><td class="snippet"><pre class="fssnip"><code lang="text">m/z 435.189052  intensity  10025.0
+m/z 435.525777  intensity   5519.0
+m/z 435.856773  intensity   2806.0
+m/z 436.190825  intensity   1053.0
+</code></pre></td></tr></table>
+<p>398 profile points collapse to four centroids. The first sits exactly on the apex we
+just looked at. The four peaks are spaced about 0.334 Da apart with intensities falling
+off from left to right, which is the signature of an isotope cluster. Each following
+peak is the same ion species with one more heavy isotope, and since the mass
+difference between carbon-13 and carbon-12 is about 1.0034 Da, a spacing of
+1.0034 / 3 means the ion carries three charges.</p>
+<p>Rerunning with <code>refineMZ</code> and <code>sumIntensities</code> turned on changes what each centroid
+reports. The m/z becomes the intensity-weighted mean over the bump and the intensity
+becomes the sum over all its profile points, which is the better quantity when peak
+areas are compared later.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs56', 142)" onmouseover="showTip(event, 'fs56', 142)" class="id">summingParams</span> <span class="o">=</span>
+    <span onmouseout="hideTip(event, 'fs34', 143)" onmouseover="showTip(event, 'fs34', 143)" class="m">SignalDetection</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs42', 144)" onmouseover="showTip(event, 'fs42', 144)" class="m">Wavelet</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs43', 145)" onmouseover="showTip(event, 'fs43', 145)" class="id">createWaveletParameters</span> <span class="n">3</span> <span class="n">0.</span> <span class="n">0.1</span> <span class="n">95.</span> <span class="n">1.</span> <span class="k">true</span> <span class="k">true</span>
+
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs57', 146)" onmouseover="showTip(event, 'fs57', 146)" class="id">refinedMz</span><span class="pn">,</span> <span onmouseout="hideTip(event, 'fs58', 147)" onmouseover="showTip(event, 'fs58', 147)" class="id">refinedIntensity</span> <span class="o">=</span>
+    <span onmouseout="hideTip(event, 'fs34', 148)" onmouseover="showTip(event, 'fs34', 148)" class="m">SignalDetection</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs42', 149)" onmouseover="showTip(event, 'fs42', 149)" class="m">Wavelet</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs46', 150)" onmouseover="showTip(event, 'fs46', 150)" class="id">toCentroidWithRicker2D</span> <span onmouseout="hideTip(event, 'fs56', 151)" onmouseover="showTip(event, 'fs56', 151)" class="id">summingParams</span> <span onmouseout="hideTip(event, 'fs38', 152)" onmouseover="showTip(event, 'fs38', 152)" class="id">paddedMz</span> <span onmouseout="hideTip(event, 'fs39', 153)" onmouseover="showTip(event, 'fs39', 153)" class="id">paddedIntensity</span>
+
+<span onmouseout="hideTip(event, 'fs21', 154)" onmouseover="showTip(event, 'fs21', 154)" class="m">Array</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs52', 155)" onmouseover="showTip(event, 'fs52', 155)" class="id">zip</span> <span onmouseout="hideTip(event, 'fs57', 156)" onmouseover="showTip(event, 'fs57', 156)" class="id">refinedMz</span> <span onmouseout="hideTip(event, 'fs58', 157)" onmouseover="showTip(event, 'fs58', 157)" class="id">refinedIntensity</span>
+<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs21', 158)" onmouseover="showTip(event, 'fs21', 158)" class="m">Array</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs53', 159)" onmouseover="showTip(event, 'fs53', 159)" class="id">filter</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs47', 160)" onmouseover="showTip(event, 'fs47', 160)" class="fn">inWindow</span> <span class="n">434.9</span> <span class="n">436.4</span><span class="pn">)</span>
+<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs21', 161)" onmouseover="showTip(event, 'fs21', 161)" class="m">Array</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs30', 162)" onmouseover="showTip(event, 'fs30', 162)" class="id">iter</span> <span class="pn">(</span><span class="k">fun</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs54', 163)" onmouseover="showTip(event, 'fs54', 163)" class="fn">mz</span><span class="pn">,</span> <span onmouseout="hideTip(event, 'fs55', 164)" onmouseover="showTip(event, 'fs55', 164)" class="fn">i</span><span class="pn">)</span> <span class="k">-&gt;</span> <span onmouseout="hideTip(event, 'fs15', 165)" onmouseover="showTip(event, 'fs15', 165)" class="fn">printfn</span> <span class="s">&quot;m/z </span><span class="pf">%f</span><span class="s">  intensity </span><span class="pf">%8.1f</span><span class="s">&quot;</span> <span onmouseout="hideTip(event, 'fs54', 166)" onmouseover="showTip(event, 'fs54', 166)" class="fn">mz</span> <span onmouseout="hideTip(event, 'fs55', 167)" onmouseover="showTip(event, 'fs55', 167)" class="fn">i</span><span class="pn">)</span>
+</code></pre>
+<table class="pre"><tr><td class="snippet"><pre class="fssnip"><code lang="text">m/z 435.192899  intensity  59306.0
+m/z 435.526224  intensity  31209.0
+m/z 435.859807  intensity  17631.0
+m/z 436.193927  intensity   6746.0
+</code></pre></td></tr></table>
+<p>Same four signals, now with summed intensities and slightly shifted m/z positions
+because the weighted mean also feels the asymmetric tails of each bump.</p>
+<h2><a name="Where-the-centroids-go-next" class="anchor" href="#Where-the-centroids-go-next">Where the centroids go next</a></h2>
+<p>The centroided arrays can be zipped back into a <code>PeakArray</code> (see
+<a href="https://biofsharp.com/BioFSharp.Mz/01_01_peaks_and_peak_arrays.html">peaks and peak arrays</a>). The isotope spacing
+we read off by eye above is what
+<a href="https://biofsharp.com/BioFSharp.Mz/01_03_charge_state_determination.html">charge state determination</a> exploits
+systematically to assign each precursor its charge, needed to turn an m/z value into a
+peptide mass for the database search.</p>
+
+        <div class="fsdocs-tip" id="fs1">namespace BioFSharp</div>
+<div class="fsdocs-tip" id="fs2">namespace BioFSharp.FileFormats</div>
+<div class="fsdocs-tip" id="fs3">module MGF
+
+from BioFSharp.FileFormats<br /><em>&lt;summary&gt;
+ Mgf &amp;lt;http://www.matrixscience.com/help/data_file_help.html&amp;gt;`_ is a simple
+ human-readable format for MS/MS data. It allows storing MS/MS peak lists and
+ exprimental parameters.
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs4">namespace BioFSharp.IO</div>
+<div class="fsdocs-tip" id="fs5">namespace BioFSharp.Mz</div>
+<div class="fsdocs-tip" id="fs6">val ms1: MGFEntry</div>
+<div class="fsdocs-tip" id="fs7">module MGF
+
+from BioFSharp.IO</div>
+<div class="fsdocs-tip" id="fs8">val read: path: string -&gt; MGFEntry list<br /><em>&lt;summary&gt;
+ Reads an mgf file into a collection of MgfEntries
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs9">Multiple items<br />module List
+
+from Microsoft.FSharp.Collections<br /><br />--------------------<br />type List&lt;&#39;T&gt; =
+  | op_Nil
+  | op_ColonColon of Head: &#39;T * Tail: &#39;T list
+  interface IReadOnlyList&lt;&#39;T&gt;
+  interface IReadOnlyCollection&lt;&#39;T&gt;
+  interface IEnumerable
+  interface IEnumerable&lt;&#39;T&gt;
+  member GetReverseIndex: rank: int * offset: int -&gt; int
+  member GetSlice: startIndex: int option * endIndex: int option -&gt; &#39;T list
+  static member Cons: head: &#39;T * tail: &#39;T list -&gt; &#39;T list
+  member Head: &#39;T
+  member IsEmpty: bool
+  member Item: index: int -&gt; &#39;T with get
+  ...</div>
+<div class="fsdocs-tip" id="fs10">val head: list: &#39;T list -&gt; &#39;T</div>
+<div class="fsdocs-tip" id="fs11">val profileMz: float array</div>
+<div class="fsdocs-tip" id="fs12">MGFEntry.Mass: float array</div>
+<div class="fsdocs-tip" id="fs13">val profileIntensity: float array</div>
+<div class="fsdocs-tip" id="fs14">MGFEntry.Intensity: float array</div>
+<div class="fsdocs-tip" id="fs15">val printfn: format: Printf.TextWriterFormat&lt;&#39;T&gt; -&gt; &#39;T</div>
+<div class="fsdocs-tip" id="fs16">type MGFEntry =
+  {
+    Parameters: Map&lt;string,string&gt;
+    Mass: float array
+    Intensity: float array
+  }
+  static member create: parameters: Map&lt;string,string&gt; -&gt; mass: float array -&gt; intensity: float array -&gt; MGFEntry
+  static member toLines: mgf: MGFEntry -&gt; string seq
+  static member toString: mgf: MGFEntry -&gt; string
+  static member tryGetPrecursorCharges: mgf: MGFEntry -&gt; int list option
+  static member tryGetPrecursorMZ: mgf: MGFEntry -&gt; float option
+  static member tryGetPrecursorMass: mgf: MGFEntry -&gt; float option
+  static member tryGetTitle: mgf: MGFEntry -&gt; string option<br /><em>&lt;summary&gt;
+ Represents 
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs17">static member MGFEntry.tryGetTitle: mgf: MGFEntry -&gt; string option</div>
+<div class="fsdocs-tip" id="fs18">module Option
+
+from Microsoft.FSharp.Core</div>
+<div class="fsdocs-tip" id="fs19">val defaultValue: value: &#39;T -&gt; option: &#39;T option -&gt; &#39;T</div>
+<div class="fsdocs-tip" id="fs20">property System.Array.Length: int with get<br /><em>&lt;summary&gt;Gets the total number of elements in all the dimensions of the &lt;see cref=&quot;T:System.Array&quot; /&gt;.&lt;/summary&gt;<br />&lt;exception cref=&quot;T:System.OverflowException&quot;&gt;The array is multidimensional and contains more than &lt;see cref=&quot;F:System.Int32.MaxValue&quot;&gt;Int32.MaxValue&lt;/see&gt; elements.&lt;/exception&gt;<br />&lt;returns&gt;The total number of elements in all the dimensions of the &lt;see cref=&quot;T:System.Array&quot; /&gt;; zero if there are no elements in the array.&lt;/returns&gt;</em></div>
+<div class="fsdocs-tip" id="fs21">module Array
+
+from Microsoft.FSharp.Collections</div>
+<div class="fsdocs-tip" id="fs22">val last: array: &#39;T array -&gt; &#39;T</div>
+<div class="fsdocs-tip" id="fs23">val spacings: float array</div>
+<div class="fsdocs-tip" id="fs24">val pairwise: array: &#39;T array -&gt; (&#39;T * &#39;T) array</div>
+<div class="fsdocs-tip" id="fs25">val map: mapping: (&#39;T -&gt; &#39;U) -&gt; array: &#39;T array -&gt; &#39;U array</div>
+<div class="fsdocs-tip" id="fs26">val a: float</div>
+<div class="fsdocs-tip" id="fs27">val b: float</div>
+<div class="fsdocs-tip" id="fs28">val skip: count: int -&gt; array: &#39;T array -&gt; &#39;T array</div>
+<div class="fsdocs-tip" id="fs29">val truncate: count: int -&gt; array: &#39;T array -&gt; &#39;T array</div>
+<div class="fsdocs-tip" id="fs30">val iter: action: (&#39;T -&gt; unit) -&gt; array: &#39;T array -&gt; unit</div>
+<div class="fsdocs-tip" id="fs31">val sort: array: &#39;T array -&gt; &#39;T array (requires comparison)</div>
+<div class="fsdocs-tip" id="fs32">val max: array: &#39;T array -&gt; &#39;T (requires comparison)</div>
+<div class="fsdocs-tip" id="fs33">val paddingParams: SignalDetection.Padding.PaddingParameters</div>
+<div class="fsdocs-tip" id="fs34">module SignalDetection
+
+from BioFSharp.Mz</div>
+<div class="fsdocs-tip" id="fs35">module Padding
+
+from BioFSharp.Mz.SignalDetection</div>
+<div class="fsdocs-tip" id="fs36">val createPaddingParameters: paddingYValue: float -&gt; maximumPaddingPoints: int option -&gt; mzTolerance: float -&gt; windowSize: int -&gt; spacingPerc: float -&gt; SignalDetection.Padding.PaddingParameters</div>
+<div class="fsdocs-tip" id="fs37">union case Option.None: Option&lt;&#39;T&gt;</div>
+<div class="fsdocs-tip" id="fs38">val paddedMz: float array</div>
+<div class="fsdocs-tip" id="fs39">val paddedIntensity: float array</div>
+<div class="fsdocs-tip" id="fs40">val paddDataBy: paddingParameters: SignalDetection.Padding.PaddingParameters -&gt; xData: float array -&gt; yData: float array -&gt; float array * float array</div>
+<div class="fsdocs-tip" id="fs41">val waveletParams: SignalDetection.Wavelet.WaveletParameters</div>
+<div class="fsdocs-tip" id="fs42">module Wavelet
+
+from BioFSharp.Mz.SignalDetection</div>
+<div class="fsdocs-tip" id="fs43">val createWaveletParameters: numberOfScales: int -&gt; yThreshold: float -&gt; mzTolerance: float -&gt; sNRS_Percentile: float -&gt; minSNR: float -&gt; refineMZ: bool -&gt; sumIntensities: bool -&gt; SignalDetection.Wavelet.WaveletParameters</div>
+<div class="fsdocs-tip" id="fs44">val centroidMz: float array</div>
+<div class="fsdocs-tip" id="fs45">val centroidIntensity: float array</div>
+<div class="fsdocs-tip" id="fs46">val toCentroidWithRicker2D: centroidParams: SignalDetection.Wavelet.WaveletParameters -&gt; mzData: float array -&gt; intensityData: float array -&gt; float array * float array</div>
+<div class="fsdocs-tip" id="fs47">val inWindow: lo: &#39;a -&gt; hi: &#39;a -&gt; mz: &#39;a * &#39;b -&gt; bool (requires comparison)</div>
+<div class="fsdocs-tip" id="fs48">val lo: &#39;a (requires comparison)</div>
+<div class="fsdocs-tip" id="fs49">val hi: &#39;a (requires comparison)</div>
+<div class="fsdocs-tip" id="fs50">val mz: &#39;a (requires comparison)</div>
+<div class="fsdocs-tip" id="fs51">val profileWindow: (float * float) array</div>
+<div class="fsdocs-tip" id="fs52">val zip: array1: &#39;T1 array -&gt; array2: &#39;T2 array -&gt; (&#39;T1 * &#39;T2) array</div>
+<div class="fsdocs-tip" id="fs53">val filter: predicate: (&#39;T -&gt; bool) -&gt; array: &#39;T array -&gt; &#39;T array</div>
+<div class="fsdocs-tip" id="fs54">val mz: float</div>
+<div class="fsdocs-tip" id="fs55">val i: float</div>
+<div class="fsdocs-tip" id="fs56">val summingParams: SignalDetection.Wavelet.WaveletParameters</div>
+<div class="fsdocs-tip" id="fs57">val refinedMz: float array</div>
+<div class="fsdocs-tip" id="fs58">val refinedIntensity: float array</div>
+
+    </div>
+</main>
+<aside id="fsdocs-page-menu">
+    <p id="on-this-page">On this page</p>
+    <ul>
+  <li class="level-1">
+    <a href="#Signal-detection-and-centroiding">
+      Signal detection and centroiding
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Loading-a-profile-MS1-spectrum">
+      Loading a profile MS1 spectrum
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Padding-sparse-regions">
+      Padding sparse regions
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Centroiding-with-the-wavelet-peak-picker">
+      Centroiding with the wavelet peak picker
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Watching-a-bump-collapse-to-a-centroid">
+      Watching a bump collapse to a centroid
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Where-the-centroids-go-next">
+      Where the centroids go next
+    </a>
+  </li>
+</ul>
+</aside>
+<dialog>
+    <input type="search" placeholder="Search docs" />
+    <div class="results">
+        <ul></ul>
+        <p class="empty">Type something to start searching.</p>
+    </div>
+</dialog>
+<script type="module" src="https://biofsharp.com/BioFSharp.Mz/content/fsdocs-tips.js"></script>
+<script type="module" src="https://biofsharp.com/BioFSharp.Mz/content/fsdocs-theme-toggle.js"></script>
+<script type="module" src="https://biofsharp.com/BioFSharp.Mz/content/fsdocs-theme.js"></script>
+<script type="module" src="https://biofsharp.com/BioFSharp.Mz/content/fsdocs-search.js"></script>
+
+</body>
+</html>

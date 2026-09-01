@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-root="https://csbiology.github.io/BioFSharp.Mz/">
+<html lang="en" data-root="https://biofsharp.com/BioFSharp.Mz/">
 <head>
     <meta charset="UTF-8">
     <meta content="IE=edge" http-equiv="X-UA-Compatible">
@@ -8,11 +8,11 @@
     <!-- Opengraph properties (https://ogp.me/) -->
     <meta property="og:site_name" content="BioFSharp.Mz">
     <meta property="og:title" content="ParamContainer (BioFSharp.Mz)" />
-    <meta property="og:url" content="https://csbiology.github.io/BioFSharp.Mz/{{fsdocs-source-basename}}.html">
+    <meta property="og:url" content="https://biofsharp.com/BioFSharp.Mz/{{fsdocs-source-basename}}.html">
     <meta property="og:type" content="website" />
     <!-- Twitter cards (https://developer.twitter.com/en/docs/twitter-for-websites/cards/overview/summary-card-with-large-image) -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:site" content="https://csbiology.github.io/BioFSharp.Mz/">
+    <meta name="twitter:site" content="https://biofsharp.com/BioFSharp.Mz/">
     <meta name="twitter:title" content="ParamContainer (BioFSharp.Mz)">
     
     <title>ParamContainer (BioFSharp.Mz) | BioFSharp.Mz</title>
@@ -20,11 +20,12 @@
     <link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
     <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
-    <link href="https://csbiology.github.io/BioFSharp.Mz/img/favicon.ico" rel="icon" sizes="32x32" type="image/png"/>
-    <script type="application/javascript" src="https://csbiology.github.io/BioFSharp.Mz/content/fsdocs-theme-set-dark.js"></script>
-    <link href="https://csbiology.github.io/BioFSharp.Mz/content/fsdocs-default.css" rel="stylesheet" type="text/css"/>
-    <link href="https://csbiology.github.io/BioFSharp.Mz/content/fsdocs-theme.css" rel="stylesheet" type="text/css"/>
+    <link href="https://biofsharp.com/BioFSharp.Mz/img/favicon.ico" rel="icon" sizes="32x32" type="image/png"/>
+    <script type="application/javascript" src="https://biofsharp.com/BioFSharp.Mz/content/fsdocs-theme-set-dark.js"></script>
+    <link href="https://biofsharp.com/BioFSharp.Mz/content/fsdocs-default.css" rel="stylesheet" type="text/css"/>
+    <link href="https://biofsharp.com/BioFSharp.Mz/content/fsdocs-theme.css" rel="stylesheet" type="text/css"/>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js"></script>
+<style>header .start a img { background-color: #2f3337; border-radius: 6px; padding: 3px; }</style>
     
 </head>
 <body class="api-docs">
@@ -43,19 +44,80 @@
                     Notes</a></li>
                 <li class="nav-item"><a class="nav-link" href="https://github.com/CSBiology/BioFSharp.Mz/">Source
                     Repository</a></li>
-                
+                <li class="nav-header ">
+  Spectrum processing
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/01_01_peaks_and_peak_arrays.html">
+    Peaks and peak arrays
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/01_02_signal_detection.html">
+    Signal detection and centroiding
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/01_03_charge_state_determination.html">
+    Charge state determination
+  </a>
+</li>             
+<li class="nav-header ">
+  Peptide identification
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/02_01_fragmentation.html">
+    In silico fragmentation
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/02_02_search_databases.html">
+    Peptide search databases
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/02_03_sequest_like_scoring.html">
+    SEQUEST-like scoring
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/02_04_andromeda_like_scoring.html">
+    Andromeda-like and X!Tandem-like scoring
+  </a>
+</li>             
+<li class="nav-header ">
+  Quantification
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/03_01_quantification.html">
+    Peak quantification
+  </a>
+</li>             
+<li class="nav-header ">
+  Validation and inference
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/04_01_fdr_control.html">
+    False discovery rate control
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/04_02_protein_inference.html">
+    Protein inference
+  </a>
+</li>
                 <li class="nav-header">
   API Reference
 </li>             
 <li class="nav-item">
-  <a class="nav-link" href="https://csbiology.github.io/BioFSharp.Mz/reference/index.html">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/reference/index.html">
     All Namespaces
   </a>
 </li>
             </ul>
         </div>
         <a href="https://csbiology.github.io/BioFSharp.Mz/">
-            <img alt="Header menu logo" src="https://csbiology.github.io/BioFSharp.Mz/img/logo.png">
+            <img alt="Header menu logo" src="https://biofsharp.com/BioFSharp.Mz/img/logo.png">
             <strong>BioFSharp.Mz</strong>
         </a>
     </div>
@@ -77,12 +139,73 @@
             Notes</a></li>
         <li class="nav-item"><a class="nav-link" href="https://github.com/CSBiology/BioFSharp.Mz/">Source
             Repository</a></li>
-        
+        <li class="nav-header ">
+  Spectrum processing
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/01_01_peaks_and_peak_arrays.html">
+    Peaks and peak arrays
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/01_02_signal_detection.html">
+    Signal detection and centroiding
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/01_03_charge_state_determination.html">
+    Charge state determination
+  </a>
+</li>             
+<li class="nav-header ">
+  Peptide identification
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/02_01_fragmentation.html">
+    In silico fragmentation
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/02_02_search_databases.html">
+    Peptide search databases
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/02_03_sequest_like_scoring.html">
+    SEQUEST-like scoring
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/02_04_andromeda_like_scoring.html">
+    Andromeda-like and X!Tandem-like scoring
+  </a>
+</li>             
+<li class="nav-header ">
+  Quantification
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/03_01_quantification.html">
+    Peak quantification
+  </a>
+</li>             
+<li class="nav-header ">
+  Validation and inference
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/04_01_fdr_control.html">
+    False discovery rate control
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/04_02_protein_inference.html">
+    Protein inference
+  </a>
+</li>
         <li class="nav-header">
   API Reference
 </li>             
 <li class="nav-item">
-  <a class="nav-link" href="https://csbiology.github.io/BioFSharp.Mz/reference/index.html">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/reference/index.html">
     All Namespaces
   </a>
 </li>
@@ -97,7 +220,7 @@
   <dl class="fsdocs-metadata">
     <dt>
       Namespace: 
-      <a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz.html">
+      <a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz.html">
         BioFSharp.Mz
       </a>
     </dt>
@@ -106,7 +229,7 @@
     </dt>
     <dt>
       Parent Module: 
-      <a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-mzidentmlmodel.html">
+      <a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-mzidentmlmodel.html">
         MzIdentMLModel
       </a>
     </dt>
@@ -138,7 +261,7 @@
           <td class="fsdocs-entity-name">
             <p>
               <a name="ParamContainer">
-                <a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-mzidentmlmodel-paramcontainer-paramcontainer.html">
+                <a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-mzidentmlmodel-paramcontainer-paramcontainer.html">
                   ParamContainer
                 </a>
               </a>
@@ -183,7 +306,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '393', 393)" onmouseover="showTip(event, '393', 393)">
+              <code onmouseout="hideTip(event, '398', 398)" onmouseover="showTip(event, '398', 398)">
                 <p>
                   <a id="addOrUpdateInPlace">
                     <a href="#addOrUpdateInPlace">
@@ -192,7 +315,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="393">
+              <div class="fsdocs-tip" id="398">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>addOrUpdateInPlace&#32;<span>param&#32;paramContainer</span></span></code>
@@ -205,7 +328,7 @@
                         param
                       </b>
                       :
-                      <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-mzidentmlmodel-datamodel-cvparam.html">CvParam</a></code>
+                      <code><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-mzidentmlmodel-datamodel-cvparam.html">CvParam</a></code>
                     </span>
                     <br/>
                     <span>
@@ -213,14 +336,14 @@
                         paramContainer
                       </b>
                       :
-                      <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-mzidentmlmodel-paramcontainer-paramcontainer.html">ParamContainer</a></code>
+                      <code><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-mzidentmlmodel-paramcontainer-paramcontainer.html">ParamContainer</a></code>
                     </span>
                     <br/>
                   </ul>
                   <br/>
                   <span>
                     Returns: 
-                    <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-mzidentmlmodel-paramcontainer-paramcontainer.html">ParamContainer</a></code>
+                    <code><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-mzidentmlmodel-paramcontainer-paramcontainer.html">ParamContainer</a></code>
                   </span>
                   <br/>
                 </div>
@@ -234,7 +357,7 @@
                   param
                 </span>
                 :
-                <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-mzidentmlmodel-datamodel-cvparam.html">CvParam</a></code>
+                <code><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-mzidentmlmodel-datamodel-cvparam.html">CvParam</a></code>
               </dt>
               <dd class="fsdocs-param-docs"></dd>
               <dt class="fsdocs-param">
@@ -242,7 +365,7 @@
                   paramContainer
                 </span>
                 :
-                <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-mzidentmlmodel-paramcontainer-paramcontainer.html">ParamContainer</a></code>
+                <code><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-mzidentmlmodel-paramcontainer-paramcontainer.html">ParamContainer</a></code>
               </dt>
               <dd class="fsdocs-param-docs"></dd>
             </dl>
@@ -251,7 +374,7 @@
                 <span class="fsdocs-return-name">
                   Returns: 
                 </span>
-                <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-mzidentmlmodel-paramcontainer-paramcontainer.html">ParamContainer</a></code>
+                <code><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-mzidentmlmodel-paramcontainer-paramcontainer.html">ParamContainer</a></code>
               </dt>
               <dd class="fsdocs-return-docs"></dd>
             </dl>
@@ -260,7 +383,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '394', 394)" onmouseover="showTip(event, '394', 394)">
+              <code onmouseout="hideTip(event, '399', 399)" onmouseover="showTip(event, '399', 399)">
                 <p>
                   <a id="addOrUpdateInPlaceOf">
                     <a href="#addOrUpdateInPlaceOf">
@@ -269,7 +392,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="394">
+              <div class="fsdocs-tip" id="399">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>addOrUpdateInPlaceOf&#32;<span>cvParams&#32;paramContainer</span></span></code>
@@ -282,7 +405,7 @@
                         cvParams
                       </b>
                       :
-                      <code><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-mzidentmlmodel-datamodel-cvparam.html">CvParam</a>&#32;seq</span></code>
+                      <code><span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-mzidentmlmodel-datamodel-cvparam.html">CvParam</a>&#32;seq</span></code>
                     </span>
                     <br/>
                     <span>
@@ -290,14 +413,14 @@
                         paramContainer
                       </b>
                       :
-                      <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-mzidentmlmodel-paramcontainer-paramcontainer.html">ParamContainer</a></code>
+                      <code><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-mzidentmlmodel-paramcontainer-paramcontainer.html">ParamContainer</a></code>
                     </span>
                     <br/>
                   </ul>
                   <br/>
                   <span>
                     Returns: 
-                    <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-mzidentmlmodel-paramcontainer-paramcontainer.html">ParamContainer</a></code>
+                    <code><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-mzidentmlmodel-paramcontainer-paramcontainer.html">ParamContainer</a></code>
                   </span>
                   <br/>
                 </div>
@@ -311,7 +434,7 @@
                   cvParams
                 </span>
                 :
-                <code><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-mzidentmlmodel-datamodel-cvparam.html">CvParam</a>&#32;seq</span></code>
+                <code><span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-mzidentmlmodel-datamodel-cvparam.html">CvParam</a>&#32;seq</span></code>
               </dt>
               <dd class="fsdocs-param-docs"></dd>
               <dt class="fsdocs-param">
@@ -319,7 +442,7 @@
                   paramContainer
                 </span>
                 :
-                <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-mzidentmlmodel-paramcontainer-paramcontainer.html">ParamContainer</a></code>
+                <code><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-mzidentmlmodel-paramcontainer-paramcontainer.html">ParamContainer</a></code>
               </dt>
               <dd class="fsdocs-param-docs"></dd>
             </dl>
@@ -328,7 +451,7 @@
                 <span class="fsdocs-return-name">
                   Returns: 
                 </span>
-                <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-mzidentmlmodel-paramcontainer-paramcontainer.html">ParamContainer</a></code>
+                <code><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-mzidentmlmodel-paramcontainer-paramcontainer.html">ParamContainer</a></code>
               </dt>
               <dd class="fsdocs-return-docs"></dd>
             </dl>
@@ -337,7 +460,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '395', 395)" onmouseover="showTip(event, '395', 395)">
+              <code onmouseout="hideTip(event, '400', 400)" onmouseover="showTip(event, '400', 400)">
                 <p>
                   <a id="getCvParam">
                     <a href="#getCvParam">
@@ -346,7 +469,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="395">
+              <div class="fsdocs-tip" id="400">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>getCvParam&#32;<span>paramId&#32;paramContainer</span></span></code>
@@ -359,7 +482,7 @@
                         paramId
                       </b>
                       :
-                      <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-mzidentmlmodel-datamodel-termid.html">TermId</a></code>
+                      <code><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-mzidentmlmodel-datamodel-termid.html">TermId</a></code>
                     </span>
                     <br/>
                     <span>
@@ -367,14 +490,14 @@
                         paramContainer
                       </b>
                       :
-                      <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-mzidentmlmodel-paramcontainer-paramcontainer.html">ParamContainer</a></code>
+                      <code><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-mzidentmlmodel-paramcontainer-paramcontainer.html">ParamContainer</a></code>
                     </span>
                     <br/>
                   </ul>
                   <br/>
                   <span>
                     Returns: 
-                    <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-mzidentmlmodel-datamodel-cvparam.html">CvParam</a></code>
+                    <code><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-mzidentmlmodel-datamodel-cvparam.html">CvParam</a></code>
                   </span>
                   <br/>
                 </div>
@@ -405,7 +528,7 @@
                     paramId
                   </span>
                   :
-                  <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-mzidentmlmodel-datamodel-termid.html">TermId</a></code>
+                  <code><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-mzidentmlmodel-datamodel-termid.html">TermId</a></code>
                 </dt>
                 <dd class="fsdocs-param-docs"></dd>
                 <dt class="fsdocs-param">
@@ -413,7 +536,7 @@
                     paramContainer
                   </span>
                   :
-                  <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-mzidentmlmodel-paramcontainer-paramcontainer.html">ParamContainer</a></code>
+                  <code><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-mzidentmlmodel-paramcontainer-paramcontainer.html">ParamContainer</a></code>
                 </dt>
                 <dd class="fsdocs-param-docs"></dd>
               </dl>
@@ -422,7 +545,7 @@
                   <span class="fsdocs-return-name">
                     Returns: 
                   </span>
-                  <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-mzidentmlmodel-datamodel-cvparam.html">CvParam</a></code>
+                  <code><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-mzidentmlmodel-datamodel-cvparam.html">CvParam</a></code>
                 </dt>
                 <dd class="fsdocs-return-docs"></dd>
               </dl>
@@ -432,7 +555,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '396', 396)" onmouseover="showTip(event, '396', 396)">
+              <code onmouseout="hideTip(event, '401', 401)" onmouseover="showTip(event, '401', 401)">
                 <p>
                   <a id="getValueAsFloat">
                     <a href="#getValueAsFloat">
@@ -441,7 +564,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="396">
+              <div class="fsdocs-tip" id="401">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>getValueAsFloat&#32;<span>paramId&#32;paramContainer</span></span></code>
@@ -454,7 +577,7 @@
                         paramId
                       </b>
                       :
-                      <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-mzidentmlmodel-datamodel-termid.html">TermId</a></code>
+                      <code><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-mzidentmlmodel-datamodel-termid.html">TermId</a></code>
                     </span>
                     <br/>
                     <span>
@@ -462,7 +585,7 @@
                         paramContainer
                       </b>
                       :
-                      <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-mzidentmlmodel-paramcontainer-paramcontainer.html">ParamContainer</a></code>
+                      <code><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-mzidentmlmodel-paramcontainer-paramcontainer.html">ParamContainer</a></code>
                     </span>
                     <br/>
                   </ul>
@@ -500,7 +623,7 @@
                     paramId
                   </span>
                   :
-                  <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-mzidentmlmodel-datamodel-termid.html">TermId</a></code>
+                  <code><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-mzidentmlmodel-datamodel-termid.html">TermId</a></code>
                 </dt>
                 <dd class="fsdocs-param-docs"></dd>
                 <dt class="fsdocs-param">
@@ -508,7 +631,7 @@
                     paramContainer
                   </span>
                   :
-                  <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-mzidentmlmodel-paramcontainer-paramcontainer.html">ParamContainer</a></code>
+                  <code><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-mzidentmlmodel-paramcontainer-paramcontainer.html">ParamContainer</a></code>
                 </dt>
                 <dd class="fsdocs-param-docs"></dd>
               </dl>
@@ -527,7 +650,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '397', 397)" onmouseover="showTip(event, '397', 397)">
+              <code onmouseout="hideTip(event, '402', 402)" onmouseover="showTip(event, '402', 402)">
                 <p>
                   <a id="getValueAsInt">
                     <a href="#getValueAsInt">
@@ -536,7 +659,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="397">
+              <div class="fsdocs-tip" id="402">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>getValueAsInt&#32;<span>paramId&#32;paramContainer</span></span></code>
@@ -549,7 +672,7 @@
                         paramId
                       </b>
                       :
-                      <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-mzidentmlmodel-datamodel-termid.html">TermId</a></code>
+                      <code><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-mzidentmlmodel-datamodel-termid.html">TermId</a></code>
                     </span>
                     <br/>
                     <span>
@@ -557,7 +680,7 @@
                         paramContainer
                       </b>
                       :
-                      <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-mzidentmlmodel-paramcontainer-paramcontainer.html">ParamContainer</a></code>
+                      <code><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-mzidentmlmodel-paramcontainer-paramcontainer.html">ParamContainer</a></code>
                     </span>
                     <br/>
                   </ul>
@@ -595,7 +718,7 @@
                     paramId
                   </span>
                   :
-                  <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-mzidentmlmodel-datamodel-termid.html">TermId</a></code>
+                  <code><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-mzidentmlmodel-datamodel-termid.html">TermId</a></code>
                 </dt>
                 <dd class="fsdocs-param-docs"></dd>
                 <dt class="fsdocs-param">
@@ -603,7 +726,7 @@
                     paramContainer
                   </span>
                   :
-                  <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-mzidentmlmodel-paramcontainer-paramcontainer.html">ParamContainer</a></code>
+                  <code><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-mzidentmlmodel-paramcontainer-paramcontainer.html">ParamContainer</a></code>
                 </dt>
                 <dd class="fsdocs-param-docs"></dd>
               </dl>
@@ -622,7 +745,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '398', 398)" onmouseover="showTip(event, '398', 398)">
+              <code onmouseout="hideTip(event, '403', 403)" onmouseover="showTip(event, '403', 403)">
                 <p>
                   <a id="getValueAsString">
                     <a href="#getValueAsString">
@@ -631,7 +754,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="398">
+              <div class="fsdocs-tip" id="403">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>getValueAsString&#32;<span>paramId&#32;paramContainer</span></span></code>
@@ -644,7 +767,7 @@
                         paramId
                       </b>
                       :
-                      <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-mzidentmlmodel-datamodel-termid.html">TermId</a></code>
+                      <code><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-mzidentmlmodel-datamodel-termid.html">TermId</a></code>
                     </span>
                     <br/>
                     <span>
@@ -652,7 +775,7 @@
                         paramContainer
                       </b>
                       :
-                      <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-mzidentmlmodel-paramcontainer-paramcontainer.html">ParamContainer</a></code>
+                      <code><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-mzidentmlmodel-paramcontainer-paramcontainer.html">ParamContainer</a></code>
                     </span>
                     <br/>
                   </ul>
@@ -690,7 +813,7 @@
                     paramId
                   </span>
                   :
-                  <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-mzidentmlmodel-datamodel-termid.html">TermId</a></code>
+                  <code><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-mzidentmlmodel-datamodel-termid.html">TermId</a></code>
                 </dt>
                 <dd class="fsdocs-param-docs"></dd>
                 <dt class="fsdocs-param">
@@ -698,7 +821,7 @@
                     paramContainer
                   </span>
                   :
-                  <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-mzidentmlmodel-paramcontainer-paramcontainer.html">ParamContainer</a></code>
+                  <code><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-mzidentmlmodel-paramcontainer-paramcontainer.html">ParamContainer</a></code>
                 </dt>
                 <dd class="fsdocs-param-docs"></dd>
               </dl>
@@ -717,7 +840,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '399', 399)" onmouseover="showTip(event, '399', 399)">
+              <code onmouseout="hideTip(event, '404', 404)" onmouseover="showTip(event, '404', 404)">
                 <p>
                   <a id="ofSeq">
                     <a href="#ofSeq">
@@ -726,7 +849,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="399">
+              <div class="fsdocs-tip" id="404">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>ofSeq&#32;<span>cvParams</span></span></code>
@@ -739,14 +862,14 @@
                         cvParams
                       </b>
                       :
-                      <code><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-mzidentmlmodel-datamodel-cvparam.html">CvParam</a>&#32;seq</span></code>
+                      <code><span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-mzidentmlmodel-datamodel-cvparam.html">CvParam</a>&#32;seq</span></code>
                     </span>
                     <br/>
                   </ul>
                   <br/>
                   <span>
                     Returns: 
-                    <code><span><a href="https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2">Dictionary</a>&lt;<span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-mzidentmlmodel-datamodel-termid.html">TermId</a>,&#32;<a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-mzidentmlmodel-datamodel-cvparam.html">CvParam</a></span>&gt;</span></code>
+                    <code><span><a href="https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2">Dictionary</a>&lt;<span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-mzidentmlmodel-datamodel-termid.html">TermId</a>,&#32;<a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-mzidentmlmodel-datamodel-cvparam.html">CvParam</a></span>&gt;</span></code>
                   </span>
                   <br/>
                 </div>
@@ -760,7 +883,7 @@
                   cvParams
                 </span>
                 :
-                <code><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-mzidentmlmodel-datamodel-cvparam.html">CvParam</a>&#32;seq</span></code>
+                <code><span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-mzidentmlmodel-datamodel-cvparam.html">CvParam</a>&#32;seq</span></code>
               </dt>
               <dd class="fsdocs-param-docs"></dd>
             </dl>
@@ -769,7 +892,7 @@
                 <span class="fsdocs-return-name">
                   Returns: 
                 </span>
-                <code><span><a href="https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2">Dictionary</a>&lt;<span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-mzidentmlmodel-datamodel-termid.html">TermId</a>,&#32;<a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-mzidentmlmodel-datamodel-cvparam.html">CvParam</a></span>&gt;</span></code>
+                <code><span><a href="https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2">Dictionary</a>&lt;<span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-mzidentmlmodel-datamodel-termid.html">TermId</a>,&#32;<a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-mzidentmlmodel-datamodel-cvparam.html">CvParam</a></span>&gt;</span></code>
               </dt>
               <dd class="fsdocs-return-docs"></dd>
             </dl>
@@ -778,7 +901,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '400', 400)" onmouseover="showTip(event, '400', 400)">
+              <code onmouseout="hideTip(event, '405', 405)" onmouseover="showTip(event, '405', 405)">
                 <p>
                   <a id="tryGetCvParam">
                     <a href="#tryGetCvParam">
@@ -787,7 +910,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="400">
+              <div class="fsdocs-tip" id="405">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>tryGetCvParam&#32;<span>paramId&#32;paramContainer</span></span></code>
@@ -800,7 +923,7 @@
                         paramId
                       </b>
                       :
-                      <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-mzidentmlmodel-datamodel-termid.html">TermId</a></code>
+                      <code><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-mzidentmlmodel-datamodel-termid.html">TermId</a></code>
                     </span>
                     <br/>
                     <span>
@@ -808,14 +931,14 @@
                         paramContainer
                       </b>
                       :
-                      <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-mzidentmlmodel-paramcontainer-paramcontainer.html">ParamContainer</a></code>
+                      <code><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-mzidentmlmodel-paramcontainer-paramcontainer.html">ParamContainer</a></code>
                     </span>
                     <br/>
                   </ul>
                   <br/>
                   <span>
                     Returns: 
-                    <code><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-mzidentmlmodel-datamodel-cvparam.html">CvParam</a>&#32;option</span></code>
+                    <code><span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-mzidentmlmodel-datamodel-cvparam.html">CvParam</a>&#32;option</span></code>
                   </span>
                   <br/>
                 </div>
@@ -846,7 +969,7 @@
                     paramId
                   </span>
                   :
-                  <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-mzidentmlmodel-datamodel-termid.html">TermId</a></code>
+                  <code><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-mzidentmlmodel-datamodel-termid.html">TermId</a></code>
                 </dt>
                 <dd class="fsdocs-param-docs"></dd>
                 <dt class="fsdocs-param">
@@ -854,7 +977,7 @@
                     paramContainer
                   </span>
                   :
-                  <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-mzidentmlmodel-paramcontainer-paramcontainer.html">ParamContainer</a></code>
+                  <code><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-mzidentmlmodel-paramcontainer-paramcontainer.html">ParamContainer</a></code>
                 </dt>
                 <dd class="fsdocs-param-docs"></dd>
               </dl>
@@ -863,7 +986,7 @@
                   <span class="fsdocs-return-name">
                     Returns: 
                   </span>
-                  <code><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-mzidentmlmodel-datamodel-cvparam.html">CvParam</a>&#32;option</span></code>
+                  <code><span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-mzidentmlmodel-datamodel-cvparam.html">CvParam</a>&#32;option</span></code>
                 </dt>
                 <dd class="fsdocs-return-docs"></dd>
               </dl>
@@ -896,10 +1019,10 @@
         <p class="empty">Type something to start searching.</p>
     </div>
 </dialog>
-<script type="module" src="https://csbiology.github.io/BioFSharp.Mz/content/fsdocs-tips.js"></script>
-<script type="module" src="https://csbiology.github.io/BioFSharp.Mz/content/fsdocs-theme-toggle.js"></script>
-<script type="module" src="https://csbiology.github.io/BioFSharp.Mz/content/fsdocs-theme.js"></script>
-<script type="module" src="https://csbiology.github.io/BioFSharp.Mz/content/fsdocs-search.js"></script>
+<script type="module" src="https://biofsharp.com/BioFSharp.Mz/content/fsdocs-tips.js"></script>
+<script type="module" src="https://biofsharp.com/BioFSharp.Mz/content/fsdocs-theme-toggle.js"></script>
+<script type="module" src="https://biofsharp.com/BioFSharp.Mz/content/fsdocs-theme.js"></script>
+<script type="module" src="https://biofsharp.com/BioFSharp.Mz/content/fsdocs-search.js"></script>
 
 </body>
 </html>

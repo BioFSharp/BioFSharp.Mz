@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="en" data-root="https://biofsharp.com/BioFSharp.Mz/">
+<head>
+    <meta charset="UTF-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="David Zimmer, Caroline Ott, Heinrich Lukas Weil, Timo Muehlhaus" name="author">
+    <!-- Opengraph properties (https://ogp.me/) -->
+    <meta property="og:site_name" content="BioFSharp.Mz">
+    <meta property="og:title" content="SEQUEST-like scoring" />
+    <meta property="og:url" content="https://biofsharp.com/BioFSharp.Mz/02_03_sequest_like_scoring.html">
+    <meta property="og:type" content="website" />
+    <!-- Twitter cards (https://developer.twitter.com/en/docs/twitter-for-websites/cards/overview/summary-card-with-large-image) -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="https://biofsharp.com/BioFSharp.Mz/">
+    <meta name="twitter:title" content="SEQUEST-like scoring">
+    
+    <title>SEQUEST-like scoring | BioFSharp.Mz</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <link href="https://biofsharp.com/BioFSharp.Mz/img/favicon.ico" rel="icon" sizes="32x32" type="image/png"/>
+    <script type="application/javascript" src="https://biofsharp.com/BioFSharp.Mz/content/fsdocs-theme-set-dark.js"></script>
+    <link href="https://biofsharp.com/BioFSharp.Mz/content/fsdocs-default.css" rel="stylesheet" type="text/css"/>
+    <link href="https://biofsharp.com/BioFSharp.Mz/content/fsdocs-theme.css" rel="stylesheet" type="text/css"/>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js"></script>
+<style>header .start a img { background-color: #2f3337; border-radius: 6px; padding: 3px; }</style>
+    
+</head>
+<body class="content">
+<header>
+    <div class="start">
+        <div id="menu-toggle">
+            <iconify-icon class="icon closed" height="22" icon="eva:menu-fill" width="22"></iconify-icon>
+            <iconify-icon class="icon open" height="22" icon="mi:close" width="22"></iconify-icon>
+            <input type="checkbox" name="mobile-menu" />
+            <ul class="menu">
+                <li class="nav-header">Links</li>
+                <li class="nav-item"><a class="nav-link" href="https://github.com/CSBiology/BioFSharp.Mz/blob/developer/LICENSE">License</a>
+                </li>
+                <li class="nav-item"><a class="nav-link"
+                                        href="https://github.com/CSBiology/BioFSharp.Mz/blob/developer/RELEASE_NOTES.md">Release
+                    Notes</a></li>
+                <li class="nav-item"><a class="nav-link" href="https://github.com/CSBiology/BioFSharp.Mz/">Source
+                    Repository</a></li>
+                <li class="nav-header ">
+  Spectrum processing
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/01_01_peaks_and_peak_arrays.html">
+    Peaks and peak arrays
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/01_02_signal_detection.html">
+    Signal detection and centroiding
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/01_03_charge_state_determination.html">
+    Charge state determination
+  </a>
+</li>             
+<li class="nav-header active">
+  Peptide identification
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/02_01_fragmentation.html">
+    In silico fragmentation
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/02_02_search_databases.html">
+    Peptide search databases
+  </a>
+</li>             
+<li class="nav-item active">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/02_03_sequest_like_scoring.html">
+    SEQUEST-like scoring
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/02_04_andromeda_like_scoring.html">
+    Andromeda-like and X!Tandem-like scoring
+  </a>
+</li>             
+<li class="nav-header ">
+  Quantification
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/03_01_quantification.html">
+    Peak quantification
+  </a>
+</li>             
+<li class="nav-header ">
+  Validation and inference
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/04_01_fdr_control.html">
+    False discovery rate control
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/04_02_protein_inference.html">
+    Protein inference
+  </a>
+</li>
+                <li class="nav-header">
+  API Reference
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/reference/index.html">
+    All Namespaces
+  </a>
+</li>
+            </ul>
+        </div>
+        <a href="https://csbiology.github.io/BioFSharp.Mz/">
+            <img alt="Header menu logo" src="https://biofsharp.com/BioFSharp.Mz/img/logo.png">
+            <strong>BioFSharp.Mz</strong>
+        </a>
+    </div>
+    <div class="end">
+        <a href="https://github.com/CSBiology/BioFSharp.Mz/" target="_blank">
+            <iconify-icon icon="uil:github" width="26" height="26"></iconify-icon>
+        </a>
+        <iconify-icon id="search-btn" icon="carbon:search" class="search" width="24" height="24"></iconify-icon>
+        <fsdocs-theme-toggle></fsdocs-theme-toggle>
+    </div>
+</header>
+<aside id="fsdocs-main-menu">
+    <ul class="menu">
+        <li class="nav-header">Links</li>
+        <li class="nav-item"><a class="nav-link" href="https://github.com/CSBiology/BioFSharp.Mz/blob/developer/LICENSE">License</a>
+        </li>
+        <li class="nav-item"><a class="nav-link"
+                                href="https://github.com/CSBiology/BioFSharp.Mz/blob/developer/RELEASE_NOTES.md">Release
+            Notes</a></li>
+        <li class="nav-item"><a class="nav-link" href="https://github.com/CSBiology/BioFSharp.Mz/">Source
+            Repository</a></li>
+        <li class="nav-header ">
+  Spectrum processing
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/01_01_peaks_and_peak_arrays.html">
+    Peaks and peak arrays
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/01_02_signal_detection.html">
+    Signal detection and centroiding
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/01_03_charge_state_determination.html">
+    Charge state determination
+  </a>
+</li>             
+<li class="nav-header active">
+  Peptide identification
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/02_01_fragmentation.html">
+    In silico fragmentation
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/02_02_search_databases.html">
+    Peptide search databases
+  </a>
+</li>             
+<li class="nav-item active">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/02_03_sequest_like_scoring.html">
+    SEQUEST-like scoring
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/02_04_andromeda_like_scoring.html">
+    Andromeda-like and X!Tandem-like scoring
+  </a>
+</li>             
+<li class="nav-header ">
+  Quantification
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/03_01_quantification.html">
+    Peak quantification
+  </a>
+</li>             
+<li class="nav-header ">
+  Validation and inference
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/04_01_fdr_control.html">
+    False discovery rate control
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/04_02_protein_inference.html">
+    Protein inference
+  </a>
+</li>
+        <li class="nav-header">
+  API Reference
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/reference/index.html">
+    All Namespaces
+  </a>
+</li>
+    </ul>
+</aside>
+<main>
+    <div id="content">
+        
+<p><a href="https://mybinder.org/v2/gh/BioFSharp/BioFSharp.Mz/gh-pages?filepath=02_03_sequest_like_scoring.ipynb"><img src="https://biofsharp.com/BioFSharp.Mz/img/badge-binder.svg" alt="Binder" /></a>&emsp;
+<a href="https://biofsharp.com/BioFSharp.Mz/02_03_sequest_like_scoring.fsx"><img src="https://biofsharp.com/BioFSharp.Mz/img/badge-script.svg" alt="Script" /></a>&emsp;
+<a href="https://biofsharp.com/BioFSharp.Mz/02_03_sequest_like_scoring.ipynb"><img src="https://biofsharp.com/BioFSharp.Mz/img/badge-notebook.svg" alt="Notebook" /></a></p>
+<h1><a name="SEQUEST-like-scoring" class="anchor" href="#SEQUEST-like-scoring">SEQUEST-like scoring</a></h1>
+<p>Identifying the peptide behind an MS2 spectrum runs through five steps: the
+measured spectrum is preprocessed (<a href="https://biofsharp.com/BioFSharp.Mz/01_02_signal_detection.html">signal detection</a>),
+candidate sequences are selected by precursor mass
+(<a href="https://biofsharp.com/BioFSharp.Mz/02_02_search_databases.html">peptide search databases</a>), a theoretical
+spectrum is predicted for every candidate, the predictions are matched against the
+measurement, and the closeness of fit is scored. This page walks steps three to five
+for one spectrum, using the <code>SequestLike</code> module.</p>
+<p>The scoring question sounds simple: which candidate's predicted peaks line up
+best with the measured ones? Representing both sides as intensity vectors
+over 1 Da bins makes a dot product the obvious measure of agreement. On its
+own, that measure has a flaw. A measured spectrum with many peaks all over
+the m/z axis gets a decent dot product with almost any candidate, simply
+because most predictions land near some peak. SEQUEST's cross-correlation
+score (xcorr) fixes this by asking how much better the prediction correlates
+with the measured spectrum at zero offset than on average across a range of
+shifted offsets. That mean off-position correlation is the background, and
+subtracting it leaves only the agreement that is specific to the candidate's
+peak pattern.</p>
+<p>The <code>SequestLike</code> implementation follows this idea in a form that lets one
+spectrum be scored against many candidates cheaply. The measured spectrum is
+binned to 1 Da, and its intensities are square-root scaled and normalized to
+the maximum within each of 10 windows. The average of the spectrum's shifted
+copies over a delay range of 75 is then subtracted once. Algebraically that
+folds the whole background subtraction into the measured side, so scoring a
+candidate afterwards reduces to a dot product between the candidate's
+predicted intensity vector and this preprocessed measured vector. The module is deliberately named SEQUEST-like.
+Its background window differs from the symmetric average in the published
+SEQUEST algorithm, so scores follow the same idea as the original without
+matching its numbers exactly, and they are comparable within this
+implementation.</p>
+<h2><a name="Loading-the-measured-spectrum" class="anchor" href="#Loading-the-measured-spectrum">Loading the measured spectrum</a></h2>
+<p>The running example of these pages is the MS2 scan of the doubly charged
+peptide ANLGMEVMHER in <code>ms2Example.mgf</code>. Its precursor m/z of 643.803548 and
+charge 2 were recovered on the
+<a href="https://biofsharp.com/BioFSharp.Mz/01_03_charge_state_determination.html">charge state determination</a>
+page. <code>PeakArray.zip</code> turns the two raw arrays of the reader into the
+<code>PeakArray</code> the scorer consumes, as introduced on the
+<a href="https://biofsharp.com/BioFSharp.Mz/01_01_peaks_and_peak_arrays.html">peaks and peak arrays</a> page.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="k">open</span> <span onmouseout="hideTip(event, 'fs1', 1)" onmouseover="showTip(event, 'fs1', 1)" class="id">BioFSharp</span>
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs1', 2)" onmouseover="showTip(event, 'fs1', 2)" class="id">BioFSharp</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs2', 3)" onmouseover="showTip(event, 'fs2', 3)" class="id">FileFormats</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs3', 4)" onmouseover="showTip(event, 'fs3', 4)" class="m">MGF</span>
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs1', 5)" onmouseover="showTip(event, 'fs1', 5)" class="id">BioFSharp</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs4', 6)" onmouseover="showTip(event, 'fs4', 6)" class="id">IO</span>
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs1', 7)" onmouseover="showTip(event, 'fs1', 7)" class="id">BioFSharp</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs5', 8)" onmouseover="showTip(event, 'fs5', 8)" class="id">Mz</span>
+
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs6', 9)" onmouseover="showTip(event, 'fs6', 9)" class="id">ms2</span> <span class="o">=</span>
+    <span onmouseout="hideTip(event, 'fs7', 10)" onmouseover="showTip(event, 'fs7', 10)" class="m">MGF</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs8', 11)" onmouseover="showTip(event, 'fs8', 11)" class="id">read</span> <span class="pn">(</span><span class="k">__SOURCE_DIRECTORY__</span> <span class="o">+</span> <span class="s">&quot;/data/ms2Example.mgf&quot;</span><span class="pn">)</span>
+    <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs9', 12)" onmouseover="showTip(event, 'fs9', 12)" class="m">List</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs10', 13)" onmouseover="showTip(event, 'fs10', 13)" class="id">head</span>
+
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs11', 14)" onmouseover="showTip(event, 'fs11', 14)" class="id">precursorMZ</span> <span class="o">=</span>
+    <span class="k">match</span> <span onmouseout="hideTip(event, 'fs12', 15)" onmouseover="showTip(event, 'fs12', 15)" class="rt">MGFEntry</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs13', 16)" onmouseover="showTip(event, 'fs13', 16)" class="id">tryGetPrecursorMZ</span> <span onmouseout="hideTip(event, 'fs6', 17)" onmouseover="showTip(event, 'fs6', 17)" class="id">ms2</span> <span class="k">with</span>
+    <span class="pn">|</span> <span onmouseout="hideTip(event, 'fs14', 18)" onmouseover="showTip(event, 'fs14', 18)" class="uc">Some</span> <span onmouseout="hideTip(event, 'fs15', 19)" onmouseover="showTip(event, 'fs15', 19)" class="fn">mz</span> <span class="k">-&gt;</span> <span onmouseout="hideTip(event, 'fs15', 20)" onmouseover="showTip(event, 'fs15', 20)" class="fn">mz</span>
+    <span class="pn">|</span> <span onmouseout="hideTip(event, 'fs16', 21)" onmouseover="showTip(event, 'fs16', 21)" class="uc">None</span> <span class="k">-&gt;</span> <span onmouseout="hideTip(event, 'fs17', 22)" onmouseover="showTip(event, 'fs17', 22)" class="fn">failwith</span> <span class="s">&quot;no precursor m/z in the MS2 header&quot;</span>
+
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs18', 23)" onmouseover="showTip(event, 'fs18', 23)" class="id">spectrum</span> <span class="pn">:</span> <span onmouseout="hideTip(event, 'fs19', 24)" onmouseover="showTip(event, 'fs19', 24)" class="rt">PeakArray</span><span class="pn">&lt;</span><span onmouseout="hideTip(event, 'fs20', 25)" onmouseover="showTip(event, 'fs20', 25)" class="vt">Peak</span><span class="pn">&gt;</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs19', 26)" onmouseover="showTip(event, 'fs19', 26)" class="m">PeakArray</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs21', 27)" onmouseover="showTip(event, 'fs21', 27)" class="id">zip</span> <span onmouseout="hideTip(event, 'fs6', 28)" onmouseover="showTip(event, 'fs6', 28)" class="id">ms2</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs22', 29)" onmouseover="showTip(event, 'fs22', 29)" class="id">Mass</span> <span onmouseout="hideTip(event, 'fs6', 30)" onmouseover="showTip(event, 'fs6', 30)" class="id">ms2</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs23', 31)" onmouseover="showTip(event, 'fs23', 31)" class="id">Intensity</span>
+
+<span onmouseout="hideTip(event, 'fs24', 32)" onmouseover="showTip(event, 'fs24', 32)" class="fn">printfn</span> <span class="s">&quot;peaks: </span><span class="pf">%i</span><span class="s"> covering m/z </span><span class="pf">%.2f</span><span class="s"> to </span><span class="pf">%.2f</span><span class="s">&quot;</span>
+    <span onmouseout="hideTip(event, 'fs18', 33)" onmouseover="showTip(event, 'fs18', 33)" class="id">spectrum</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs25', 34)" onmouseover="showTip(event, 'fs25', 34)" class="id">Length</span> <span onmouseout="hideTip(event, 'fs18', 35)" onmouseover="showTip(event, 'fs18', 35)" class="id">spectrum</span><span class="pn">.</span><span class="pn">[</span><span class="n">0</span><span class="pn">]</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs5', 36)" onmouseover="showTip(event, 'fs5', 36)" class="id">Mz</span> <span onmouseout="hideTip(event, 'fs18', 37)" onmouseover="showTip(event, 'fs18', 37)" class="id">spectrum</span><span class="pn">.</span><span class="pn">[</span><span onmouseout="hideTip(event, 'fs18', 38)" onmouseover="showTip(event, 'fs18', 38)" class="id">spectrum</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs25', 39)" onmouseover="showTip(event, 'fs25', 39)" class="id">Length</span> <span class="o">-</span> <span class="n">1</span><span class="pn">]</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs5', 40)" onmouseover="showTip(event, 'fs5', 40)" class="id">Mz</span>
+</code></pre>
+<table class="pre"><tr><td class="snippet"><pre class="fssnip"><code lang="text">peaks: 971 covering m/z 100.67 to 1337.63
+</code></pre></td></tr></table>
+<h2><a name="Assembling-the-candidate-list" class="anchor" href="#Assembling-the-candidate-list">Assembling the candidate list</a></h2>
+<p>In a production pipeline the candidates come out of a
+<a href="https://biofsharp.com/BioFSharp.Mz/02_02_search_databases.html">search database</a> query for all peptides
+within a narrow mass window around the measured precursor mass. To keep this
+page self-contained we build such a result list by hand with
+<code>SearchDB.createLookUpResult</code>, which produces the same <code>LookUpResult</code> records
+the database returns. The neutral mass of each candidate is computed in code
+as its residue masses summed up plus one water for the termini.</p>
+<p>The list holds the true peptide and three pretenders. Two are permutations
+of ANLGMEVMHER that keep the C-terminal arginine, so they weigh exactly the
+same. The third replaces the asparagine with two glycines, a substitution
+that is also exactly isobaric because the asparagine residue and two glycine
+residues share the elemental composition. A mass window query cannot
+distinguish any of these by mass. Only the fragment pattern can.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs26', 41)" onmouseover="showTip(event, 'fs26', 41)" class="fn">mono</span> <span class="pn">:</span> <span onmouseout="hideTip(event, 'fs27', 42)" onmouseover="showTip(event, 'fs27', 42)" class="if">IBioItem</span> <span class="k">-&gt;</span> <span onmouseout="hideTip(event, 'fs28', 43)" onmouseover="showTip(event, 'fs28', 43)" class="vt">float</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs29', 44)" onmouseover="showTip(event, 'fs29', 44)" class="m">BioItem</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs30', 45)" onmouseover="showTip(event, 'fs30', 45)" class="id">monoisoMass</span>
+
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs31', 46)" onmouseover="showTip(event, 'fs31', 46)" class="fn">neutralMass</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs32', 47)" onmouseover="showTip(event, 'fs32', 47)" class="fn">peptide</span><span class="pn">:</span> <span onmouseout="hideTip(event, 'fs33', 48)" onmouseover="showTip(event, 'fs33', 48)" class="m">AminoAcids</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs34', 49)" onmouseover="showTip(event, 'fs34', 49)" class="id">AminoAcid</span> <span onmouseout="hideTip(event, 'fs35', 50)" onmouseover="showTip(event, 'fs35', 50)" class="rt">list</span><span class="pn">)</span> <span class="o">=</span>
+    <span class="pn">(</span><span onmouseout="hideTip(event, 'fs32', 51)" onmouseover="showTip(event, 'fs32', 51)" class="fn">peptide</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs9', 52)" onmouseover="showTip(event, 'fs9', 52)" class="m">List</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs36', 53)" onmouseover="showTip(event, 'fs36', 53)" class="id">sumBy</span> <span onmouseout="hideTip(event, 'fs26', 54)" onmouseover="showTip(event, 'fs26', 54)" class="fn">mono</span><span class="pn">)</span> <span class="o">+</span> <span onmouseout="hideTip(event, 'fs26', 55)" onmouseover="showTip(event, 'fs26', 55)" class="fn">mono</span> <span onmouseout="hideTip(event, 'fs37', 56)" onmouseover="showTip(event, 'fs37', 56)" class="m">ModificationInfo</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs38', 57)" onmouseover="showTip(event, 'fs38', 57)" class="m">Table</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs39', 58)" onmouseover="showTip(event, 'fs39', 58)" class="id">H2O</span>
+
+<span class="c">// Stand-ins for what a search database mass window query would return;</span>
+<span class="c">// built by hand to keep the page self-contained.</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs40', 59)" onmouseover="showTip(event, 'fs40', 59)" class="fn">candidate</span> <span onmouseout="hideTip(event, 'fs41', 60)" onmouseover="showTip(event, 'fs41', 60)" class="fn">modSeqId</span> <span onmouseout="hideTip(event, 'fs42', 61)" onmouseover="showTip(event, 'fs42', 61)" class="fn">pepSeqId</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs43', 62)" onmouseover="showTip(event, 'fs43', 62)" class="fn">sequence</span><span class="pn">:</span> <span onmouseout="hideTip(event, 'fs44', 63)" onmouseover="showTip(event, 'fs44', 63)" class="rt">string</span><span class="pn">)</span> <span class="o">=</span>
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs45', 64)" onmouseover="showTip(event, 'fs45', 64)" class="fn">bioSequence</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs46', 65)" onmouseover="showTip(event, 'fs46', 65)" class="m">BioList</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs47', 66)" onmouseover="showTip(event, 'fs47', 66)" class="id">ofAminoAcidString</span> <span onmouseout="hideTip(event, 'fs43', 67)" onmouseover="showTip(event, 'fs43', 67)" class="fn">sequence</span>
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs48', 68)" onmouseover="showTip(event, 'fs48', 68)" class="fn">mass</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs31', 69)" onmouseover="showTip(event, 'fs31', 69)" class="fn">neutralMass</span> <span onmouseout="hideTip(event, 'fs45', 70)" onmouseover="showTip(event, 'fs45', 70)" class="fn">bioSequence</span>
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs49', 71)" onmouseover="showTip(event, 'fs49', 71)" class="fn">roundedMass</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs50', 72)" onmouseover="showTip(event, 'fs50', 72)" class="fn">int64</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs51', 73)" onmouseover="showTip(event, 'fs51', 73)" class="id">System</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs52', 74)" onmouseover="showTip(event, 'fs52', 74)" class="rt">Math</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs53', 75)" onmouseover="showTip(event, 'fs53', 75)" class="id">Round</span><span class="pn">(</span><span onmouseout="hideTip(event, 'fs48', 76)" onmouseover="showTip(event, 'fs48', 76)" class="fn">mass</span> <span class="o">*</span> <span class="n">1000000.</span><span class="pn">)</span><span class="pn">)</span>
+    <span onmouseout="hideTip(event, 'fs54', 77)" onmouseover="showTip(event, 'fs54', 77)" class="m">SearchDB</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs55', 78)" onmouseover="showTip(event, 'fs55', 78)" class="id">createLookUpResult</span> <span onmouseout="hideTip(event, 'fs41', 79)" onmouseover="showTip(event, 'fs41', 79)" class="fn">modSeqId</span> <span onmouseout="hideTip(event, 'fs42', 80)" onmouseover="showTip(event, 'fs42', 80)" class="fn">pepSeqId</span> <span onmouseout="hideTip(event, 'fs48', 81)" onmouseover="showTip(event, 'fs48', 81)" class="fn">mass</span> <span onmouseout="hideTip(event, 'fs49', 82)" onmouseover="showTip(event, 'fs49', 82)" class="fn">roundedMass</span> <span onmouseout="hideTip(event, 'fs43', 83)" onmouseover="showTip(event, 'fs43', 83)" class="fn">sequence</span> <span onmouseout="hideTip(event, 'fs45', 84)" onmouseover="showTip(event, 'fs45', 84)" class="fn">bioSequence</span> <span class="n">0</span>
+
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs56', 85)" onmouseover="showTip(event, 'fs56', 85)" class="id">candidates</span> <span class="o">=</span>
+    <span class="pn">[</span> <span onmouseout="hideTip(event, 'fs40', 86)" onmouseover="showTip(event, 'fs40', 86)" class="fn">candidate</span> <span class="n">1</span> <span class="n">1</span> <span class="s">&quot;ANLGMEVMHER&quot;</span>   <span class="c">// the peptide the scan was recorded from</span>
+      <span onmouseout="hideTip(event, 'fs40', 87)" onmouseover="showTip(event, 'fs40', 87)" class="fn">candidate</span> <span class="n">2</span> <span class="n">2</span> <span class="s">&quot;MANGLEVMHER&quot;</span>   <span class="c">// permutation, same mass</span>
+      <span onmouseout="hideTip(event, 'fs40', 88)" onmouseover="showTip(event, 'fs40', 88)" class="fn">candidate</span> <span class="n">3</span> <span class="n">3</span> <span class="s">&quot;EVMANLGMHER&quot;</span>   <span class="c">// permutation, same mass</span>
+      <span onmouseout="hideTip(event, 'fs40', 89)" onmouseover="showTip(event, 'fs40', 89)" class="fn">candidate</span> <span class="n">4</span> <span class="n">4</span> <span class="s">&quot;AGGLGMEVMHER&quot;</span>  <span class="c">// Asn replaced by Gly-Gly, also isobaric</span>
+    <span class="pn">]</span>
+
+<span onmouseout="hideTip(event, 'fs56', 90)" onmouseover="showTip(event, 'fs56', 90)" class="id">candidates</span>
+<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs9', 91)" onmouseover="showTip(event, 'fs9', 91)" class="m">List</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs57', 92)" onmouseover="showTip(event, 'fs57', 92)" class="id">iter</span> <span class="pn">(</span><span class="k">fun</span> <span onmouseout="hideTip(event, 'fs58', 93)" onmouseover="showTip(event, 'fs58', 93)" class="fn">c</span> <span class="k">-&gt;</span> <span onmouseout="hideTip(event, 'fs24', 94)" onmouseover="showTip(event, 'fs24', 94)" class="fn">printfn</span> <span class="s">&quot;</span><span class="pf">%-13s</span><span class="s"> </span><span class="pf">%10.4f</span><span class="s"> Da&quot;</span> <span onmouseout="hideTip(event, 'fs58', 95)" onmouseover="showTip(event, 'fs58', 95)" class="fn">c</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs59', 96)" onmouseover="showTip(event, 'fs59', 96)" class="id">StringSequence</span> <span onmouseout="hideTip(event, 'fs58', 97)" onmouseover="showTip(event, 'fs58', 97)" class="fn">c</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs60', 98)" onmouseover="showTip(event, 'fs60', 98)" class="id">Mass</span><span class="pn">)</span>
+</code></pre>
+<table class="pre"><tr><td class="snippet"><pre class="fssnip"><code lang="text">ANLGMEVMHER    1285.5907 Da
+MANGLEVMHER    1285.5907 Da
+EVMANLGMHER    1285.5907 Da
+AGGLGMEVMHER   1285.5907 Da
+</code></pre></td></tr></table>
+<p>All four candidates sit at 1285.59 Da, within about two millidaltons of
+the neutral precursor mass determined from the MS1 scan.</p>
+<h2><a name="Predicting-a-theoretical-spectrum-per-candidate" class="anchor" href="#Predicting-a-theoretical-spectrum-per-candidate">Predicting a theoretical spectrum per candidate</a></h2>
+<p>Each candidate is paired with its predicted fragment masses.
+<code>Fragmentation.Series.fragmentMasses</code> produces them exactly as on the
+<a href="https://biofsharp.com/BioFSharp.Mz/02_01_fragmentation.html">in silico fragmentation</a> page: the b and y
+series of the candidate sequence as <code>TargetMasses</code>, and the same series of
+the reversed sequence as <code>DecoyMasses</code>. We use monoisotopic masses
+throughout.</p>
+<p><code>SequestLike.getTheoSpecs</code> then converts every pair into a
+<code>TheoreticalSpectrum</code>, holding one binned intensity vector for the target and
+one for the decoy. The intensity of each predicted peak comes from a simple
+model (<code>predictIntensitySimpleModel</code>): main series ions get the full
+predicted intensity, loss peaks and minor series a fraction of it,
+everything divided by the charge the ion is predicted at. Every fragment is
+laid down once per charge from 1 up to the precursor charge, and the vector
+is binned to 1 Da like the measured side, so the two can be compared bin by
+bin.</p>
+<p>The scan limits define the m/z range of that binning. We use 100 to 1300,
+which covers the recorded peaks starting at m/z 100.67 as well as the
+heaviest interesting fragment, the singly protonated full-length y ion at
+m/z 1286.6. The upper border only cuts away a single stray peak at m/z
+1337.6, and no peak of the scan rounds exactly onto a border, where the
+binning would drop it.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs61', 99)" onmouseover="showTip(event, 'fs61', 99)" class="id">scanlimits</span> <span class="o">=</span> <span class="n">100.</span><span class="pn">,</span> <span class="n">1300.</span>
+
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs62', 100)" onmouseover="showTip(event, 'fs62', 100)" class="id">fragmentPairs</span> <span class="o">=</span>
+    <span onmouseout="hideTip(event, 'fs56', 101)" onmouseover="showTip(event, 'fs56', 101)" class="id">candidates</span>
+    <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs9', 102)" onmouseover="showTip(event, 'fs9', 102)" class="m">List</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs63', 103)" onmouseover="showTip(event, 'fs63', 103)" class="id">map</span> <span class="pn">(</span><span class="k">fun</span> <span onmouseout="hideTip(event, 'fs58', 104)" onmouseover="showTip(event, 'fs58', 104)" class="fn">c</span> <span class="k">-&gt;</span>
+        <span class="k">let</span> <span onmouseout="hideTip(event, 'fs64', 105)" onmouseover="showTip(event, 'fs64', 105)" class="fn">fragments</span> <span class="o">=</span>
+            <span onmouseout="hideTip(event, 'fs65', 106)" onmouseover="showTip(event, 'fs65', 106)" class="m">Fragmentation</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs66', 107)" onmouseover="showTip(event, 'fs66', 107)" class="m">Series</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs67', 108)" onmouseover="showTip(event, 'fs67', 108)" class="id">fragmentMasses</span>
+                <span onmouseout="hideTip(event, 'fs65', 109)" onmouseover="showTip(event, 'fs65', 109)" class="m">Fragmentation</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs66', 110)" onmouseover="showTip(event, 'fs66', 110)" class="m">Series</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs68', 111)" onmouseover="showTip(event, 'fs68', 111)" class="id">bOfBioList</span>
+                <span onmouseout="hideTip(event, 'fs65', 112)" onmouseover="showTip(event, 'fs65', 112)" class="m">Fragmentation</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs66', 113)" onmouseover="showTip(event, 'fs66', 113)" class="m">Series</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs69', 114)" onmouseover="showTip(event, 'fs69', 114)" class="id">yOfBioList</span>
+                <span onmouseout="hideTip(event, 'fs26', 115)" onmouseover="showTip(event, 'fs26', 115)" class="fn">mono</span>
+                <span onmouseout="hideTip(event, 'fs58', 116)" onmouseover="showTip(event, 'fs58', 116)" class="fn">c</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs70', 117)" onmouseover="showTip(event, 'fs70', 117)" class="id">BioSequence</span>
+        <span onmouseout="hideTip(event, 'fs58', 118)" onmouseover="showTip(event, 'fs58', 118)" class="fn">c</span><span class="pn">,</span> <span onmouseout="hideTip(event, 'fs64', 119)" onmouseover="showTip(event, 'fs64', 119)" class="fn">fragments</span><span class="pn">)</span>
+
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs71', 120)" onmouseover="showTip(event, 'fs71', 120)" class="id">theoSpecs</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs72', 121)" onmouseover="showTip(event, 'fs72', 121)" class="m">SequestLike</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs73', 122)" onmouseover="showTip(event, 'fs73', 122)" class="id">getTheoSpecs</span> <span onmouseout="hideTip(event, 'fs61', 123)" onmouseover="showTip(event, 'fs61', 123)" class="id">scanlimits</span> <span class="n">2</span> <span onmouseout="hideTip(event, 'fs62', 124)" onmouseover="showTip(event, 'fs62', 124)" class="id">fragmentPairs</span>
+
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs74', 125)" onmouseover="showTip(event, 'fs74', 125)" class="id">FSharp</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs75', 126)" onmouseover="showTip(event, 'fs75', 126)" class="id">Stats</span>
+
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs76', 127)" onmouseover="showTip(event, 'fs76', 127)" class="fn">countOccupied</span> <span onmouseout="hideTip(event, 'fs77', 128)" onmouseover="showTip(event, 'fs77', 128)" class="fn">v</span> <span class="o">=</span>
+    <span onmouseout="hideTip(event, 'fs77', 129)" onmouseover="showTip(event, 'fs77', 129)" class="fn">v</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs78', 130)" onmouseover="showTip(event, 'fs78', 130)" class="m">Vector</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs79', 131)" onmouseover="showTip(event, 'fs79', 131)" class="id">toArray</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs80', 132)" onmouseover="showTip(event, 'fs80', 132)" class="m">Array</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs81', 133)" onmouseover="showTip(event, 'fs81', 133)" class="id">filter</span> <span class="pn">(</span><span class="k">fun</span> <span onmouseout="hideTip(event, 'fs82', 134)" onmouseover="showTip(event, 'fs82', 134)" class="fn">x</span> <span class="k">-&gt;</span> <span onmouseout="hideTip(event, 'fs82', 135)" onmouseover="showTip(event, 'fs82', 135)" class="fn">x</span> <span class="o">&gt;</span> <span class="n">0.</span><span class="pn">)</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs80', 136)" onmouseover="showTip(event, 'fs80', 136)" class="m">Array</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs83', 137)" onmouseover="showTip(event, 'fs83', 137)" class="id">length</span>
+
+<span onmouseout="hideTip(event, 'fs24', 138)" onmouseover="showTip(event, 'fs24', 138)" class="fn">printfn</span> <span class="s">&quot;bins per vector: </span><span class="pf">%i</span><span class="s">&quot;</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs78', 139)" onmouseover="showTip(event, 'fs78', 139)" class="m">Vector</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs84', 140)" onmouseover="showTip(event, 'fs84', 140)" class="id">length</span> <span onmouseout="hideTip(event, 'fs85', 141)" onmouseover="showTip(event, 'fs85', 141)" class="id">theoSpecs</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs86', 142)" onmouseover="showTip(event, 'fs86', 142)" class="prop">Head</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs87', 143)" onmouseover="showTip(event, 'fs87', 143)" class="id">TheoSpec</span><span class="pn">)</span>
+
+<span onmouseout="hideTip(event, 'fs85', 144)" onmouseover="showTip(event, 'fs85', 144)" class="id">theoSpecs</span>
+<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs88', 145)" onmouseover="showTip(event, 'fs88', 145)" class="m">List</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs57', 146)" onmouseover="showTip(event, 'fs57', 146)" class="id">iter</span> <span class="pn">(</span><span class="k">fun</span> <span onmouseout="hideTip(event, 'fs89', 147)" onmouseover="showTip(event, 'fs89', 147)" class="fn">ts</span> <span class="k">-&gt;</span>
+    <span onmouseout="hideTip(event, 'fs24', 148)" onmouseover="showTip(event, 'fs24', 148)" class="fn">printfn</span> <span class="s">&quot;</span><span class="pf">%-13s</span><span class="s"> target bins occupied: </span><span class="pf">%i</span><span class="s">  decoy bins occupied: </span><span class="pf">%i</span><span class="s">&quot;</span>
+        <span onmouseout="hideTip(event, 'fs89', 149)" onmouseover="showTip(event, 'fs89', 149)" class="fn">ts</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs90', 150)" onmouseover="showTip(event, 'fs90', 150)" class="prop">LookUpResult</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs59', 151)" onmouseover="showTip(event, 'fs59', 151)" class="id">StringSequence</span>
+        <span class="pn">(</span><span onmouseout="hideTip(event, 'fs76', 152)" onmouseover="showTip(event, 'fs76', 152)" class="fn">countOccupied</span> <span onmouseout="hideTip(event, 'fs89', 153)" onmouseover="showTip(event, 'fs89', 153)" class="fn">ts</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs87', 154)" onmouseover="showTip(event, 'fs87', 154)" class="id">TheoSpec</span><span class="pn">)</span>
+        <span class="pn">(</span><span onmouseout="hideTip(event, 'fs76', 155)" onmouseover="showTip(event, 'fs76', 155)" class="fn">countOccupied</span> <span onmouseout="hideTip(event, 'fs89', 156)" onmouseover="showTip(event, 'fs89', 156)" class="fn">ts</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs91', 157)" onmouseover="showTip(event, 'fs91', 157)" class="id">DecoyTheoSpec</span><span class="pn">)</span><span class="pn">)</span>
+</code></pre>
+<table class="pre"><tr><td class="snippet"><pre class="fssnip"><code lang="text">bins per vector: 1200
+AGGLGMEVMHER  target bins occupied: 90  decoy bins occupied: 90
+EVMANLGMHER   target bins occupied: 104  decoy bins occupied: 105
+MANGLEVMHER   target bins occupied: 97  decoy bins occupied: 96
+ANLGMEVMHER   target bins occupied: 97  decoy bins occupied: 98
+</code></pre></td></tr></table>
+<p>Every candidate now owns two binned prediction vectors, each occupying
+around a hundred of the 1200 bins. <code>getTheoSpecs</code> builds its result list by
+prepending, so the order is reversed relative to the input, which does not
+matter because the scorer ranks by score anyway.</p>
+<h2><a name="Preprocessing-the-measured-spectrum" class="anchor" href="#Preprocessing-the-measured-spectrum">Preprocessing the measured spectrum</a></h2>
+<p>The scorer performs the background subtraction on the measured side once, through
+<code>spectrumToIntensityArrayMinusAutoCorrelation</code>. <code>calcSequestScore</code> calls it
+internally, so this block is purely illustrative.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs92', 158)" onmouseover="showTip(event, 'fs92', 158)" class="id">preprocessed</span> <span class="o">=</span>
+    <span onmouseout="hideTip(event, 'fs72', 159)" onmouseover="showTip(event, 'fs72', 159)" class="m">SequestLike</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs93', 160)" onmouseover="showTip(event, 'fs93', 160)" class="id">spectrumToIntensityArrayMinusAutoCorrelation</span> <span onmouseout="hideTip(event, 'fs61', 161)" onmouseover="showTip(event, 'fs61', 161)" class="id">scanlimits</span> <span onmouseout="hideTip(event, 'fs18', 162)" onmouseover="showTip(event, 'fs18', 162)" class="id">spectrum</span>
+
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs94', 163)" onmouseover="showTip(event, 'fs94', 163)" class="id">values</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs92', 164)" onmouseover="showTip(event, 'fs92', 164)" class="id">preprocessed</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs78', 165)" onmouseover="showTip(event, 'fs78', 165)" class="m">Vector</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs79', 166)" onmouseover="showTip(event, 'fs79', 166)" class="id">toArray</span>
+
+<span onmouseout="hideTip(event, 'fs24', 167)" onmouseover="showTip(event, 'fs24', 167)" class="fn">printfn</span> <span class="s">&quot;vector length: </span><span class="pf">%i</span><span class="s">&quot;</span> <span onmouseout="hideTip(event, 'fs94', 168)" onmouseover="showTip(event, 'fs94', 168)" class="id">values</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs25', 169)" onmouseover="showTip(event, 'fs25', 169)" class="id">Length</span>
+<span onmouseout="hideTip(event, 'fs24', 170)" onmouseover="showTip(event, 'fs24', 170)" class="fn">printfn</span> <span class="s">&quot;positive entries: </span><span class="pf">%i</span><span class="s">&quot;</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs94', 171)" onmouseover="showTip(event, 'fs94', 171)" class="id">values</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs80', 172)" onmouseover="showTip(event, 'fs80', 172)" class="m">Array</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs81', 173)" onmouseover="showTip(event, 'fs81', 173)" class="id">filter</span> <span class="pn">(</span><span class="k">fun</span> <span onmouseout="hideTip(event, 'fs82', 174)" onmouseover="showTip(event, 'fs82', 174)" class="fn">x</span> <span class="k">-&gt;</span> <span onmouseout="hideTip(event, 'fs82', 175)" onmouseover="showTip(event, 'fs82', 175)" class="fn">x</span> <span class="o">&gt;</span> <span class="n">0.</span><span class="pn">)</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs80', 176)" onmouseover="showTip(event, 'fs80', 176)" class="m">Array</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs83', 177)" onmouseover="showTip(event, 'fs83', 177)" class="id">length</span><span class="pn">)</span>
+<span onmouseout="hideTip(event, 'fs24', 178)" onmouseover="showTip(event, 'fs24', 178)" class="fn">printfn</span> <span class="s">&quot;negative entries: </span><span class="pf">%i</span><span class="s">&quot;</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs94', 179)" onmouseover="showTip(event, 'fs94', 179)" class="id">values</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs80', 180)" onmouseover="showTip(event, 'fs80', 180)" class="m">Array</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs81', 181)" onmouseover="showTip(event, 'fs81', 181)" class="id">filter</span> <span class="pn">(</span><span class="k">fun</span> <span onmouseout="hideTip(event, 'fs82', 182)" onmouseover="showTip(event, 'fs82', 182)" class="fn">x</span> <span class="k">-&gt;</span> <span onmouseout="hideTip(event, 'fs82', 183)" onmouseover="showTip(event, 'fs82', 183)" class="fn">x</span> <span class="o">&lt;</span> <span class="n">0.</span><span class="pn">)</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs80', 184)" onmouseover="showTip(event, 'fs80', 184)" class="m">Array</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs83', 185)" onmouseover="showTip(event, 'fs83', 185)" class="id">length</span><span class="pn">)</span>
+</code></pre>
+<table class="pre"><tr><td class="snippet"><pre class="fssnip"><code lang="text">vector length: 1200
+positive entries: 407
+negative entries: 793
+</code></pre></td></tr></table>
+<p>The negative entries are the signature of the background subtraction. A bin
+whose intensity is lower than the local self-correlation average now
+penalizes a candidate that predicts a peak there, while a bin that stands
+out above the background rewards it. The dot product with a prediction
+vector therefore measures alignment beyond what shifted versions of the
+spectrum would produce by chance.</p>
+<h2><a name="Scoring-the-candidates" class="anchor" href="#Scoring-the-candidates">Scoring the candidates</a></h2>
+<p><code>SequestLike.calcSequestScore</code> takes the scan limits, the measured spectrum,
+the scan time, the precursor charge, the isolation window target m/z (the
+precursor m/z from the header), the theoretical spectra and a free-text
+spectrum identifier. It scores every target and every decoy vector against
+the preprocessed measured vector and returns one <code>SearchEngineResult</code> per
+scored spectrum, ranked by descending score.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs95', 186)" onmouseover="showTip(event, 'fs95', 186)" class="id">results</span> <span class="o">=</span>
+    <span onmouseout="hideTip(event, 'fs72', 187)" onmouseover="showTip(event, 'fs72', 187)" class="m">SequestLike</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs96', 188)" onmouseover="showTip(event, 'fs96', 188)" class="id">calcSequestScore</span>
+        <span onmouseout="hideTip(event, 'fs61', 189)" onmouseover="showTip(event, 'fs61', 189)" class="id">scanlimits</span> <span onmouseout="hideTip(event, 'fs18', 190)" onmouseover="showTip(event, 'fs18', 190)" class="id">spectrum</span> <span class="n">20.93</span> <span class="n">2</span> <span onmouseout="hideTip(event, 'fs11', 191)" onmouseover="showTip(event, 'fs11', 191)" class="id">precursorMZ</span> <span onmouseout="hideTip(event, 'fs85', 192)" onmouseover="showTip(event, 'fs85', 192)" class="id">theoSpecs</span> <span class="s">&quot;ms2Example&quot;</span>
+
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs97', 193)" onmouseover="showTip(event, 'fs97', 193)" class="fn">printRanked</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs98', 194)" onmouseover="showTip(event, 'fs98', 194)" class="fn">rs</span><span class="pn">:</span> <span onmouseout="hideTip(event, 'fs99', 195)" onmouseover="showTip(event, 'fs99', 195)" class="m">SearchEngineResult</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs100', 196)" onmouseover="showTip(event, 'fs100', 196)" class="id">SearchEngineResult</span><span class="pn">&lt;</span><span onmouseout="hideTip(event, 'fs28', 197)" onmouseover="showTip(event, 'fs28', 197)" class="vt">float</span><span class="pn">&gt;</span> <span onmouseout="hideTip(event, 'fs35', 198)" onmouseover="showTip(event, 'fs35', 198)" class="rt">list</span><span class="pn">)</span> <span class="o">=</span>
+    <span onmouseout="hideTip(event, 'fs24', 199)" onmouseover="showTip(event, 'fs24', 199)" class="fn">printfn</span> <span class="s">&quot;</span><span class="pf">%-13s</span><span class="s"> </span><span class="pf">%-6s</span><span class="s"> </span><span class="pf">%8s</span><span class="s"> </span><span class="pf">%12s</span><span class="s"> </span><span class="pf">%8s</span><span class="s">&quot;</span> <span class="s">&quot;sequence&quot;</span> <span class="s">&quot;target&quot;</span> <span class="s">&quot;score&quot;</span> <span class="s">&quot;dBestToRest&quot;</span> <span class="s">&quot;dNext&quot;</span>
+    <span onmouseout="hideTip(event, 'fs98', 200)" onmouseover="showTip(event, 'fs98', 200)" class="fn">rs</span>
+    <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs88', 201)" onmouseover="showTip(event, 'fs88', 201)" class="m">List</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs57', 202)" onmouseover="showTip(event, 'fs57', 202)" class="id">iter</span> <span class="pn">(</span><span class="k">fun</span> <span onmouseout="hideTip(event, 'fs101', 203)" onmouseover="showTip(event, 'fs101', 203)" class="fn">r</span> <span class="k">-&gt;</span>
+        <span onmouseout="hideTip(event, 'fs24', 204)" onmouseover="showTip(event, 'fs24', 204)" class="fn">printfn</span> <span class="s">&quot;</span><span class="pf">%-13s</span><span class="s"> </span><span class="pf">%-6b</span><span class="s"> </span><span class="pf">%8.4f</span><span class="s"> </span><span class="pf">%12.4f</span><span class="s"> </span><span class="pf">%8.4f</span><span class="s">&quot;</span>
+            <span onmouseout="hideTip(event, 'fs101', 205)" onmouseover="showTip(event, 'fs101', 205)" class="fn">r</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs102', 206)" onmouseover="showTip(event, 'fs102', 206)" class="id">StringSequence</span> <span onmouseout="hideTip(event, 'fs101', 207)" onmouseover="showTip(event, 'fs101', 207)" class="fn">r</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs103', 208)" onmouseover="showTip(event, 'fs103', 208)" class="id">IsTarget</span> <span onmouseout="hideTip(event, 'fs101', 209)" onmouseover="showTip(event, 'fs101', 209)" class="fn">r</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs104', 210)" onmouseover="showTip(event, 'fs104', 210)" class="id">Score</span> <span onmouseout="hideTip(event, 'fs101', 211)" onmouseover="showTip(event, 'fs101', 211)" class="fn">r</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs105', 212)" onmouseover="showTip(event, 'fs105', 212)" class="id">NormDeltaBestToRest</span> <span onmouseout="hideTip(event, 'fs101', 213)" onmouseover="showTip(event, 'fs101', 213)" class="fn">r</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs106', 214)" onmouseover="showTip(event, 'fs106', 214)" class="id">NormDeltaNext</span><span class="pn">)</span>
+
+<span onmouseout="hideTip(event, 'fs97', 215)" onmouseover="showTip(event, 'fs97', 215)" class="fn">printRanked</span> <span onmouseout="hideTip(event, 'fs95', 216)" onmouseover="showTip(event, 'fs95', 216)" class="id">results</span>
+</code></pre>
+<table class="pre"><tr><td class="snippet"><pre class="fssnip"><code lang="text">sequence      target    score  dBestToRest    dNext
+ANLGMEVMHER   true    13.0383       0.0000   0.0132
+AGGLGMEVMHER  true    12.8665       0.0132   0.3777
+MANGLEVMHER   true     7.9418       0.3909   0.2979
+EVMANLGMHER   true     4.0572       0.6888   0.1270
+ANLGMEVMHER   false    2.4008       0.8159   0.0282
+AGGLGMEVMHER  false    2.0329       0.8441   0.1274
+MANGLEVMHER   false    0.3723       0.9714   0.0244
+EVMANLGMHER   false    0.0548       0.9958   0.0000
+</code></pre></td></tr></table>
+<p>The target of ANLGMEVMHER comes out on top at 13.04. The two permutations
+score far below it, at 7.94 and 4.06. Both end in the same MHER stretch and therefore
+predict the true peptide's low y ions, which is why they still beat every
+decoy, while their remaining predictions land in the wrong bins.
+MANGLEVMHER even shares the y ladder up to y6 with the true sequence, and
+that larger overlap is its lead over the other permutation.</p>
+<p>The Gly-Gly candidate almost ties the true peptide at 12.87: two glycines weigh
+exactly as much as one asparagine, so from b3 onward its b ladder reproduces the
+true one bin for bin, and the shared C-terminal nine residues make y1 to y9
+identical as well. Only a handful of bins differ, among them the extra b2 of the
+glycine pair, and those few bins are the entire margin. Under any mass-based
+fragment comparison a sequence whose fragments are isobaric with the true ones is
+close to indistinguishable, and the small <code>dNext</code> of the top hit records that
+ambiguity.</p>
+<h2><a name="Reading-a-SearchEngineResult" class="anchor" href="#Reading-a-SearchEngineResult">Reading a SearchEngineResult</a></h2>
+<p>Printing the best hit in full shows everything the record carries.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs24', 217)" onmouseover="showTip(event, 'fs24', 217)" class="fn">printfn</span> <span class="s">&quot;</span><span class="pf">%A</span><span class="s">&quot;</span> <span onmouseout="hideTip(event, 'fs95', 218)" onmouseover="showTip(event, 'fs95', 218)" class="id">results</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs107', 219)" onmouseover="showTip(event, 'fs107', 219)" class="id">Head</span>
+</code></pre>
+<table class="pre"><tr><td class="snippet"><pre class="fssnip"><code lang="text">{ SearchEngine = SEQUESTLike
+  SpectrumID = "ms2Example"
+  ModSequenceID = 1
+  PepSequenceID = 1
+  GlobalMod = 0
+  IsTarget = true
+  ScanTime = 20.93
+  StringSequence = "ANLGMEVMHER"
+  PrecursorCharge = 2
+  PrecursorMZ = 643.8035478
+  MeasuredMass = 1285.592543
+  TheoMass = 1285.590726
+  PeptideLength = 11
+  Score = 13.03831064
+  NormDeltaBestToRest = 0.0
+  NormDeltaNext = 0.01317481341 }
+</code></pre></td></tr></table>
+<p><code>SearchEngine</code> names the scorer that produced the record, so results of
+different engines can share one result type. <code>SpectrumID</code> is the identifier
+string passed into the call, and <code>ScanTime</code> travels along the same way, so a
+PSM can be traced back to its scan. <code>ModSequenceID</code> and <code>PepSequenceID</code> are
+copied from the <code>LookUpResult</code> and tie the hit back to the
+<a href="https://biofsharp.com/BioFSharp.Mz/02_02_search_databases.html">search database</a> rows it came from,
+and the <code>GlobalMod</code> labeling flag rides along with them.
+<code>IsTarget</code> distinguishes the candidate's own fragment prediction from that
+of its reversed decoy sequence. Both records of such a pair share all
+identifiers, since they stem from the same database entry.</p>
+<p><code>StringSequence</code>, <code>PrecursorCharge</code>, <code>PrecursorMZ</code> and <code>PeptideLength</code>
+describe the match itself. <code>MeasuredMass</code> is the neutral mass computed from
+the isolation window target m/z and the charge, while <code>TheoMass</code> is the
+candidate's database mass, so the difference between the two is the
+precursor mass error of the match. <code>Score</code> is the xcorr-style dot product.</p>
+<p>The two delta fields put each score into the context of the whole ranking.
+<code>calcNormDeltaBestToRest</code> fills <code>NormDeltaBestToRest</code> with (best score minus this
+score) divided by the best score, so the best hit gets 0 and weaker hits approach 1:
+MANGLEVMHER's 0.39 means it lost 39 percent of the top score. <code>calcNormDeltaNext</code>
+fills <code>NormDeltaNext</code> with the gap to the next-ranked PSM, normalized by the best
+score, with the last PSM getting 0: the top hit's 0.0132 is the Gly-Gly near-tie
+discussed above. Both functions expect their input ranked by descending score, which
+<code>calcSequestScore</code> arranges internally, and a best score of zero or below makes them
+return sentinel values instead, 1 and 0 respectively for every PSM. How far a hit
+stands out from its competitors is an input to
+<a href="https://biofsharp.com/BioFSharp.Mz/04_01_fdr_control.html">false discovery rate control</a>.</p>
+<h2><a name="What-the-decoys-are-for" class="anchor" href="#What-the-decoys-are-for">What the decoys are for</a></h2>
+<p>The ranked table contains eight PSMs for four candidates because every candidate
+was also scored as its reversed decoy, the pairing introduced on the
+<a href="https://biofsharp.com/BioFSharp.Mz/02_01_fragmentation.html">in silico fragmentation</a> page. All four decoy
+scores sit between 0.05 and 2.40, the level a wrong sequence of the right mass
+reaches on this spectrum. A single xcorr value has no absolute meaning, and only the
+comparison against a population of known wrong matches tells whether a 13 is
+convincing. Collected over a whole run, the decoy scores estimate the score
+distribution of chance matches, which is what FDR control is built on.</p>
+<h2><a name="Scoring-many-spectra" class="anchor" href="#Scoring-many-spectra">Scoring many spectra</a></h2>
+<p>For a whole run with thousands of spectra, <code>calcSequestScoreParallel</code>
+distributes the per-candidate scoring with <code>Async.Parallel</code>. It takes the
+same arguments and produces the same ranking.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs108', 220)" onmouseover="showTip(event, 'fs108', 220)" class="id">resultsParallel</span> <span class="o">=</span>
+    <span onmouseout="hideTip(event, 'fs72', 221)" onmouseover="showTip(event, 'fs72', 221)" class="m">SequestLike</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs109', 222)" onmouseover="showTip(event, 'fs109', 222)" class="id">calcSequestScoreParallel</span>
+        <span onmouseout="hideTip(event, 'fs61', 223)" onmouseover="showTip(event, 'fs61', 223)" class="id">scanlimits</span> <span onmouseout="hideTip(event, 'fs18', 224)" onmouseover="showTip(event, 'fs18', 224)" class="id">spectrum</span> <span class="n">20.93</span> <span class="n">2</span> <span onmouseout="hideTip(event, 'fs11', 225)" onmouseover="showTip(event, 'fs11', 225)" class="id">precursorMZ</span> <span onmouseout="hideTip(event, 'fs85', 226)" onmouseover="showTip(event, 'fs85', 226)" class="id">theoSpecs</span> <span class="s">&quot;ms2Example&quot;</span>
+
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs110', 227)" onmouseover="showTip(event, 'fs110', 227)" class="id">bestSequential</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs95', 228)" onmouseover="showTip(event, 'fs95', 228)" class="id">results</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs107', 229)" onmouseover="showTip(event, 'fs107', 229)" class="id">Head</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs111', 230)" onmouseover="showTip(event, 'fs111', 230)" class="id">bestParallel</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs108', 231)" onmouseover="showTip(event, 'fs108', 231)" class="id">resultsParallel</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs107', 232)" onmouseover="showTip(event, 'fs107', 232)" class="id">Head</span>
+
+<span onmouseout="hideTip(event, 'fs24', 233)" onmouseover="showTip(event, 'fs24', 233)" class="fn">printfn</span> <span class="s">&quot;sequential best: </span><span class="pf">%-13s</span><span class="s"> target=</span><span class="pf">%b</span><span class="s"> score=</span><span class="pf">%.4f</span><span class="s">&quot;</span>
+    <span onmouseout="hideTip(event, 'fs110', 234)" onmouseover="showTip(event, 'fs110', 234)" class="id">bestSequential</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs102', 235)" onmouseover="showTip(event, 'fs102', 235)" class="id">StringSequence</span> <span onmouseout="hideTip(event, 'fs110', 236)" onmouseover="showTip(event, 'fs110', 236)" class="id">bestSequential</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs103', 237)" onmouseover="showTip(event, 'fs103', 237)" class="id">IsTarget</span> <span onmouseout="hideTip(event, 'fs110', 238)" onmouseover="showTip(event, 'fs110', 238)" class="id">bestSequential</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs104', 239)" onmouseover="showTip(event, 'fs104', 239)" class="id">Score</span>
+<span onmouseout="hideTip(event, 'fs24', 240)" onmouseover="showTip(event, 'fs24', 240)" class="fn">printfn</span> <span class="s">&quot;parallel best:   </span><span class="pf">%-13s</span><span class="s"> target=</span><span class="pf">%b</span><span class="s"> score=</span><span class="pf">%.4f</span><span class="s">&quot;</span>
+    <span onmouseout="hideTip(event, 'fs111', 241)" onmouseover="showTip(event, 'fs111', 241)" class="id">bestParallel</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs102', 242)" onmouseover="showTip(event, 'fs102', 242)" class="id">StringSequence</span> <span onmouseout="hideTip(event, 'fs111', 243)" onmouseover="showTip(event, 'fs111', 243)" class="id">bestParallel</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs103', 244)" onmouseover="showTip(event, 'fs103', 244)" class="id">IsTarget</span> <span onmouseout="hideTip(event, 'fs111', 245)" onmouseover="showTip(event, 'fs111', 245)" class="id">bestParallel</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs104', 246)" onmouseover="showTip(event, 'fs104', 246)" class="id">Score</span>
+</code></pre>
+<table class="pre"><tr><td class="snippet"><pre class="fssnip"><code lang="text">sequential best: ANLGMEVMHER   target=true score=13.0383
+parallel best:   ANLGMEVMHER   target=true score=13.0383
+</code></pre></td></tr></table>
+<h2><a name="Where-the-scores-go-next" class="anchor" href="#Where-the-scores-go-next">Where the scores go next</a></h2>
+<p>The library offers further scorers following a different scoring philosophy,
+covered in
+<a href="https://biofsharp.com/BioFSharp.Mz/02_04_andromeda_like_scoring.html">Andromeda-like and X!Tandem-like scoring</a>,
+and the target and decoy scores collected across a run feed
+<a href="https://biofsharp.com/BioFSharp.Mz/04_01_fdr_control.html">false discovery rate control</a>.</p>
+
+        <div class="fsdocs-tip" id="fs1">namespace BioFSharp</div>
+<div class="fsdocs-tip" id="fs2">namespace BioFSharp.FileFormats</div>
+<div class="fsdocs-tip" id="fs3">module MGF
+
+from BioFSharp.FileFormats<br /><em>&lt;summary&gt;
+ Mgf &amp;lt;http://www.matrixscience.com/help/data_file_help.html&amp;gt;`_ is a simple
+ human-readable format for MS/MS data. It allows storing MS/MS peak lists and
+ exprimental parameters.
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs4">namespace BioFSharp.IO</div>
+<div class="fsdocs-tip" id="fs5">namespace BioFSharp.Mz</div>
+<div class="fsdocs-tip" id="fs6">val ms2: MGFEntry</div>
+<div class="fsdocs-tip" id="fs7">module MGF
+
+from BioFSharp.IO</div>
+<div class="fsdocs-tip" id="fs8">val read: path: string -&gt; MGFEntry list<br /><em>&lt;summary&gt;
+ Reads an mgf file into a collection of MgfEntries
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs9">Multiple items<br />module List
+
+from Microsoft.FSharp.Collections<br /><br />--------------------<br />type List&lt;&#39;T&gt; =
+  | op_Nil
+  | op_ColonColon of Head: &#39;T * Tail: &#39;T list
+  interface IReadOnlyList&lt;&#39;T&gt;
+  interface IReadOnlyCollection&lt;&#39;T&gt;
+  interface IEnumerable
+  interface IEnumerable&lt;&#39;T&gt;
+  member GetReverseIndex: rank: int * offset: int -&gt; int
+  member GetSlice: startIndex: int option * endIndex: int option -&gt; &#39;T list
+  static member Cons: head: &#39;T * tail: &#39;T list -&gt; &#39;T list
+  member Head: &#39;T
+  member IsEmpty: bool
+  member Item: index: int -&gt; &#39;T with get
+  ...</div>
+<div class="fsdocs-tip" id="fs10">val head: list: &#39;T list -&gt; &#39;T</div>
+<div class="fsdocs-tip" id="fs11">val precursorMZ: float</div>
+<div class="fsdocs-tip" id="fs12">type MGFEntry =
+  {
+    Parameters: Map&lt;string,string&gt;
+    Mass: float array
+    Intensity: float array
+  }
+  static member create: parameters: Map&lt;string,string&gt; -&gt; mass: float array -&gt; intensity: float array -&gt; MGFEntry
+  static member toLines: mgf: MGFEntry -&gt; string seq
+  static member toString: mgf: MGFEntry -&gt; string
+  static member tryGetPrecursorCharges: mgf: MGFEntry -&gt; int list option
+  static member tryGetPrecursorMZ: mgf: MGFEntry -&gt; float option
+  static member tryGetPrecursorMass: mgf: MGFEntry -&gt; float option
+  static member tryGetTitle: mgf: MGFEntry -&gt; string option<br /><em>&lt;summary&gt;
+ Represents 
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs13">static member MGFEntry.tryGetPrecursorMZ: mgf: MGFEntry -&gt; float option</div>
+<div class="fsdocs-tip" id="fs14">union case Option.Some: Value: &#39;T -&gt; Option&lt;&#39;T&gt;</div>
+<div class="fsdocs-tip" id="fs15">val mz: float</div>
+<div class="fsdocs-tip" id="fs16">union case Option.None: Option&lt;&#39;T&gt;</div>
+<div class="fsdocs-tip" id="fs17">val failwith: message: string -&gt; &#39;T</div>
+<div class="fsdocs-tip" id="fs18">val spectrum: PeakArray&lt;Peak&gt;</div>
+<div class="fsdocs-tip" id="fs19">Multiple items<br />module PeakArray
+
+from BioFSharp.Mz<br /><br />--------------------<br />type PeakArray&lt;&#39;a (requires &#39;a :&gt; IPeak)&gt; = &#39;a array</div>
+<div class="fsdocs-tip" id="fs20">Multiple items<br />[&lt;Struct&gt;]
+type Peak =
+  interface IPeak
+  new: mz: float * intensity: float -&gt; Peak
+  member Equals: Peak * IEqualityComparer -&gt; bool
+  member Intensity: float
+  member Mz: float<br /><br />--------------------<br />Peak ()<br />new: mz: float * intensity: float -&gt; Peak</div>
+<div class="fsdocs-tip" id="fs21">val zip: mz: float array -&gt; intensity: float array -&gt; PeakArray&lt;Peak&gt;<br /><em>&lt;summary&gt;
+ Iterates the mz and intensity array and creates a Peak(mz,intensity) for each value pair. 
+ Returns a new Peak array. 
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs22">MGFEntry.Mass: float array</div>
+<div class="fsdocs-tip" id="fs23">MGFEntry.Intensity: float array</div>
+<div class="fsdocs-tip" id="fs24">val printfn: format: Printf.TextWriterFormat&lt;&#39;T&gt; -&gt; &#39;T</div>
+<div class="fsdocs-tip" id="fs25">property System.Array.Length: int with get<br /><em>&lt;summary&gt;Gets the total number of elements in all the dimensions of the &lt;see cref=&quot;T:System.Array&quot; /&gt;.&lt;/summary&gt;<br />&lt;exception cref=&quot;T:System.OverflowException&quot;&gt;The array is multidimensional and contains more than &lt;see cref=&quot;F:System.Int32.MaxValue&quot;&gt;Int32.MaxValue&lt;/see&gt; elements.&lt;/exception&gt;<br />&lt;returns&gt;The total number of elements in all the dimensions of the &lt;see cref=&quot;T:System.Array&quot; /&gt;; zero if there are no elements in the array.&lt;/returns&gt;</em></div>
+<div class="fsdocs-tip" id="fs26">val mono: (IBioItem -&gt; float)</div>
+<div class="fsdocs-tip" id="fs27">type IBioItem =
+  abstract Formula: Formula
+  abstract Name: string
+  abstract Symbol: char
+  abstract isGap: bool
+  abstract isTerminator: bool<br /><em>&lt;summary&gt;
+Marker interface for BioItem base.
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs28">Multiple items<br />val float: value: &#39;T -&gt; float (requires member op_Explicit)<br /><br />--------------------<br />type float = System.Double<br /><br />--------------------<br />type float&lt;&#39;Measure&gt; =
+  float</div>
+<div class="fsdocs-tip" id="fs29">module BioItem
+
+from BioFSharp<br /><em>&lt;summary&gt;
+ Basic functions on IBioItems interface
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs30">val monoisoMass&lt;&#39;a (requires &#39;a :&gt; IBioItem)&gt; : (IBioItem -&gt; float) (requires &#39;a :&gt; IBioItem)<br /><em>&lt;summary&gt;
+ Returns the monoisotopic mass of a bio item (without H20)
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs31">val neutralMass: peptide: AminoAcids.AminoAcid list -&gt; float</div>
+<div class="fsdocs-tip" id="fs32">val peptide: AminoAcids.AminoAcid list</div>
+<div class="fsdocs-tip" id="fs33">module AminoAcids
+
+from BioFSharp<br /><em>&lt;summary&gt;
+Contains the AminoAcid type and its according functions. The AminoAcid type is a complex presentation of amino acids, allowing modifications
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs34">type AminoAcid =
+  | Ala
+  | Cys
+  | Asp
+  | Glu
+  | Phe
+  | Gly
+  | His
+  | Ile
+  | Lys
+  | Leu
+  ...
+  interface IBioItem
+  static member op_Explicit: value: #IBioItem -&gt; byte + 1 overload<br /><em>&lt;summary&gt;
+ Amino acid Codes
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs35">type &#39;T list = List&lt;&#39;T&gt;</div>
+<div class="fsdocs-tip" id="fs36">val sumBy: projection: (&#39;T -&gt; &#39;U) -&gt; list: &#39;T list -&gt; &#39;U (requires member (+) and member Zero)</div>
+<div class="fsdocs-tip" id="fs37">module ModificationInfo
+
+from BioFSharp<br /><em>&lt;summary&gt;
+ Functionality for creating formula modifications
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs38">module Table
+
+from BioFSharp.ModificationInfo<br /><em>&lt;summary&gt;
+Contains frequent modifications
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs39">val H2O: ModificationInfo.Modification</div>
+<div class="fsdocs-tip" id="fs40">val candidate: modSeqId: int -&gt; pepSeqId: int -&gt; sequence: string -&gt; SearchDB.LookUpResult&lt;AminoAcids.AminoAcid&gt;</div>
+<div class="fsdocs-tip" id="fs41">val modSeqId: int</div>
+<div class="fsdocs-tip" id="fs42">val pepSeqId: int</div>
+<div class="fsdocs-tip" id="fs43">val sequence: string</div>
+<div class="fsdocs-tip" id="fs44">Multiple items<br />val string: value: &#39;T -&gt; string<br /><br />--------------------<br />type string = System.String</div>
+<div class="fsdocs-tip" id="fs45">val bioSequence: BioList.BioList&lt;AminoAcids.AminoAcid&gt;</div>
+<div class="fsdocs-tip" id="fs46">Multiple items<br />module BioList
+
+from BioFSharp.BioCollectionsExtensions<br /><br />--------------------<br />module BioList
+
+from BioFSharp<br /><em>&lt;summary&gt;
+This module contains the BioList type and its according functions. The BioList type is a List of objects using the IBioItem interface
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs47">val ofAminoAcidString: s: #(char seq) -&gt; BioList.BioList&lt;AminoAcids.AminoAcid&gt;<br /><em>&lt;summary&gt;
+ Generates amino acid sequence of one-letter-code raw string
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs48">val mass: float</div>
+<div class="fsdocs-tip" id="fs49">val roundedMass: int64</div>
+<div class="fsdocs-tip" id="fs50">Multiple items<br />val int64: value: &#39;T -&gt; int64 (requires member op_Explicit)<br /><br />--------------------<br />type int64 = System.Int64<br /><br />--------------------<br />type int64&lt;&#39;Measure&gt; =
+  int64</div>
+<div class="fsdocs-tip" id="fs51">namespace System</div>
+<div class="fsdocs-tip" id="fs52">type Math =
+  static member Abs: value: decimal -&gt; decimal + 7 overloads
+  static member Acos: d: float -&gt; float
+  static member Acosh: d: float -&gt; float
+  static member Asin: d: float -&gt; float
+  static member Asinh: d: float -&gt; float
+  static member Atan: d: float -&gt; float
+  static member Atan2: y: float * x: float -&gt; float
+  static member Atanh: d: float -&gt; float
+  static member BigMul: a: int * b: int -&gt; int64 + 5 overloads
+  static member BitDecrement: x: float -&gt; float
+  ...<br /><em>&lt;summary&gt;Provides constants and static methods for trigonometric, logarithmic, and other common mathematical functions.&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs53">System.Math.Round(a: float) : float<br />System.Math.Round(d: decimal) : decimal<br />System.Math.Round(value: float, mode: System.MidpointRounding) : float<br />System.Math.Round(value: float, digits: int) : float<br />System.Math.Round(d: decimal, mode: System.MidpointRounding) : decimal<br />System.Math.Round(d: decimal, decimals: int) : decimal<br />System.Math.Round(value: float, digits: int, mode: System.MidpointRounding) : float<br />System.Math.Round(d: decimal, decimals: int, mode: System.MidpointRounding) : decimal</div>
+<div class="fsdocs-tip" id="fs54">module SearchDB
+
+from BioFSharp.Mz</div>
+<div class="fsdocs-tip" id="fs55">val createLookUpResult: modSequenceId: int -&gt; pepSequenceId: int -&gt; mass: float -&gt; roundedMass: int64 -&gt; stringSequence: string -&gt; bioSequence: &#39;a list -&gt; globalMod: int -&gt; SearchDB.LookUpResult&lt;&#39;a&gt; (requires &#39;a :&gt; IBioItem)</div>
+<div class="fsdocs-tip" id="fs56">val candidates: SearchDB.LookUpResult&lt;AminoAcids.AminoAcid&gt; list</div>
+<div class="fsdocs-tip" id="fs57">val iter: action: (&#39;T -&gt; unit) -&gt; list: &#39;T list -&gt; unit</div>
+<div class="fsdocs-tip" id="fs58">val c: SearchDB.LookUpResult&lt;AminoAcids.AminoAcid&gt;</div>
+<div class="fsdocs-tip" id="fs59">SearchDB.LookUpResult.StringSequence: string</div>
+<div class="fsdocs-tip" id="fs60">SearchDB.LookUpResult.Mass: float</div>
+<div class="fsdocs-tip" id="fs61">val scanlimits: float * float</div>
+<div class="fsdocs-tip" id="fs62">val fragmentPairs: (SearchDB.LookUpResult&lt;AminoAcids.AminoAcid&gt; * Fragmentation.FragmentMasses) list</div>
+<div class="fsdocs-tip" id="fs63">val map: mapping: (&#39;T -&gt; &#39;U) -&gt; list: &#39;T list -&gt; &#39;U list</div>
+<div class="fsdocs-tip" id="fs64">val fragments: Fragmentation.FragmentMasses</div>
+<div class="fsdocs-tip" id="fs65">module Fragmentation
+
+from BioFSharp.Mz</div>
+<div class="fsdocs-tip" id="fs66">module Series
+
+from BioFSharp.Mz.Fragmentation</div>
+<div class="fsdocs-tip" id="fs67">val fragmentMasses: nTerminalSeries: ((#IBioItem -&gt; float) -&gt; AminoAcids.AminoAcid list -&gt; PeakFamily&lt;TaggedMass.TaggedMass&gt; list) -&gt; cTerminalSeries: ((#IBioItem -&gt; float) -&gt; AminoAcids.AminoAcid list -&gt; PeakFamily&lt;TaggedMass.TaggedMass&gt; list) -&gt; massFunction: (IBioItem -&gt; float) -&gt; aal: AminoAcids.AminoAcid list -&gt; Fragmentation.FragmentMasses<br /><em>&lt;summary&gt;
+ Returns the fragment masses of the amino acid sequence specified by aal. The ionseries are specified by functions
+ &quot;nTerminalSeries&quot; and &quot;cTerminalSeries&quot;. The mass accuracy is determined by the massfunction applied.
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs68">val bOfBioList: massfunction: (IBioItem -&gt; float) -&gt; aal: AminoAcids.AminoAcid list -&gt; PeakFamily&lt;TaggedMass.TaggedMass&gt; list<br /><em>&lt;summary&gt;
+ Returns the b series of the given amino acids list. The mass accuracy is determined by the massfunction applied.
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs69">val yOfBioList: massfunction: (IBioItem -&gt; float) -&gt; aal: AminoAcids.AminoAcid list -&gt; PeakFamily&lt;TaggedMass.TaggedMass&gt; list<br /><em>&lt;summary&gt;
+ Returns the y series of the given amino acids list. The mass accuracy is determined by the massfunction applied.
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs70">SearchDB.LookUpResult.BioSequence: AminoAcids.AminoAcid list</div>
+<div class="fsdocs-tip" id="fs71">val theoSpecs: TheoreticalSpectra.TheoreticalSpectrum&lt;FSharp.Stats.Vector&lt;float&gt;&gt; list</div>
+<div class="fsdocs-tip" id="fs72">module SequestLike
+
+from BioFSharp.Mz</div>
+<div class="fsdocs-tip" id="fs73">val getTheoSpecs: float * float -&gt; chargeState: int -&gt; possiblePeptideInfos: (SearchDB.LookUpResult&lt;AminoAcids.AminoAcid&gt; * Fragmentation.FragmentMasses) list -&gt; TheoreticalSpectra.TheoreticalSpectrum&lt;FSharp.Stats.Vector&lt;float&gt;&gt; list<br /><em>&lt;summary&gt;
+ Converts the fragment ion ladders to a theoretical Sequestlike spectrum at a given charge state. 
+ Subsequently, the spectrum is binned to the nearest mz bin (binwidth = 1 Da). Filters out peaks 
+ that are not within the scanLimits.
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs74">Multiple items<br />namespace FSharp<br /><br />--------------------<br />namespace Microsoft.FSharp</div>
+<div class="fsdocs-tip" id="fs75">namespace FSharp.Stats</div>
+<div class="fsdocs-tip" id="fs76">val countOccupied: v: vector -&gt; int</div>
+<div class="fsdocs-tip" id="fs77">val v: vector</div>
+<div class="fsdocs-tip" id="fs78">Multiple items<br />module Vector
+
+from FSharp.Stats<br /><br />--------------------<br />type Vector&lt;&#39;T&gt; =
+  interface IEnumerable
+  interface IEnumerable&lt;&#39;T&gt;
+  interface IStructuralEquatable
+  interface IStructuralComparable
+  interface IComparable
+  new: opsV: INumeric&lt;&#39;T&gt; option * arrV: &#39;T array -&gt; Vector&lt;&#39;T&gt;
+  override Equals: yobj: obj -&gt; bool
+  override GetHashCode: unit -&gt; int
+  member GetSlice: start: int option * finish: int option -&gt; Vector&lt;&#39;T&gt;
+  member Permute: p: permutation -&gt; Vector&lt;&#39;T&gt;
+  ...<br /><br />--------------------<br />new: opsV: INumeric&lt;&#39;T&gt; option * arrV: &#39;T array -&gt; Vector&lt;&#39;T&gt;</div>
+<div class="fsdocs-tip" id="fs79">val toArray: vector: vector -&gt; float array<br /><em>&lt;summary&gt;Creates array with values of vector&lt;/summary&gt;<br />&lt;remarks&gt;&lt;/remarks&gt;<br />&lt;param name=&quot;vector&quot;&gt;&lt;/param&gt;<br />&lt;returns&gt;&lt;/returns&gt;<br />&lt;example&gt;&lt;code&gt;&lt;/code&gt;&lt;/example&gt;</em></div>
+<div class="fsdocs-tip" id="fs80">Multiple items<br />module Array
+
+from FSharp.Stats<br /><em>&lt;summary&gt;
+ Module to compute common statistical measure on array
+&lt;/summary&gt;</em><br /><br />--------------------<br />module Array
+
+from Microsoft.FSharp.Collections<br /><br />--------------------<br />type Array =
+  new: unit -&gt; Array
+  static member geomspace: start: float * stop: float * num: int * ?IncludeEndpoint: bool -&gt; float array
+  static member linspace: start: float * stop: float * num: int * ?IncludeEndpoint: bool -&gt; float array<br /><br />--------------------<br />new: unit -&gt; Array</div>
+<div class="fsdocs-tip" id="fs81">val filter: predicate: (&#39;T -&gt; bool) -&gt; array: &#39;T array -&gt; &#39;T array</div>
+<div class="fsdocs-tip" id="fs82">val x: float</div>
+<div class="fsdocs-tip" id="fs83">val length: array: &#39;T array -&gt; int</div>
+<div class="fsdocs-tip" id="fs84">val length: vector: vector -&gt; int<br /><em>&lt;summary&gt;Returns length of vector&lt;/summary&gt;<br />&lt;remarks&gt;&lt;/remarks&gt;<br />&lt;param name=&quot;vector&quot;&gt;&lt;/param&gt;<br />&lt;returns&gt;&lt;/returns&gt;<br />&lt;example&gt;&lt;code&gt;&lt;/code&gt;&lt;/example&gt;</em></div>
+<div class="fsdocs-tip" id="fs85">val theoSpecs: TheoreticalSpectra.TheoreticalSpectrum&lt;Vector&lt;float&gt;&gt; list</div>
+<div class="fsdocs-tip" id="fs86">property List.Head: TheoreticalSpectra.TheoreticalSpectrum&lt;Vector&lt;float&gt;&gt; with get</div>
+<div class="fsdocs-tip" id="fs87">TheoreticalSpectra.TheoreticalSpectrum.TheoSpec: Vector&lt;float&gt;</div>
+<div class="fsdocs-tip" id="fs88">Multiple items<br />module List
+
+from FSharp.Stats<br /><em>&lt;summary&gt;
+ Module to compute common statistical measure on list
+&lt;/summary&gt;</em><br /><br />--------------------<br />module List
+
+from Microsoft.FSharp.Collections<br /><br />--------------------<br />type List =
+  new: unit -&gt; List
+  static member geomspace: start: float * stop: float * num: int * ?IncludeEndpoint: bool -&gt; float list
+  static member linspace: start: float * stop: float * num: int * ?IncludeEndpoint: bool -&gt; float list<br /><br />--------------------<br />type List&lt;&#39;T&gt; =
+  | op_Nil
+  | op_ColonColon of Head: &#39;T * Tail: &#39;T list
+  interface IReadOnlyList&lt;&#39;T&gt;
+  interface IReadOnlyCollection&lt;&#39;T&gt;
+  interface IEnumerable
+  interface IEnumerable&lt;&#39;T&gt;
+  member GetReverseIndex: rank: int * offset: int -&gt; int
+  member GetSlice: startIndex: int option * endIndex: int option -&gt; &#39;T list
+  static member Cons: head: &#39;T * tail: &#39;T list -&gt; &#39;T list
+  member Head: &#39;T
+  member IsEmpty: bool
+  member Item: index: int -&gt; &#39;T with get
+  ...<br /><br />--------------------<br />new: unit -&gt; List</div>
+<div class="fsdocs-tip" id="fs89">val ts: TheoreticalSpectra.TheoreticalSpectrum&lt;Vector&lt;float&gt;&gt;</div>
+<div class="fsdocs-tip" id="fs90">TheoreticalSpectra.TheoreticalSpectrum.LookUpResult: SearchDB.LookUpResult&lt;AminoAcids.AminoAcid&gt;</div>
+<div class="fsdocs-tip" id="fs91">TheoreticalSpectra.TheoreticalSpectrum.DecoyTheoSpec: Vector&lt;float&gt;</div>
+<div class="fsdocs-tip" id="fs92">val preprocessed: Vector&lt;float&gt;</div>
+<div class="fsdocs-tip" id="fs93">val spectrumToIntensityArrayMinusAutoCorrelation: lowerScanLimit: float * upperScanLimit: float -&gt; spectrum: PeakArray&lt;#IPeak&gt; -&gt; Vector&lt;float&gt;<br /><em>&lt;summary&gt;
+ Measured spectrum to sequest-like normalized intensity array
+ minus auto-correlation (delay 75 -&amp;gt; like in original sequest algorithm)
+ ! Uses 10 as number of windows for window normalization (like in original sequest algorithm)    
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs94">val values: float array</div>
+<div class="fsdocs-tip" id="fs95">val results: SearchEngineResult.SearchEngineResult&lt;float&gt; list</div>
+<div class="fsdocs-tip" id="fs96">val calcSequestScore: float * float -&gt; spectrum: PeakArray&lt;#IPeak&gt; -&gt; scanTime: float -&gt; chargeState: int -&gt; isolationWindowTargetMz: float -&gt; theoreticalSpectra: TheoreticalSpectra.TheoreticalSpectrum&lt;Vector&lt;float&gt;&gt; list -&gt; spectrumID: string -&gt; SearchEngineResult.SearchEngineResult&lt;float&gt; list<br /><em>&lt;summary&gt;
+ Calculates the SequestLike Scores for all theoretical spectra.    
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs97">val printRanked: rs: SearchEngineResult.SearchEngineResult&lt;float&gt; list -&gt; unit</div>
+<div class="fsdocs-tip" id="fs98">val rs: SearchEngineResult.SearchEngineResult&lt;float&gt; list</div>
+<div class="fsdocs-tip" id="fs99">module SearchEngineResult
+
+from BioFSharp.Mz</div>
+<div class="fsdocs-tip" id="fs100">type SearchEngineResult&lt;&#39;a&gt; =
+  {
+    SearchEngine: SearchEngine
+    SpectrumID: string
+    ModSequenceID: int
+    PepSequenceID: int
+    GlobalMod: int
+    IsTarget: bool
+    ScanTime: float
+    StringSequence: string
+    PrecursorCharge: int
+    PrecursorMZ: float
+    ...
+  }
+  member Equals: SearchEngineResult&lt;&#39;a&gt; * IEqualityComparer -&gt; bool</div>
+<div class="fsdocs-tip" id="fs101">val r: SearchEngineResult.SearchEngineResult&lt;float&gt;</div>
+<div class="fsdocs-tip" id="fs102">SearchEngineResult.SearchEngineResult.StringSequence: string</div>
+<div class="fsdocs-tip" id="fs103">SearchEngineResult.SearchEngineResult.IsTarget: bool</div>
+<div class="fsdocs-tip" id="fs104">SearchEngineResult.SearchEngineResult.Score: float</div>
+<div class="fsdocs-tip" id="fs105">SearchEngineResult.SearchEngineResult.NormDeltaBestToRest: float</div>
+<div class="fsdocs-tip" id="fs106">SearchEngineResult.SearchEngineResult.NormDeltaNext: float</div>
+<div class="fsdocs-tip" id="fs107">property List.Head: SearchEngineResult.SearchEngineResult&lt;float&gt; with get</div>
+<div class="fsdocs-tip" id="fs108">val resultsParallel: SearchEngineResult.SearchEngineResult&lt;float&gt; list</div>
+<div class="fsdocs-tip" id="fs109">val calcSequestScoreParallel: float * float -&gt; spectrum: PeakArray&lt;#IPeak&gt; -&gt; scanTime: float -&gt; chargeState: int -&gt; isolationWindowTargetMz: float -&gt; theoreticalSpectra: TheoreticalSpectra.TheoreticalSpectrum&lt;Vector&lt;float&gt;&gt; list -&gt; spectrumID: string -&gt; SearchEngineResult.SearchEngineResult&lt;float&gt; list<br /><em>&lt;summary&gt;
+ Calculates the sequestLike Scores for all theoretical spectra. Implemented using Async parallel. 
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs110">val bestSequential: SearchEngineResult.SearchEngineResult&lt;float&gt;</div>
+<div class="fsdocs-tip" id="fs111">val bestParallel: SearchEngineResult.SearchEngineResult&lt;float&gt;</div>
+
+    </div>
+</main>
+<aside id="fsdocs-page-menu">
+    <p id="on-this-page">On this page</p>
+    <ul>
+  <li class="level-1">
+    <a href="#SEQUEST-like-scoring">
+      SEQUEST-like scoring
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Loading-the-measured-spectrum">
+      Loading the measured spectrum
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Assembling-the-candidate-list">
+      Assembling the candidate list
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Predicting-a-theoretical-spectrum-per-candidate">
+      Predicting a theoretical spectrum per candidate
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Preprocessing-the-measured-spectrum">
+      Preprocessing the measured spectrum
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Scoring-the-candidates">
+      Scoring the candidates
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Reading-a-SearchEngineResult">
+      Reading a SearchEngineResult
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#What-the-decoys-are-for">
+      What the decoys are for
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Scoring-many-spectra">
+      Scoring many spectra
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Where-the-scores-go-next">
+      Where the scores go next
+    </a>
+  </li>
+</ul>
+</aside>
+<dialog>
+    <input type="search" placeholder="Search docs" />
+    <div class="results">
+        <ul></ul>
+        <p class="empty">Type something to start searching.</p>
+    </div>
+</dialog>
+<script type="module" src="https://biofsharp.com/BioFSharp.Mz/content/fsdocs-tips.js"></script>
+<script type="module" src="https://biofsharp.com/BioFSharp.Mz/content/fsdocs-theme-toggle.js"></script>
+<script type="module" src="https://biofsharp.com/BioFSharp.Mz/content/fsdocs-theme.js"></script>
+<script type="module" src="https://biofsharp.com/BioFSharp.Mz/content/fsdocs-search.js"></script>
+
+</body>
+</html>

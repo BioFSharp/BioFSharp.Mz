@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-root="https://csbiology.github.io/BioFSharp.Mz/">
+<html lang="en" data-root="https://biofsharp.com/BioFSharp.Mz/">
 <head>
     <meta charset="UTF-8">
     <meta content="IE=edge" http-equiv="X-UA-Compatible">
@@ -8,11 +8,11 @@
     <!-- Opengraph properties (https://ogp.me/) -->
     <meta property="og:site_name" content="BioFSharp.Mz">
     <meta property="og:title" content="PeakArray (BioFSharp.Mz)" />
-    <meta property="og:url" content="https://csbiology.github.io/BioFSharp.Mz/{{fsdocs-source-basename}}.html">
+    <meta property="og:url" content="https://biofsharp.com/BioFSharp.Mz/{{fsdocs-source-basename}}.html">
     <meta property="og:type" content="website" />
     <!-- Twitter cards (https://developer.twitter.com/en/docs/twitter-for-websites/cards/overview/summary-card-with-large-image) -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:site" content="https://csbiology.github.io/BioFSharp.Mz/">
+    <meta name="twitter:site" content="https://biofsharp.com/BioFSharp.Mz/">
     <meta name="twitter:title" content="PeakArray (BioFSharp.Mz)">
     
     <title>PeakArray (BioFSharp.Mz) | BioFSharp.Mz</title>
@@ -20,11 +20,12 @@
     <link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
     <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
-    <link href="https://csbiology.github.io/BioFSharp.Mz/img/favicon.ico" rel="icon" sizes="32x32" type="image/png"/>
-    <script type="application/javascript" src="https://csbiology.github.io/BioFSharp.Mz/content/fsdocs-theme-set-dark.js"></script>
-    <link href="https://csbiology.github.io/BioFSharp.Mz/content/fsdocs-default.css" rel="stylesheet" type="text/css"/>
-    <link href="https://csbiology.github.io/BioFSharp.Mz/content/fsdocs-theme.css" rel="stylesheet" type="text/css"/>
+    <link href="https://biofsharp.com/BioFSharp.Mz/img/favicon.ico" rel="icon" sizes="32x32" type="image/png"/>
+    <script type="application/javascript" src="https://biofsharp.com/BioFSharp.Mz/content/fsdocs-theme-set-dark.js"></script>
+    <link href="https://biofsharp.com/BioFSharp.Mz/content/fsdocs-default.css" rel="stylesheet" type="text/css"/>
+    <link href="https://biofsharp.com/BioFSharp.Mz/content/fsdocs-theme.css" rel="stylesheet" type="text/css"/>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js"></script>
+<style>header .start a img { background-color: #2f3337; border-radius: 6px; padding: 3px; }</style>
     
 </head>
 <body class="api-docs">
@@ -43,19 +44,80 @@
                     Notes</a></li>
                 <li class="nav-item"><a class="nav-link" href="https://github.com/CSBiology/BioFSharp.Mz/">Source
                     Repository</a></li>
-                
+                <li class="nav-header ">
+  Spectrum processing
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/01_01_peaks_and_peak_arrays.html">
+    Peaks and peak arrays
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/01_02_signal_detection.html">
+    Signal detection and centroiding
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/01_03_charge_state_determination.html">
+    Charge state determination
+  </a>
+</li>             
+<li class="nav-header ">
+  Peptide identification
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/02_01_fragmentation.html">
+    In silico fragmentation
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/02_02_search_databases.html">
+    Peptide search databases
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/02_03_sequest_like_scoring.html">
+    SEQUEST-like scoring
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/02_04_andromeda_like_scoring.html">
+    Andromeda-like and X!Tandem-like scoring
+  </a>
+</li>             
+<li class="nav-header ">
+  Quantification
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/03_01_quantification.html">
+    Peak quantification
+  </a>
+</li>             
+<li class="nav-header ">
+  Validation and inference
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/04_01_fdr_control.html">
+    False discovery rate control
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/04_02_protein_inference.html">
+    Protein inference
+  </a>
+</li>
                 <li class="nav-header">
   API Reference
 </li>             
 <li class="nav-item">
-  <a class="nav-link" href="https://csbiology.github.io/BioFSharp.Mz/reference/index.html">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/reference/index.html">
     All Namespaces
   </a>
 </li>
             </ul>
         </div>
         <a href="https://csbiology.github.io/BioFSharp.Mz/">
-            <img alt="Header menu logo" src="https://csbiology.github.io/BioFSharp.Mz/img/logo.png">
+            <img alt="Header menu logo" src="https://biofsharp.com/BioFSharp.Mz/img/logo.png">
             <strong>BioFSharp.Mz</strong>
         </a>
     </div>
@@ -77,12 +139,73 @@
             Notes</a></li>
         <li class="nav-item"><a class="nav-link" href="https://github.com/CSBiology/BioFSharp.Mz/">Source
             Repository</a></li>
-        
+        <li class="nav-header ">
+  Spectrum processing
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/01_01_peaks_and_peak_arrays.html">
+    Peaks and peak arrays
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/01_02_signal_detection.html">
+    Signal detection and centroiding
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/01_03_charge_state_determination.html">
+    Charge state determination
+  </a>
+</li>             
+<li class="nav-header ">
+  Peptide identification
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/02_01_fragmentation.html">
+    In silico fragmentation
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/02_02_search_databases.html">
+    Peptide search databases
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/02_03_sequest_like_scoring.html">
+    SEQUEST-like scoring
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/02_04_andromeda_like_scoring.html">
+    Andromeda-like and X!Tandem-like scoring
+  </a>
+</li>             
+<li class="nav-header ">
+  Quantification
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/03_01_quantification.html">
+    Peak quantification
+  </a>
+</li>             
+<li class="nav-header ">
+  Validation and inference
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/04_01_fdr_control.html">
+    False discovery rate control
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/04_02_protein_inference.html">
+    Protein inference
+  </a>
+</li>
         <li class="nav-header">
   API Reference
 </li>             
 <li class="nav-item">
-  <a class="nav-link" href="https://csbiology.github.io/BioFSharp.Mz/reference/index.html">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/reference/index.html">
     All Namespaces
   </a>
 </li>
@@ -97,7 +220,7 @@
   <dl class="fsdocs-metadata">
     <dt>
       Namespace: 
-      <a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz.html">
+      <a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz.html">
         BioFSharp.Mz
       </a>
     </dt>
@@ -131,7 +254,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '404', 404)" onmouseover="showTip(event, '404', 404)">
+              <code onmouseout="hideTip(event, '409', 409)" onmouseover="showTip(event, '409', 409)">
                 <p>
                   <a id="binToUpperIntergerMass">
                     <a href="#binToUpperIntergerMass">
@@ -140,7 +263,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="404">
+              <div class="fsdocs-tip" id="409">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>binToUpperIntergerMass&#32;<span>pkarr&#32;minMassBoarder&#32;maxMassBoarder</span></span></code>
@@ -153,7 +276,7 @@
                         pkarr
                       </b>
                       :
-                      <code><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-peakarray-1.html">PeakArray</a>&lt;'a&gt;</span></code>
+                      <code><span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-peakarray-1.html">PeakArray</a>&lt;'a&gt;</span></code>
                     </span>
                     <br/>
                     <span>
@@ -207,7 +330,7 @@
                     pkarr
                   </span>
                   :
-                  <code><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-peakarray-1.html">PeakArray</a>&lt;'a&gt;</span></code>
+                  <code><span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-peakarray-1.html">PeakArray</a>&lt;'a&gt;</span></code>
                 </dt>
                 <dd class="fsdocs-param-docs"></dd>
                 <dt class="fsdocs-param">
@@ -242,7 +365,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '405', 405)" onmouseover="showTip(event, '405', 405)">
+              <code onmouseout="hideTip(event, '410', 410)" onmouseover="showTip(event, '410', 410)">
                 <p>
                   <a id="map">
                     <a href="#map">
@@ -251,7 +374,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="405">
+              <div class="fsdocs-tip" id="410">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>map&#32;<span>f&#32;pkarr</span></span></code>
@@ -279,7 +402,7 @@
                   <br/>
                   <span>
                     Returns: 
-                    <code><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-peakarray-1.html">PeakArray</a>&lt;'b&gt;</span></code>
+                    <code><span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-peakarray-1.html">PeakArray</a>&lt;'b&gt;</span></code>
                   </span>
                   <br/>
                 </div>
@@ -328,7 +451,7 @@
                   <span class="fsdocs-return-name">
                     Returns: 
                   </span>
-                  <code><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-peakarray-1.html">PeakArray</a>&lt;'b&gt;</span></code>
+                  <code><span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-peakarray-1.html">PeakArray</a>&lt;'b&gt;</span></code>
                 </dt>
                 <dd class="fsdocs-return-docs"></dd>
               </dl>
@@ -338,7 +461,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '406', 406)" onmouseover="showTip(event, '406', 406)">
+              <code onmouseout="hideTip(event, '411', 411)" onmouseover="showTip(event, '411', 411)">
                 <p>
                   <a id="peaksToNearestUnitDaltonBin">
                     <a href="#peaksToNearestUnitDaltonBin">
@@ -347,7 +470,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="406">
+              <div class="fsdocs-tip" id="411">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>peaksToNearestUnitDaltonBin&#32;<span>pkarr&#32;minMassBoarder&#32;maxMassBoarder</span></span></code>
@@ -360,7 +483,7 @@
                         pkarr
                       </b>
                       :
-                      <code><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-peakarray-1.html">PeakArray</a>&lt;'a&gt;</span></code>
+                      <code><span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-peakarray-1.html">PeakArray</a>&lt;'a&gt;</span></code>
                     </span>
                     <br/>
                     <span>
@@ -414,7 +537,7 @@
                     pkarr
                   </span>
                   :
-                  <code><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-peakarray-1.html">PeakArray</a>&lt;'a&gt;</span></code>
+                  <code><span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-peakarray-1.html">PeakArray</a>&lt;'a&gt;</span></code>
                 </dt>
                 <dd class="fsdocs-param-docs"></dd>
                 <dt class="fsdocs-param">
@@ -449,7 +572,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '407', 407)" onmouseover="showTip(event, '407', 407)">
+              <code onmouseout="hideTip(event, '412', 412)" onmouseover="showTip(event, '412', 412)">
                 <p>
                   <a id="peaksToNearestUnitDaltonBinVector">
                     <a href="#peaksToNearestUnitDaltonBinVector">
@@ -458,7 +581,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="407">
+              <div class="fsdocs-tip" id="412">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>peaksToNearestUnitDaltonBinVector&#32;<span>pkarr&#32;minMassBoarder&#32;maxMassBoarder</span></span></code>
@@ -471,7 +594,7 @@
                         pkarr
                       </b>
                       :
-                      <code><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-peakarray-1.html">PeakArray</a>&lt;'a&gt;</span></code>
+                      <code><span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-peakarray-1.html">PeakArray</a>&lt;'a&gt;</span></code>
                     </span>
                     <br/>
                     <span>
@@ -525,7 +648,7 @@
                     pkarr
                   </span>
                   :
-                  <code><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-peakarray-1.html">PeakArray</a>&lt;'a&gt;</span></code>
+                  <code><span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-peakarray-1.html">PeakArray</a>&lt;'a&gt;</span></code>
                 </dt>
                 <dd class="fsdocs-param-docs"></dd>
                 <dt class="fsdocs-param">
@@ -560,7 +683,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '408', 408)" onmouseover="showTip(event, '408', 408)">
+              <code onmouseout="hideTip(event, '413', 413)" onmouseover="showTip(event, '413', 413)">
                 <p>
                   <a id="unzip">
                     <a href="#unzip">
@@ -569,7 +692,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="408">
+              <div class="fsdocs-tip" id="413">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>unzip&#32;<span>pkarr</span></span></code>
@@ -582,7 +705,7 @@
                         pkarr
                       </b>
                       :
-                      <code><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-peakarray-1.html">PeakArray</a>&lt;'a&gt;</span></code>
+                      <code><span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-peakarray-1.html">PeakArray</a>&lt;'a&gt;</span></code>
                     </span>
                     <br/>
                   </ul>
@@ -621,7 +744,7 @@
                     pkarr
                   </span>
                   :
-                  <code><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-peakarray-1.html">PeakArray</a>&lt;'a&gt;</span></code>
+                  <code><span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-peakarray-1.html">PeakArray</a>&lt;'a&gt;</span></code>
                 </dt>
                 <dd class="fsdocs-param-docs"></dd>
               </dl>
@@ -640,7 +763,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '409', 409)" onmouseover="showTip(event, '409', 409)">
+              <code onmouseout="hideTip(event, '414', 414)" onmouseover="showTip(event, '414', 414)">
                 <p>
                   <a id="zip">
                     <a href="#zip">
@@ -649,7 +772,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="409">
+              <div class="fsdocs-tip" id="414">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>zip&#32;<span>mz&#32;intensity</span></span></code>
@@ -677,7 +800,7 @@
                   <br/>
                   <span>
                     Returns: 
-                    <code><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-peakarray-1.html">PeakArray</a>&lt;<a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-peak.html">Peak</a>&gt;</span></code>
+                    <code><span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-peakarray-1.html">PeakArray</a>&lt;<a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-peak.html">Peak</a>&gt;</span></code>
                   </span>
                   <br/>
                 </div>
@@ -726,7 +849,7 @@
                   <span class="fsdocs-return-name">
                     Returns: 
                   </span>
-                  <code><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-peakarray-1.html">PeakArray</a>&lt;<a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-peak.html">Peak</a>&gt;</span></code>
+                  <code><span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-peakarray-1.html">PeakArray</a>&lt;<a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-peak.html">Peak</a>&gt;</span></code>
                 </dt>
                 <dd class="fsdocs-return-docs"></dd>
               </dl>
@@ -736,7 +859,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '410', 410)" onmouseover="showTip(event, '410', 410)">
+              <code onmouseout="hideTip(event, '415', 415)" onmouseover="showTip(event, '415', 415)">
                 <p>
                   <a id="zipMzInt">
                     <a href="#zipMzInt">
@@ -745,7 +868,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="410">
+              <div class="fsdocs-tip" id="415">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>zipMzInt&#32;<span>mzIntensity</span></span></code>
@@ -765,7 +888,7 @@
                   <br/>
                   <span>
                     Returns: 
-                    <code><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-peakarray-1.html">PeakArray</a>&lt;<a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-peak.html">Peak</a>&gt;</span></code>
+                    <code><span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-peakarray-1.html">PeakArray</a>&lt;<a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-peak.html">Peak</a>&gt;</span></code>
                   </span>
                   <br/>
                 </div>
@@ -806,7 +929,7 @@
                   <span class="fsdocs-return-name">
                     Returns: 
                   </span>
-                  <code><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-peakarray-1.html">PeakArray</a>&lt;<a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-peak.html">Peak</a>&gt;</span></code>
+                  <code><span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-peakarray-1.html">PeakArray</a>&lt;<a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-peak.html">Peak</a>&gt;</span></code>
                 </dt>
                 <dd class="fsdocs-return-docs"></dd>
               </dl>
@@ -839,10 +962,10 @@
         <p class="empty">Type something to start searching.</p>
     </div>
 </dialog>
-<script type="module" src="https://csbiology.github.io/BioFSharp.Mz/content/fsdocs-tips.js"></script>
-<script type="module" src="https://csbiology.github.io/BioFSharp.Mz/content/fsdocs-theme-toggle.js"></script>
-<script type="module" src="https://csbiology.github.io/BioFSharp.Mz/content/fsdocs-theme.js"></script>
-<script type="module" src="https://csbiology.github.io/BioFSharp.Mz/content/fsdocs-search.js"></script>
+<script type="module" src="https://biofsharp.com/BioFSharp.Mz/content/fsdocs-tips.js"></script>
+<script type="module" src="https://biofsharp.com/BioFSharp.Mz/content/fsdocs-theme-toggle.js"></script>
+<script type="module" src="https://biofsharp.com/BioFSharp.Mz/content/fsdocs-theme.js"></script>
+<script type="module" src="https://biofsharp.com/BioFSharp.Mz/content/fsdocs-search.js"></script>
 
 </body>
 </html>

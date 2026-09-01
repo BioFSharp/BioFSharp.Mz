@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-root="https://csbiology.github.io/BioFSharp.Mz/">
+<html lang="en" data-root="https://biofsharp.com/BioFSharp.Mz/">
 <head>
     <meta charset="UTF-8">
     <meta content="IE=edge" http-equiv="X-UA-Compatible">
@@ -8,11 +8,11 @@
     <!-- Opengraph properties (https://ogp.me/) -->
     <meta property="og:site_name" content="BioFSharp.Mz">
     <meta property="og:title" content="ProteinInference (BioFSharp.Mz)" />
-    <meta property="og:url" content="https://csbiology.github.io/BioFSharp.Mz/{{fsdocs-source-basename}}.html">
+    <meta property="og:url" content="https://biofsharp.com/BioFSharp.Mz/{{fsdocs-source-basename}}.html">
     <meta property="og:type" content="website" />
     <!-- Twitter cards (https://developer.twitter.com/en/docs/twitter-for-websites/cards/overview/summary-card-with-large-image) -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:site" content="https://csbiology.github.io/BioFSharp.Mz/">
+    <meta name="twitter:site" content="https://biofsharp.com/BioFSharp.Mz/">
     <meta name="twitter:title" content="ProteinInference (BioFSharp.Mz)">
     
     <title>ProteinInference (BioFSharp.Mz) | BioFSharp.Mz</title>
@@ -20,11 +20,12 @@
     <link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
     <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
-    <link href="https://csbiology.github.io/BioFSharp.Mz/img/favicon.ico" rel="icon" sizes="32x32" type="image/png"/>
-    <script type="application/javascript" src="https://csbiology.github.io/BioFSharp.Mz/content/fsdocs-theme-set-dark.js"></script>
-    <link href="https://csbiology.github.io/BioFSharp.Mz/content/fsdocs-default.css" rel="stylesheet" type="text/css"/>
-    <link href="https://csbiology.github.io/BioFSharp.Mz/content/fsdocs-theme.css" rel="stylesheet" type="text/css"/>
+    <link href="https://biofsharp.com/BioFSharp.Mz/img/favicon.ico" rel="icon" sizes="32x32" type="image/png"/>
+    <script type="application/javascript" src="https://biofsharp.com/BioFSharp.Mz/content/fsdocs-theme-set-dark.js"></script>
+    <link href="https://biofsharp.com/BioFSharp.Mz/content/fsdocs-default.css" rel="stylesheet" type="text/css"/>
+    <link href="https://biofsharp.com/BioFSharp.Mz/content/fsdocs-theme.css" rel="stylesheet" type="text/css"/>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js"></script>
+<style>header .start a img { background-color: #2f3337; border-radius: 6px; padding: 3px; }</style>
     
 </head>
 <body class="api-docs">
@@ -43,19 +44,80 @@
                     Notes</a></li>
                 <li class="nav-item"><a class="nav-link" href="https://github.com/CSBiology/BioFSharp.Mz/">Source
                     Repository</a></li>
-                
+                <li class="nav-header ">
+  Spectrum processing
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/01_01_peaks_and_peak_arrays.html">
+    Peaks and peak arrays
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/01_02_signal_detection.html">
+    Signal detection and centroiding
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/01_03_charge_state_determination.html">
+    Charge state determination
+  </a>
+</li>             
+<li class="nav-header ">
+  Peptide identification
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/02_01_fragmentation.html">
+    In silico fragmentation
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/02_02_search_databases.html">
+    Peptide search databases
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/02_03_sequest_like_scoring.html">
+    SEQUEST-like scoring
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/02_04_andromeda_like_scoring.html">
+    Andromeda-like and X!Tandem-like scoring
+  </a>
+</li>             
+<li class="nav-header ">
+  Quantification
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/03_01_quantification.html">
+    Peak quantification
+  </a>
+</li>             
+<li class="nav-header ">
+  Validation and inference
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/04_01_fdr_control.html">
+    False discovery rate control
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/04_02_protein_inference.html">
+    Protein inference
+  </a>
+</li>
                 <li class="nav-header">
   API Reference
 </li>             
 <li class="nav-item">
-  <a class="nav-link" href="https://csbiology.github.io/BioFSharp.Mz/reference/index.html">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/reference/index.html">
     All Namespaces
   </a>
 </li>
             </ul>
         </div>
         <a href="https://csbiology.github.io/BioFSharp.Mz/">
-            <img alt="Header menu logo" src="https://csbiology.github.io/BioFSharp.Mz/img/logo.png">
+            <img alt="Header menu logo" src="https://biofsharp.com/BioFSharp.Mz/img/logo.png">
             <strong>BioFSharp.Mz</strong>
         </a>
     </div>
@@ -77,12 +139,73 @@
             Notes</a></li>
         <li class="nav-item"><a class="nav-link" href="https://github.com/CSBiology/BioFSharp.Mz/">Source
             Repository</a></li>
-        
+        <li class="nav-header ">
+  Spectrum processing
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/01_01_peaks_and_peak_arrays.html">
+    Peaks and peak arrays
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/01_02_signal_detection.html">
+    Signal detection and centroiding
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/01_03_charge_state_determination.html">
+    Charge state determination
+  </a>
+</li>             
+<li class="nav-header ">
+  Peptide identification
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/02_01_fragmentation.html">
+    In silico fragmentation
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/02_02_search_databases.html">
+    Peptide search databases
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/02_03_sequest_like_scoring.html">
+    SEQUEST-like scoring
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/02_04_andromeda_like_scoring.html">
+    Andromeda-like and X!Tandem-like scoring
+  </a>
+</li>             
+<li class="nav-header ">
+  Quantification
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/03_01_quantification.html">
+    Peak quantification
+  </a>
+</li>             
+<li class="nav-header ">
+  Validation and inference
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/04_01_fdr_control.html">
+    False discovery rate control
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/04_02_protein_inference.html">
+    Protein inference
+  </a>
+</li>
         <li class="nav-header">
   API Reference
 </li>             
 <li class="nav-item">
-  <a class="nav-link" href="https://csbiology.github.io/BioFSharp.Mz/reference/index.html">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/reference/index.html">
     All Namespaces
   </a>
 </li>
@@ -97,7 +220,7 @@
   <dl class="fsdocs-metadata">
     <dt>
       Namespace: 
-      <a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz.html">
+      <a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz.html">
         BioFSharp.Mz
       </a>
     </dt>
@@ -132,7 +255,7 @@
           <td class="fsdocs-entity-name">
             <p>
               <a name="MAYU">
-                <a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-proteininference-mayu.html">
+                <a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-proteininference-mayu.html">
                   MAYU
                 </a>
               </a>
@@ -146,7 +269,7 @@
               <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:BioFSharp.Mz.ProteinInference.MAYU\'/>')">
                 <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
               </div>
-              <a href="https://github.com/CSBiology/BioFSharp.Mz/tree/master/src/BioFSharp.Mz/ProteinInference.fs#L486-486" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/CSBiology/BioFSharp.Mz/tree/master/src/BioFSharp.Mz/ProteinInference.fs#L488-488" class="fsdocs-source-link" title="Source on GitHub">
                 <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
               </a>
               <p class="fsdocs-summary">
@@ -159,7 +282,7 @@
           <td class="fsdocs-entity-name">
             <p>
               <a name="InferredProteinClassItem<'sequence>">
-                <a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-proteininference-inferredproteinclassitem-1.html">
+                <a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-proteininference-inferredproteinclassitem-1.html">
                   InferredProteinClassItem<'sequence>
                 </a>
               </a>
@@ -186,7 +309,7 @@
           <td class="fsdocs-entity-name">
             <p>
               <a name="InferredProteinClassItemQValue">
-                <a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-proteininference-inferredproteinclassitemqvalue.html">
+                <a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-proteininference-inferredproteinclassitemqvalue.html">
                   InferredProteinClassItemQValue
                 </a>
               </a>
@@ -213,7 +336,7 @@
           <td class="fsdocs-entity-name">
             <p>
               <a name="InferredProteinClassItemScored">
-                <a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-proteininference-inferredproteinclassitemscored.html">
+                <a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-proteininference-inferredproteinclassitemscored.html">
                   InferredProteinClassItemScored
                 </a>
               </a>
@@ -240,7 +363,7 @@
           <td class="fsdocs-entity-name">
             <p>
               <a name="IntegrationStrictness">
-                <a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-proteininference-integrationstrictness.html">
+                <a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-proteininference-integrationstrictness.html">
                   IntegrationStrictness
                 </a>
               </a>
@@ -267,7 +390,7 @@
           <td class="fsdocs-entity-name">
             <p>
               <a name="PSMInput">
-                <a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-proteininference-psminput.html">
+                <a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-proteininference-psminput.html">
                   PSMInput
                 </a>
               </a>
@@ -294,7 +417,7 @@
           <td class="fsdocs-entity-name">
             <p>
               <a name="PeptideUsageForQuantification">
-                <a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-proteininference-peptideusageforquantification.html">
+                <a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-proteininference-peptideusageforquantification.html">
                   PeptideUsageForQuantification
                 </a>
               </a>
@@ -321,7 +444,7 @@
           <td class="fsdocs-entity-name">
             <p>
               <a name="ProteinClassItem<'sequence>">
-                <a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-proteininference-proteinclassitem-1.html">
+                <a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-proteininference-proteinclassitem-1.html">
                   ProteinClassItem<'sequence>
                 </a>
               </a>
@@ -348,7 +471,7 @@
           <td class="fsdocs-entity-name">
             <p>
               <a name="Result">
-                <a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-proteininference-result.html">
+                <a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-proteininference-result.html">
                   Result
                 </a>
               </a>
@@ -393,7 +516,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '423', 423)" onmouseover="showTip(event, '423', 423)">
+              <code onmouseout="hideTip(event, '428', 428)" onmouseover="showTip(event, '428', 428)">
                 <p>
                   <a id="assignDecoyScoreToTargetScore">
                     <a href="#assignDecoyScoreToTargetScore">
@@ -402,7 +525,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="423">
+              <div class="fsdocs-tip" id="428">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>assignDecoyScoreToTargetScore&#32;<span>proteins&#32;decoyScores</span></span></code>
@@ -447,7 +570,7 @@
                   <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:BioFSharp.Mz.ProteinInference.assignDecoyScoreToTargetScore\'/>')">
                     <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
                   </div>
-                  <a href="https://github.com/CSBiology/BioFSharp.Mz/tree/master/src/BioFSharp.Mz/ProteinInference.fs#L325-325" class="fsdocs-source-link" title="Source on GitHub">
+                  <a href="https://github.com/CSBiology/BioFSharp.Mz/tree/master/src/BioFSharp.Mz/ProteinInference.fs#L327-327" class="fsdocs-source-link" title="Source on GitHub">
                     <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
                   </a>
                   <p class="fsdocs-summary">
@@ -488,7 +611,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '424', 424)" onmouseover="showTip(event, '424', 424)">
+              <code onmouseout="hideTip(event, '429', 429)" onmouseover="showTip(event, '429', 429)">
                 <p>
                   <a id="assignPeptideScores">
                     <a href="#assignPeptideScores">
@@ -497,7 +620,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="424">
+              <div class="fsdocs-tip" id="429">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>assignPeptideScores&#32;<span>peptideSequences&#32;peptideScoreMap</span></span></code>
@@ -542,7 +665,7 @@
                   <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:BioFSharp.Mz.ProteinInference.assignPeptideScores\'/>')">
                     <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
                   </div>
-                  <a href="https://github.com/CSBiology/BioFSharp.Mz/tree/master/src/BioFSharp.Mz/ProteinInference.fs#L319-319" class="fsdocs-source-link" title="Source on GitHub">
+                  <a href="https://github.com/CSBiology/BioFSharp.Mz/tree/master/src/BioFSharp.Mz/ProteinInference.fs#L321-321" class="fsdocs-source-link" title="Source on GitHub">
                     <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
                   </a>
                   <p class="fsdocs-summary">
@@ -583,7 +706,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '425', 425)" onmouseover="showTip(event, '425', 425)">
+              <code onmouseout="hideTip(event, '430', 430)" onmouseover="showTip(event, '430', 430)">
                 <p>
                   <a id="assignQValueToIPCIS">
                     <a href="#assignQValueToIPCIS">
@@ -592,7 +715,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="425">
+              <div class="fsdocs-tip" id="430">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>assignQValueToIPCIS&#32;<span>qValueF&#32;item</span></span></code>
@@ -613,14 +736,14 @@
                         item
                       </b>
                       :
-                      <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-proteininference-inferredproteinclassitemscored.html">InferredProteinClassItemScored</a></code>
+                      <code><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-proteininference-inferredproteinclassitemscored.html">InferredProteinClassItemScored</a></code>
                     </span>
                     <br/>
                   </ul>
                   <br/>
                   <span>
                     Returns: 
-                    <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-proteininference-inferredproteinclassitemqvalue.html">InferredProteinClassItemQValue</a></code>
+                    <code><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-proteininference-inferredproteinclassitemqvalue.html">InferredProteinClassItemQValue</a></code>
                   </span>
                   <br/>
                 </div>
@@ -642,7 +765,7 @@
                   item
                 </span>
                 :
-                <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-proteininference-inferredproteinclassitemscored.html">InferredProteinClassItemScored</a></code>
+                <code><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-proteininference-inferredproteinclassitemscored.html">InferredProteinClassItemScored</a></code>
               </dt>
               <dd class="fsdocs-param-docs"></dd>
             </dl>
@@ -651,7 +774,7 @@
                 <span class="fsdocs-return-name">
                   Returns: 
                 </span>
-                <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-proteininference-inferredproteinclassitemqvalue.html">InferredProteinClassItemQValue</a></code>
+                <code><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-proteininference-inferredproteinclassitemqvalue.html">InferredProteinClassItemQValue</a></code>
               </dt>
               <dd class="fsdocs-return-docs"></dd>
             </dl>
@@ -660,29 +783,29 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '426', 426)" onmouseover="showTip(event, '426', 426)">
+              <code onmouseout="hideTip(event, '431', 431)" onmouseover="showTip(event, '431', 431)">
                 <p>
                   <a id="assignTranscriptsToGenes">
                     <a href="#assignTranscriptsToGenes">
-                      <code><span>assignTranscriptsToGenes&#32;<span>regexPattern&#32;gffLines</span></span></code>
+                      <code><span>assignTranscriptsToGenes&#32;<span>tryParseProteinID&#32;gffLines</span></span></code>
                     </a>
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="426">
+              <div class="fsdocs-tip" id="431">
                 <div class="member-tooltip">
                   Full Usage: 
-                  <code><span>assignTranscriptsToGenes&#32;<span>regexPattern&#32;gffLines</span></span></code>
+                  <code><span>assignTranscriptsToGenes&#32;<span>tryParseProteinID&#32;gffLines</span></span></code>
                   <br/>
                   <br/>
                   Parameters: 
                   <ul>
                     <span>
                       <b>
-                        regexPattern
+                        tryParseProteinID
                       </b>
                       :
-                      <code>string</code>
+                      <code><span>string&#32;->&#32;<span>'a&#32;option</span></span></code>
                     </span>
                     <br/>
                     <span>
@@ -690,14 +813,14 @@
                         gffLines
                       </b>
                       :
-                      <code><span><span><a href="https://learn.microsoft.com/dotnet/api/biofsharp.fileformats.gff3.gffline-1">GFFLine</a>&lt;<span>char&#32;seq</span>&gt;</span>&#32;seq</span></code>
+                      <code><span><span><a href="https://learn.microsoft.com/dotnet/api/biofsharp.fileformats.gff3.gffline-1">GFFLine</a>&lt;'a0&gt;</span>&#32;seq</span></code>
                     </span>
                     <br/>
                   </ul>
                   <br/>
                   <span>
                     Returns: 
-                    <code><span><a href="https://fsharp.github.io/fsharp-core-docs/reference/fsharp-collections-fsharpmap-2">Map</a>&lt;<span>string,&#32;<span><a href="https://learn.microsoft.com/dotnet/api/biofsharp.peptideclassification.proteinmodelinfo-3">ProteinModelInfo</a>&lt;<span>string,&#32;string,&#32;string</span>&gt;</span></span>&gt;</span></code>
+                    <code><span><a href="https://fsharp.github.io/fsharp-core-docs/reference/fsharp-collections-fsharpmap-2">Map</a>&lt;<span>'a,&#32;<span><a href="https://learn.microsoft.com/dotnet/api/biofsharp.peptideclassification.proteinmodelinfo-3">ProteinModelInfo</a>&lt;<span>string,&#32;string,&#32;string</span>&gt;</span></span>&gt;</span></code>
                   </span>
                   <br/>
                 </div>
@@ -708,13 +831,13 @@
             <details>
               <summary>
                 <div class="fsdocs-summary">
-                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:BioFSharp.Mz.ProteinInference.assignTranscriptsToGenes`')">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:BioFSharp.Mz.ProteinInference.assignTranscriptsToGenes``2```')">
                     <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
                   </div>
-                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:BioFSharp.Mz.ProteinInference.assignTranscriptsToGenes\'/>')">
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:BioFSharp.Mz.ProteinInference.assignTranscriptsToGenes``2\'/>')">
                     <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
                   </div>
-                  <a href="https://github.com/CSBiology/BioFSharp.Mz/tree/master/src/BioFSharp.Mz/ProteinInference.fs#L202-202" class="fsdocs-source-link" title="Source on GitHub">
+                  <a href="https://github.com/CSBiology/BioFSharp.Mz/tree/master/src/BioFSharp.Mz/ProteinInference.fs#L203-203" class="fsdocs-source-link" title="Source on GitHub">
                     <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
                   </a>
                   <p class="fsdocs-summary">
@@ -726,10 +849,10 @@
               <dl class="fsdocs-params">
                 <dt class="fsdocs-param">
                   <span class="fsdocs-param-name">
-                    regexPattern
+                    tryParseProteinID
                   </span>
                   :
-                  <code>string</code>
+                  <code><span>string&#32;->&#32;<span>'a&#32;option</span></span></code>
                 </dt>
                 <dd class="fsdocs-param-docs"></dd>
                 <dt class="fsdocs-param">
@@ -737,7 +860,7 @@
                     gffLines
                   </span>
                   :
-                  <code><span><span><a href="https://learn.microsoft.com/dotnet/api/biofsharp.fileformats.gff3.gffline-1">GFFLine</a>&lt;<span>char&#32;seq</span>&gt;</span>&#32;seq</span></code>
+                  <code><span><span><a href="https://learn.microsoft.com/dotnet/api/biofsharp.fileformats.gff3.gffline-1">GFFLine</a>&lt;'a0&gt;</span>&#32;seq</span></code>
                 </dt>
                 <dd class="fsdocs-param-docs"></dd>
               </dl>
@@ -746,7 +869,7 @@
                   <span class="fsdocs-return-name">
                     Returns: 
                   </span>
-                  <code><span><a href="https://fsharp.github.io/fsharp-core-docs/reference/fsharp-collections-fsharpmap-2">Map</a>&lt;<span>string,&#32;<span><a href="https://learn.microsoft.com/dotnet/api/biofsharp.peptideclassification.proteinmodelinfo-3">ProteinModelInfo</a>&lt;<span>string,&#32;string,&#32;string</span>&gt;</span></span>&gt;</span></code>
+                  <code><span><a href="https://fsharp.github.io/fsharp-core-docs/reference/fsharp-collections-fsharpmap-2">Map</a>&lt;<span>'a,&#32;<span><a href="https://learn.microsoft.com/dotnet/api/biofsharp.peptideclassification.proteinmodelinfo-3">ProteinModelInfo</a>&lt;<span>string,&#32;string,&#32;string</span>&gt;</span></span>&gt;</span></code>
                 </dt>
                 <dd class="fsdocs-return-docs"></dd>
               </dl>
@@ -756,7 +879,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '427', 427)" onmouseover="showTip(event, '427', 427)">
+              <code onmouseout="hideTip(event, '432', 432)" onmouseover="showTip(event, '432', 432)">
                 <p>
                   <a id="calculateFDRwithDecoyTargetRatio">
                     <a href="#calculateFDRwithDecoyTargetRatio">
@@ -765,7 +888,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="427">
+              <div class="fsdocs-tip" id="432">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>calculateFDRwithDecoyTargetRatio&#32;<span>data</span></span></code>
@@ -778,7 +901,7 @@
                         data
                       </b>
                       :
-                      <code><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-proteininference-inferredproteinclassitemscored.html">InferredProteinClassItemScored</a>[]</span></code>
+                      <code><span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-proteininference-inferredproteinclassitemscored.html">InferredProteinClassItemScored</a>[]</span></code>
                     </span>
                     <br/>
                   </ul>
@@ -802,7 +925,7 @@
                   <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:BioFSharp.Mz.ProteinInference.calculateFDRwithDecoyTargetRatio\'/>')">
                     <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
                   </div>
-                  <a href="https://github.com/CSBiology/BioFSharp.Mz/tree/master/src/BioFSharp.Mz/ProteinInference.fs#L617-617" class="fsdocs-source-link" title="Source on GitHub">
+                  <a href="https://github.com/CSBiology/BioFSharp.Mz/tree/master/src/BioFSharp.Mz/ProteinInference.fs#L619-619" class="fsdocs-source-link" title="Source on GitHub">
                     <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
                   </a>
                   <p class="fsdocs-summary">
@@ -816,7 +939,7 @@
                     data
                   </span>
                   :
-                  <code><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-proteininference-inferredproteinclassitemscored.html">InferredProteinClassItemScored</a>[]</span></code>
+                  <code><span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-proteininference-inferredproteinclassitemscored.html">InferredProteinClassItemScored</a>[]</span></code>
                 </dt>
                 <dd class="fsdocs-param-docs"></dd>
               </dl>
@@ -835,7 +958,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '428', 428)" onmouseover="showTip(event, '428', 428)">
+              <code onmouseout="hideTip(event, '433', 433)" onmouseover="showTip(event, '433', 433)">
                 <p>
                   <a id="calculateFDRwithMAYU">
                     <a href="#calculateFDRwithMAYU">
@@ -844,7 +967,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="428">
+              <div class="fsdocs-tip" id="433">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>calculateFDRwithMAYU&#32;<span>data&#32;proteinsFromDB</span></span></code>
@@ -857,7 +980,7 @@
                         data
                       </b>
                       :
-                      <code><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-proteininference-inferredproteinclassitemscored.html">InferredProteinClassItemScored</a>[]</span></code>
+                      <code><span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-proteininference-inferredproteinclassitemscored.html">InferredProteinClassItemScored</a>[]</span></code>
                     </span>
                     <br/>
                     <span>
@@ -889,7 +1012,7 @@
                   <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:BioFSharp.Mz.ProteinInference.calculateFDRwithMAYU\'/>')">
                     <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
                   </div>
-                  <a href="https://github.com/CSBiology/BioFSharp.Mz/tree/master/src/BioFSharp.Mz/ProteinInference.fs#L595-595" class="fsdocs-source-link" title="Source on GitHub">
+                  <a href="https://github.com/CSBiology/BioFSharp.Mz/tree/master/src/BioFSharp.Mz/ProteinInference.fs#L597-597" class="fsdocs-source-link" title="Source on GitHub">
                     <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
                   </a>
                   <p class="fsdocs-summary">
@@ -903,7 +1026,7 @@
                     data
                   </span>
                   :
-                  <code><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-proteininference-inferredproteinclassitemscored.html">InferredProteinClassItemScored</a>[]</span></code>
+                  <code><span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-proteininference-inferredproteinclassitemscored.html">InferredProteinClassItemScored</a>[]</span></code>
                 </dt>
                 <dd class="fsdocs-param-docs"></dd>
                 <dt class="fsdocs-param">
@@ -930,7 +1053,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '429', 429)" onmouseover="showTip(event, '429', 429)">
+              <code onmouseout="hideTip(event, '434', 434)" onmouseover="showTip(event, '434', 434)">
                 <p>
                   <a id="createInferredProteinClassItemOut">
                     <a href="#createInferredProteinClassItemOut">
@@ -939,7 +1062,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="429">
+              <div class="fsdocs-tip" id="434">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>createInferredProteinClassItemOut&#32;<span>proteinIDs&#32;evidenceClass&#32;peptideSequences&#32;targetScore&#32;decoyScore&#32;qValue</span></span></code>
@@ -999,7 +1122,7 @@
                   <br/>
                   <span>
                     Returns: 
-                    <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-proteininference-result.html">Result</a></code>
+                    <code><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-proteininference-result.html">Result</a></code>
                   </span>
                   <br/>
                 </div>
@@ -1062,7 +1185,7 @@
                 <span class="fsdocs-return-name">
                   Returns: 
                 </span>
-                <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-proteininference-result.html">Result</a></code>
+                <code><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-proteininference-result.html">Result</a></code>
               </dt>
               <dd class="fsdocs-return-docs"></dd>
             </dl>
@@ -1071,7 +1194,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '430', 430)" onmouseover="showTip(event, '430', 430)">
+              <code onmouseout="hideTip(event, '435', 435)" onmouseover="showTip(event, '435', 435)">
                 <p>
                   <a id="createInferredProteinClassItemQValue">
                     <a href="#createInferredProteinClassItemQValue">
@@ -1080,7 +1203,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="430">
+              <div class="fsdocs-tip" id="435">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>createInferredProteinClassItemQValue&#32;<span>infProtClassItemScored&#32;qValue</span></span></code>
@@ -1093,7 +1216,7 @@
                         infProtClassItemScored
                       </b>
                       :
-                      <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-proteininference-inferredproteinclassitemscored.html">InferredProteinClassItemScored</a></code>
+                      <code><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-proteininference-inferredproteinclassitemscored.html">InferredProteinClassItemScored</a></code>
                     </span>
                     <br/>
                     <span>
@@ -1108,7 +1231,7 @@
                   <br/>
                   <span>
                     Returns: 
-                    <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-proteininference-inferredproteinclassitemqvalue.html">InferredProteinClassItemQValue</a></code>
+                    <code><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-proteininference-inferredproteinclassitemqvalue.html">InferredProteinClassItemQValue</a></code>
                   </span>
                   <br/>
                 </div>
@@ -1122,7 +1245,7 @@
                   infProtClassItemScored
                 </span>
                 :
-                <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-proteininference-inferredproteinclassitemscored.html">InferredProteinClassItemScored</a></code>
+                <code><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-proteininference-inferredproteinclassitemscored.html">InferredProteinClassItemScored</a></code>
               </dt>
               <dd class="fsdocs-param-docs"></dd>
               <dt class="fsdocs-param">
@@ -1139,7 +1262,7 @@
                 <span class="fsdocs-return-name">
                   Returns: 
                 </span>
-                <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-proteininference-inferredproteinclassitemqvalue.html">InferredProteinClassItemQValue</a></code>
+                <code><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-proteininference-inferredproteinclassitemqvalue.html">InferredProteinClassItemQValue</a></code>
               </dt>
               <dd class="fsdocs-return-docs"></dd>
             </dl>
@@ -1148,7 +1271,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '431', 431)" onmouseover="showTip(event, '431', 431)">
+              <code onmouseout="hideTip(event, '436', 436)" onmouseover="showTip(event, '436', 436)">
                 <p>
                   <a id="createInferredProteinClassItemScored">
                     <a href="#createInferredProteinClassItemScored">
@@ -1157,7 +1280,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="431">
+              <div class="fsdocs-tip" id="436">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>createInferredProteinClassItemScored&#32;<span>proteinIDs&#32;evidenceClass&#32;peptideSequences&#32;targetScore&#32;decoyScore&#32;isDecoy&#32;decoyHasBetterScore&#32;foundInDB</span></span></code>
@@ -1233,7 +1356,7 @@
                   <br/>
                   <span>
                     Returns: 
-                    <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-proteininference-inferredproteinclassitemscored.html">InferredProteinClassItemScored</a></code>
+                    <code><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-proteininference-inferredproteinclassitemscored.html">InferredProteinClassItemScored</a></code>
                   </span>
                   <br/>
                 </div>
@@ -1312,7 +1435,7 @@
                 <span class="fsdocs-return-name">
                   Returns: 
                 </span>
-                <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-proteininference-inferredproteinclassitemscored.html">InferredProteinClassItemScored</a></code>
+                <code><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-proteininference-inferredproteinclassitemscored.html">InferredProteinClassItemScored</a></code>
               </dt>
               <dd class="fsdocs-return-docs"></dd>
             </dl>
@@ -1321,7 +1444,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '432', 432)" onmouseover="showTip(event, '432', 432)">
+              <code onmouseout="hideTip(event, '437', 437)" onmouseover="showTip(event, '437', 437)">
                 <p>
                   <a id="createPeptideProteinRelation">
                     <a href="#createPeptideProteinRelation">
@@ -1330,7 +1453,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="432">
+              <div class="fsdocs-tip" id="437">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>createPeptideProteinRelation&#32;<span>protModels</span></span></code>
@@ -1367,7 +1490,7 @@
                   <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:BioFSharp.Mz.ProteinInference.createPeptideProteinRelation``4\'/>')">
                     <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
                   </div>
-                  <a href="https://github.com/CSBiology/BioFSharp.Mz/tree/master/src/BioFSharp.Mz/ProteinInference.fs#L230-230" class="fsdocs-source-link" title="Source on GitHub">
+                  <a href="https://github.com/CSBiology/BioFSharp.Mz/tree/master/src/BioFSharp.Mz/ProteinInference.fs#L232-232" class="fsdocs-source-link" title="Source on GitHub">
                     <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
                   </a>
                   <p class="fsdocs-summary">
@@ -1400,7 +1523,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '433', 433)" onmouseover="showTip(event, '433', 433)">
+              <code onmouseout="hideTip(event, '438', 438)" onmouseover="showTip(event, '438', 438)">
                 <p>
                   <a id="createPeptideScoreMap">
                     <a href="#createPeptideScoreMap">
@@ -1409,7 +1532,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="433">
+              <div class="fsdocs-tip" id="438">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>createPeptideScoreMap&#32;<span>psmInputs</span></span></code>
@@ -1422,7 +1545,7 @@
                         psmInputs
                       </b>
                       :
-                      <code><span><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-proteininference-psminput.html">PSMInput</a>&#32;list</span>&#32;list</span></code>
+                      <code><span><span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-proteininference-psminput.html">PSMInput</a>&#32;list</span>&#32;list</span></code>
                     </span>
                     <br/>
                   </ul>
@@ -1443,7 +1566,7 @@
                   psmInputs
                 </span>
                 :
-                <code><span><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-proteininference-psminput.html">PSMInput</a>&#32;list</span>&#32;list</span></code>
+                <code><span><span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-proteininference-psminput.html">PSMInput</a>&#32;list</span>&#32;list</span></code>
               </dt>
               <dd class="fsdocs-param-docs"></dd>
             </dl>
@@ -1461,7 +1584,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '434', 434)" onmouseover="showTip(event, '434', 434)">
+              <code onmouseout="hideTip(event, '439', 439)" onmouseover="showTip(event, '439', 439)">
                 <p>
                   <a id="createProteinClassItem">
                     <a href="#createProteinClassItem">
@@ -1470,7 +1593,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="434">
+              <div class="fsdocs-tip" id="439">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>createProteinClassItem&#32;<span>proteinIDs&#32;evidenceClass&#32;peptideSequence</span></span></code>
@@ -1506,7 +1629,7 @@
                   <br/>
                   <span>
                     Returns: 
-                    <code><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-proteininference-proteinclassitem-1.html">ProteinClassItem</a>&lt;'sequence&gt;</span></code>
+                    <code><span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-proteininference-proteinclassitem-1.html">ProteinClassItem</a>&lt;'sequence&gt;</span></code>
                   </span>
                   <br/>
                 </div>
@@ -1545,7 +1668,7 @@
                 <span class="fsdocs-return-name">
                   Returns: 
                 </span>
-                <code><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-proteininference-proteinclassitem-1.html">ProteinClassItem</a>&lt;'sequence&gt;</span></code>
+                <code><span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-proteininference-proteinclassitem-1.html">ProteinClassItem</a>&lt;'sequence&gt;</span></code>
               </dt>
               <dd class="fsdocs-return-docs"></dd>
             </dl>
@@ -1554,7 +1677,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '435', 435)" onmouseover="showTip(event, '435', 435)">
+              <code onmouseout="hideTip(event, '440', 440)" onmouseover="showTip(event, '440', 440)">
                 <p>
                   <a id="createProteinModelInfoFromEntry">
                     <a href="#createProteinModelInfoFromEntry">
@@ -1563,7 +1686,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="435">
+              <div class="fsdocs-tip" id="440">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>createProteinModelInfoFromEntry&#32;<span>i&#32;locus&#32;entry</span></span></code>
@@ -1667,7 +1790,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '436', 436)" onmouseover="showTip(event, '436', 436)">
+              <code onmouseout="hideTip(event, '441', 441)" onmouseover="showTip(event, '441', 441)">
                 <p>
                   <a id="createProteinToPepSequencesMap">
                     <a href="#createProteinToPepSequencesMap">
@@ -1676,7 +1799,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="436">
+              <div class="fsdocs-tip" id="441">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>createProteinToPepSequencesMap&#32;<span>proteinClassItems</span></span></code>
@@ -1689,14 +1812,14 @@
                         proteinClassItems
                       </b>
                       :
-                      <code><span><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-proteininference-proteinclassitem-1.html">ProteinClassItem</a>&lt;'sequence&gt;</span>&#32;list</span></code>
+                      <code><span><span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-proteininference-proteinclassitem-1.html">ProteinClassItem</a>&lt;'sequence&gt;</span>&#32;list</span></code>
                     </span>
                     <br/>
                   </ul>
                   <br/>
                   <span>
                     Returns: 
-                    <code><span><a href="https://fsharp.github.io/fsharp-core-docs/reference/fsharp-collections-fsharpmap-2">Map</a>&lt;<span>string,&#32;<span><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-proteininference-proteinclassitem-1.html">ProteinClassItem</a>&lt;'sequence&gt;</span>&#32;list</span></span>&gt;</span></code>
+                    <code><span><a href="https://fsharp.github.io/fsharp-core-docs/reference/fsharp-collections-fsharpmap-2">Map</a>&lt;<span>string,&#32;<span><span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-proteininference-proteinclassitem-1.html">ProteinClassItem</a>&lt;'sequence&gt;</span>&#32;list</span></span>&gt;</span></code>
                   </span>
                   <br/>
                 </div>
@@ -1713,7 +1836,7 @@
                   <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:BioFSharp.Mz.ProteinInference.createProteinToPepSequencesMap``1\'/>')">
                     <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
                   </div>
-                  <a href="https://github.com/CSBiology/BioFSharp.Mz/tree/master/src/BioFSharp.Mz/ProteinInference.fs#L399-399" class="fsdocs-source-link" title="Source on GitHub">
+                  <a href="https://github.com/CSBiology/BioFSharp.Mz/tree/master/src/BioFSharp.Mz/ProteinInference.fs#L401-401" class="fsdocs-source-link" title="Source on GitHub">
                     <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
                   </a>
                   <p class="fsdocs-summary">
@@ -1727,7 +1850,7 @@
                     proteinClassItems
                   </span>
                   :
-                  <code><span><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-proteininference-proteinclassitem-1.html">ProteinClassItem</a>&lt;'sequence&gt;</span>&#32;list</span></code>
+                  <code><span><span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-proteininference-proteinclassitem-1.html">ProteinClassItem</a>&lt;'sequence&gt;</span>&#32;list</span></code>
                 </dt>
                 <dd class="fsdocs-param-docs"></dd>
               </dl>
@@ -1736,7 +1859,7 @@
                   <span class="fsdocs-return-name">
                     Returns: 
                   </span>
-                  <code><span><a href="https://fsharp.github.io/fsharp-core-docs/reference/fsharp-collections-fsharpmap-2">Map</a>&lt;<span>string,&#32;<span><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-proteininference-proteinclassitem-1.html">ProteinClassItem</a>&lt;'sequence&gt;</span>&#32;list</span></span>&gt;</span></code>
+                  <code><span><a href="https://fsharp.github.io/fsharp-core-docs/reference/fsharp-collections-fsharpmap-2">Map</a>&lt;<span>string,&#32;<span><span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-proteininference-proteinclassitem-1.html">ProteinClassItem</a>&lt;'sequence&gt;</span>&#32;list</span></span>&gt;</span></code>
                 </dt>
                 <dd class="fsdocs-return-docs"></dd>
               </dl>
@@ -1746,7 +1869,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '437', 437)" onmouseover="showTip(event, '437', 437)">
+              <code onmouseout="hideTip(event, '442', 442)" onmouseover="showTip(event, '442', 442)">
                 <p>
                   <a id="createReverseProteinScores">
                     <a href="#createReverseProteinScores">
@@ -1755,7 +1878,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="437">
+              <div class="fsdocs-tip" id="442">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>createReverseProteinScores&#32;<span>reverseProteins&#32;peptideScoreMap</span></span></code>
@@ -1823,7 +1946,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '438', 438)" onmouseover="showTip(event, '438', 438)">
+              <code onmouseout="hideTip(event, '443', 443)" onmouseover="showTip(event, '443', 443)">
                 <p>
                   <a id="inferSequences">
                     <a href="#inferSequences">
@@ -1832,7 +1955,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="438">
+              <div class="fsdocs-tip" id="443">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>inferSequences&#32;<span>integrationStrictness&#32;peptideUsageForQuantification&#32;proteinClassItems</span></span></code>
@@ -1845,7 +1968,7 @@
                         integrationStrictness
                       </b>
                       :
-                      <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-proteininference-integrationstrictness.html">IntegrationStrictness</a></code>
+                      <code><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-proteininference-integrationstrictness.html">IntegrationStrictness</a></code>
                     </span>
                     <br/>
                     <span>
@@ -1853,7 +1976,7 @@
                         peptideUsageForQuantification
                       </b>
                       :
-                      <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-proteininference-peptideusageforquantification.html">PeptideUsageForQuantification</a></code>
+                      <code><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-proteininference-peptideusageforquantification.html">PeptideUsageForQuantification</a></code>
                     </span>
                     <br/>
                     <span>
@@ -1861,14 +1984,14 @@
                         proteinClassItems
                       </b>
                       :
-                      <code><span><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-proteininference-proteinclassitem-1.html">ProteinClassItem</a>&lt;'sequence&gt;</span>&#32;list</span></code>
+                      <code><span><span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-proteininference-proteinclassitem-1.html">ProteinClassItem</a>&lt;'sequence&gt;</span>&#32;list</span></code>
                     </span>
                     <br/>
                   </ul>
                   <br/>
                   <span>
                     Returns: 
-                    <code><span><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-proteininference-inferredproteinclassitem-1.html">InferredProteinClassItem</a>&lt;'sequence&gt;</span>&#32;seq</span></code>
+                    <code><span><span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-proteininference-inferredproteinclassitem-1.html">InferredProteinClassItem</a>&lt;'sequence&gt;</span>&#32;seq</span></code>
                   </span>
                   <br/>
                 </div>
@@ -1882,7 +2005,7 @@
                   integrationStrictness
                 </span>
                 :
-                <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-proteininference-integrationstrictness.html">IntegrationStrictness</a></code>
+                <code><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-proteininference-integrationstrictness.html">IntegrationStrictness</a></code>
               </dt>
               <dd class="fsdocs-param-docs"></dd>
               <dt class="fsdocs-param">
@@ -1890,7 +2013,7 @@
                   peptideUsageForQuantification
                 </span>
                 :
-                <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-proteininference-peptideusageforquantification.html">PeptideUsageForQuantification</a></code>
+                <code><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-proteininference-peptideusageforquantification.html">PeptideUsageForQuantification</a></code>
               </dt>
               <dd class="fsdocs-param-docs"></dd>
               <dt class="fsdocs-param">
@@ -1898,7 +2021,7 @@
                   proteinClassItems
                 </span>
                 :
-                <code><span><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-proteininference-proteinclassitem-1.html">ProteinClassItem</a>&lt;'sequence&gt;</span>&#32;list</span></code>
+                <code><span><span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-proteininference-proteinclassitem-1.html">ProteinClassItem</a>&lt;'sequence&gt;</span>&#32;list</span></code>
               </dt>
               <dd class="fsdocs-param-docs"></dd>
             </dl>
@@ -1907,7 +2030,7 @@
                 <span class="fsdocs-return-name">
                   Returns: 
                 </span>
-                <code><span><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-proteininference-inferredproteinclassitem-1.html">InferredProteinClassItem</a>&lt;'sequence&gt;</span>&#32;seq</span></code>
+                <code><span><span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-proteininference-inferredproteinclassitem-1.html">InferredProteinClassItem</a>&lt;'sequence&gt;</span>&#32;seq</span></code>
               </dt>
               <dd class="fsdocs-return-docs"></dd>
             </dl>
@@ -1916,7 +2039,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '439', 439)" onmouseover="showTip(event, '439', 439)">
+              <code onmouseout="hideTip(event, '444', 444)" onmouseover="showTip(event, '444', 444)">
                 <p>
                   <a id="isGene">
                     <a href="#isGene">
@@ -1925,7 +2048,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="439">
+              <div class="fsdocs-tip" id="444">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>isGene&#32;<span>item</span></span></code>
@@ -1938,7 +2061,7 @@
                         item
                       </b>
                       :
-                      <code><span><a href="https://learn.microsoft.com/dotnet/api/biofsharp.fileformats.gff3.gffline-1">GFFLine</a>&lt;<span>char&#32;seq</span>&gt;</span></code>
+                      <code><span><a href="https://learn.microsoft.com/dotnet/api/biofsharp.fileformats.gff3.gffline-1">GFFLine</a>&lt;'a&gt;</span></code>
                     </span>
                     <br/>
                   </ul>
@@ -1956,10 +2079,10 @@
             <details>
               <summary>
                 <div class="fsdocs-summary">
-                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:BioFSharp.Mz.ProteinInference.isGene`')">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:BioFSharp.Mz.ProteinInference.isGene``1```')">
                     <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
                   </div>
-                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:BioFSharp.Mz.ProteinInference.isGene\'/>')">
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:BioFSharp.Mz.ProteinInference.isGene``1\'/>')">
                     <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
                   </div>
                   <a href="https://github.com/CSBiology/BioFSharp.Mz/tree/master/src/BioFSharp.Mz/ProteinInference.fs#L168-168" class="fsdocs-source-link" title="Source on GitHub">
@@ -1976,7 +2099,7 @@
                     item
                   </span>
                   :
-                  <code><span><a href="https://learn.microsoft.com/dotnet/api/biofsharp.fileformats.gff3.gffline-1">GFFLine</a>&lt;<span>char&#32;seq</span>&gt;</span></code>
+                  <code><span><a href="https://learn.microsoft.com/dotnet/api/biofsharp.fileformats.gff3.gffline-1">GFFLine</a>&lt;'a&gt;</span></code>
                 </dt>
                 <dd class="fsdocs-param-docs"></dd>
               </dl>
@@ -1995,7 +2118,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '440', 440)" onmouseover="showTip(event, '440', 440)">
+              <code onmouseout="hideTip(event, '445', 445)" onmouseover="showTip(event, '445', 445)">
                 <p>
                   <a id="isRNA">
                     <a href="#isRNA">
@@ -2004,7 +2127,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="440">
+              <div class="fsdocs-tip" id="445">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>isRNA&#32;<span>item</span></span></code>
@@ -2017,7 +2140,7 @@
                         item
                       </b>
                       :
-                      <code><span><a href="https://learn.microsoft.com/dotnet/api/biofsharp.fileformats.gff3.gffline-1">GFFLine</a>&lt;<span>char&#32;seq</span>&gt;</span></code>
+                      <code><span><a href="https://learn.microsoft.com/dotnet/api/biofsharp.fileformats.gff3.gffline-1">GFFLine</a>&lt;'a&gt;</span></code>
                     </span>
                     <br/>
                   </ul>
@@ -2035,10 +2158,10 @@
             <details>
               <summary>
                 <div class="fsdocs-summary">
-                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:BioFSharp.Mz.ProteinInference.isRNA`')">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:BioFSharp.Mz.ProteinInference.isRNA``1```')">
                     <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
                   </div>
-                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:BioFSharp.Mz.ProteinInference.isRNA\'/>')">
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:BioFSharp.Mz.ProteinInference.isRNA``1\'/>')">
                     <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
                   </div>
                   <a href="https://github.com/CSBiology/BioFSharp.Mz/tree/master/src/BioFSharp.Mz/ProteinInference.fs#L174-174" class="fsdocs-source-link" title="Source on GitHub">
@@ -2055,7 +2178,7 @@
                     item
                   </span>
                   :
-                  <code><span><a href="https://learn.microsoft.com/dotnet/api/biofsharp.fileformats.gff3.gffline-1">GFFLine</a>&lt;<span>char&#32;seq</span>&gt;</span></code>
+                  <code><span><a href="https://learn.microsoft.com/dotnet/api/biofsharp.fileformats.gff3.gffline-1">GFFLine</a>&lt;'a&gt;</span></code>
                 </dt>
                 <dd class="fsdocs-param-docs"></dd>
               </dl>
@@ -2074,7 +2197,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '441', 441)" onmouseover="showTip(event, '441', 441)">
+              <code onmouseout="hideTip(event, '446', 446)" onmouseover="showTip(event, '446', 446)">
                 <p>
                   <a id="proteinGroupToString">
                     <a href="#proteinGroupToString">
@@ -2083,7 +2206,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="441">
+              <div class="fsdocs-tip" id="446">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>proteinGroupToString&#32;<span>proteinGroup</span></span></code>
@@ -2153,7 +2276,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '442', 442)" onmouseover="showTip(event, '442', 442)">
+              <code onmouseout="hideTip(event, '447', 447)" onmouseover="showTip(event, '447', 447)">
                 <p>
                   <a id="removeModification">
                     <a href="#removeModification">
@@ -2162,7 +2285,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="442">
+              <div class="fsdocs-tip" id="447">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>removeModification&#32;<span>pepSeq</span></span></code>
@@ -2237,10 +2360,10 @@
         <p class="empty">Type something to start searching.</p>
     </div>
 </dialog>
-<script type="module" src="https://csbiology.github.io/BioFSharp.Mz/content/fsdocs-tips.js"></script>
-<script type="module" src="https://csbiology.github.io/BioFSharp.Mz/content/fsdocs-theme-toggle.js"></script>
-<script type="module" src="https://csbiology.github.io/BioFSharp.Mz/content/fsdocs-theme.js"></script>
-<script type="module" src="https://csbiology.github.io/BioFSharp.Mz/content/fsdocs-search.js"></script>
+<script type="module" src="https://biofsharp.com/BioFSharp.Mz/content/fsdocs-tips.js"></script>
+<script type="module" src="https://biofsharp.com/BioFSharp.Mz/content/fsdocs-theme-toggle.js"></script>
+<script type="module" src="https://biofsharp.com/BioFSharp.Mz/content/fsdocs-theme.js"></script>
+<script type="module" src="https://biofsharp.com/BioFSharp.Mz/content/fsdocs-search.js"></script>
 
 </body>
 </html>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-root="https://csbiology.github.io/BioFSharp.Mz/">
+<html lang="en" data-root="https://biofsharp.com/BioFSharp.Mz/">
 <head>
     <meta charset="UTF-8">
     <meta content="IE=edge" http-equiv="X-UA-Compatible">
@@ -8,11 +8,11 @@
     <!-- Opengraph properties (https://ogp.me/) -->
     <meta property="og:site_name" content="BioFSharp.Mz">
     <meta property="og:title" content="PercolatorParams (BioFSharp.Mz)" />
-    <meta property="og:url" content="https://csbiology.github.io/BioFSharp.Mz/{{fsdocs-source-basename}}.html">
+    <meta property="og:url" content="https://biofsharp.com/BioFSharp.Mz/{{fsdocs-source-basename}}.html">
     <meta property="og:type" content="website" />
     <!-- Twitter cards (https://developer.twitter.com/en/docs/twitter-for-websites/cards/overview/summary-card-with-large-image) -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:site" content="https://csbiology.github.io/BioFSharp.Mz/">
+    <meta name="twitter:site" content="https://biofsharp.com/BioFSharp.Mz/">
     <meta name="twitter:title" content="PercolatorParams (BioFSharp.Mz)">
     
     <title>PercolatorParams (BioFSharp.Mz) | BioFSharp.Mz</title>
@@ -20,11 +20,12 @@
     <link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
     <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
-    <link href="https://csbiology.github.io/BioFSharp.Mz/img/favicon.ico" rel="icon" sizes="32x32" type="image/png"/>
-    <script type="application/javascript" src="https://csbiology.github.io/BioFSharp.Mz/content/fsdocs-theme-set-dark.js"></script>
-    <link href="https://csbiology.github.io/BioFSharp.Mz/content/fsdocs-default.css" rel="stylesheet" type="text/css"/>
-    <link href="https://csbiology.github.io/BioFSharp.Mz/content/fsdocs-theme.css" rel="stylesheet" type="text/css"/>
+    <link href="https://biofsharp.com/BioFSharp.Mz/img/favicon.ico" rel="icon" sizes="32x32" type="image/png"/>
+    <script type="application/javascript" src="https://biofsharp.com/BioFSharp.Mz/content/fsdocs-theme-set-dark.js"></script>
+    <link href="https://biofsharp.com/BioFSharp.Mz/content/fsdocs-default.css" rel="stylesheet" type="text/css"/>
+    <link href="https://biofsharp.com/BioFSharp.Mz/content/fsdocs-theme.css" rel="stylesheet" type="text/css"/>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js"></script>
+<style>header .start a img { background-color: #2f3337; border-radius: 6px; padding: 3px; }</style>
     
 </head>
 <body class="api-docs">
@@ -43,19 +44,80 @@
                     Notes</a></li>
                 <li class="nav-item"><a class="nav-link" href="https://github.com/CSBiology/BioFSharp.Mz/">Source
                     Repository</a></li>
-                
+                <li class="nav-header ">
+  Spectrum processing
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/01_01_peaks_and_peak_arrays.html">
+    Peaks and peak arrays
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/01_02_signal_detection.html">
+    Signal detection and centroiding
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/01_03_charge_state_determination.html">
+    Charge state determination
+  </a>
+</li>             
+<li class="nav-header ">
+  Peptide identification
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/02_01_fragmentation.html">
+    In silico fragmentation
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/02_02_search_databases.html">
+    Peptide search databases
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/02_03_sequest_like_scoring.html">
+    SEQUEST-like scoring
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/02_04_andromeda_like_scoring.html">
+    Andromeda-like and X!Tandem-like scoring
+  </a>
+</li>             
+<li class="nav-header ">
+  Quantification
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/03_01_quantification.html">
+    Peak quantification
+  </a>
+</li>             
+<li class="nav-header ">
+  Validation and inference
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/04_01_fdr_control.html">
+    False discovery rate control
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/04_02_protein_inference.html">
+    Protein inference
+  </a>
+</li>
                 <li class="nav-header">
   API Reference
 </li>             
 <li class="nav-item">
-  <a class="nav-link" href="https://csbiology.github.io/BioFSharp.Mz/reference/index.html">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/reference/index.html">
     All Namespaces
   </a>
 </li>
             </ul>
         </div>
         <a href="https://csbiology.github.io/BioFSharp.Mz/">
-            <img alt="Header menu logo" src="https://csbiology.github.io/BioFSharp.Mz/img/logo.png">
+            <img alt="Header menu logo" src="https://biofsharp.com/BioFSharp.Mz/img/logo.png">
             <strong>BioFSharp.Mz</strong>
         </a>
     </div>
@@ -77,12 +139,73 @@
             Notes</a></li>
         <li class="nav-item"><a class="nav-link" href="https://github.com/CSBiology/BioFSharp.Mz/">Source
             Repository</a></li>
-        
+        <li class="nav-header ">
+  Spectrum processing
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/01_01_peaks_and_peak_arrays.html">
+    Peaks and peak arrays
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/01_02_signal_detection.html">
+    Signal detection and centroiding
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/01_03_charge_state_determination.html">
+    Charge state determination
+  </a>
+</li>             
+<li class="nav-header ">
+  Peptide identification
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/02_01_fragmentation.html">
+    In silico fragmentation
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/02_02_search_databases.html">
+    Peptide search databases
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/02_03_sequest_like_scoring.html">
+    SEQUEST-like scoring
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/02_04_andromeda_like_scoring.html">
+    Andromeda-like and X!Tandem-like scoring
+  </a>
+</li>             
+<li class="nav-header ">
+  Quantification
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/03_01_quantification.html">
+    Peak quantification
+  </a>
+</li>             
+<li class="nav-header ">
+  Validation and inference
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/04_01_fdr_control.html">
+    False discovery rate control
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/04_02_protein_inference.html">
+    Protein inference
+  </a>
+</li>
         <li class="nav-header">
   API Reference
 </li>             
 <li class="nav-item">
-  <a class="nav-link" href="https://csbiology.github.io/BioFSharp.Mz/reference/index.html">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/reference/index.html">
     All Namespaces
   </a>
 </li>
@@ -97,7 +220,7 @@
   <dl class="fsdocs-metadata">
     <dt>
       Namespace: 
-      <a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz.html">
+      <a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz.html">
         BioFSharp.Mz
       </a>
     </dt>
@@ -106,7 +229,7 @@
     </dt>
     <dt>
       Parent Module: 
-      <a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-percolatorwrapper-parameters.html">
+      <a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-percolatorwrapper-parameters.html">
         Parameters
       </a>
     </dt>
@@ -116,7 +239,7 @@
     </dt>
     <dt>
       All Interfaces: 
-      <code><span><a href="https://learn.microsoft.com/dotnet/api/system.iequatable-1">IEquatable</a>&lt;<a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-percolatorwrapper-parameters-percolatorparams.html">PercolatorParams</a>&gt;</span></code>
+      <code><span><a href="https://learn.microsoft.com/dotnet/api/system.iequatable-1">IEquatable</a>&lt;<a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-percolatorwrapper-parameters-percolatorparams.html">PercolatorParams</a>&gt;</span></code>
       , 
       <code><a href="https://learn.microsoft.com/dotnet/api/system.collections.istructuralequatable">IStructuralEquatable</a></code>
     </dt>
@@ -150,19 +273,19 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '945', 945)" onmouseover="showTip(event, '945', 945)">
+              <code onmouseout="hideTip(event, '956', 956)" onmouseover="showTip(event, '956', 956)">
                 <p>
                   <a id="FileInputOptions">
                     <a href="#FileInputOptions">
-                      <code><span>FileInputOptions&#32;<span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-percolatorwrapper-parameters-fileinputoptions.html">FileInputOptions</a>&#32;seq</span></span></code>
+                      <code><span>FileInputOptions&#32;<span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-percolatorwrapper-parameters-fileinputoptions.html">FileInputOptions</a>&#32;seq</span></span></code>
                     </a>
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="945">
+              <div class="fsdocs-tip" id="956">
                 <div class="member-tooltip">
                   Full Usage: 
-                  <code><span>FileInputOptions&#32;<span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-percolatorwrapper-parameters-fileinputoptions.html">FileInputOptions</a>&#32;seq</span></span></code>
+                  <code><span>FileInputOptions&#32;<span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-percolatorwrapper-parameters-fileinputoptions.html">FileInputOptions</a>&#32;seq</span></span></code>
                   <br/>
                   <br/>
                   Parameters: 
@@ -172,7 +295,7 @@
                         Item
                       </b>
                       :
-                      <code><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-percolatorwrapper-parameters-fileinputoptions.html">FileInputOptions</a>&#32;seq</span></code>
+                      <code><span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-percolatorwrapper-parameters-fileinputoptions.html">FileInputOptions</a>&#32;seq</span></code>
                     </span>
                     <br/>
                   </ul>
@@ -188,7 +311,7 @@
                   Item
                 </span>
                 :
-                <code><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-percolatorwrapper-parameters-fileinputoptions.html">FileInputOptions</a>&#32;seq</span></code>
+                <code><span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-percolatorwrapper-parameters-fileinputoptions.html">FileInputOptions</a>&#32;seq</span></code>
               </dt>
               <dd class="fsdocs-param-docs"></dd>
             </dl>
@@ -197,19 +320,19 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '946', 946)" onmouseover="showTip(event, '946', 946)">
+              <code onmouseout="hideTip(event, '957', 957)" onmouseover="showTip(event, '957', 957)">
                 <p>
                   <a id="FileOutputOptions">
                     <a href="#FileOutputOptions">
-                      <code><span>FileOutputOptions&#32;<span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-percolatorwrapper-parameters-fileoutputoptions.html">FileOutputOptions</a>&#32;seq</span></span></code>
+                      <code><span>FileOutputOptions&#32;<span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-percolatorwrapper-parameters-fileoutputoptions.html">FileOutputOptions</a>&#32;seq</span></span></code>
                     </a>
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="946">
+              <div class="fsdocs-tip" id="957">
                 <div class="member-tooltip">
                   Full Usage: 
-                  <code><span>FileOutputOptions&#32;<span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-percolatorwrapper-parameters-fileoutputoptions.html">FileOutputOptions</a>&#32;seq</span></span></code>
+                  <code><span>FileOutputOptions&#32;<span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-percolatorwrapper-parameters-fileoutputoptions.html">FileOutputOptions</a>&#32;seq</span></span></code>
                   <br/>
                   <br/>
                   Parameters: 
@@ -219,7 +342,7 @@
                         Item
                       </b>
                       :
-                      <code><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-percolatorwrapper-parameters-fileoutputoptions.html">FileOutputOptions</a>&#32;seq</span></code>
+                      <code><span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-percolatorwrapper-parameters-fileoutputoptions.html">FileOutputOptions</a>&#32;seq</span></code>
                     </span>
                     <br/>
                   </ul>
@@ -235,7 +358,7 @@
                   Item
                 </span>
                 :
-                <code><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-percolatorwrapper-parameters-fileoutputoptions.html">FileOutputOptions</a>&#32;seq</span></code>
+                <code><span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-percolatorwrapper-parameters-fileoutputoptions.html">FileOutputOptions</a>&#32;seq</span></code>
               </dt>
               <dd class="fsdocs-param-docs"></dd>
             </dl>
@@ -244,19 +367,19 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '947', 947)" onmouseover="showTip(event, '947', 947)">
+              <code onmouseout="hideTip(event, '958', 958)" onmouseover="showTip(event, '958', 958)">
                 <p>
                   <a id="GeneralOptions">
                     <a href="#GeneralOptions">
-                      <code><span>GeneralOptions&#32;<span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-percolatorwrapper-parameters-generaloptions.html">GeneralOptions</a>&#32;seq</span></span></code>
+                      <code><span>GeneralOptions&#32;<span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-percolatorwrapper-parameters-generaloptions.html">GeneralOptions</a>&#32;seq</span></span></code>
                     </a>
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="947">
+              <div class="fsdocs-tip" id="958">
                 <div class="member-tooltip">
                   Full Usage: 
-                  <code><span>GeneralOptions&#32;<span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-percolatorwrapper-parameters-generaloptions.html">GeneralOptions</a>&#32;seq</span></span></code>
+                  <code><span>GeneralOptions&#32;<span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-percolatorwrapper-parameters-generaloptions.html">GeneralOptions</a>&#32;seq</span></span></code>
                   <br/>
                   <br/>
                   Parameters: 
@@ -266,7 +389,7 @@
                         Item
                       </b>
                       :
-                      <code><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-percolatorwrapper-parameters-generaloptions.html">GeneralOptions</a>&#32;seq</span></code>
+                      <code><span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-percolatorwrapper-parameters-generaloptions.html">GeneralOptions</a>&#32;seq</span></code>
                     </span>
                     <br/>
                   </ul>
@@ -282,7 +405,7 @@
                   Item
                 </span>
                 :
-                <code><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-percolatorwrapper-parameters-generaloptions.html">GeneralOptions</a>&#32;seq</span></code>
+                <code><span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-percolatorwrapper-parameters-generaloptions.html">GeneralOptions</a>&#32;seq</span></code>
               </dt>
               <dd class="fsdocs-param-docs"></dd>
             </dl>
@@ -291,19 +414,19 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '948', 948)" onmouseover="showTip(event, '948', 948)">
+              <code onmouseout="hideTip(event, '959', 959)" onmouseover="showTip(event, '959', 959)">
                 <p>
                   <a id="ProteinInferenceOptions_FIDO">
                     <a href="#ProteinInferenceOptions_FIDO">
-                      <code><span>ProteinInferenceOptions_FIDO&#32;<span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-percolatorwrapper-parameters-proteininferenceoptions_fido.html">ProteinInferenceOptions_FIDO</a>&#32;seq</span></span></code>
+                      <code><span>ProteinInferenceOptions_FIDO&#32;<span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-percolatorwrapper-parameters-proteininferenceoptions_fido.html">ProteinInferenceOptions_FIDO</a>&#32;seq</span></span></code>
                     </a>
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="948">
+              <div class="fsdocs-tip" id="959">
                 <div class="member-tooltip">
                   Full Usage: 
-                  <code><span>ProteinInferenceOptions_FIDO&#32;<span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-percolatorwrapper-parameters-proteininferenceoptions_fido.html">ProteinInferenceOptions_FIDO</a>&#32;seq</span></span></code>
+                  <code><span>ProteinInferenceOptions_FIDO&#32;<span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-percolatorwrapper-parameters-proteininferenceoptions_fido.html">ProteinInferenceOptions_FIDO</a>&#32;seq</span></span></code>
                   <br/>
                   <br/>
                   Parameters: 
@@ -313,7 +436,7 @@
                         Item
                       </b>
                       :
-                      <code><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-percolatorwrapper-parameters-proteininferenceoptions_fido.html">ProteinInferenceOptions_FIDO</a>&#32;seq</span></code>
+                      <code><span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-percolatorwrapper-parameters-proteininferenceoptions_fido.html">ProteinInferenceOptions_FIDO</a>&#32;seq</span></code>
                     </span>
                     <br/>
                   </ul>
@@ -329,7 +452,7 @@
                   Item
                 </span>
                 :
-                <code><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-percolatorwrapper-parameters-proteininferenceoptions_fido.html">ProteinInferenceOptions_FIDO</a>&#32;seq</span></code>
+                <code><span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-percolatorwrapper-parameters-proteininferenceoptions_fido.html">ProteinInferenceOptions_FIDO</a>&#32;seq</span></code>
               </dt>
               <dd class="fsdocs-param-docs"></dd>
             </dl>
@@ -338,19 +461,19 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '949', 949)" onmouseover="showTip(event, '949', 949)">
+              <code onmouseout="hideTip(event, '960', 960)" onmouseover="showTip(event, '960', 960)">
                 <p>
                   <a id="ProteinInferenceOptions_Percolator">
                     <a href="#ProteinInferenceOptions_Percolator">
-                      <code><span>ProteinInferenceOptions_Percolator&#32;<span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-percolatorwrapper-parameters-proteininferenceoptions_percolator.html">ProteinInferenceOptions_Percolator</a>&#32;seq</span></span></code>
+                      <code><span>ProteinInferenceOptions_Percolator&#32;<span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-percolatorwrapper-parameters-proteininferenceoptions_percolator.html">ProteinInferenceOptions_Percolator</a>&#32;seq</span></span></code>
                     </a>
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="949">
+              <div class="fsdocs-tip" id="960">
                 <div class="member-tooltip">
                   Full Usage: 
-                  <code><span>ProteinInferenceOptions_Percolator&#32;<span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-percolatorwrapper-parameters-proteininferenceoptions_percolator.html">ProteinInferenceOptions_Percolator</a>&#32;seq</span></span></code>
+                  <code><span>ProteinInferenceOptions_Percolator&#32;<span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-percolatorwrapper-parameters-proteininferenceoptions_percolator.html">ProteinInferenceOptions_Percolator</a>&#32;seq</span></span></code>
                   <br/>
                   <br/>
                   Parameters: 
@@ -360,7 +483,7 @@
                         Item
                       </b>
                       :
-                      <code><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-percolatorwrapper-parameters-proteininferenceoptions_percolator.html">ProteinInferenceOptions_Percolator</a>&#32;seq</span></code>
+                      <code><span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-percolatorwrapper-parameters-proteininferenceoptions_percolator.html">ProteinInferenceOptions_Percolator</a>&#32;seq</span></code>
                     </span>
                     <br/>
                   </ul>
@@ -376,7 +499,7 @@
                   Item
                 </span>
                 :
-                <code><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-percolatorwrapper-parameters-proteininferenceoptions_percolator.html">ProteinInferenceOptions_Percolator</a>&#32;seq</span></code>
+                <code><span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-percolatorwrapper-parameters-proteininferenceoptions_percolator.html">ProteinInferenceOptions_Percolator</a>&#32;seq</span></code>
               </dt>
               <dd class="fsdocs-param-docs"></dd>
             </dl>
@@ -385,19 +508,19 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '950', 950)" onmouseover="showTip(event, '950', 950)">
+              <code onmouseout="hideTip(event, '961', 961)" onmouseover="showTip(event, '961', 961)">
                 <p>
                   <a id="SVMFeatureOptions">
                     <a href="#SVMFeatureOptions">
-                      <code><span>SVMFeatureOptions&#32;<span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-percolatorwrapper-parameters-svmfeatureoptions.html">SVMFeatureOptions</a>&#32;seq</span></span></code>
+                      <code><span>SVMFeatureOptions&#32;<span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-percolatorwrapper-parameters-svmfeatureoptions.html">SVMFeatureOptions</a>&#32;seq</span></span></code>
                     </a>
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="950">
+              <div class="fsdocs-tip" id="961">
                 <div class="member-tooltip">
                   Full Usage: 
-                  <code><span>SVMFeatureOptions&#32;<span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-percolatorwrapper-parameters-svmfeatureoptions.html">SVMFeatureOptions</a>&#32;seq</span></span></code>
+                  <code><span>SVMFeatureOptions&#32;<span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-percolatorwrapper-parameters-svmfeatureoptions.html">SVMFeatureOptions</a>&#32;seq</span></span></code>
                   <br/>
                   <br/>
                   Parameters: 
@@ -407,7 +530,7 @@
                         Item
                       </b>
                       :
-                      <code><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-percolatorwrapper-parameters-svmfeatureoptions.html">SVMFeatureOptions</a>&#32;seq</span></code>
+                      <code><span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-percolatorwrapper-parameters-svmfeatureoptions.html">SVMFeatureOptions</a>&#32;seq</span></code>
                     </span>
                     <br/>
                   </ul>
@@ -423,7 +546,7 @@
                   Item
                 </span>
                 :
-                <code><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-percolatorwrapper-parameters-svmfeatureoptions.html">SVMFeatureOptions</a>&#32;seq</span></code>
+                <code><span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-percolatorwrapper-parameters-svmfeatureoptions.html">SVMFeatureOptions</a>&#32;seq</span></code>
               </dt>
               <dd class="fsdocs-param-docs"></dd>
             </dl>
@@ -432,19 +555,19 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '951', 951)" onmouseover="showTip(event, '951', 951)">
+              <code onmouseout="hideTip(event, '962', 962)" onmouseover="showTip(event, '962', 962)">
                 <p>
                   <a id="SVMTrainingOptions">
                     <a href="#SVMTrainingOptions">
-                      <code><span>SVMTrainingOptions&#32;<span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-percolatorwrapper-parameters-svmtrainingoptions.html">SVMTrainingOptions</a>&#32;seq</span></span></code>
+                      <code><span>SVMTrainingOptions&#32;<span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-percolatorwrapper-parameters-svmtrainingoptions.html">SVMTrainingOptions</a>&#32;seq</span></span></code>
                     </a>
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="951">
+              <div class="fsdocs-tip" id="962">
                 <div class="member-tooltip">
                   Full Usage: 
-                  <code><span>SVMTrainingOptions&#32;<span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-percolatorwrapper-parameters-svmtrainingoptions.html">SVMTrainingOptions</a>&#32;seq</span></span></code>
+                  <code><span>SVMTrainingOptions&#32;<span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-percolatorwrapper-parameters-svmtrainingoptions.html">SVMTrainingOptions</a>&#32;seq</span></span></code>
                   <br/>
                   <br/>
                   Parameters: 
@@ -454,7 +577,7 @@
                         Item
                       </b>
                       :
-                      <code><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-percolatorwrapper-parameters-svmtrainingoptions.html">SVMTrainingOptions</a>&#32;seq</span></code>
+                      <code><span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-percolatorwrapper-parameters-svmtrainingoptions.html">SVMTrainingOptions</a>&#32;seq</span></code>
                     </span>
                     <br/>
                   </ul>
@@ -470,7 +593,7 @@
                   Item
                 </span>
                 :
-                <code><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-percolatorwrapper-parameters-svmtrainingoptions.html">SVMTrainingOptions</a>&#32;seq</span></code>
+                <code><span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-percolatorwrapper-parameters-svmtrainingoptions.html">SVMTrainingOptions</a>&#32;seq</span></code>
               </dt>
               <dd class="fsdocs-param-docs"></dd>
             </dl>
@@ -501,7 +624,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '952', 952)" onmouseover="showTip(event, '952', 952)">
+              <code onmouseout="hideTip(event, '963', 963)" onmouseover="showTip(event, '963', 963)">
                 <p>
                   <a id="IsFileInputOptions">
                     <a href="#IsFileInputOptions">
@@ -510,7 +633,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="952">
+              <div class="fsdocs-tip" id="963">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>this.IsFileInputOptions</span></code>
@@ -540,7 +663,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '953', 953)" onmouseover="showTip(event, '953', 953)">
+              <code onmouseout="hideTip(event, '964', 964)" onmouseover="showTip(event, '964', 964)">
                 <p>
                   <a id="IsFileOutputOptions">
                     <a href="#IsFileOutputOptions">
@@ -549,7 +672,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="953">
+              <div class="fsdocs-tip" id="964">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>this.IsFileOutputOptions</span></code>
@@ -579,7 +702,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '954', 954)" onmouseover="showTip(event, '954', 954)">
+              <code onmouseout="hideTip(event, '965', 965)" onmouseover="showTip(event, '965', 965)">
                 <p>
                   <a id="IsGeneralOptions">
                     <a href="#IsGeneralOptions">
@@ -588,7 +711,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="954">
+              <div class="fsdocs-tip" id="965">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>this.IsGeneralOptions</span></code>
@@ -618,7 +741,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '955', 955)" onmouseover="showTip(event, '955', 955)">
+              <code onmouseout="hideTip(event, '966', 966)" onmouseover="showTip(event, '966', 966)">
                 <p>
                   <a id="IsProteinInferenceOptions_FIDO">
                     <a href="#IsProteinInferenceOptions_FIDO">
@@ -627,7 +750,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="955">
+              <div class="fsdocs-tip" id="966">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>this.IsProteinInferenceOptions_FIDO</span></code>
@@ -657,7 +780,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '956', 956)" onmouseover="showTip(event, '956', 956)">
+              <code onmouseout="hideTip(event, '967', 967)" onmouseover="showTip(event, '967', 967)">
                 <p>
                   <a id="IsProteinInferenceOptions_Percolator">
                     <a href="#IsProteinInferenceOptions_Percolator">
@@ -666,7 +789,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="956">
+              <div class="fsdocs-tip" id="967">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>this.IsProteinInferenceOptions_Percolator</span></code>
@@ -696,7 +819,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '957', 957)" onmouseover="showTip(event, '957', 957)">
+              <code onmouseout="hideTip(event, '968', 968)" onmouseover="showTip(event, '968', 968)">
                 <p>
                   <a id="IsSVMFeatureOptions">
                     <a href="#IsSVMFeatureOptions">
@@ -705,7 +828,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="957">
+              <div class="fsdocs-tip" id="968">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>this.IsSVMFeatureOptions</span></code>
@@ -735,7 +858,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '958', 958)" onmouseover="showTip(event, '958', 958)">
+              <code onmouseout="hideTip(event, '969', 969)" onmouseover="showTip(event, '969', 969)">
                 <p>
                   <a id="IsSVMTrainingOptions">
                     <a href="#IsSVMTrainingOptions">
@@ -744,7 +867,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="958">
+              <div class="fsdocs-tip" id="969">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>this.IsSVMTrainingOptions</span></code>
@@ -790,10 +913,10 @@
         <p class="empty">Type something to start searching.</p>
     </div>
 </dialog>
-<script type="module" src="https://csbiology.github.io/BioFSharp.Mz/content/fsdocs-tips.js"></script>
-<script type="module" src="https://csbiology.github.io/BioFSharp.Mz/content/fsdocs-theme-toggle.js"></script>
-<script type="module" src="https://csbiology.github.io/BioFSharp.Mz/content/fsdocs-theme.js"></script>
-<script type="module" src="https://csbiology.github.io/BioFSharp.Mz/content/fsdocs-search.js"></script>
+<script type="module" src="https://biofsharp.com/BioFSharp.Mz/content/fsdocs-tips.js"></script>
+<script type="module" src="https://biofsharp.com/BioFSharp.Mz/content/fsdocs-theme-toggle.js"></script>
+<script type="module" src="https://biofsharp.com/BioFSharp.Mz/content/fsdocs-theme.js"></script>
+<script type="module" src="https://biofsharp.com/BioFSharp.Mz/content/fsdocs-search.js"></script>
 
 </body>
 </html>

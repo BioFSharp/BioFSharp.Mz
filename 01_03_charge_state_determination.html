@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en" data-root="https://biofsharp.com/BioFSharp.Mz/">
+<head>
+    <meta charset="UTF-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="David Zimmer, Caroline Ott, Heinrich Lukas Weil, Timo Muehlhaus" name="author">
+    <!-- Opengraph properties (https://ogp.me/) -->
+    <meta property="og:site_name" content="BioFSharp.Mz">
+    <meta property="og:title" content="Charge state determination" />
+    <meta property="og:url" content="https://biofsharp.com/BioFSharp.Mz/01_03_charge_state_determination.html">
+    <meta property="og:type" content="website" />
+    <!-- Twitter cards (https://developer.twitter.com/en/docs/twitter-for-websites/cards/overview/summary-card-with-large-image) -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="https://biofsharp.com/BioFSharp.Mz/">
+    <meta name="twitter:title" content="Charge state determination">
+    
+    <title>Charge state determination | BioFSharp.Mz</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <link href="https://biofsharp.com/BioFSharp.Mz/img/favicon.ico" rel="icon" sizes="32x32" type="image/png"/>
+    <script type="application/javascript" src="https://biofsharp.com/BioFSharp.Mz/content/fsdocs-theme-set-dark.js"></script>
+    <link href="https://biofsharp.com/BioFSharp.Mz/content/fsdocs-default.css" rel="stylesheet" type="text/css"/>
+    <link href="https://biofsharp.com/BioFSharp.Mz/content/fsdocs-theme.css" rel="stylesheet" type="text/css"/>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js"></script>
+<style>header .start a img { background-color: #2f3337; border-radius: 6px; padding: 3px; }</style>
+    
+</head>
+<body class="content">
+<header>
+    <div class="start">
+        <div id="menu-toggle">
+            <iconify-icon class="icon closed" height="22" icon="eva:menu-fill" width="22"></iconify-icon>
+            <iconify-icon class="icon open" height="22" icon="mi:close" width="22"></iconify-icon>
+            <input type="checkbox" name="mobile-menu" />
+            <ul class="menu">
+                <li class="nav-header">Links</li>
+                <li class="nav-item"><a class="nav-link" href="https://github.com/CSBiology/BioFSharp.Mz/blob/developer/LICENSE">License</a>
+                </li>
+                <li class="nav-item"><a class="nav-link"
+                                        href="https://github.com/CSBiology/BioFSharp.Mz/blob/developer/RELEASE_NOTES.md">Release
+                    Notes</a></li>
+                <li class="nav-item"><a class="nav-link" href="https://github.com/CSBiology/BioFSharp.Mz/">Source
+                    Repository</a></li>
+                <li class="nav-header active">
+  Spectrum processing
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/01_01_peaks_and_peak_arrays.html">
+    Peaks and peak arrays
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/01_02_signal_detection.html">
+    Signal detection and centroiding
+  </a>
+</li>             
+<li class="nav-item active">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/01_03_charge_state_determination.html">
+    Charge state determination
+  </a>
+</li>             
+<li class="nav-header ">
+  Peptide identification
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/02_01_fragmentation.html">
+    In silico fragmentation
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/02_02_search_databases.html">
+    Peptide search databases
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/02_03_sequest_like_scoring.html">
+    SEQUEST-like scoring
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/02_04_andromeda_like_scoring.html">
+    Andromeda-like and X!Tandem-like scoring
+  </a>
+</li>             
+<li class="nav-header ">
+  Quantification
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/03_01_quantification.html">
+    Peak quantification
+  </a>
+</li>             
+<li class="nav-header ">
+  Validation and inference
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/04_01_fdr_control.html">
+    False discovery rate control
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/04_02_protein_inference.html">
+    Protein inference
+  </a>
+</li>
+                <li class="nav-header">
+  API Reference
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/reference/index.html">
+    All Namespaces
+  </a>
+</li>
+            </ul>
+        </div>
+        <a href="https://csbiology.github.io/BioFSharp.Mz/">
+            <img alt="Header menu logo" src="https://biofsharp.com/BioFSharp.Mz/img/logo.png">
+            <strong>BioFSharp.Mz</strong>
+        </a>
+    </div>
+    <div class="end">
+        <a href="https://github.com/CSBiology/BioFSharp.Mz/" target="_blank">
+            <iconify-icon icon="uil:github" width="26" height="26"></iconify-icon>
+        </a>
+        <iconify-icon id="search-btn" icon="carbon:search" class="search" width="24" height="24"></iconify-icon>
+        <fsdocs-theme-toggle></fsdocs-theme-toggle>
+    </div>
+</header>
+<aside id="fsdocs-main-menu">
+    <ul class="menu">
+        <li class="nav-header">Links</li>
+        <li class="nav-item"><a class="nav-link" href="https://github.com/CSBiology/BioFSharp.Mz/blob/developer/LICENSE">License</a>
+        </li>
+        <li class="nav-item"><a class="nav-link"
+                                href="https://github.com/CSBiology/BioFSharp.Mz/blob/developer/RELEASE_NOTES.md">Release
+            Notes</a></li>
+        <li class="nav-item"><a class="nav-link" href="https://github.com/CSBiology/BioFSharp.Mz/">Source
+            Repository</a></li>
+        <li class="nav-header active">
+  Spectrum processing
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/01_01_peaks_and_peak_arrays.html">
+    Peaks and peak arrays
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/01_02_signal_detection.html">
+    Signal detection and centroiding
+  </a>
+</li>             
+<li class="nav-item active">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/01_03_charge_state_determination.html">
+    Charge state determination
+  </a>
+</li>             
+<li class="nav-header ">
+  Peptide identification
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/02_01_fragmentation.html">
+    In silico fragmentation
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/02_02_search_databases.html">
+    Peptide search databases
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/02_03_sequest_like_scoring.html">
+    SEQUEST-like scoring
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/02_04_andromeda_like_scoring.html">
+    Andromeda-like and X!Tandem-like scoring
+  </a>
+</li>             
+<li class="nav-header ">
+  Quantification
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/03_01_quantification.html">
+    Peak quantification
+  </a>
+</li>             
+<li class="nav-header ">
+  Validation and inference
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/04_01_fdr_control.html">
+    False discovery rate control
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/04_02_protein_inference.html">
+    Protein inference
+  </a>
+</li>
+        <li class="nav-header">
+  API Reference
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/reference/index.html">
+    All Namespaces
+  </a>
+</li>
+    </ul>
+</aside>
+<main>
+    <div id="content">
+        
+<p><a href="https://mybinder.org/v2/gh/BioFSharp/BioFSharp.Mz/gh-pages?filepath=01_03_charge_state_determination.ipynb"><img src="https://biofsharp.com/BioFSharp.Mz/img/badge-binder.svg" alt="Binder" /></a>&emsp;
+<a href="https://biofsharp.com/BioFSharp.Mz/01_03_charge_state_determination.fsx"><img src="https://biofsharp.com/BioFSharp.Mz/img/badge-script.svg" alt="Script" /></a>&emsp;
+<a href="https://biofsharp.com/BioFSharp.Mz/01_03_charge_state_determination.ipynb"><img src="https://biofsharp.com/BioFSharp.Mz/img/badge-notebook.svg" alt="Notebook" /></a></p>
+<h1><a name="Charge-state-determination" class="anchor" href="#Charge-state-determination">Charge state determination</a></h1>
+<p>A mass spectrometer reports m/z, the mass of an ion divided by the number of charges
+it carries. The database search at the end of the pipeline works with neutral peptide
+masses, so at some point the charge z has to be inferred. The stakes are concrete: a precursor observed at m/z 643.8 weighs
+about 1285.6 Da if it carries two charges and about 1928.4 Da if it carries three.
+Search the wrong mass range and the peptide is never found.</p>
+<p>The information needed to infer z is already in the MS1 scan. Elements come in
+naturally occurring isotopes, and with roughly one in a hundred carbon atoms being a
+heavy ¹³C, a population of identical peptide molecules spreads out into an isotope
+cluster: the monoisotopic peak, a peak one neutron heavier, one two neutrons heavier,
+and so on. For a peptide with neutral mass M at charge z, the n-th isotope peak sits
+at m/z = (M + z·H + n·1.00335) / z. Adjacent cluster peaks are therefore spaced
+1.00335 / z apart on the m/z axis. A cluster whose peaks sit 1.0 apart is singly
+charged, 0.5 apart means 2+, 0.33 apart means 3+, 0.25 apart means 4+. The
+<code>ChargeState</code> module reads the
+charge out of exactly this spacing, using 1 / z as an approximation of the
+theoretical distance.</p>
+<p><code>ms2Example.mgf</code> holds a fragment
+spectrum of the peptide ANLGMEVMHER, recorded at 20.93 min. <code>ms1Example.mgf</code> is the
+MS1 survey scan recorded right before it, at 20.91 min in the same run, where the
+fragmented precursor was measured intact, so its isotope cluster is sitting in that
+scan's data. We determine the charge from the MS1 scan and check the resulting mass
+against what the MS2 file states in its header.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="k">open</span> <span onmouseout="hideTip(event, 'fs1', 1)" onmouseover="showTip(event, 'fs1', 1)" class="id">BioFSharp</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs2', 2)" onmouseover="showTip(event, 'fs2', 2)" class="id">FileFormats</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs3', 3)" onmouseover="showTip(event, 'fs3', 3)" class="m">MGF</span>
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs1', 4)" onmouseover="showTip(event, 'fs1', 4)" class="id">BioFSharp</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs4', 5)" onmouseover="showTip(event, 'fs4', 5)" class="id">IO</span>
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs1', 6)" onmouseover="showTip(event, 'fs1', 6)" class="id">BioFSharp</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs5', 7)" onmouseover="showTip(event, 'fs5', 7)" class="id">Mz</span>
+
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs6', 8)" onmouseover="showTip(event, 'fs6', 8)" class="id">ms2</span> <span class="o">=</span>
+    <span onmouseout="hideTip(event, 'fs7', 9)" onmouseover="showTip(event, 'fs7', 9)" class="m">MGF</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs8', 10)" onmouseover="showTip(event, 'fs8', 10)" class="id">read</span> <span class="pn">(</span><span class="k">__SOURCE_DIRECTORY__</span> <span class="o">+</span> <span class="s">&quot;/data/ms2Example.mgf&quot;</span><span class="pn">)</span>
+    <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs9', 11)" onmouseover="showTip(event, 'fs9', 11)" class="m">List</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs10', 12)" onmouseover="showTip(event, 'fs10', 12)" class="id">head</span>
+
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs11', 13)" onmouseover="showTip(event, 'fs11', 13)" class="id">precursorMZ</span> <span class="o">=</span>
+    <span class="k">match</span> <span onmouseout="hideTip(event, 'fs12', 14)" onmouseover="showTip(event, 'fs12', 14)" class="rt">MGFEntry</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs13', 15)" onmouseover="showTip(event, 'fs13', 15)" class="id">tryGetPrecursorMZ</span> <span onmouseout="hideTip(event, 'fs6', 16)" onmouseover="showTip(event, 'fs6', 16)" class="id">ms2</span> <span class="k">with</span>
+    <span class="pn">|</span> <span onmouseout="hideTip(event, 'fs14', 17)" onmouseover="showTip(event, 'fs14', 17)" class="uc">Some</span> <span onmouseout="hideTip(event, 'fs15', 18)" onmouseover="showTip(event, 'fs15', 18)" class="fn">mz</span> <span class="k">-&gt;</span> <span onmouseout="hideTip(event, 'fs15', 19)" onmouseover="showTip(event, 'fs15', 19)" class="fn">mz</span>
+    <span class="pn">|</span> <span onmouseout="hideTip(event, 'fs16', 20)" onmouseover="showTip(event, 'fs16', 20)" class="uc">None</span> <span class="k">-&gt;</span> <span onmouseout="hideTip(event, 'fs17', 21)" onmouseover="showTip(event, 'fs17', 21)" class="fn">failwith</span> <span class="s">&quot;no precursor m/z in the MS2 header&quot;</span>
+
+<span onmouseout="hideTip(event, 'fs18', 22)" onmouseover="showTip(event, 'fs18', 22)" class="fn">printfn</span> <span class="s">&quot;</span><span class="pf">%s</span><span class="s">&quot;</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs12', 23)" onmouseover="showTip(event, 'fs12', 23)" class="rt">MGFEntry</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs19', 24)" onmouseover="showTip(event, 'fs19', 24)" class="id">tryGetTitle</span> <span onmouseout="hideTip(event, 'fs6', 25)" onmouseover="showTip(event, 'fs6', 25)" class="id">ms2</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs20', 26)" onmouseover="showTip(event, 'fs20', 26)" class="m">Option</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs21', 27)" onmouseover="showTip(event, 'fs21', 27)" class="id">defaultValue</span> <span class="s">&quot;no title&quot;</span><span class="pn">)</span>
+<span onmouseout="hideTip(event, 'fs18', 28)" onmouseover="showTip(event, 'fs18', 28)" class="fn">printfn</span> <span class="s">&quot;precursor m/z: </span><span class="pf">%f</span><span class="s">&quot;</span> <span onmouseout="hideTip(event, 'fs11', 29)" onmouseover="showTip(event, 'fs11', 29)" class="id">precursorMZ</span>
+</code></pre>
+<table class="pre"><tr><td class="snippet"><pre class="fssnip"><code lang="text">MS/MS scan at 20.93388333 min with Intensity: 501.0 and Sequence ANLGMEVMHER
+precursor m/z: 643.803548
+</code></pre></td></tr></table>
+<p>The header also carries a <code>PEPMASS</code> of 1285.591258 Da. That value is our ground
+truth. If the charge determination works, we arrive at this mass using only the MS1
+peaks and the precursor m/z.</p>
+<h2><a name="Centroiding-the-MS1-survey-scan" class="anchor" href="#Centroiding-the-MS1-survey-scan">Centroiding the MS1 survey scan</a></h2>
+<p>Charge determination runs on centroided peaks, one peak per ion signal. We prepare
+the MS1 scan exactly as on the
+<a href="https://biofsharp.com/BioFSharp.Mz/01_02_signal_detection.html">signal detection</a> page, with the same padding
+and wavelet parameters, and refer there for what each of them does.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs22', 30)" onmouseover="showTip(event, 'fs22', 30)" class="id">ms1</span> <span class="o">=</span>
+    <span onmouseout="hideTip(event, 'fs7', 31)" onmouseover="showTip(event, 'fs7', 31)" class="m">MGF</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs8', 32)" onmouseover="showTip(event, 'fs8', 32)" class="id">read</span> <span class="pn">(</span><span class="k">__SOURCE_DIRECTORY__</span> <span class="o">+</span> <span class="s">&quot;/data/ms1Example.mgf&quot;</span><span class="pn">)</span>
+    <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs9', 33)" onmouseover="showTip(event, 'fs9', 33)" class="m">List</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs10', 34)" onmouseover="showTip(event, 'fs10', 34)" class="id">head</span>
+
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs23', 35)" onmouseover="showTip(event, 'fs23', 35)" class="id">paddingParams</span> <span class="o">=</span>
+    <span onmouseout="hideTip(event, 'fs24', 36)" onmouseover="showTip(event, 'fs24', 36)" class="m">SignalDetection</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs25', 37)" onmouseover="showTip(event, 'fs25', 37)" class="m">Padding</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs26', 38)" onmouseover="showTip(event, 'fs26', 38)" class="id">createPaddingParameters</span> <span class="n">0.</span> <span onmouseout="hideTip(event, 'fs16', 39)" onmouseover="showTip(event, 'fs16', 39)" class="uc">None</span> <span class="n">0.05</span> <span class="n">150</span> <span class="n">95.</span>
+
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs27', 40)" onmouseover="showTip(event, 'fs27', 40)" class="id">waveletParams</span> <span class="o">=</span>
+    <span onmouseout="hideTip(event, 'fs24', 41)" onmouseover="showTip(event, 'fs24', 41)" class="m">SignalDetection</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs28', 42)" onmouseover="showTip(event, 'fs28', 42)" class="m">Wavelet</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs29', 43)" onmouseover="showTip(event, 'fs29', 43)" class="id">createWaveletParameters</span> <span class="n">3</span> <span class="n">0.</span> <span class="n">0.1</span> <span class="n">95.</span> <span class="n">1.</span> <span class="k">false</span> <span class="k">false</span>
+
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs30', 44)" onmouseover="showTip(event, 'fs30', 44)" class="id">centroidMz</span><span class="pn">,</span> <span onmouseout="hideTip(event, 'fs31', 45)" onmouseover="showTip(event, 'fs31', 45)" class="id">centroidIntensity</span> <span class="o">=</span>
+    <span onmouseout="hideTip(event, 'fs24', 46)" onmouseover="showTip(event, 'fs24', 46)" class="m">SignalDetection</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs25', 47)" onmouseover="showTip(event, 'fs25', 47)" class="m">Padding</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs32', 48)" onmouseover="showTip(event, 'fs32', 48)" class="id">paddDataBy</span> <span onmouseout="hideTip(event, 'fs23', 49)" onmouseover="showTip(event, 'fs23', 49)" class="id">paddingParams</span> <span onmouseout="hideTip(event, 'fs22', 50)" onmouseover="showTip(event, 'fs22', 50)" class="id">ms1</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs33', 51)" onmouseover="showTip(event, 'fs33', 51)" class="id">Mass</span> <span onmouseout="hideTip(event, 'fs22', 52)" onmouseover="showTip(event, 'fs22', 52)" class="id">ms1</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs34', 53)" onmouseover="showTip(event, 'fs34', 53)" class="id">Intensity</span>
+    <span class="o">||&gt;</span> <span onmouseout="hideTip(event, 'fs24', 54)" onmouseover="showTip(event, 'fs24', 54)" class="m">SignalDetection</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs28', 55)" onmouseover="showTip(event, 'fs28', 55)" class="m">Wavelet</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs35', 56)" onmouseover="showTip(event, 'fs35', 56)" class="id">toCentroidWithRicker2D</span> <span onmouseout="hideTip(event, 'fs27', 57)" onmouseover="showTip(event, 'fs27', 57)" class="id">waveletParams</span>
+
+<span onmouseout="hideTip(event, 'fs18', 58)" onmouseover="showTip(event, 'fs18', 58)" class="fn">printfn</span> <span class="s">&quot;centroids: </span><span class="pf">%i</span><span class="s">&quot;</span> <span onmouseout="hideTip(event, 'fs30', 59)" onmouseover="showTip(event, 'fs30', 59)" class="id">centroidMz</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs36', 60)" onmouseover="showTip(event, 'fs36', 60)" class="id">Length</span>
+</code></pre>
+<table class="pre"><tr><td class="snippet"><pre class="fssnip"><code lang="text">centroids: 1454
+</code></pre></td></tr></table>
+<p>Before handing these arrays to the module, we look at the centroids in a small
+window starting at the precursor m/z, together with their spacings.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs37', 61)" onmouseover="showTip(event, 'fs37', 61)" class="id">clusterWindow</span> <span class="o">=</span>
+    <span onmouseout="hideTip(event, 'fs38', 62)" onmouseover="showTip(event, 'fs38', 62)" class="m">Array</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs39', 63)" onmouseover="showTip(event, 'fs39', 63)" class="id">zip</span> <span onmouseout="hideTip(event, 'fs30', 64)" onmouseover="showTip(event, 'fs30', 64)" class="id">centroidMz</span> <span onmouseout="hideTip(event, 'fs31', 65)" onmouseover="showTip(event, 'fs31', 65)" class="id">centroidIntensity</span>
+    <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs38', 66)" onmouseover="showTip(event, 'fs38', 66)" class="m">Array</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs40', 67)" onmouseover="showTip(event, 'fs40', 67)" class="id">filter</span> <span class="pn">(</span><span class="k">fun</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs15', 68)" onmouseover="showTip(event, 'fs15', 68)" class="fn">mz</span><span class="pn">,</span> <span class="id">_</span><span class="pn">)</span> <span class="k">-&gt;</span> <span onmouseout="hideTip(event, 'fs15', 69)" onmouseover="showTip(event, 'fs15', 69)" class="fn">mz</span> <span class="o">&gt;</span><span class="o">=</span> <span class="n">643.5</span> <span class="o">&amp;&amp;</span> <span onmouseout="hideTip(event, 'fs15', 70)" onmouseover="showTip(event, 'fs15', 70)" class="fn">mz</span> <span class="o">&lt;=</span> <span class="n">645.5</span><span class="pn">)</span>
+
+<span onmouseout="hideTip(event, 'fs37', 71)" onmouseover="showTip(event, 'fs37', 71)" class="id">clusterWindow</span>
+<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs38', 72)" onmouseover="showTip(event, 'fs38', 72)" class="m">Array</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs41', 73)" onmouseover="showTip(event, 'fs41', 73)" class="id">iter</span> <span class="pn">(</span><span class="k">fun</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs15', 74)" onmouseover="showTip(event, 'fs15', 74)" class="fn">mz</span><span class="pn">,</span> <span onmouseout="hideTip(event, 'fs42', 75)" onmouseover="showTip(event, 'fs42', 75)" class="fn">i</span><span class="pn">)</span> <span class="k">-&gt;</span> <span onmouseout="hideTip(event, 'fs18', 76)" onmouseover="showTip(event, 'fs18', 76)" class="fn">printfn</span> <span class="s">&quot;m/z </span><span class="pf">%f</span><span class="s">  intensity </span><span class="pf">%5.1f</span><span class="s">&quot;</span> <span onmouseout="hideTip(event, 'fs15', 77)" onmouseover="showTip(event, 'fs15', 77)" class="fn">mz</span> <span onmouseout="hideTip(event, 'fs42', 78)" onmouseover="showTip(event, 'fs42', 78)" class="fn">i</span><span class="pn">)</span>
+
+<span onmouseout="hideTip(event, 'fs37', 79)" onmouseover="showTip(event, 'fs37', 79)" class="id">clusterWindow</span>
+<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs38', 80)" onmouseover="showTip(event, 'fs38', 80)" class="m">Array</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs43', 81)" onmouseover="showTip(event, 'fs43', 81)" class="id">map</span> <span onmouseout="hideTip(event, 'fs44', 82)" onmouseover="showTip(event, 'fs44', 82)" class="fn">fst</span>
+<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs38', 83)" onmouseover="showTip(event, 'fs38', 83)" class="m">Array</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs45', 84)" onmouseover="showTip(event, 'fs45', 84)" class="id">pairwise</span>
+<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs38', 85)" onmouseover="showTip(event, 'fs38', 85)" class="m">Array</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs41', 86)" onmouseover="showTip(event, 'fs41', 86)" class="id">iter</span> <span class="pn">(</span><span class="k">fun</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs46', 87)" onmouseover="showTip(event, 'fs46', 87)" class="fn">a</span><span class="pn">,</span> <span onmouseout="hideTip(event, 'fs47', 88)" onmouseover="showTip(event, 'fs47', 88)" class="fn">b</span><span class="pn">)</span> <span class="k">-&gt;</span> <span onmouseout="hideTip(event, 'fs18', 89)" onmouseover="showTip(event, 'fs18', 89)" class="fn">printfn</span> <span class="s">&quot;spacing: </span><span class="pf">%f</span><span class="s">&quot;</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs47', 90)" onmouseover="showTip(event, 'fs47', 90)" class="fn">b</span> <span class="o">-</span> <span onmouseout="hideTip(event, 'fs46', 91)" onmouseover="showTip(event, 'fs46', 91)" class="fn">a</span><span class="pn">)</span><span class="pn">)</span>
+</code></pre>
+<table class="pre"><tr><td class="snippet"><pre class="fssnip"><code lang="text">m/z 643.802071  intensity 501.0
+m/z 644.311347  intensity 352.0
+m/z 644.810133  intensity 150.0
+m/z 645.305547  intensity 124.0
+spacing: 0.509276
+spacing: 0.498786
+spacing: 0.495414
+</code></pre></td></tr></table>
+<p>A falling intensity ladder spaced at about half a dalton, which by the formula above
+is the signature of a doubly charged ion. The first peak's intensity of 501.0 is the
+precursor intensity the MS2 title records, so we are looking at the right signal.
+Reading the charge off by eye works here. The module does the same thing
+systematically and with safeguards for messier neighborhoods.</p>
+<h2><a name="Generating-charge-state-candidates" class="anchor" href="#Generating-charge-state-candidates">Generating charge state candidates</a></h2>
+<p><code>ChargeState.putativePrecursorChargeStatesBy</code> needs a <code>ChargeDetermParams</code> record,
+built with <code>createChargeDetermParams</code>. Its parameters, in order: the expected minimal
+and maximal charge span the states that are considered at all. Tryptic peptides
+mostly ionize at 2+ to 4+, one proton at the N-terminus and one at the C-terminal
+lysine or arginine, sometimes more on internal basic residues, so 2 and 4 are
+reasonable bounds. <code>Width</code> is the m/z window, in daltons, scanned to the right of the
+precursor peak for cluster members. 1.1 covers one full isotope spacing at charge 1
+and correspondingly more peaks at higher charges. The next two values decide which
+peaks in that window count as cluster members: a peak must reach <code>MinIntensity</code>
+(here 15 percent) of the start peak's intensity and <code>DeltaMinIntensity</code> (here 30
+percent) of the peak before it, which cuts the cluster off once it has decayed into
+noise. <code>NrOfRndSpectra</code> is the number of random clusters simulated for the hypothesis
+test in the last section. The module author's design uses 10000.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs48', 92)" onmouseover="showTip(event, 'fs48', 92)" class="id">chargeParams</span> <span class="o">=</span>
+    <span onmouseout="hideTip(event, 'fs49', 93)" onmouseover="showTip(event, 'fs49', 93)" class="m">ChargeState</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs50', 94)" onmouseover="showTip(event, 'fs50', 94)" class="id">createChargeDetermParams</span> <span class="n">2</span> <span class="n">4</span> <span class="n">1.1</span> <span class="n">0.15</span> <span class="n">0.3</span> <span class="n">10000</span>
+</code></pre>
+<p>The function locates the centroid closest to the given precursor m/z, collects the
+window peaks that pass the two intensity criteria, and then considers every subset of
+them that contains the start peak, because chemical noise can sit between real
+isotope peaks and a fixed left-to-right reading would stumble over it. Each subset
+gets the charge from the allowed range whose theoretical spacing best matches the
+subset's mean peak spacing, a deviation measure (<code>MZChargeDev</code>) quantifying how well
+the spacings fit that charge, and a score, the weighted sum of that deviation and a
+length quotient, the fraction of window peaks the subset uses (weights from a linear
+discriminant analysis, lower is better). The neutral mass <code>PutMass</code> is computed from the precursor m/z and the
+assigned charge with <code>Mass.ofMZ</code> from BioFSharp. The result keeps the best subset per
+distinct charge, sorted by score. One safeguard to know about: a window holding 15 or
+more peaks is considered too noisy for spacing analysis, and the function then falls
+back to enumerating every allowed charge instead.</p>
+<p>The two string arguments are free-text identifiers for the MS1 and MS2 scan. They are
+carried into the result record so a downstream consumer can trace which spectra an
+assignment belongs to.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs51', 95)" onmouseover="showTip(event, 'fs51', 95)" class="fn">printCandidate</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs52', 96)" onmouseover="showTip(event, 'fs52', 96)" class="fn">c</span><span class="pn">:</span> <span onmouseout="hideTip(event, 'fs49', 97)" onmouseover="showTip(event, 'fs49', 97)" class="m">ChargeState</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs53', 98)" onmouseover="showTip(event, 'fs53', 98)" class="id">AssignedCharge</span><span class="pn">)</span> <span class="o">=</span>
+    <span onmouseout="hideTip(event, 'fs18', 99)" onmouseover="showTip(event, 'fs18', 99)" class="fn">printfn</span> <span class="s">&quot;charge </span><span class="pf">%i</span><span class="s">+  score </span><span class="pf">%8.4f</span><span class="s">  mzChargeDev </span><span class="pf">%8.4f</span><span class="s">  putMass </span><span class="pf">%9.4f</span><span class="s">  peaks </span><span class="pf">%i</span><span class="s">&quot;</span>
+        <span onmouseout="hideTip(event, 'fs52', 100)" onmouseover="showTip(event, 'fs52', 100)" class="fn">c</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs54', 101)" onmouseover="showTip(event, 'fs54', 101)" class="id">PrecCharge</span> <span onmouseout="hideTip(event, 'fs52', 102)" onmouseover="showTip(event, 'fs52', 102)" class="fn">c</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs55', 103)" onmouseover="showTip(event, 'fs55', 103)" class="id">Score</span> <span onmouseout="hideTip(event, 'fs52', 104)" onmouseover="showTip(event, 'fs52', 104)" class="fn">c</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs56', 105)" onmouseover="showTip(event, 'fs56', 105)" class="id">MZChargeDev</span> <span onmouseout="hideTip(event, 'fs52', 106)" onmouseover="showTip(event, 'fs52', 106)" class="fn">c</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs57', 107)" onmouseover="showTip(event, 'fs57', 107)" class="id">PutMass</span> <span onmouseout="hideTip(event, 'fs52', 108)" onmouseover="showTip(event, 'fs52', 108)" class="fn">c</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs58', 109)" onmouseover="showTip(event, 'fs58', 109)" class="id">SubSetLength</span>
+
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs59', 110)" onmouseover="showTip(event, 'fs59', 110)" class="id">putativeCharges</span> <span class="o">=</span>
+    <span onmouseout="hideTip(event, 'fs49', 111)" onmouseover="showTip(event, 'fs49', 111)" class="m">ChargeState</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs60', 112)" onmouseover="showTip(event, 'fs60', 112)" class="id">putativePrecursorChargeStatesBy</span>
+        <span onmouseout="hideTip(event, 'fs48', 113)" onmouseover="showTip(event, 'fs48', 113)" class="id">chargeParams</span> <span onmouseout="hideTip(event, 'fs30', 114)" onmouseover="showTip(event, 'fs30', 114)" class="id">centroidMz</span> <span onmouseout="hideTip(event, 'fs31', 115)" onmouseover="showTip(event, 'fs31', 115)" class="id">centroidIntensity</span>
+        <span class="s">&quot;MS1 at 20.91 min&quot;</span> <span class="s">&quot;MS2 at 20.93 min&quot;</span> <span onmouseout="hideTip(event, 'fs11', 116)" onmouseover="showTip(event, 'fs11', 116)" class="id">precursorMZ</span>
+
+<span onmouseout="hideTip(event, 'fs59', 117)" onmouseover="showTip(event, 'fs59', 117)" class="id">putativeCharges</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs9', 118)" onmouseover="showTip(event, 'fs9', 118)" class="m">List</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs61', 119)" onmouseover="showTip(event, 'fs61', 119)" class="id">iter</span> <span onmouseout="hideTip(event, 'fs51', 120)" onmouseover="showTip(event, 'fs51', 120)" class="fn">printCandidate</span>
+</code></pre>
+<table class="pre"><tr><td class="snippet"><pre class="fssnip"><code lang="text">charge 2+  score  -0.2906  mzChargeDev   0.0094  putMass 1285.5925  peaks 3
+</code></pre></td></tr></table>
+<p>One candidate survives the subset competition: charge 2, backed by a cluster of three
+peaks (the fourth ladder peak from above lies beyond the 1.1 Da window). The putative
+mass of 1285.5925 Da lands within about a millidalton of the 1285.591258 Da stated in
+the MS2 header, the small residual coming down to which mass constant is used for the
+added protons. The mass the database search needs has been recovered from the MS1
+peak pattern alone.</p>
+<h2><a name="Selecting-among-candidates" class="anchor" href="#Selecting-among-candidates">Selecting among candidates</a></h2>
+<p><code>ChargeState.removeSubSetsOfBestHit</code> takes the first list element
+as the best hit, which the score-sorted output of <code>putativePrecursorChargeStatesBy</code>
+provides, and drops every other candidate whose peak set is a subset of the best
+hit's peaks. Such candidates explain no signal the best hit does not already explain.
+Candidates built from different peaks survive, since they may describe a second,
+overlapping cluster.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs62', 121)" onmouseover="showTip(event, 'fs62', 121)" class="id">assignedCharges</span> <span class="o">=</span>
+    <span onmouseout="hideTip(event, 'fs49', 122)" onmouseover="showTip(event, 'fs49', 122)" class="m">ChargeState</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs63', 123)" onmouseover="showTip(event, 'fs63', 123)" class="id">removeSubSetsOfBestHit</span> <span onmouseout="hideTip(event, 'fs59', 124)" onmouseover="showTip(event, 'fs59', 124)" class="id">putativeCharges</span>
+
+<span onmouseout="hideTip(event, 'fs62', 125)" onmouseover="showTip(event, 'fs62', 125)" class="id">assignedCharges</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs9', 126)" onmouseover="showTip(event, 'fs9', 126)" class="m">List</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs61', 127)" onmouseover="showTip(event, 'fs61', 127)" class="id">iter</span> <span onmouseout="hideTip(event, 'fs51', 128)" onmouseover="showTip(event, 'fs51', 128)" class="fn">printCandidate</span>
+</code></pre>
+<table class="pre"><tr><td class="snippet"><pre class="fssnip"><code lang="text">charge 2+  score  -0.2906  mzChargeDev   0.0094  putMass 1285.5925  peaks 3
+</code></pre></td></tr></table>
+<p>With a single candidate there is nothing to remove. The filter becomes visible on a
+second cluster.</p>
+<h2><a name="Cross-checking-on-the-cluster-at-m-z-435-19" class="anchor" href="#Cross-checking-on-the-cluster-at-m-z-435-19">Cross-checking on the cluster at m/z 435.19</a></h2>
+<p>The <a href="https://biofsharp.com/BioFSharp.Mz/01_02_signal_detection.html">signal detection</a> page ended on the most
+intense signal of this scan, four centroids around m/z 435.19 spaced about 0.334 Da
+apart, and read a charge of 3 off that spacing by eye. The same call reproduces this
+on a second, independent case.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs64', 129)" onmouseover="showTip(event, 'fs64', 129)" class="id">putativeCharges435</span> <span class="o">=</span>
+    <span onmouseout="hideTip(event, 'fs49', 130)" onmouseover="showTip(event, 'fs49', 130)" class="m">ChargeState</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs60', 131)" onmouseover="showTip(event, 'fs60', 131)" class="id">putativePrecursorChargeStatesBy</span>
+        <span onmouseout="hideTip(event, 'fs48', 132)" onmouseover="showTip(event, 'fs48', 132)" class="id">chargeParams</span> <span onmouseout="hideTip(event, 'fs30', 133)" onmouseover="showTip(event, 'fs30', 133)" class="id">centroidMz</span> <span onmouseout="hideTip(event, 'fs31', 134)" onmouseover="showTip(event, 'fs31', 134)" class="id">centroidIntensity</span>
+        <span class="s">&quot;MS1 at 20.91 min&quot;</span> <span class="s">&quot;-&quot;</span> <span class="n">435.189052</span>
+
+<span onmouseout="hideTip(event, 'fs64', 135)" onmouseover="showTip(event, 'fs64', 135)" class="id">putativeCharges435</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs9', 136)" onmouseover="showTip(event, 'fs9', 136)" class="m">List</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs61', 137)" onmouseover="showTip(event, 'fs61', 137)" class="id">iter</span> <span onmouseout="hideTip(event, 'fs51', 138)" onmouseover="showTip(event, 'fs51', 138)" class="fn">printCandidate</span>
+</code></pre>
+<table class="pre"><tr><td class="snippet"><pre class="fssnip"><code lang="text">charge 3+  score  -0.2950  mzChargeDev   0.0050  putMass 1302.5453  peaks 3
+charge 2+  score   0.0372  mzChargeDev   0.2372  putMass  868.3636  peaks 2
+</code></pre></td></tr></table>
+<p>The best candidate is the expected 3+, built from three cluster peaks. The 2+
+candidate is an artifact of the subset construction: the start peak paired with the
+second isotope peak alone spans 0.668 Da, read as one poor charge-2 gap, which both
+its deviation and its score reflect. Its two peaks are contained in the best hit's
+three, so the subset filter disposes of it.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs49', 139)" onmouseover="showTip(event, 'fs49', 139)" class="m">ChargeState</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs63', 140)" onmouseover="showTip(event, 'fs63', 140)" class="id">removeSubSetsOfBestHit</span> <span onmouseout="hideTip(event, 'fs64', 141)" onmouseover="showTip(event, 'fs64', 141)" class="id">putativeCharges435</span>
+<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs9', 142)" onmouseover="showTip(event, 'fs9', 142)" class="m">List</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs61', 143)" onmouseover="showTip(event, 'fs61', 143)" class="id">iter</span> <span onmouseout="hideTip(event, 'fs51', 144)" onmouseover="showTip(event, 'fs51', 144)" class="fn">printCandidate</span>
+</code></pre>
+<table class="pre"><tr><td class="snippet"><pre class="fssnip"><code lang="text">charge 3+  score  -0.2950  mzChargeDev   0.0050  putMass 1302.5453  peaks 3
+</code></pre></td></tr></table>
+<h2><a name="Testing-the-cluster-against-random-spacings" class="anchor" href="#Testing-the-cluster-against-random-spacings">Testing the cluster against random spacings</a></h2>
+<p><code>MZChargeDev</code> is a unitless deviation, and on its own it is hard to say how small is
+small enough. The module frames the question as a hypothesis test. The null
+hypothesis says the cluster is a random arrangement of legal charge spacings. When
+random arrangements practically never fit the assigned charge as well as the observed
+cluster does, the null is rejected and the cluster counts as a genuine isotope
+pattern. First, <code>peakPosStdDevBy</code> estimates the spacing scatter of the current
+measurement from the candidates' deviations between real and theoretical peak
+spacings.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs65', 145)" onmouseover="showTip(event, 'fs65', 145)" class="id">peakPosStdDev</span> <span class="o">=</span>
+    <span onmouseout="hideTip(event, 'fs49', 146)" onmouseover="showTip(event, 'fs49', 146)" class="m">ChargeState</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs66', 147)" onmouseover="showTip(event, 'fs66', 147)" class="id">peakPosStdDevBy</span> <span onmouseout="hideTip(event, 'fs59', 148)" onmouseover="showTip(event, 'fs59', 148)" class="id">putativeCharges</span>
+
+<span onmouseout="hideTip(event, 'fs18', 149)" onmouseover="showTip(event, 'fs18', 149)" class="fn">printfn</span> <span class="s">&quot;peak position standard deviation: </span><span class="pf">%.4f</span><span class="s">&quot;</span> <span onmouseout="hideTip(event, 'fs65', 150)" onmouseover="showTip(event, 'fs65', 150)" class="id">peakPosStdDev</span>
+</code></pre>
+<table class="pre"><tr><td class="snippet"><pre class="fssnip"><code lang="text">peak position standard deviation: 0.0074
+</code></pre></td></tr></table>
+<p><code>initMzDevOfRndSpec</code> then builds a generator of random clusters: each simulated
+cluster has as many peaks as the observed one, and every gap is computed as one over
+a jittered charge (the implementation draws a charge from 1 up to one below the
+configured maximum and adds normal jitter with the standard deviation just estimated
+to the charge before taking the reciprocal). <code>empiricalPValueOfSim</code> generates <code>NrOfRndSpectra</code> such clusters
+(memoized per peak count and charge, so repeated calls are cheap) and returns the
+fraction of them whose deviation from the assigned charge's spacing is at most as
+large as the observed one. That fraction is the empirical p-value. The design
+described in the module author's thesis tests each candidate that survives the subset
+filter this way, against a distribution of 10000 random clusters, and rejects the
+null hypothesis at a significance criterion of 0.05.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs67', 151)" onmouseover="showTip(event, 'fs67', 151)" class="id">rnd</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs68', 152)" onmouseover="showTip(event, 'fs68', 152)" class="id">System</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs69', 153)" onmouseover="showTip(event, 'fs69', 153)" class="id">Random</span><span class="pn">(</span><span class="pn">)</span>
+
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs70', 154)" onmouseover="showTip(event, 'fs70', 154)" class="fn">mzDevOfRandomCluster</span> <span class="o">=</span>
+    <span onmouseout="hideTip(event, 'fs49', 155)" onmouseover="showTip(event, 'fs49', 155)" class="m">ChargeState</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs71', 156)" onmouseover="showTip(event, 'fs71', 156)" class="id">initMzDevOfRndSpec</span> <span onmouseout="hideTip(event, 'fs67', 157)" onmouseover="showTip(event, 'fs67', 157)" class="id">rnd</span> <span onmouseout="hideTip(event, 'fs48', 158)" onmouseover="showTip(event, 'fs48', 158)" class="id">chargeParams</span> <span onmouseout="hideTip(event, 'fs65', 159)" onmouseover="showTip(event, 'fs65', 159)" class="id">peakPosStdDev</span>
+
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs72', 160)" onmouseover="showTip(event, 'fs72', 160)" class="id">bestHit</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs62', 161)" onmouseover="showTip(event, 'fs62', 161)" class="id">assignedCharges</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs73', 162)" onmouseover="showTip(event, 'fs73', 162)" class="id">Head</span>
+
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs74', 163)" onmouseover="showTip(event, 'fs74', 163)" class="id">pValue</span> <span class="o">=</span>
+    <span onmouseout="hideTip(event, 'fs49', 164)" onmouseover="showTip(event, 'fs49', 164)" class="m">ChargeState</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs75', 165)" onmouseover="showTip(event, 'fs75', 165)" class="id">empiricalPValueOfSim</span>
+        <span onmouseout="hideTip(event, 'fs70', 166)" onmouseover="showTip(event, 'fs70', 166)" class="fn">mzDevOfRandomCluster</span>
+        <span class="pn">(</span><span onmouseout="hideTip(event, 'fs72', 167)" onmouseover="showTip(event, 'fs72', 167)" class="id">bestHit</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs58', 168)" onmouseover="showTip(event, 'fs58', 168)" class="id">SubSetLength</span><span class="pn">,</span> <span onmouseout="hideTip(event, 'fs76', 169)" onmouseover="showTip(event, 'fs76', 169)" class="fn">float</span> <span onmouseout="hideTip(event, 'fs72', 170)" onmouseover="showTip(event, 'fs72', 170)" class="id">bestHit</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs54', 171)" onmouseover="showTip(event, 'fs54', 171)" class="id">PrecCharge</span><span class="pn">)</span>
+        <span onmouseout="hideTip(event, 'fs72', 172)" onmouseover="showTip(event, 'fs72', 172)" class="id">bestHit</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs56', 173)" onmouseover="showTip(event, 'fs56', 173)" class="id">MZChargeDev</span>
+
+<span onmouseout="hideTip(event, 'fs18', 174)" onmouseover="showTip(event, 'fs18', 174)" class="fn">printfn</span> <span class="s">&quot;empirical p-value for charge </span><span class="pf">%i</span><span class="s">+: </span><span class="pf">%.2f</span><span class="s">&quot;</span> <span onmouseout="hideTip(event, 'fs72', 175)" onmouseover="showTip(event, 'fs72', 175)" class="id">bestHit</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs54', 176)" onmouseover="showTip(event, 'fs54', 176)" class="id">PrecCharge</span> <span onmouseout="hideTip(event, 'fs74', 177)" onmouseover="showTip(event, 'fs74', 177)" class="id">pValue</span>
+</code></pre>
+<!-- stochastic: value varies between runs -->
+<table class="pre"><tr><td class="snippet"><pre class="fssnip"><code lang="text">empirical p-value for charge 2+: 0.25
+</code></pre></td></tr></table>
+<p>Part of the simulation draws its jitter from a random source the caller cannot seed,
+so this number varies slightly between runs. It lies far above the 0.05 criterion, so
+the null hypothesis stands and a pipeline applying the thesis criterion would drop
+this candidate on the position metric alone. That is the expected verdict for a
+cluster this short: every random gap is itself a legal charge spacing, and with only
+two gaps to check, roughly a quarter of the random clusters draw the matching charge
+twice and fit at least as well as the real measurement. Production pipelines
+therefore also lean on the score ranking and assume typical charges such as 2+ and 3+
+as a fallback when no candidate is convincing. The computed value can be stored in
+the <code>PositionMetricPValue</code> field for exactly this kind of filtering.</p>
+<h2><a name="Where-the-charge-goes-next" class="anchor" href="#Where-the-charge-goes-next">Where the charge goes next</a></h2>
+<p>Charge and mass together are what the next stage consumes, whether they come from a
+ranked candidate like this one or from the 2+ and 3+ fallback: the mass selects the
+candidate peptides to score against the fragment spectrum, the subject of
+<a href="https://biofsharp.com/BioFSharp.Mz/02_02_search_databases.html">peptide search databases</a>.</p>
+
+        <div class="fsdocs-tip" id="fs1">namespace BioFSharp</div>
+<div class="fsdocs-tip" id="fs2">namespace BioFSharp.FileFormats</div>
+<div class="fsdocs-tip" id="fs3">module MGF
+
+from BioFSharp.FileFormats<br /><em>&lt;summary&gt;
+ Mgf &amp;lt;http://www.matrixscience.com/help/data_file_help.html&amp;gt;`_ is a simple
+ human-readable format for MS/MS data. It allows storing MS/MS peak lists and
+ exprimental parameters.
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs4">namespace BioFSharp.IO</div>
+<div class="fsdocs-tip" id="fs5">namespace BioFSharp.Mz</div>
+<div class="fsdocs-tip" id="fs6">val ms2: MGFEntry</div>
+<div class="fsdocs-tip" id="fs7">module MGF
+
+from BioFSharp.IO</div>
+<div class="fsdocs-tip" id="fs8">val read: path: string -&gt; MGFEntry list<br /><em>&lt;summary&gt;
+ Reads an mgf file into a collection of MgfEntries
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs9">Multiple items<br />module List
+
+from Microsoft.FSharp.Collections<br /><br />--------------------<br />type List&lt;&#39;T&gt; =
+  | op_Nil
+  | op_ColonColon of Head: &#39;T * Tail: &#39;T list
+  interface IReadOnlyList&lt;&#39;T&gt;
+  interface IReadOnlyCollection&lt;&#39;T&gt;
+  interface IEnumerable
+  interface IEnumerable&lt;&#39;T&gt;
+  member GetReverseIndex: rank: int * offset: int -&gt; int
+  member GetSlice: startIndex: int option * endIndex: int option -&gt; &#39;T list
+  static member Cons: head: &#39;T * tail: &#39;T list -&gt; &#39;T list
+  member Head: &#39;T
+  member IsEmpty: bool
+  member Item: index: int -&gt; &#39;T with get
+  ...</div>
+<div class="fsdocs-tip" id="fs10">val head: list: &#39;T list -&gt; &#39;T</div>
+<div class="fsdocs-tip" id="fs11">val precursorMZ: float</div>
+<div class="fsdocs-tip" id="fs12">type MGFEntry =
+  {
+    Parameters: Map&lt;string,string&gt;
+    Mass: float array
+    Intensity: float array
+  }
+  static member create: parameters: Map&lt;string,string&gt; -&gt; mass: float array -&gt; intensity: float array -&gt; MGFEntry
+  static member toLines: mgf: MGFEntry -&gt; string seq
+  static member toString: mgf: MGFEntry -&gt; string
+  static member tryGetPrecursorCharges: mgf: MGFEntry -&gt; int list option
+  static member tryGetPrecursorMZ: mgf: MGFEntry -&gt; float option
+  static member tryGetPrecursorMass: mgf: MGFEntry -&gt; float option
+  static member tryGetTitle: mgf: MGFEntry -&gt; string option<br /><em>&lt;summary&gt;
+ Represents 
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs13">static member MGFEntry.tryGetPrecursorMZ: mgf: MGFEntry -&gt; float option</div>
+<div class="fsdocs-tip" id="fs14">union case Option.Some: Value: &#39;T -&gt; Option&lt;&#39;T&gt;</div>
+<div class="fsdocs-tip" id="fs15">val mz: float</div>
+<div class="fsdocs-tip" id="fs16">union case Option.None: Option&lt;&#39;T&gt;</div>
+<div class="fsdocs-tip" id="fs17">val failwith: message: string -&gt; &#39;T</div>
+<div class="fsdocs-tip" id="fs18">val printfn: format: Printf.TextWriterFormat&lt;&#39;T&gt; -&gt; &#39;T</div>
+<div class="fsdocs-tip" id="fs19">static member MGFEntry.tryGetTitle: mgf: MGFEntry -&gt; string option</div>
+<div class="fsdocs-tip" id="fs20">module Option
+
+from Microsoft.FSharp.Core</div>
+<div class="fsdocs-tip" id="fs21">val defaultValue: value: &#39;T -&gt; option: &#39;T option -&gt; &#39;T</div>
+<div class="fsdocs-tip" id="fs22">val ms1: MGFEntry</div>
+<div class="fsdocs-tip" id="fs23">val paddingParams: SignalDetection.Padding.PaddingParameters</div>
+<div class="fsdocs-tip" id="fs24">module SignalDetection
+
+from BioFSharp.Mz</div>
+<div class="fsdocs-tip" id="fs25">module Padding
+
+from BioFSharp.Mz.SignalDetection</div>
+<div class="fsdocs-tip" id="fs26">val createPaddingParameters: paddingYValue: float -&gt; maximumPaddingPoints: int option -&gt; mzTolerance: float -&gt; windowSize: int -&gt; spacingPerc: float -&gt; SignalDetection.Padding.PaddingParameters</div>
+<div class="fsdocs-tip" id="fs27">val waveletParams: SignalDetection.Wavelet.WaveletParameters</div>
+<div class="fsdocs-tip" id="fs28">module Wavelet
+
+from BioFSharp.Mz.SignalDetection</div>
+<div class="fsdocs-tip" id="fs29">val createWaveletParameters: numberOfScales: int -&gt; yThreshold: float -&gt; mzTolerance: float -&gt; sNRS_Percentile: float -&gt; minSNR: float -&gt; refineMZ: bool -&gt; sumIntensities: bool -&gt; SignalDetection.Wavelet.WaveletParameters</div>
+<div class="fsdocs-tip" id="fs30">val centroidMz: float array</div>
+<div class="fsdocs-tip" id="fs31">val centroidIntensity: float array</div>
+<div class="fsdocs-tip" id="fs32">val paddDataBy: paddingParameters: SignalDetection.Padding.PaddingParameters -&gt; xData: float array -&gt; yData: float array -&gt; float array * float array</div>
+<div class="fsdocs-tip" id="fs33">MGFEntry.Mass: float array</div>
+<div class="fsdocs-tip" id="fs34">MGFEntry.Intensity: float array</div>
+<div class="fsdocs-tip" id="fs35">val toCentroidWithRicker2D: centroidParams: SignalDetection.Wavelet.WaveletParameters -&gt; mzData: float array -&gt; intensityData: float array -&gt; float array * float array</div>
+<div class="fsdocs-tip" id="fs36">property System.Array.Length: int with get<br /><em>&lt;summary&gt;Gets the total number of elements in all the dimensions of the &lt;see cref=&quot;T:System.Array&quot; /&gt;.&lt;/summary&gt;<br />&lt;exception cref=&quot;T:System.OverflowException&quot;&gt;The array is multidimensional and contains more than &lt;see cref=&quot;F:System.Int32.MaxValue&quot;&gt;Int32.MaxValue&lt;/see&gt; elements.&lt;/exception&gt;<br />&lt;returns&gt;The total number of elements in all the dimensions of the &lt;see cref=&quot;T:System.Array&quot; /&gt;; zero if there are no elements in the array.&lt;/returns&gt;</em></div>
+<div class="fsdocs-tip" id="fs37">val clusterWindow: (float * float) array</div>
+<div class="fsdocs-tip" id="fs38">module Array
+
+from Microsoft.FSharp.Collections</div>
+<div class="fsdocs-tip" id="fs39">val zip: array1: &#39;T1 array -&gt; array2: &#39;T2 array -&gt; (&#39;T1 * &#39;T2) array</div>
+<div class="fsdocs-tip" id="fs40">val filter: predicate: (&#39;T -&gt; bool) -&gt; array: &#39;T array -&gt; &#39;T array</div>
+<div class="fsdocs-tip" id="fs41">val iter: action: (&#39;T -&gt; unit) -&gt; array: &#39;T array -&gt; unit</div>
+<div class="fsdocs-tip" id="fs42">val i: float</div>
+<div class="fsdocs-tip" id="fs43">val map: mapping: (&#39;T -&gt; &#39;U) -&gt; array: &#39;T array -&gt; &#39;U array</div>
+<div class="fsdocs-tip" id="fs44">val fst: tuple: (&#39;T1 * &#39;T2) -&gt; &#39;T1</div>
+<div class="fsdocs-tip" id="fs45">val pairwise: array: &#39;T array -&gt; (&#39;T * &#39;T) array</div>
+<div class="fsdocs-tip" id="fs46">val a: float</div>
+<div class="fsdocs-tip" id="fs47">val b: float</div>
+<div class="fsdocs-tip" id="fs48">val chargeParams: ChargeState.ChargeDetermParams</div>
+<div class="fsdocs-tip" id="fs49">module ChargeState
+
+from BioFSharp.Mz</div>
+<div class="fsdocs-tip" id="fs50">val createChargeDetermParams: expectedMinimalCharge: int -&gt; expectedMaximumCharge: int -&gt; width: float -&gt; minIntensity: float -&gt; deltaMinIntensity: float -&gt; nrOfRndSpectra: int -&gt; ChargeState.ChargeDetermParams</div>
+<div class="fsdocs-tip" id="fs51">val printCandidate: c: ChargeState.AssignedCharge -&gt; unit</div>
+<div class="fsdocs-tip" id="fs52">val c: ChargeState.AssignedCharge</div>
+<div class="fsdocs-tip" id="fs53">type AssignedCharge =
+  {
+    PrecursorSpecID: string
+    ProductSpecID: string
+    PrecursorMZ: float
+    PrecCharge: int
+    PutMass: float
+    MZChargeDev: float
+    Score: float
+    DistanceRealTheoPeakSpacing: float list
+    SubSetLength: int
+    StartPeakIntensity: float
+    ...
+  }
+  member Equals: AssignedCharge * IEqualityComparer -&gt; bool</div>
+<div class="fsdocs-tip" id="fs54">ChargeState.AssignedCharge.PrecCharge: int</div>
+<div class="fsdocs-tip" id="fs55">ChargeState.AssignedCharge.Score: float</div>
+<div class="fsdocs-tip" id="fs56">ChargeState.AssignedCharge.MZChargeDev: float</div>
+<div class="fsdocs-tip" id="fs57">ChargeState.AssignedCharge.PutMass: float</div>
+<div class="fsdocs-tip" id="fs58">ChargeState.AssignedCharge.SubSetLength: int</div>
+<div class="fsdocs-tip" id="fs59">val putativeCharges: ChargeState.AssignedCharge list</div>
+<div class="fsdocs-tip" id="fs60">val putativePrecursorChargeStatesBy: chargeDeterminationParams: ChargeState.ChargeDetermParams -&gt; mzData: float array -&gt; intensityData: float array -&gt; precursorSpecID: string -&gt; productSpecID: string -&gt; precursorMZ: float -&gt; ChargeState.AssignedCharge list<br /><em>&lt;summary&gt;
+ Returns list of putative precursorChargeStates along with Properties used for evaluation.
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs61">val iter: action: (&#39;T -&gt; unit) -&gt; list: &#39;T list -&gt; unit</div>
+<div class="fsdocs-tip" id="fs62">val assignedCharges: ChargeState.AssignedCharge list</div>
+<div class="fsdocs-tip" id="fs63">val removeSubSetsOfBestHit: assignedCharges: ChargeState.AssignedCharge list -&gt; ChargeState.AssignedCharge list<br /><em>&lt;summary&gt;
+ Returns a List of tested AssignedCharges. 
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs64">val putativeCharges435: ChargeState.AssignedCharge list</div>
+<div class="fsdocs-tip" id="fs65">val peakPosStdDev: float</div>
+<div class="fsdocs-tip" id="fs66">val peakPosStdDevBy: putativeChargeStates: ChargeState.AssignedCharge list -&gt; float<br /><em>&lt;summary&gt;
+ Returns the StandardDeviation of the PeakDistances
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs67">val rnd: System.Random</div>
+<div class="fsdocs-tip" id="fs68">namespace System</div>
+<div class="fsdocs-tip" id="fs69">Multiple items<br />type Random =
+  new: unit -&gt; unit + 1 overload
+  member GetHexString: stringLength: int * ?lowercase: bool -&gt; string + 1 overload
+  member GetItems&lt;&#39;T&gt; : choices: ReadOnlySpan&lt;&#39;T&gt; * length: int -&gt; &#39;T array + 2 overloads
+  member GetString: choices: ReadOnlySpan&lt;char&gt; * length: int -&gt; string
+  member Next: unit -&gt; int + 2 overloads
+  member NextBytes: buffer: byte array -&gt; unit + 1 overload
+  member NextDouble: unit -&gt; float
+  member NextInt64: unit -&gt; int64 + 2 overloads
+  member NextSingle: unit -&gt; float32
+  member Shuffle&lt;&#39;T&gt; : values: Span&lt;&#39;T&gt; -&gt; unit + 1 overload
+  ...<br /><em>&lt;summary&gt;Represents a pseudo-random number generator, which is an algorithm that produces a sequence of numbers that meet certain statistical requirements for randomness.&lt;/summary&gt;</em><br /><br />--------------------<br />System.Random() : System.Random<br />System.Random(Seed: int) : System.Random</div>
+<div class="fsdocs-tip" id="fs70">val mzDevOfRandomCluster: (int * float -&gt; float array)</div>
+<div class="fsdocs-tip" id="fs71">val initMzDevOfRndSpec: rnd: System.Random -&gt; chargeStateDetermParams: ChargeState.ChargeDetermParams -&gt; peakPosStdDev: float -&gt; (int * float -&gt; float array)<br /><em>&lt;summary&gt;
+ Returns Function to generate random spectra and to calculate their mzChargeDeviations.   
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs72">val bestHit: ChargeState.AssignedCharge</div>
+<div class="fsdocs-tip" id="fs73">property List.Head: ChargeState.AssignedCharge with get</div>
+<div class="fsdocs-tip" id="fs74">val pValue: float</div>
+<div class="fsdocs-tip" id="fs75">val empiricalPValueOfSim: initGenerateMzSpecDevWithMemF: (int * &#39;a -&gt; &#39;b array) -&gt; nrOfPeaksInSubSet: int * charge: &#39;a -&gt; score: &#39;b -&gt; float (requires comparison)<br /><em>&lt;summary&gt;
+stdv 0.01516580549
+ Returns the empirically determined PValue. The PValue is the quotient of simulated mzChargeDeviations lower than the mzChargeDeviation
+ observed divided by their total number
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs76">Multiple items<br />val float: value: &#39;T -&gt; float (requires member op_Explicit)<br /><br />--------------------<br />type float = System.Double<br /><br />--------------------<br />type float&lt;&#39;Measure&gt; =
+  float</div>
+
+    </div>
+</main>
+<aside id="fsdocs-page-menu">
+    <p id="on-this-page">On this page</p>
+    <ul>
+  <li class="level-1">
+    <a href="#Charge-state-determination">
+      Charge state determination
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Centroiding-the-MS1-survey-scan">
+      Centroiding the MS1 survey scan
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Generating-charge-state-candidates">
+      Generating charge state candidates
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Selecting-among-candidates">
+      Selecting among candidates
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Cross-checking-on-the-cluster-at-m-z-435-19">
+      Cross-checking on the cluster at m/z 435.19
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Testing-the-cluster-against-random-spacings">
+      Testing the cluster against random spacings
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Where-the-charge-goes-next">
+      Where the charge goes next
+    </a>
+  </li>
+</ul>
+</aside>
+<dialog>
+    <input type="search" placeholder="Search docs" />
+    <div class="results">
+        <ul></ul>
+        <p class="empty">Type something to start searching.</p>
+    </div>
+</dialog>
+<script type="module" src="https://biofsharp.com/BioFSharp.Mz/content/fsdocs-tips.js"></script>
+<script type="module" src="https://biofsharp.com/BioFSharp.Mz/content/fsdocs-theme-toggle.js"></script>
+<script type="module" src="https://biofsharp.com/BioFSharp.Mz/content/fsdocs-theme.js"></script>
+<script type="module" src="https://biofsharp.com/BioFSharp.Mz/content/fsdocs-search.js"></script>
+
+</body>
+</html>

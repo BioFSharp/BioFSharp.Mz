@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-root="https://csbiology.github.io/BioFSharp.Mz/">
+<html lang="en" data-root="https://biofsharp.com/BioFSharp.Mz/">
 <head>
     <meta charset="UTF-8">
     <meta content="IE=edge" http-equiv="X-UA-Compatible">
@@ -8,11 +8,11 @@
     <!-- Opengraph properties (https://ogp.me/) -->
     <meta property="og:site_name" content="BioFSharp.Mz">
     <meta property="og:title" content="Fragmentation (BioFSharp.Mz)" />
-    <meta property="og:url" content="https://csbiology.github.io/BioFSharp.Mz/{{fsdocs-source-basename}}.html">
+    <meta property="og:url" content="https://biofsharp.com/BioFSharp.Mz/{{fsdocs-source-basename}}.html">
     <meta property="og:type" content="website" />
     <!-- Twitter cards (https://developer.twitter.com/en/docs/twitter-for-websites/cards/overview/summary-card-with-large-image) -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:site" content="https://csbiology.github.io/BioFSharp.Mz/">
+    <meta name="twitter:site" content="https://biofsharp.com/BioFSharp.Mz/">
     <meta name="twitter:title" content="Fragmentation (BioFSharp.Mz)">
     
     <title>Fragmentation (BioFSharp.Mz) | BioFSharp.Mz</title>
@@ -20,11 +20,12 @@
     <link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
     <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
-    <link href="https://csbiology.github.io/BioFSharp.Mz/img/favicon.ico" rel="icon" sizes="32x32" type="image/png"/>
-    <script type="application/javascript" src="https://csbiology.github.io/BioFSharp.Mz/content/fsdocs-theme-set-dark.js"></script>
-    <link href="https://csbiology.github.io/BioFSharp.Mz/content/fsdocs-default.css" rel="stylesheet" type="text/css"/>
-    <link href="https://csbiology.github.io/BioFSharp.Mz/content/fsdocs-theme.css" rel="stylesheet" type="text/css"/>
+    <link href="https://biofsharp.com/BioFSharp.Mz/img/favicon.ico" rel="icon" sizes="32x32" type="image/png"/>
+    <script type="application/javascript" src="https://biofsharp.com/BioFSharp.Mz/content/fsdocs-theme-set-dark.js"></script>
+    <link href="https://biofsharp.com/BioFSharp.Mz/content/fsdocs-default.css" rel="stylesheet" type="text/css"/>
+    <link href="https://biofsharp.com/BioFSharp.Mz/content/fsdocs-theme.css" rel="stylesheet" type="text/css"/>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js"></script>
+<style>header .start a img { background-color: #2f3337; border-radius: 6px; padding: 3px; }</style>
     
 </head>
 <body class="api-docs">
@@ -43,19 +44,80 @@
                     Notes</a></li>
                 <li class="nav-item"><a class="nav-link" href="https://github.com/CSBiology/BioFSharp.Mz/">Source
                     Repository</a></li>
-                
+                <li class="nav-header ">
+  Spectrum processing
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/01_01_peaks_and_peak_arrays.html">
+    Peaks and peak arrays
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/01_02_signal_detection.html">
+    Signal detection and centroiding
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/01_03_charge_state_determination.html">
+    Charge state determination
+  </a>
+</li>             
+<li class="nav-header ">
+  Peptide identification
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/02_01_fragmentation.html">
+    In silico fragmentation
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/02_02_search_databases.html">
+    Peptide search databases
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/02_03_sequest_like_scoring.html">
+    SEQUEST-like scoring
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/02_04_andromeda_like_scoring.html">
+    Andromeda-like and X!Tandem-like scoring
+  </a>
+</li>             
+<li class="nav-header ">
+  Quantification
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/03_01_quantification.html">
+    Peak quantification
+  </a>
+</li>             
+<li class="nav-header ">
+  Validation and inference
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/04_01_fdr_control.html">
+    False discovery rate control
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/04_02_protein_inference.html">
+    Protein inference
+  </a>
+</li>
                 <li class="nav-header">
   API Reference
 </li>             
 <li class="nav-item">
-  <a class="nav-link" href="https://csbiology.github.io/BioFSharp.Mz/reference/index.html">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/reference/index.html">
     All Namespaces
   </a>
 </li>
             </ul>
         </div>
         <a href="https://csbiology.github.io/BioFSharp.Mz/">
-            <img alt="Header menu logo" src="https://csbiology.github.io/BioFSharp.Mz/img/logo.png">
+            <img alt="Header menu logo" src="https://biofsharp.com/BioFSharp.Mz/img/logo.png">
             <strong>BioFSharp.Mz</strong>
         </a>
     </div>
@@ -77,12 +139,73 @@
             Notes</a></li>
         <li class="nav-item"><a class="nav-link" href="https://github.com/CSBiology/BioFSharp.Mz/">Source
             Repository</a></li>
-        
+        <li class="nav-header ">
+  Spectrum processing
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/01_01_peaks_and_peak_arrays.html">
+    Peaks and peak arrays
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/01_02_signal_detection.html">
+    Signal detection and centroiding
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/01_03_charge_state_determination.html">
+    Charge state determination
+  </a>
+</li>             
+<li class="nav-header ">
+  Peptide identification
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/02_01_fragmentation.html">
+    In silico fragmentation
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/02_02_search_databases.html">
+    Peptide search databases
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/02_03_sequest_like_scoring.html">
+    SEQUEST-like scoring
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/02_04_andromeda_like_scoring.html">
+    Andromeda-like and X!Tandem-like scoring
+  </a>
+</li>             
+<li class="nav-header ">
+  Quantification
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/03_01_quantification.html">
+    Peak quantification
+  </a>
+</li>             
+<li class="nav-header ">
+  Validation and inference
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/04_01_fdr_control.html">
+    False discovery rate control
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/04_02_protein_inference.html">
+    Protein inference
+  </a>
+</li>
         <li class="nav-header">
   API Reference
 </li>             
 <li class="nav-item">
-  <a class="nav-link" href="https://csbiology.github.io/BioFSharp.Mz/reference/index.html">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/reference/index.html">
     All Namespaces
   </a>
 </li>
@@ -97,7 +220,7 @@
   <dl class="fsdocs-metadata">
     <dt>
       Namespace: 
-      <a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz.html">
+      <a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz.html">
         BioFSharp.Mz
       </a>
     </dt>
@@ -132,7 +255,7 @@
           <td class="fsdocs-entity-name">
             <p>
               <a name="Series">
-                <a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-fragmentation-series.html">
+                <a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-fragmentation-series.html">
                   Series
                 </a>
               </a>
@@ -159,7 +282,7 @@
           <td class="fsdocs-entity-name">
             <p>
               <a name="FragmentMasses">
-                <a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-fragmentation-fragmentmasses.html">
+                <a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-fragmentation-fragmentmasses.html">
                   FragmentMasses
                 </a>
               </a>
@@ -186,7 +309,7 @@
           <td class="fsdocs-entity-name">
             <p>
               <a name="LadderedTaggedMass">
-                <a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-fragmentation-ladderedtaggedmass.html">
+                <a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-fragmentation-ladderedtaggedmass.html">
                   LadderedTaggedMass
                 </a>
               </a>
@@ -231,7 +354,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '53', 53)" onmouseover="showTip(event, '53', 53)">
+              <code onmouseout="hideTip(event, '58', 58)" onmouseover="showTip(event, '58', 58)">
                 <p>
                   <a id="aminoLossSet">
                     <a href="#aminoLossSet">
@@ -240,7 +363,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="53">
+              <div class="fsdocs-tip" id="58">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>aminoLossSet&#32;<span></span></span></code>
@@ -288,7 +411,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '54', 54)" onmouseover="showTip(event, '54', 54)">
+              <code onmouseout="hideTip(event, '59', 59)" onmouseover="showTip(event, '59', 59)">
                 <p>
                   <a id="createFragmentMasses">
                     <a href="#createFragmentMasses">
@@ -297,7 +420,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="54">
+              <div class="fsdocs-tip" id="59">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>createFragmentMasses&#32;<span>targetMasses&#32;decoyMasses</span></span></code>
@@ -310,7 +433,7 @@
                         targetMasses
                       </b>
                       :
-                      <code><span><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-peakfamily-1.html">PeakFamily</a>&lt;<a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-taggedmass-taggedmass.html">TaggedMass</a>&gt;</span>&#32;list</span></code>
+                      <code><span><span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-peakfamily-1.html">PeakFamily</a>&lt;<a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-taggedmass-taggedmass.html">TaggedMass</a>&gt;</span>&#32;list</span></code>
                     </span>
                     <br/>
                     <span>
@@ -318,14 +441,14 @@
                         decoyMasses
                       </b>
                       :
-                      <code><span><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-peakfamily-1.html">PeakFamily</a>&lt;<a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-taggedmass-taggedmass.html">TaggedMass</a>&gt;</span>&#32;list</span></code>
+                      <code><span><span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-peakfamily-1.html">PeakFamily</a>&lt;<a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-taggedmass-taggedmass.html">TaggedMass</a>&gt;</span>&#32;list</span></code>
                     </span>
                     <br/>
                   </ul>
                   <br/>
                   <span>
                     Returns: 
-                    <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-fragmentation-fragmentmasses.html">FragmentMasses</a></code>
+                    <code><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-fragmentation-fragmentmasses.html">FragmentMasses</a></code>
                   </span>
                   <br/>
                 </div>
@@ -339,7 +462,7 @@
                   targetMasses
                 </span>
                 :
-                <code><span><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-peakfamily-1.html">PeakFamily</a>&lt;<a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-taggedmass-taggedmass.html">TaggedMass</a>&gt;</span>&#32;list</span></code>
+                <code><span><span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-peakfamily-1.html">PeakFamily</a>&lt;<a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-taggedmass-taggedmass.html">TaggedMass</a>&gt;</span>&#32;list</span></code>
               </dt>
               <dd class="fsdocs-param-docs"></dd>
               <dt class="fsdocs-param">
@@ -347,7 +470,7 @@
                   decoyMasses
                 </span>
                 :
-                <code><span><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-peakfamily-1.html">PeakFamily</a>&lt;<a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-taggedmass-taggedmass.html">TaggedMass</a>&gt;</span>&#32;list</span></code>
+                <code><span><span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-peakfamily-1.html">PeakFamily</a>&lt;<a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-taggedmass-taggedmass.html">TaggedMass</a>&gt;</span>&#32;list</span></code>
               </dt>
               <dd class="fsdocs-param-docs"></dd>
             </dl>
@@ -356,7 +479,7 @@
                 <span class="fsdocs-return-name">
                   Returns: 
                 </span>
-                <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-fragmentation-fragmentmasses.html">FragmentMasses</a></code>
+                <code><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-fragmentation-fragmentmasses.html">FragmentMasses</a></code>
               </dt>
               <dd class="fsdocs-return-docs"></dd>
             </dl>
@@ -365,7 +488,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '55', 55)" onmouseover="showTip(event, '55', 55)">
+              <code onmouseout="hideTip(event, '60', 60)" onmouseover="showTip(event, '60', 60)">
                 <p>
                   <a id="createLadderedTaggedMass">
                     <a href="#createLadderedTaggedMass">
@@ -374,7 +497,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="55">
+              <div class="fsdocs-tip" id="60">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>createLadderedTaggedMass&#32;<span>iontype&#32;mass&#32;number&#32;charge</span></span></code>
@@ -387,7 +510,7 @@
                         iontype
                       </b>
                       :
-                      <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-ions-iontypeflag.html">IonTypeFlag</a></code>
+                      <code><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-ions-iontypeflag.html">IonTypeFlag</a></code>
                     </span>
                     <br/>
                     <span>
@@ -418,7 +541,7 @@
                   <br/>
                   <span>
                     Returns: 
-                    <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-fragmentation-ladderedtaggedmass.html">LadderedTaggedMass</a></code>
+                    <code><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-fragmentation-ladderedtaggedmass.html">LadderedTaggedMass</a></code>
                   </span>
                   <br/>
                 </div>
@@ -432,7 +555,7 @@
                   iontype
                 </span>
                 :
-                <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-ions-iontypeflag.html">IonTypeFlag</a></code>
+                <code><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-ions-iontypeflag.html">IonTypeFlag</a></code>
               </dt>
               <dd class="fsdocs-param-docs"></dd>
               <dt class="fsdocs-param">
@@ -465,7 +588,7 @@
                 <span class="fsdocs-return-name">
                   Returns: 
                 </span>
-                <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-fragmentation-ladderedtaggedmass.html">LadderedTaggedMass</a></code>
+                <code><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-fragmentation-ladderedtaggedmass.html">LadderedTaggedMass</a></code>
               </dt>
               <dd class="fsdocs-return-docs"></dd>
             </dl>
@@ -474,7 +597,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '56', 56)" onmouseover="showTip(event, '56', 56)">
+              <code onmouseout="hideTip(event, '61', 61)" onmouseover="showTip(event, '61', 61)">
                 <p>
                   <a id="isAminoLoss">
                     <a href="#isAminoLoss">
@@ -483,7 +606,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="56">
+              <div class="fsdocs-tip" id="61">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>isAminoLoss&#32;<span>a</span></span></code>
@@ -553,7 +676,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '57', 57)" onmouseover="showTip(event, '57', 57)">
+              <code onmouseout="hideTip(event, '62', 62)" onmouseover="showTip(event, '62', 62)">
                 <p>
                   <a id="isWaterLoss">
                     <a href="#isWaterLoss">
@@ -562,7 +685,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="57">
+              <div class="fsdocs-tip" id="62">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>isWaterLoss&#32;<span>a</span></span></code>
@@ -632,7 +755,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '58', 58)" onmouseover="showTip(event, '58', 58)">
+              <code onmouseout="hideTip(event, '63', 63)" onmouseover="showTip(event, '63', 63)">
                 <p>
                   <a id="ladderAndChargeElement">
                     <a href="#ladderAndChargeElement">
@@ -641,7 +764,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="58">
+              <div class="fsdocs-tip" id="63">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>ladderAndChargeElement&#32;<span>chargeList&#32;sortedList</span></span></code>
@@ -662,14 +785,14 @@
                         sortedList
                       </b>
                       :
-                      <code><span><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-peakfamily-1.html">PeakFamily</a>&lt;<a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-taggedmass-taggedmass.html">TaggedMass</a>&gt;</span>&#32;list</span></code>
+                      <code><span><span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-peakfamily-1.html">PeakFamily</a>&lt;<a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-taggedmass-taggedmass.html">TaggedMass</a>&gt;</span>&#32;list</span></code>
                     </span>
                     <br/>
                   </ul>
                   <br/>
                   <span>
                     Returns: 
-                    <code><span><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-peakfamily-1.html">PeakFamily</a>&lt;<a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-fragmentation-ladderedtaggedmass.html">LadderedTaggedMass</a>&gt;</span>&#32;list</span></code>
+                    <code><span><span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-peakfamily-1.html">PeakFamily</a>&lt;<a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-fragmentation-ladderedtaggedmass.html">LadderedTaggedMass</a>&gt;</span>&#32;list</span></code>
                   </span>
                   <br/>
                 </div>
@@ -691,7 +814,7 @@
                   sortedList
                 </span>
                 :
-                <code><span><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-peakfamily-1.html">PeakFamily</a>&lt;<a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-taggedmass-taggedmass.html">TaggedMass</a>&gt;</span>&#32;list</span></code>
+                <code><span><span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-peakfamily-1.html">PeakFamily</a>&lt;<a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-taggedmass-taggedmass.html">TaggedMass</a>&gt;</span>&#32;list</span></code>
               </dt>
               <dd class="fsdocs-param-docs"></dd>
             </dl>
@@ -700,7 +823,7 @@
                 <span class="fsdocs-return-name">
                   Returns: 
                 </span>
-                <code><span><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-peakfamily-1.html">PeakFamily</a>&lt;<a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-fragmentation-ladderedtaggedmass.html">LadderedTaggedMass</a>&gt;</span>&#32;list</span></code>
+                <code><span><span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-peakfamily-1.html">PeakFamily</a>&lt;<a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-fragmentation-ladderedtaggedmass.html">LadderedTaggedMass</a>&gt;</span>&#32;list</span></code>
               </dt>
               <dd class="fsdocs-return-docs"></dd>
             </dl>
@@ -709,7 +832,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '59', 59)" onmouseover="showTip(event, '59', 59)">
+              <code onmouseout="hideTip(event, '64', 64)" onmouseover="showTip(event, '64', 64)">
                 <p>
                   <a id="ladderElement">
                     <a href="#ladderElement">
@@ -718,7 +841,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="59">
+              <div class="fsdocs-tip" id="64">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>ladderElement&#32;<span>ionList&#32;chargeList</span></span></code>
@@ -731,7 +854,7 @@
                         ionList
                       </b>
                       :
-                      <code><span><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-peakfamily-1.html">PeakFamily</a>&lt;<a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-taggedmass-taggedmass.html">TaggedMass</a>&gt;</span>&#32;list</span></code>
+                      <code><span><span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-peakfamily-1.html">PeakFamily</a>&lt;<a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-taggedmass-taggedmass.html">TaggedMass</a>&gt;</span>&#32;list</span></code>
                     </span>
                     <br/>
                     <span>
@@ -746,7 +869,7 @@
                   <br/>
                   <span>
                     Returns: 
-                    <code><span><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-peakfamily-1.html">PeakFamily</a>&lt;<a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-fragmentation-ladderedtaggedmass.html">LadderedTaggedMass</a>&gt;</span>&#32;list</span></code>
+                    <code><span><span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-peakfamily-1.html">PeakFamily</a>&lt;<a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-fragmentation-ladderedtaggedmass.html">LadderedTaggedMass</a>&gt;</span>&#32;list</span></code>
                   </span>
                   <br/>
                 </div>
@@ -760,7 +883,7 @@
                   ionList
                 </span>
                 :
-                <code><span><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-peakfamily-1.html">PeakFamily</a>&lt;<a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-taggedmass-taggedmass.html">TaggedMass</a>&gt;</span>&#32;list</span></code>
+                <code><span><span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-peakfamily-1.html">PeakFamily</a>&lt;<a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-taggedmass-taggedmass.html">TaggedMass</a>&gt;</span>&#32;list</span></code>
               </dt>
               <dd class="fsdocs-param-docs"></dd>
               <dt class="fsdocs-param">
@@ -777,7 +900,7 @@
                 <span class="fsdocs-return-name">
                   Returns: 
                 </span>
-                <code><span><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-peakfamily-1.html">PeakFamily</a>&lt;<a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-fragmentation-ladderedtaggedmass.html">LadderedTaggedMass</a>&gt;</span>&#32;list</span></code>
+                <code><span><span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-peakfamily-1.html">PeakFamily</a>&lt;<a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-fragmentation-ladderedtaggedmass.html">LadderedTaggedMass</a>&gt;</span>&#32;list</span></code>
               </dt>
               <dd class="fsdocs-return-docs"></dd>
             </dl>
@@ -786,7 +909,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '60', 60)" onmouseover="showTip(event, '60', 60)">
+              <code onmouseout="hideTip(event, '65', 65)" onmouseover="showTip(event, '65', 65)">
                 <p>
                   <a id="waterLossSet">
                     <a href="#waterLossSet">
@@ -795,7 +918,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="60">
+              <div class="fsdocs-tip" id="65">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>waterLossSet&#32;<span></span></span></code>
@@ -866,10 +989,10 @@
         <p class="empty">Type something to start searching.</p>
     </div>
 </dialog>
-<script type="module" src="https://csbiology.github.io/BioFSharp.Mz/content/fsdocs-tips.js"></script>
-<script type="module" src="https://csbiology.github.io/BioFSharp.Mz/content/fsdocs-theme-toggle.js"></script>
-<script type="module" src="https://csbiology.github.io/BioFSharp.Mz/content/fsdocs-theme.js"></script>
-<script type="module" src="https://csbiology.github.io/BioFSharp.Mz/content/fsdocs-search.js"></script>
+<script type="module" src="https://biofsharp.com/BioFSharp.Mz/content/fsdocs-tips.js"></script>
+<script type="module" src="https://biofsharp.com/BioFSharp.Mz/content/fsdocs-theme-toggle.js"></script>
+<script type="module" src="https://biofsharp.com/BioFSharp.Mz/content/fsdocs-theme.js"></script>
+<script type="module" src="https://biofsharp.com/BioFSharp.Mz/content/fsdocs-search.js"></script>
 
 </body>
 </html>

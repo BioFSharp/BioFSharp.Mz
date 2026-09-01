@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-root="https://csbiology.github.io/BioFSharp.Mz/">
+<html lang="en" data-root="https://biofsharp.com/BioFSharp.Mz/">
 <head>
     <meta charset="UTF-8">
     <meta content="IE=edge" http-equiv="X-UA-Compatible">
@@ -8,11 +8,11 @@
     <!-- Opengraph properties (https://ogp.me/) -->
     <meta property="og:site_name" content="BioFSharp.Mz">
     <meta property="og:title" content="SequestLike (BioFSharp.Mz)" />
-    <meta property="og:url" content="https://csbiology.github.io/BioFSharp.Mz/{{fsdocs-source-basename}}.html">
+    <meta property="og:url" content="https://biofsharp.com/BioFSharp.Mz/{{fsdocs-source-basename}}.html">
     <meta property="og:type" content="website" />
     <!-- Twitter cards (https://developer.twitter.com/en/docs/twitter-for-websites/cards/overview/summary-card-with-large-image) -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:site" content="https://csbiology.github.io/BioFSharp.Mz/">
+    <meta name="twitter:site" content="https://biofsharp.com/BioFSharp.Mz/">
     <meta name="twitter:title" content="SequestLike (BioFSharp.Mz)">
     
     <title>SequestLike (BioFSharp.Mz) | BioFSharp.Mz</title>
@@ -20,11 +20,12 @@
     <link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
     <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
-    <link href="https://csbiology.github.io/BioFSharp.Mz/img/favicon.ico" rel="icon" sizes="32x32" type="image/png"/>
-    <script type="application/javascript" src="https://csbiology.github.io/BioFSharp.Mz/content/fsdocs-theme-set-dark.js"></script>
-    <link href="https://csbiology.github.io/BioFSharp.Mz/content/fsdocs-default.css" rel="stylesheet" type="text/css"/>
-    <link href="https://csbiology.github.io/BioFSharp.Mz/content/fsdocs-theme.css" rel="stylesheet" type="text/css"/>
+    <link href="https://biofsharp.com/BioFSharp.Mz/img/favicon.ico" rel="icon" sizes="32x32" type="image/png"/>
+    <script type="application/javascript" src="https://biofsharp.com/BioFSharp.Mz/content/fsdocs-theme-set-dark.js"></script>
+    <link href="https://biofsharp.com/BioFSharp.Mz/content/fsdocs-default.css" rel="stylesheet" type="text/css"/>
+    <link href="https://biofsharp.com/BioFSharp.Mz/content/fsdocs-theme.css" rel="stylesheet" type="text/css"/>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js"></script>
+<style>header .start a img { background-color: #2f3337; border-radius: 6px; padding: 3px; }</style>
     
 </head>
 <body class="api-docs">
@@ -43,19 +44,80 @@
                     Notes</a></li>
                 <li class="nav-item"><a class="nav-link" href="https://github.com/CSBiology/BioFSharp.Mz/">Source
                     Repository</a></li>
-                
+                <li class="nav-header ">
+  Spectrum processing
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/01_01_peaks_and_peak_arrays.html">
+    Peaks and peak arrays
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/01_02_signal_detection.html">
+    Signal detection and centroiding
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/01_03_charge_state_determination.html">
+    Charge state determination
+  </a>
+</li>             
+<li class="nav-header ">
+  Peptide identification
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/02_01_fragmentation.html">
+    In silico fragmentation
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/02_02_search_databases.html">
+    Peptide search databases
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/02_03_sequest_like_scoring.html">
+    SEQUEST-like scoring
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/02_04_andromeda_like_scoring.html">
+    Andromeda-like and X!Tandem-like scoring
+  </a>
+</li>             
+<li class="nav-header ">
+  Quantification
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/03_01_quantification.html">
+    Peak quantification
+  </a>
+</li>             
+<li class="nav-header ">
+  Validation and inference
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/04_01_fdr_control.html">
+    False discovery rate control
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/04_02_protein_inference.html">
+    Protein inference
+  </a>
+</li>
                 <li class="nav-header">
   API Reference
 </li>             
 <li class="nav-item">
-  <a class="nav-link" href="https://csbiology.github.io/BioFSharp.Mz/reference/index.html">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/reference/index.html">
     All Namespaces
   </a>
 </li>
             </ul>
         </div>
         <a href="https://csbiology.github.io/BioFSharp.Mz/">
-            <img alt="Header menu logo" src="https://csbiology.github.io/BioFSharp.Mz/img/logo.png">
+            <img alt="Header menu logo" src="https://biofsharp.com/BioFSharp.Mz/img/logo.png">
             <strong>BioFSharp.Mz</strong>
         </a>
     </div>
@@ -77,12 +139,73 @@
             Notes</a></li>
         <li class="nav-item"><a class="nav-link" href="https://github.com/CSBiology/BioFSharp.Mz/">Source
             Repository</a></li>
-        
+        <li class="nav-header ">
+  Spectrum processing
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/01_01_peaks_and_peak_arrays.html">
+    Peaks and peak arrays
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/01_02_signal_detection.html">
+    Signal detection and centroiding
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/01_03_charge_state_determination.html">
+    Charge state determination
+  </a>
+</li>             
+<li class="nav-header ">
+  Peptide identification
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/02_01_fragmentation.html">
+    In silico fragmentation
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/02_02_search_databases.html">
+    Peptide search databases
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/02_03_sequest_like_scoring.html">
+    SEQUEST-like scoring
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/02_04_andromeda_like_scoring.html">
+    Andromeda-like and X!Tandem-like scoring
+  </a>
+</li>             
+<li class="nav-header ">
+  Quantification
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/03_01_quantification.html">
+    Peak quantification
+  </a>
+</li>             
+<li class="nav-header ">
+  Validation and inference
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/04_01_fdr_control.html">
+    False discovery rate control
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/04_02_protein_inference.html">
+    Protein inference
+  </a>
+</li>
         <li class="nav-header">
   API Reference
 </li>             
 <li class="nav-item">
-  <a class="nav-link" href="https://csbiology.github.io/BioFSharp.Mz/reference/index.html">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/reference/index.html">
     All Namespaces
   </a>
 </li>
@@ -97,7 +220,7 @@
   <dl class="fsdocs-metadata">
     <dt>
       Namespace: 
-      <a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz.html">
+      <a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz.html">
         BioFSharp.Mz
       </a>
     </dt>
@@ -131,7 +254,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '566', 566)" onmouseover="showTip(event, '566', 566)">
+              <code onmouseout="hideTip(event, '573', 573)" onmouseover="showTip(event, '573', 573)">
                 <p>
                   <a id="autoCorrelation">
                     <a href="#autoCorrelation">
@@ -140,7 +263,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="566">
+              <div class="fsdocs-tip" id="573">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>autoCorrelation&#32;<span>plusMinusMaxDelay&#32;vector</span></span></code>
@@ -226,7 +349,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '567', 567)" onmouseover="showTip(event, '567', 567)">
+              <code onmouseout="hideTip(event, '574', 574)" onmouseover="showTip(event, '574', 574)">
                 <p>
                   <a id="calcSequestLikeScoresRevDecoy">
                     <a href="#calcSequestLikeScoresRevDecoy">
@@ -235,7 +358,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="567">
+              <div class="fsdocs-tip" id="574">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>calcSequestLikeScoresRevDecoy&#32;<span>calcIonSeries&#32;massfunction&#32;<span>(<span>arg3,&#32;arg4</span>)</span>&#32;spectrum&#32;scanTime&#32;chargeState&#32;isolationWindowTargetMz&#32;possiblePeptideInfos&#32;spectrumID</span></span></code>
@@ -248,7 +371,7 @@
                         calcIonSeries
                       </b>
                       :
-                      <code><span><span>(<span>Formula&#32;->&#32;float</span>)</span>&#32;->&#32;<span><a href="https://learn.microsoft.com/dotnet/api/biofsharp.aminoacids.aminoacid">AminoAcid</a>&#32;list</span>&#32;->&#32;<span><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-peakfamily-1.html">PeakFamily</a>&lt;<a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-taggedmass-taggedmass.html">TaggedMass</a>&gt;</span>&#32;list</span></span></code>
+                      <code><span><span>(<span>Formula&#32;->&#32;float</span>)</span>&#32;->&#32;<span><a href="https://learn.microsoft.com/dotnet/api/biofsharp.aminoacids.aminoacid">AminoAcid</a>&#32;list</span>&#32;->&#32;<span><span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-peakfamily-1.html">PeakFamily</a>&lt;<a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-taggedmass-taggedmass.html">TaggedMass</a>&gt;</span>&#32;list</span></span></code>
                     </span>
                     <br/>
                     <span>
@@ -280,7 +403,7 @@
                         spectrum
                       </b>
                       :
-                      <code><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-peakarray-1.html">PeakArray</a>&lt;'a&gt;</span></code>
+                      <code><span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-peakarray-1.html">PeakArray</a>&lt;'a&gt;</span></code>
                     </span>
                     <br/>
                     <span>
@@ -312,7 +435,7 @@
                         possiblePeptideInfos
                       </b>
                       :
-                      <code><span><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-searchdb-lookupresult-1.html">LookUpResult</a>&lt;<a href="https://learn.microsoft.com/dotnet/api/biofsharp.aminoacids.aminoacid">AminoAcid</a>&gt;</span>&#32;list</span></code>
+                      <code><span><span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-searchdb-lookupresult-1.html">LookUpResult</a>&lt;<a href="https://learn.microsoft.com/dotnet/api/biofsharp.aminoacids.aminoacid">AminoAcid</a>&gt;</span>&#32;list</span></code>
                     </span>
                     <br/>
                     <span>
@@ -327,7 +450,7 @@
                   <br/>
                   <span>
                     Returns: 
-                    <code><span><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-searchengineresult-searchengineresult-1.html">SearchEngineResult</a>&lt;float&gt;</span>&#32;list</span></code>
+                    <code><span><span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-searchengineresult-searchengineresult-1.html">SearchEngineResult</a>&lt;float&gt;</span>&#32;list</span></code>
                   </span>
                   <br/>
                 </div>
@@ -358,7 +481,7 @@
                     calcIonSeries
                   </span>
                   :
-                  <code><span><span>(<span>Formula&#32;->&#32;float</span>)</span>&#32;->&#32;<span><a href="https://learn.microsoft.com/dotnet/api/biofsharp.aminoacids.aminoacid">AminoAcid</a>&#32;list</span>&#32;->&#32;<span><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-peakfamily-1.html">PeakFamily</a>&lt;<a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-taggedmass-taggedmass.html">TaggedMass</a>&gt;</span>&#32;list</span></span></code>
+                  <code><span><span>(<span>Formula&#32;->&#32;float</span>)</span>&#32;->&#32;<span><a href="https://learn.microsoft.com/dotnet/api/biofsharp.aminoacids.aminoacid">AminoAcid</a>&#32;list</span>&#32;->&#32;<span><span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-peakfamily-1.html">PeakFamily</a>&lt;<a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-taggedmass-taggedmass.html">TaggedMass</a>&gt;</span>&#32;list</span></span></code>
                 </dt>
                 <dd class="fsdocs-param-docs"></dd>
                 <dt class="fsdocs-param">
@@ -390,7 +513,7 @@
                     spectrum
                   </span>
                   :
-                  <code><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-peakarray-1.html">PeakArray</a>&lt;'a&gt;</span></code>
+                  <code><span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-peakarray-1.html">PeakArray</a>&lt;'a&gt;</span></code>
                 </dt>
                 <dd class="fsdocs-param-docs"></dd>
                 <dt class="fsdocs-param">
@@ -422,7 +545,7 @@
                     possiblePeptideInfos
                   </span>
                   :
-                  <code><span><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-searchdb-lookupresult-1.html">LookUpResult</a>&lt;<a href="https://learn.microsoft.com/dotnet/api/biofsharp.aminoacids.aminoacid">AminoAcid</a>&gt;</span>&#32;list</span></code>
+                  <code><span><span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-searchdb-lookupresult-1.html">LookUpResult</a>&lt;<a href="https://learn.microsoft.com/dotnet/api/biofsharp.aminoacids.aminoacid">AminoAcid</a>&gt;</span>&#32;list</span></code>
                 </dt>
                 <dd class="fsdocs-param-docs"></dd>
                 <dt class="fsdocs-param">
@@ -439,7 +562,7 @@
                   <span class="fsdocs-return-name">
                     Returns: 
                   </span>
-                  <code><span><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-searchengineresult-searchengineresult-1.html">SearchEngineResult</a>&lt;float&gt;</span>&#32;list</span></code>
+                  <code><span><span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-searchengineresult-searchengineresult-1.html">SearchEngineResult</a>&lt;float&gt;</span>&#32;list</span></code>
                 </dt>
                 <dd class="fsdocs-return-docs"></dd>
               </dl>
@@ -449,7 +572,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '568', 568)" onmouseover="showTip(event, '568', 568)">
+              <code onmouseout="hideTip(event, '575', 575)" onmouseover="showTip(event, '575', 575)">
                 <p>
                   <a id="calcSequestScore">
                     <a href="#calcSequestScore">
@@ -458,7 +581,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="568">
+              <div class="fsdocs-tip" id="575">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>calcSequestScore&#32;<span><span>(<span>arg1,&#32;arg2</span>)</span>&#32;spectrum&#32;scanTime&#32;chargeState&#32;isolationWindowTargetMz&#32;theoreticalSpectra&#32;spectrumID</span></span></code>
@@ -487,7 +610,7 @@
                         spectrum
                       </b>
                       :
-                      <code><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-peakarray-1.html">PeakArray</a>&lt;'a&gt;</span></code>
+                      <code><span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-peakarray-1.html">PeakArray</a>&lt;'a&gt;</span></code>
                     </span>
                     <br/>
                     <span>
@@ -519,7 +642,7 @@
                         theoreticalSpectra
                       </b>
                       :
-                      <code><span><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-theoreticalspectra-theoreticalspectrum-1.html">TheoreticalSpectrum</a>&lt;<span><a href="https://fsharp.github.io/fsharp-core-docs/reference/fsharp-stats-vector-1">Vector</a>&lt;float&gt;</span>&gt;</span>&#32;list</span></code>
+                      <code><span><span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-theoreticalspectra-theoreticalspectrum-1.html">TheoreticalSpectrum</a>&lt;<span><a href="https://fsharp.github.io/fsharp-core-docs/reference/fsharp-stats-vector-1">Vector</a>&lt;float&gt;</span>&gt;</span>&#32;list</span></code>
                     </span>
                     <br/>
                     <span>
@@ -534,7 +657,7 @@
                   <br/>
                   <span>
                     Returns: 
-                    <code><span><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-searchengineresult-searchengineresult-1.html">SearchEngineResult</a>&lt;float&gt;</span>&#32;list</span></code>
+                    <code><span><span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-searchengineresult-searchengineresult-1.html">SearchEngineResult</a>&lt;float&gt;</span>&#32;list</span></code>
                   </span>
                   <br/>
                 </div>
@@ -581,7 +704,7 @@
                     spectrum
                   </span>
                   :
-                  <code><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-peakarray-1.html">PeakArray</a>&lt;'a&gt;</span></code>
+                  <code><span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-peakarray-1.html">PeakArray</a>&lt;'a&gt;</span></code>
                 </dt>
                 <dd class="fsdocs-param-docs"></dd>
                 <dt class="fsdocs-param">
@@ -613,7 +736,7 @@
                     theoreticalSpectra
                   </span>
                   :
-                  <code><span><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-theoreticalspectra-theoreticalspectrum-1.html">TheoreticalSpectrum</a>&lt;<span><a href="https://fsharp.github.io/fsharp-core-docs/reference/fsharp-stats-vector-1">Vector</a>&lt;float&gt;</span>&gt;</span>&#32;list</span></code>
+                  <code><span><span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-theoreticalspectra-theoreticalspectrum-1.html">TheoreticalSpectrum</a>&lt;<span><a href="https://fsharp.github.io/fsharp-core-docs/reference/fsharp-stats-vector-1">Vector</a>&lt;float&gt;</span>&gt;</span>&#32;list</span></code>
                 </dt>
                 <dd class="fsdocs-param-docs"></dd>
                 <dt class="fsdocs-param">
@@ -630,7 +753,7 @@
                   <span class="fsdocs-return-name">
                     Returns: 
                   </span>
-                  <code><span><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-searchengineresult-searchengineresult-1.html">SearchEngineResult</a>&lt;float&gt;</span>&#32;list</span></code>
+                  <code><span><span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-searchengineresult-searchengineresult-1.html">SearchEngineResult</a>&lt;float&gt;</span>&#32;list</span></code>
                 </dt>
                 <dd class="fsdocs-return-docs"></dd>
               </dl>
@@ -640,7 +763,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '569', 569)" onmouseover="showTip(event, '569', 569)">
+              <code onmouseout="hideTip(event, '576', 576)" onmouseover="showTip(event, '576', 576)">
                 <p>
                   <a id="calcSequestScoreParallel">
                     <a href="#calcSequestScoreParallel">
@@ -649,7 +772,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="569">
+              <div class="fsdocs-tip" id="576">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>calcSequestScoreParallel&#32;<span><span>(<span>arg1,&#32;arg2</span>)</span>&#32;spectrum&#32;scanTime&#32;chargeState&#32;isolationWindowTargetMz&#32;theoreticalSpectra&#32;spectrumID</span></span></code>
@@ -678,7 +801,7 @@
                         spectrum
                       </b>
                       :
-                      <code><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-peakarray-1.html">PeakArray</a>&lt;'a&gt;</span></code>
+                      <code><span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-peakarray-1.html">PeakArray</a>&lt;'a&gt;</span></code>
                     </span>
                     <br/>
                     <span>
@@ -710,7 +833,7 @@
                         theoreticalSpectra
                       </b>
                       :
-                      <code><span><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-theoreticalspectra-theoreticalspectrum-1.html">TheoreticalSpectrum</a>&lt;<span><a href="https://fsharp.github.io/fsharp-core-docs/reference/fsharp-stats-vector-1">Vector</a>&lt;float&gt;</span>&gt;</span>&#32;list</span></code>
+                      <code><span><span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-theoreticalspectra-theoreticalspectrum-1.html">TheoreticalSpectrum</a>&lt;<span><a href="https://fsharp.github.io/fsharp-core-docs/reference/fsharp-stats-vector-1">Vector</a>&lt;float&gt;</span>&gt;</span>&#32;list</span></code>
                     </span>
                     <br/>
                     <span>
@@ -725,7 +848,7 @@
                   <br/>
                   <span>
                     Returns: 
-                    <code><span><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-searchengineresult-searchengineresult-1.html">SearchEngineResult</a>&lt;float&gt;</span>&#32;list</span></code>
+                    <code><span><span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-searchengineresult-searchengineresult-1.html">SearchEngineResult</a>&lt;float&gt;</span>&#32;list</span></code>
                   </span>
                   <br/>
                 </div>
@@ -772,7 +895,7 @@
                     spectrum
                   </span>
                   :
-                  <code><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-peakarray-1.html">PeakArray</a>&lt;'a&gt;</span></code>
+                  <code><span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-peakarray-1.html">PeakArray</a>&lt;'a&gt;</span></code>
                 </dt>
                 <dd class="fsdocs-param-docs"></dd>
                 <dt class="fsdocs-param">
@@ -804,7 +927,7 @@
                     theoreticalSpectra
                   </span>
                   :
-                  <code><span><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-theoreticalspectra-theoreticalspectrum-1.html">TheoreticalSpectrum</a>&lt;<span><a href="https://fsharp.github.io/fsharp-core-docs/reference/fsharp-stats-vector-1">Vector</a>&lt;float&gt;</span>&gt;</span>&#32;list</span></code>
+                  <code><span><span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-theoreticalspectra-theoreticalspectrum-1.html">TheoreticalSpectrum</a>&lt;<span><a href="https://fsharp.github.io/fsharp-core-docs/reference/fsharp-stats-vector-1">Vector</a>&lt;float&gt;</span>&gt;</span>&#32;list</span></code>
                 </dt>
                 <dd class="fsdocs-param-docs"></dd>
                 <dt class="fsdocs-param">
@@ -821,7 +944,7 @@
                   <span class="fsdocs-return-name">
                     Returns: 
                   </span>
-                  <code><span><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-searchengineresult-searchengineresult-1.html">SearchEngineResult</a>&lt;float&gt;</span>&#32;list</span></code>
+                  <code><span><span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-searchengineresult-searchengineresult-1.html">SearchEngineResult</a>&lt;float&gt;</span>&#32;list</span></code>
                 </dt>
                 <dd class="fsdocs-return-docs"></dd>
               </dl>
@@ -831,7 +954,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '570', 570)" onmouseover="showTip(event, '570', 570)">
+              <code onmouseout="hideTip(event, '577', 577)" onmouseover="showTip(event, '577', 577)">
                 <p>
                   <a id="calcXCorr">
                     <a href="#calcXCorr">
@@ -840,7 +963,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="570">
+              <div class="fsdocs-tip" id="577">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>calcXCorr&#32;<span>p_nis&#32;ms_nis</span></span></code>
@@ -926,7 +1049,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '571', 571)" onmouseover="showTip(event, '571', 571)">
+              <code onmouseout="hideTip(event, '578', 578)" onmouseover="showTip(event, '578', 578)">
                 <p>
                   <a id="getTheoSpecs">
                     <a href="#getTheoSpecs">
@@ -935,7 +1058,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="571">
+              <div class="fsdocs-tip" id="578">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>getTheoSpecs&#32;<span><span>(<span>arg1,&#32;arg2</span>)</span>&#32;chargeState&#32;possiblePeptideInfos</span></span></code>
@@ -972,14 +1095,14 @@
                         possiblePeptideInfos
                       </b>
                       :
-                      <code><span><span>(<span><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-searchdb-lookupresult-1.html">LookUpResult</a>&lt;<a href="https://learn.microsoft.com/dotnet/api/biofsharp.aminoacids.aminoacid">AminoAcid</a>&gt;</span>&#32;*&#32;<a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-fragmentation-fragmentmasses.html">FragmentMasses</a></span>)</span>&#32;list</span></code>
+                      <code><span><span>(<span><span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-searchdb-lookupresult-1.html">LookUpResult</a>&lt;<a href="https://learn.microsoft.com/dotnet/api/biofsharp.aminoacids.aminoacid">AminoAcid</a>&gt;</span>&#32;*&#32;<a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-fragmentation-fragmentmasses.html">FragmentMasses</a></span>)</span>&#32;list</span></code>
                     </span>
                     <br/>
                   </ul>
                   <br/>
                   <span>
                     Returns: 
-                    <code><span><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-theoreticalspectra-theoreticalspectrum-1.html">TheoreticalSpectrum</a>&lt;<span><a href="https://fsharp.github.io/fsharp-core-docs/reference/fsharp-stats-vector-1">Vector</a>&lt;float&gt;</span>&gt;</span>&#32;list</span></code>
+                    <code><span><span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-theoreticalspectra-theoreticalspectrum-1.html">TheoreticalSpectrum</a>&lt;<span><a href="https://fsharp.github.io/fsharp-core-docs/reference/fsharp-stats-vector-1">Vector</a>&lt;float&gt;</span>&gt;</span>&#32;list</span></code>
                   </span>
                   <br/>
                 </div>
@@ -1036,7 +1159,7 @@
                     possiblePeptideInfos
                   </span>
                   :
-                  <code><span><span>(<span><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-searchdb-lookupresult-1.html">LookUpResult</a>&lt;<a href="https://learn.microsoft.com/dotnet/api/biofsharp.aminoacids.aminoacid">AminoAcid</a>&gt;</span>&#32;*&#32;<a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-fragmentation-fragmentmasses.html">FragmentMasses</a></span>)</span>&#32;list</span></code>
+                  <code><span><span>(<span><span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-searchdb-lookupresult-1.html">LookUpResult</a>&lt;<a href="https://learn.microsoft.com/dotnet/api/biofsharp.aminoacids.aminoacid">AminoAcid</a>&gt;</span>&#32;*&#32;<a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-fragmentation-fragmentmasses.html">FragmentMasses</a></span>)</span>&#32;list</span></code>
                 </dt>
                 <dd class="fsdocs-param-docs"></dd>
               </dl>
@@ -1045,7 +1168,7 @@
                   <span class="fsdocs-return-name">
                     Returns: 
                   </span>
-                  <code><span><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-theoreticalspectra-theoreticalspectrum-1.html">TheoreticalSpectrum</a>&lt;<span><a href="https://fsharp.github.io/fsharp-core-docs/reference/fsharp-stats-vector-1">Vector</a>&lt;float&gt;</span>&gt;</span>&#32;list</span></code>
+                  <code><span><span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-theoreticalspectra-theoreticalspectrum-1.html">TheoreticalSpectrum</a>&lt;<span><a href="https://fsharp.github.io/fsharp-core-docs/reference/fsharp-stats-vector-1">Vector</a>&lt;float&gt;</span>&gt;</span>&#32;list</span></code>
                 </dt>
                 <dd class="fsdocs-return-docs"></dd>
               </dl>
@@ -1055,7 +1178,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '572', 572)" onmouseover="showTip(event, '572', 572)">
+              <code onmouseout="hideTip(event, '579', 579)" onmouseover="showTip(event, '579', 579)">
                 <p>
                   <a id="predictIntensitySimpleModel">
                     <a href="#predictIntensitySimpleModel">
@@ -1064,7 +1187,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="572">
+              <div class="fsdocs-tip" id="579">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>predictIntensitySimpleModel&#32;<span>ionType&#32;charge</span></span></code>
@@ -1077,7 +1200,7 @@
                         ionType
                       </b>
                       :
-                      <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-ions-iontypeflag.html">IonTypeFlag</a></code>
+                      <code><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-ions-iontypeflag.html">IonTypeFlag</a></code>
                     </span>
                     <br/>
                     <span>
@@ -1123,7 +1246,7 @@
                     ionType
                   </span>
                   :
-                  <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-ions-iontypeflag.html">IonTypeFlag</a></code>
+                  <code><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-ions-iontypeflag.html">IonTypeFlag</a></code>
                 </dt>
                 <dd class="fsdocs-param-docs"></dd>
                 <dt class="fsdocs-param">
@@ -1150,7 +1273,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '573', 573)" onmouseover="showTip(event, '573', 573)">
+              <code onmouseout="hideTip(event, '580', 580)" onmouseover="showTip(event, '580', 580)">
                 <p>
                   <a id="predictOf">
                     <a href="#predictOf">
@@ -1159,7 +1282,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="573">
+              <div class="fsdocs-tip" id="580">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>predictOf&#32;<span><span>(<span>lowerScanLimit,&#32;upperScanLimit</span>)</span>&#32;charge&#32;ionSeries</span></span></code>
@@ -1196,7 +1319,7 @@
                         ionSeries
                       </b>
                       :
-                      <code><span><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-peakfamily-1.html">PeakFamily</a>&lt;<a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-taggedmass-taggedmass.html">TaggedMass</a>&gt;</span>&#32;list</span></code>
+                      <code><span><span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-peakfamily-1.html">PeakFamily</a>&lt;<a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-taggedmass-taggedmass.html">TaggedMass</a>&gt;</span>&#32;list</span></code>
                     </span>
                     <br/>
                   </ul>
@@ -1260,7 +1383,7 @@
                     ionSeries
                   </span>
                   :
-                  <code><span><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-peakfamily-1.html">PeakFamily</a>&lt;<a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-taggedmass-taggedmass.html">TaggedMass</a>&gt;</span>&#32;list</span></code>
+                  <code><span><span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-peakfamily-1.html">PeakFamily</a>&lt;<a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-taggedmass-taggedmass.html">TaggedMass</a>&gt;</span>&#32;list</span></code>
                 </dt>
                 <dd class="fsdocs-param-docs"></dd>
               </dl>
@@ -1279,7 +1402,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '574', 574)" onmouseover="showTip(event, '574', 574)">
+              <code onmouseout="hideTip(event, '581', 581)" onmouseover="showTip(event, '581', 581)">
                 <p>
                   <a id="scoreSingle">
                     <a href="#scoreSingle">
@@ -1288,7 +1411,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="574">
+              <div class="fsdocs-tip" id="581">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>scoreSingle&#32;<span>p_nis&#32;ms_nis</span></span></code>
@@ -1375,7 +1498,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '575', 575)" onmouseover="showTip(event, '575', 575)">
+              <code onmouseout="hideTip(event, '582', 582)" onmouseover="showTip(event, '582', 582)">
                 <p>
                   <a id="setVectorInplace">
                     <a href="#setVectorInplace">
@@ -1384,7 +1507,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="575">
+              <div class="fsdocs-tip" id="582">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>setVectorInplace&#32;<span>vector&#32;charge&#32;maxIndex&#32;lowerScanLimit&#32;taggedMass</span></span></code>
@@ -1429,7 +1552,7 @@
                         taggedMass
                       </b>
                       :
-                      <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-taggedmass-taggedmass.html">TaggedMass</a></code>
+                      <code><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-taggedmass-taggedmass.html">TaggedMass</a></code>
                     </span>
                     <br/>
                   </ul>
@@ -1477,7 +1600,7 @@
                   taggedMass
                 </span>
                 :
-                <code><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-taggedmass-taggedmass.html">TaggedMass</a></code>
+                <code><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-taggedmass-taggedmass.html">TaggedMass</a></code>
               </dt>
               <dd class="fsdocs-param-docs"></dd>
             </dl>
@@ -1486,7 +1609,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '576', 576)" onmouseover="showTip(event, '576', 576)">
+              <code onmouseout="hideTip(event, '583', 583)" onmouseover="showTip(event, '583', 583)">
                 <p>
                   <a id="spectrumToIntensityArrayMinusAutoCorrelation">
                     <a href="#spectrumToIntensityArrayMinusAutoCorrelation">
@@ -1495,7 +1618,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="576">
+              <div class="fsdocs-tip" id="583">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>spectrumToIntensityArrayMinusAutoCorrelation&#32;<span><span>(<span>lowerScanLimit,&#32;upperScanLimit</span>)</span>&#32;spectrum</span></span></code>
@@ -1524,7 +1647,7 @@
                         spectrum
                       </b>
                       :
-                      <code><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-peakarray-1.html">PeakArray</a>&lt;'a&gt;</span></code>
+                      <code><span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-peakarray-1.html">PeakArray</a>&lt;'a&gt;</span></code>
                     </span>
                     <br/>
                   </ul>
@@ -1580,7 +1703,7 @@
                     spectrum
                   </span>
                   :
-                  <code><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-peakarray-1.html">PeakArray</a>&lt;'a&gt;</span></code>
+                  <code><span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-peakarray-1.html">PeakArray</a>&lt;'a&gt;</span></code>
                 </dt>
                 <dd class="fsdocs-param-docs"></dd>
               </dl>
@@ -1599,7 +1722,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '577', 577)" onmouseover="showTip(event, '577', 577)">
+              <code onmouseout="hideTip(event, '584', 584)" onmouseover="showTip(event, '584', 584)">
                 <p>
                   <a id="theoSpecOf">
                     <a href="#theoSpecOf">
@@ -1608,7 +1731,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="577">
+              <div class="fsdocs-tip" id="584">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>theoSpecOf&#32;<span><span>(<span>lowerScanLimit,&#32;upperScanLimit</span>)</span>&#32;maxcharge&#32;fragments</span></span></code>
@@ -1645,7 +1768,7 @@
                         fragments
                       </b>
                       :
-                      <code><span><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-peakfamily-1.html">PeakFamily</a>&lt;<a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-taggedmass-taggedmass.html">TaggedMass</a>&gt;</span>&#32;list</span></code>
+                      <code><span><span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-peakfamily-1.html">PeakFamily</a>&lt;<a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-taggedmass-taggedmass.html">TaggedMass</a>&gt;</span>&#32;list</span></code>
                     </span>
                     <br/>
                   </ul>
@@ -1707,7 +1830,7 @@
                     fragments
                   </span>
                   :
-                  <code><span><span><a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-peakfamily-1.html">PeakFamily</a>&lt;<a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-taggedmass-taggedmass.html">TaggedMass</a>&gt;</span>&#32;list</span></code>
+                  <code><span><span><a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-peakfamily-1.html">PeakFamily</a>&lt;<a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-taggedmass-taggedmass.html">TaggedMass</a>&gt;</span>&#32;list</span></code>
                 </dt>
                 <dd class="fsdocs-param-docs"></dd>
               </dl>
@@ -1726,7 +1849,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '578', 578)" onmouseover="showTip(event, '578', 578)">
+              <code onmouseout="hideTip(event, '585', 585)" onmouseover="showTip(event, '585', 585)">
                 <p>
                   <a id="windowNormalizeIntensities">
                     <a href="#windowNormalizeIntensities">
@@ -1735,7 +1858,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="578">
+              <div class="fsdocs-tip" id="585">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>windowNormalizeIntensities&#32;<span>intensities&#32;numberOfWindows</span></span></code>
@@ -1845,10 +1968,10 @@
         <p class="empty">Type something to start searching.</p>
     </div>
 </dialog>
-<script type="module" src="https://csbiology.github.io/BioFSharp.Mz/content/fsdocs-tips.js"></script>
-<script type="module" src="https://csbiology.github.io/BioFSharp.Mz/content/fsdocs-theme-toggle.js"></script>
-<script type="module" src="https://csbiology.github.io/BioFSharp.Mz/content/fsdocs-theme.js"></script>
-<script type="module" src="https://csbiology.github.io/BioFSharp.Mz/content/fsdocs-search.js"></script>
+<script type="module" src="https://biofsharp.com/BioFSharp.Mz/content/fsdocs-tips.js"></script>
+<script type="module" src="https://biofsharp.com/BioFSharp.Mz/content/fsdocs-theme-toggle.js"></script>
+<script type="module" src="https://biofsharp.com/BioFSharp.Mz/content/fsdocs-theme.js"></script>
+<script type="module" src="https://biofsharp.com/BioFSharp.Mz/content/fsdocs-search.js"></script>
 
 </body>
 </html>

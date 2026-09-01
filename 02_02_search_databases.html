@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="en" data-root="https://biofsharp.com/BioFSharp.Mz/">
+<head>
+    <meta charset="UTF-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="David Zimmer, Caroline Ott, Heinrich Lukas Weil, Timo Muehlhaus" name="author">
+    <!-- Opengraph properties (https://ogp.me/) -->
+    <meta property="og:site_name" content="BioFSharp.Mz">
+    <meta property="og:title" content="Peptide search databases" />
+    <meta property="og:url" content="https://biofsharp.com/BioFSharp.Mz/02_02_search_databases.html">
+    <meta property="og:type" content="website" />
+    <!-- Twitter cards (https://developer.twitter.com/en/docs/twitter-for-websites/cards/overview/summary-card-with-large-image) -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="https://biofsharp.com/BioFSharp.Mz/">
+    <meta name="twitter:title" content="Peptide search databases">
+    
+    <title>Peptide search databases | BioFSharp.Mz</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <link href="https://biofsharp.com/BioFSharp.Mz/img/favicon.ico" rel="icon" sizes="32x32" type="image/png"/>
+    <script type="application/javascript" src="https://biofsharp.com/BioFSharp.Mz/content/fsdocs-theme-set-dark.js"></script>
+    <link href="https://biofsharp.com/BioFSharp.Mz/content/fsdocs-default.css" rel="stylesheet" type="text/css"/>
+    <link href="https://biofsharp.com/BioFSharp.Mz/content/fsdocs-theme.css" rel="stylesheet" type="text/css"/>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js"></script>
+<style>header .start a img { background-color: #2f3337; border-radius: 6px; padding: 3px; }</style>
+    
+</head>
+<body class="content">
+<header>
+    <div class="start">
+        <div id="menu-toggle">
+            <iconify-icon class="icon closed" height="22" icon="eva:menu-fill" width="22"></iconify-icon>
+            <iconify-icon class="icon open" height="22" icon="mi:close" width="22"></iconify-icon>
+            <input type="checkbox" name="mobile-menu" />
+            <ul class="menu">
+                <li class="nav-header">Links</li>
+                <li class="nav-item"><a class="nav-link" href="https://github.com/CSBiology/BioFSharp.Mz/blob/developer/LICENSE">License</a>
+                </li>
+                <li class="nav-item"><a class="nav-link"
+                                        href="https://github.com/CSBiology/BioFSharp.Mz/blob/developer/RELEASE_NOTES.md">Release
+                    Notes</a></li>
+                <li class="nav-item"><a class="nav-link" href="https://github.com/CSBiology/BioFSharp.Mz/">Source
+                    Repository</a></li>
+                <li class="nav-header ">
+  Spectrum processing
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/01_01_peaks_and_peak_arrays.html">
+    Peaks and peak arrays
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/01_02_signal_detection.html">
+    Signal detection and centroiding
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/01_03_charge_state_determination.html">
+    Charge state determination
+  </a>
+</li>             
+<li class="nav-header active">
+  Peptide identification
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/02_01_fragmentation.html">
+    In silico fragmentation
+  </a>
+</li>             
+<li class="nav-item active">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/02_02_search_databases.html">
+    Peptide search databases
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/02_03_sequest_like_scoring.html">
+    SEQUEST-like scoring
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/02_04_andromeda_like_scoring.html">
+    Andromeda-like and X!Tandem-like scoring
+  </a>
+</li>             
+<li class="nav-header ">
+  Quantification
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/03_01_quantification.html">
+    Peak quantification
+  </a>
+</li>             
+<li class="nav-header ">
+  Validation and inference
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/04_01_fdr_control.html">
+    False discovery rate control
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/04_02_protein_inference.html">
+    Protein inference
+  </a>
+</li>
+                <li class="nav-header">
+  API Reference
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/reference/index.html">
+    All Namespaces
+  </a>
+</li>
+            </ul>
+        </div>
+        <a href="https://csbiology.github.io/BioFSharp.Mz/">
+            <img alt="Header menu logo" src="https://biofsharp.com/BioFSharp.Mz/img/logo.png">
+            <strong>BioFSharp.Mz</strong>
+        </a>
+    </div>
+    <div class="end">
+        <a href="https://github.com/CSBiology/BioFSharp.Mz/" target="_blank">
+            <iconify-icon icon="uil:github" width="26" height="26"></iconify-icon>
+        </a>
+        <iconify-icon id="search-btn" icon="carbon:search" class="search" width="24" height="24"></iconify-icon>
+        <fsdocs-theme-toggle></fsdocs-theme-toggle>
+    </div>
+</header>
+<aside id="fsdocs-main-menu">
+    <ul class="menu">
+        <li class="nav-header">Links</li>
+        <li class="nav-item"><a class="nav-link" href="https://github.com/CSBiology/BioFSharp.Mz/blob/developer/LICENSE">License</a>
+        </li>
+        <li class="nav-item"><a class="nav-link"
+                                href="https://github.com/CSBiology/BioFSharp.Mz/blob/developer/RELEASE_NOTES.md">Release
+            Notes</a></li>
+        <li class="nav-item"><a class="nav-link" href="https://github.com/CSBiology/BioFSharp.Mz/">Source
+            Repository</a></li>
+        <li class="nav-header ">
+  Spectrum processing
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/01_01_peaks_and_peak_arrays.html">
+    Peaks and peak arrays
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/01_02_signal_detection.html">
+    Signal detection and centroiding
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/01_03_charge_state_determination.html">
+    Charge state determination
+  </a>
+</li>             
+<li class="nav-header active">
+  Peptide identification
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/02_01_fragmentation.html">
+    In silico fragmentation
+  </a>
+</li>             
+<li class="nav-item active">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/02_02_search_databases.html">
+    Peptide search databases
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/02_03_sequest_like_scoring.html">
+    SEQUEST-like scoring
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/02_04_andromeda_like_scoring.html">
+    Andromeda-like and X!Tandem-like scoring
+  </a>
+</li>             
+<li class="nav-header ">
+  Quantification
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/03_01_quantification.html">
+    Peak quantification
+  </a>
+</li>             
+<li class="nav-header ">
+  Validation and inference
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/04_01_fdr_control.html">
+    False discovery rate control
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/04_02_protein_inference.html">
+    Protein inference
+  </a>
+</li>
+        <li class="nav-header">
+  API Reference
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/reference/index.html">
+    All Namespaces
+  </a>
+</li>
+    </ul>
+</aside>
+<main>
+    <div id="content">
+        
+<p><a href="https://mybinder.org/v2/gh/BioFSharp/BioFSharp.Mz/gh-pages?filepath=02_02_search_databases.ipynb"><img src="https://biofsharp.com/BioFSharp.Mz/img/badge-binder.svg" alt="Binder" /></a>&emsp;
+<a href="https://biofsharp.com/BioFSharp.Mz/02_02_search_databases.fsx"><img src="https://biofsharp.com/BioFSharp.Mz/img/badge-script.svg" alt="Script" /></a>&emsp;
+<a href="https://biofsharp.com/BioFSharp.Mz/02_02_search_databases.ipynb"><img src="https://biofsharp.com/BioFSharp.Mz/img/badge-notebook.svg" alt="Notebook" /></a></p>
+<h1><a name="Peptide-search-databases" class="anchor" href="#Peptide-search-databases">Peptide search databases</a></h1>
+<p>Bottom-up proteomics identifies proteins through their peptides. The mass of an
+intact protein is not specific enough to identify it, so the sample is digested
+with a protease, almost always trypsin, and the mass spectrometer measures the
+resulting peptides. Trypsin cuts C-terminal to lysine and arginine, except when
+a proline follows, which yields peptides of around 14 residues on average that
+ionize well. When the instrument selects a peptide ion for fragmentation, it
+records the precursor m/z, and
+<a href="https://biofsharp.com/BioFSharp.Mz/01_03_charge_state_determination.html">charge state determination</a>
+turns that into a neutral mass. Identification then becomes a lookup problem:
+which peptides from the organism's proteome could have this mass?</p>
+<p>A run holds tens of thousands of spectra, and each one needs its candidate
+peptides with every modification variant and a precomputed mass. The <code>SearchDB</code>
+module does this preparation once. It digests the FASTA proteome, generates the
+modified variants of each peptide, precomputes their masses and stores
+everything in a SQLite database file with an index on the mass column. A search
+engine then asks for all candidates within a narrow mass window around a
+measured precursor and gets them back from an indexed query.</p>
+<p>This page builds such a database for the chloroplast proteome of
+<em>Chlamydomonas reinhardtii</em> and queries it by mass. The same organism
+accompanies the rest of these pages.</p>
+<h2><a name="Describing-the-search-space" class="anchor" href="#Describing-the-search-space">Describing the search space</a></h2>
+<p>Everything the database will contain is decided up front by a <code>SearchDbParams</code>
+record. The parameters are the identity of the database: two runs with the same
+parameters mean the same database, and any change means a different one.</p>
+<p>A fixed modification is applied to every occurrence of its target
+residue, the standard example being carbamidomethylation of cysteine from the
+sample preparation. A variable modification may or may not be present, so the
+database stores each peptide with and without it. The most common variable
+modification is oxidation of methionine, which adds one oxygen atom.
+<code>createSearchModification</code> describes it: a name, a
+<a href="https://www.unimod.org">Unimod</a> accession, a description, a flag whether the
+modification is biological in origin, the composition as an elemental formula,
+the target sites, whether the composition is added or subtracted, and a short
+code that will mark the modification inside stored sequence strings.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="k">open</span> <span onmouseout="hideTip(event, 'fs2', 16)" onmouseover="showTip(event, 'fs2', 16)" class="id">System</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs3', 17)" onmouseover="showTip(event, 'fs3', 17)" class="id">IO</span>
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs10', 18)" onmouseover="showTip(event, 'fs10', 18)" class="id">BioFSharp</span>
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs10', 19)" onmouseover="showTip(event, 'fs10', 19)" class="id">BioFSharp</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs11', 20)" onmouseover="showTip(event, 'fs11', 20)" class="id">Mz</span>
+
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs12', 21)" onmouseover="showTip(event, 'fs12', 21)" class="id">oxidationM</span> <span class="o">=</span>
+    <span onmouseout="hideTip(event, 'fs13', 22)" onmouseover="showTip(event, 'fs13', 22)" class="m">SearchDB</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs14', 23)" onmouseover="showTip(event, 'fs14', 23)" class="id">createSearchModification</span>
+        <span class="s">&quot;Oxidation&#39;Met&#39;&quot;</span> <span class="s">&quot;35&quot;</span> <span class="s">&quot;Oxidation of methionine&quot;</span> <span class="k">true</span> <span class="s">&quot;O&quot;</span>
+        <span class="pn">[</span> <span onmouseout="hideTip(event, 'fs13', 24)" onmouseover="showTip(event, 'fs13', 24)" class="m">SearchDB</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs15', 25)" onmouseover="showTip(event, 'fs15', 25)" class="id">Specific</span><span class="pn">(</span><span onmouseout="hideTip(event, 'fs16', 26)" onmouseover="showTip(event, 'fs16', 26)" class="m">AminoAcids</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs17', 27)" onmouseover="showTip(event, 'fs17', 27)" class="id">Met</span><span class="pn">,</span> <span onmouseout="hideTip(event, 'fs18', 28)" onmouseover="showTip(event, 'fs18', 28)" class="m">ModificationInfo</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs19', 29)" onmouseover="showTip(event, 'fs19', 29)" class="en">ModLocation</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs20', 30)" onmouseover="showTip(event, 'fs20', 30)" class="id">Residual</span><span class="pn">)</span> <span class="pn">]</span>
+        <span onmouseout="hideTip(event, 'fs13', 31)" onmouseover="showTip(event, 'fs13', 31)" class="m">SearchDB</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs21', 32)" onmouseover="showTip(event, 'fs21', 32)" class="rt">SearchModType</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs22', 33)" onmouseover="showTip(event, 'fs22', 33)" class="id">Plus</span> <span class="s">&quot;ox&quot;</span>
+
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs23', 34)" onmouseover="showTip(event, 'fs23', 34)" class="id">oxidationDelta</span> <span class="o">=</span>
+    <span onmouseout="hideTip(event, 'fs13', 35)" onmouseover="showTip(event, 'fs13', 35)" class="m">SearchDB</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs24', 36)" onmouseover="showTip(event, 'fs24', 36)" class="id">massFBy</span> <span onmouseout="hideTip(event, 'fs13', 37)" onmouseover="showTip(event, 'fs13', 37)" class="m">SearchDB</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs25', 38)" onmouseover="showTip(event, 'fs25', 38)" class="rt">MassMode</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs26', 39)" onmouseover="showTip(event, 'fs26', 39)" class="id">Monoisotopic</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs13', 40)" onmouseover="showTip(event, 'fs13', 40)" class="m">SearchDB</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs27', 41)" onmouseover="showTip(event, 'fs27', 41)" class="id">getModBy</span> <span onmouseout="hideTip(event, 'fs12', 42)" onmouseover="showTip(event, 'fs12', 42)" class="id">oxidationM</span><span class="pn">)</span>
+
+<span onmouseout="hideTip(event, 'fs28', 43)" onmouseover="showTip(event, 'fs28', 43)" class="fn">printfn</span> <span class="s">&quot;mass shift of </span><span class="pf">%s</span><span class="s">: </span><span class="pf">%.6f</span><span class="s"> Da&quot;</span> <span onmouseout="hideTip(event, 'fs12', 44)" onmouseover="showTip(event, 'fs12', 44)" class="id">oxidationM</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs29', 45)" onmouseover="showTip(event, 'fs29', 45)" class="id">Name</span> <span onmouseout="hideTip(event, 'fs23', 46)" onmouseover="showTip(event, 'fs23', 46)" class="id">oxidationDelta</span>
+</code></pre>
+<table class="pre"><tr><td class="snippet"><pre class="fssnip"><code lang="text">mass shift of Oxidation'Met': 15.994915 Da
+</code></pre></td></tr></table>
+<p>The composition "O" translates to the monoisotopic mass of one oxygen atom, the
+expected +15.995 Da shift. With the modification in hand we can assemble the
+full parameter record. <code>createSearchDbParams</code> takes every field as a positional
+argument.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs30', 47)" onmouseover="showTip(event, 'fs30', 47)" class="id">fastaPath</span> <span class="o">=</span> <span class="k">__SOURCE_DIRECTORY__</span> <span class="o">+</span> <span class="s">&quot;/data/Chlamy_Cp.fastA&quot;</span>
+
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs31', 48)" onmouseover="showTip(event, 'fs31', 48)" class="fn">fastaHeaderToName</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs32', 49)" onmouseover="showTip(event, 'fs32', 49)" class="fn">header</span><span class="pn">:</span> <span onmouseout="hideTip(event, 'fs33', 50)" onmouseover="showTip(event, 'fs33', 50)" class="rt">string</span><span class="pn">)</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs32', 51)" onmouseover="showTip(event, 'fs32', 51)" class="fn">header</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs34', 52)" onmouseover="showTip(event, 'fs34', 52)" class="id">Split</span><span class="pn">(</span><span class="s">&#39;|&#39;</span><span class="pn">)</span><span class="pn">.</span><span class="pn">[</span><span class="n">1</span><span class="pn">]</span><span class="pn">.</span><span class="id">Trim</span><span class="pn">(</span><span class="pn">)</span>
+
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs35', 53)" onmouseover="showTip(event, 'fs35', 53)" class="id">searchDbParams</span> <span class="o">=</span>
+    <span onmouseout="hideTip(event, 'fs13', 54)" onmouseover="showTip(event, 'fs13', 54)" class="m">SearchDB</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs36', 55)" onmouseover="showTip(event, 'fs36', 55)" class="id">createSearchDbParams</span>
+        <span class="s">&quot;Chlamy_Cp_trypsin&quot;</span>                             <span class="c">// database name</span>
+        <span onmouseout="hideTip(event, 'fs1', 56)" onmouseover="showTip(event, 'fs1', 56)" class="id">dbFolder</span>                                        <span class="c">// folder for the db file</span>
+        <span onmouseout="hideTip(event, 'fs30', 57)" onmouseover="showTip(event, 'fs30', 57)" class="id">fastaPath</span>                                       <span class="c">// proteome FASTA</span>
+        <span onmouseout="hideTip(event, 'fs31', 58)" onmouseover="showTip(event, 'fs31', 58)" class="fn">fastaHeaderToName</span>                               <span class="c">// header -&gt; accession</span>
+        <span class="pn">(</span><span onmouseout="hideTip(event, 'fs37', 59)" onmouseover="showTip(event, 'fs37', 59)" class="m">Digestion</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs38', 60)" onmouseover="showTip(event, 'fs38', 60)" class="m">Table</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs39', 61)" onmouseover="showTip(event, 'fs39', 61)" class="id">getProteaseBy</span> <span class="s">&quot;Trypsin&quot;</span><span class="pn">)</span>       <span class="c">// protease</span>
+        <span class="n">0</span> <span class="n">2</span>                                             <span class="c">// min/max missed cleavages</span>
+        <span class="n">15000.</span>                                          <span class="c">// MaxMass</span>
+        <span class="n">4</span> <span class="n">40</span>                                            <span class="c">// MinPepLength/MaxPepLength</span>
+        <span class="pn">[</span><span class="pn">]</span>                                              <span class="c">// isotopic mods</span>
+        <span onmouseout="hideTip(event, 'fs13', 62)" onmouseover="showTip(event, 'fs13', 62)" class="m">SearchDB</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs25', 63)" onmouseover="showTip(event, 'fs25', 63)" class="rt">MassMode</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs26', 64)" onmouseover="showTip(event, 'fs26', 64)" class="id">Monoisotopic</span>                  <span class="c">// mass mode</span>
+        <span class="pn">(</span><span onmouseout="hideTip(event, 'fs13', 65)" onmouseover="showTip(event, 'fs13', 65)" class="m">SearchDB</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs24', 66)" onmouseover="showTip(event, 'fs24', 66)" class="id">massFBy</span> <span onmouseout="hideTip(event, 'fs13', 67)" onmouseover="showTip(event, 'fs13', 67)" class="m">SearchDB</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs25', 68)" onmouseover="showTip(event, 'fs25', 68)" class="rt">MassMode</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs26', 69)" onmouseover="showTip(event, 'fs26', 69)" class="id">Monoisotopic</span><span class="pn">)</span> <span class="c">// matching mass function</span>
+        <span class="pn">[</span><span class="pn">]</span>                                              <span class="c">// fixed mods</span>
+        <span class="pn">[</span> <span onmouseout="hideTip(event, 'fs12', 70)" onmouseover="showTip(event, 'fs12', 70)" class="id">oxidationM</span> <span class="pn">]</span>                                  <span class="c">// variable mods</span>
+        <span class="n">2</span>                                               <span class="c">// variable mod threshold</span>
+
+<span onmouseout="hideTip(event, 'fs28', 71)" onmouseover="showTip(event, 'fs28', 71)" class="fn">printfn</span> <span class="s">&quot;database file name: </span><span class="pf">%s</span><span class="s">&quot;</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs4', 72)" onmouseover="showTip(event, 'fs4', 72)" class="rt">Path</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs40', 73)" onmouseover="showTip(event, 'fs40', 73)" class="id">GetFileName</span><span class="pn">(</span><span onmouseout="hideTip(event, 'fs13', 74)" onmouseover="showTip(event, 'fs13', 74)" class="m">SearchDB</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs41', 75)" onmouseover="showTip(event, 'fs41', 75)" class="m">Db</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs42', 76)" onmouseover="showTip(event, 'fs42', 76)" class="id">getNameOf</span> <span onmouseout="hideTip(event, 'fs35', 77)" onmouseover="showTip(event, 'fs35', 77)" class="id">searchDbParams</span><span class="pn">)</span><span class="pn">)</span>
+<span onmouseout="hideTip(event, 'fs28', 78)" onmouseover="showTip(event, 'fs28', 78)" class="fn">printfn</span> <span class="s">&quot;protease: </span><span class="pf">%s</span><span class="s">&quot;</span> <span onmouseout="hideTip(event, 'fs35', 79)" onmouseover="showTip(event, 'fs35', 79)" class="id">searchDbParams</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs43', 80)" onmouseover="showTip(event, 'fs43', 80)" class="prop">Protease</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs44', 81)" onmouseover="showTip(event, 'fs44', 81)" class="id">Name</span>
+</code></pre>
+<table class="pre"><tr><td class="snippet"><pre class="fssnip"><code lang="text">database file name: Chlamy_Cp_trypsin.db
+protease: Trypsin
+</code></pre></td></tr></table>
+<p>The name and folder determine where the SQLite file lands, here a folder under the
+system temp directory, and <code>SearchDB.Db.getNameOf</code> shows the resulting file name.
+<code>fastaHeaderToName</code> extracts a protein accession from each FASTA header line: our
+headers look like <code>sp|P19528| cytochrome b6/f complex subunit 4</code>, so splitting at <code>|</code>
+and taking the second field yields the accession. The protease comes from BioFSharp's
+<code>Digestion.Table</code>, either by name as shown or directly as <code>Digestion.Table.Trypsin</code>.</p>
+<p>A missed cleavage is a lysine or arginine the protease failed to cut, and real
+digests always contain such peptides, so search databases typically include peptides
+with up to two or three missed cleavages, here up to two.</p>
+<p>One implementation detail matters when choosing <code>MinPepLength</code> and <code>MaxPepLength</code>:
+the digest filter compares
+<code>CleavageEnd - CleavageStart</code>, which is the peptide length minus one, strictly
+against both bounds. The shortest stored peptide therefore has
+<code>MinPepLength + 2</code> residues and the longest has <code>MaxPepLength</code> residues. With
+the values 4 and 40 above, the database contains peptides of 6 to 40 residues.
+<code>MaxMass</code> is recorded with the database and participates in its identity.</p>
+<p>Metabolic labeling such as full 15N would go into the isotopic modification list,
+empty here, and the database would then store every peptide in a light and a heavy
+form. <code>MassMode.Monoisotopic</code> together with <code>massFBy</code> selects the memoized
+monoisotopic mass function used for all mass computations. Fixed modifications stay
+empty. Oxidation of methionine goes in as a variable modification, and the threshold
+of 2 caps how many variable modifications a single peptide may carry.</p>
+<h2><a name="Building-and-connecting-to-the-database" class="anchor" href="#Building-and-connecting-to-the-database">Building and connecting to the database</a></h2>
+<p><code>connectOrCreateDB</code> checks whether a database
+file matching the parameters already exists. If it does, it simply reconnects.
+If not, it reads the FASTA, digests every protein, generates the modified
+variants, computes their masses and bulk inserts everything. The returned
+value is an open <code>SQLiteConnection</code>. A few SQL counts show what the build
+produced.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="k">open</span> <span onmouseout="hideTip(event, 'fs2', 82)" onmouseover="showTip(event, 'fs2', 82)" class="id">System</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs45', 83)" onmouseover="showTip(event, 'fs45', 83)" class="id">Data</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs46', 84)" onmouseover="showTip(event, 'fs46', 84)" class="id">SQLite</span>
+
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs47', 85)" onmouseover="showTip(event, 'fs47', 85)" class="d">cn</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs13', 86)" onmouseover="showTip(event, 'fs13', 86)" class="m">SearchDB</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs48', 87)" onmouseover="showTip(event, 'fs48', 87)" class="id">connectOrCreateDB</span> <span onmouseout="hideTip(event, 'fs35', 88)" onmouseover="showTip(event, 'fs35', 88)" class="id">searchDbParams</span>
+
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs49', 89)" onmouseover="showTip(event, 'fs49', 89)" class="fn">countRows</span> <span onmouseout="hideTip(event, 'fs50', 90)" onmouseover="showTip(event, 'fs50', 90)" class="fn">table</span> <span class="o">=</span>
+    <span class="k">use</span> <span onmouseout="hideTip(event, 'fs51', 91)" onmouseover="showTip(event, 'fs51', 91)" class="d">cmd</span> <span class="o">=</span> <span class="k">new</span> <span onmouseout="hideTip(event, 'fs52', 92)" onmouseover="showTip(event, 'fs52', 92)" class="d">SQLiteCommand</span><span class="pn">(</span><span onmouseout="hideTip(event, 'fs53', 93)" onmouseover="showTip(event, 'fs53', 93)" class="fn">sprintf</span> <span class="s">&quot;SELECT COUNT(*) FROM </span><span class="pf">%s</span><span class="s">&quot;</span> <span onmouseout="hideTip(event, 'fs50', 94)" onmouseover="showTip(event, 'fs50', 94)" class="fn">table</span><span class="pn">,</span> <span onmouseout="hideTip(event, 'fs47', 95)" onmouseover="showTip(event, 'fs47', 95)" class="d">cn</span><span class="pn">)</span>
+    <span onmouseout="hideTip(event, 'fs51', 96)" onmouseover="showTip(event, 'fs51', 96)" class="d">cmd</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs54', 97)" onmouseover="showTip(event, 'fs54', 97)" class="id">ExecuteScalar</span><span class="pn">(</span><span class="pn">)</span> <span class="o">:?&gt;</span> <span onmouseout="hideTip(event, 'fs55', 98)" onmouseover="showTip(event, 'fs55', 98)" class="vt">int64</span>
+
+<span onmouseout="hideTip(event, 'fs28', 99)" onmouseover="showTip(event, 'fs28', 99)" class="fn">printfn</span> <span class="s">&quot;database file exists: </span><span class="pf">%b</span><span class="s">&quot;</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs56', 100)" onmouseover="showTip(event, 'fs56', 100)" class="rt">File</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs57', 101)" onmouseover="showTip(event, 'fs57', 101)" class="id">Exists</span><span class="pn">(</span><span onmouseout="hideTip(event, 'fs13', 102)" onmouseover="showTip(event, 'fs13', 102)" class="m">SearchDB</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs41', 103)" onmouseover="showTip(event, 'fs41', 103)" class="m">Db</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs42', 104)" onmouseover="showTip(event, 'fs42', 104)" class="id">getNameOf</span> <span onmouseout="hideTip(event, 'fs35', 105)" onmouseover="showTip(event, 'fs35', 105)" class="id">searchDbParams</span><span class="pn">)</span><span class="pn">)</span>
+<span onmouseout="hideTip(event, 'fs28', 106)" onmouseover="showTip(event, 'fs28', 106)" class="fn">printfn</span> <span class="s">&quot;proteins:                  </span><span class="pf">%i</span><span class="s">&quot;</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs49', 107)" onmouseover="showTip(event, 'fs49', 107)" class="fn">countRows</span> <span class="s">&quot;Protein&quot;</span><span class="pn">)</span>
+<span onmouseout="hideTip(event, 'fs28', 108)" onmouseover="showTip(event, 'fs28', 108)" class="fn">printfn</span> <span class="s">&quot;distinct peptide sequences: </span><span class="pf">%i</span><span class="s">&quot;</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs49', 109)" onmouseover="showTip(event, 'fs49', 109)" class="fn">countRows</span> <span class="s">&quot;PepSequence&quot;</span><span class="pn">)</span>
+<span onmouseout="hideTip(event, 'fs28', 110)" onmouseover="showTip(event, 'fs28', 110)" class="fn">printfn</span> <span class="s">&quot;mass entries (ModSequence): </span><span class="pf">%i</span><span class="s">&quot;</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs49', 111)" onmouseover="showTip(event, 'fs49', 111)" class="fn">countRows</span> <span class="s">&quot;ModSequence&quot;</span><span class="pn">)</span>
+</code></pre>
+<table class="pre"><tr><td class="snippet"><pre class="fssnip"><code lang="text">database file exists: true
+proteins:                  74
+distinct peptide sequences: 6415
+mass entries (ModSequence): 9355
+</code></pre></td></tr></table>
+<p>The 74 chloroplast proteins digest into several thousand distinct peptides,
+and the variable methionine oxidation expands them into more rows in the
+<code>ModSequence</code> table, which holds one row per modified variant with its
+precomputed mass. Calling <code>connectOrCreateDB</code> a second time with the same
+parameters finds the parameter record stored inside the file and reconnects
+without rebuilding anything. Changing any parameter, even only <code>MaxMass</code>,
+changes the identity and triggers a fresh build.</p>
+<h2><a name="Looking-up-candidates-by-precursor-mass" class="anchor" href="#Looking-up-candidates-by-precursor-mass">Looking up candidates by precursor mass</a></h2>
+<p><code>getThreadSafePeptideLookUpFromFileBy</code> prepares the mass window query against
+the open connection. The result is a function taking a lower and an upper
+neutral mass and returning every <code>ModSequence</code> row in between.</p>
+<p>To query something realistic we first need a mass a spectrometer could have
+measured. We digest the first protein of the FASTA in memory with the same
+trypsin instance and pick the first tryptic peptide that fits the stored
+length range and contains a methionine. Its neutral mass is the residue masses
+summed up plus one water for the termini.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="k">open</span> <span onmouseout="hideTip(event, 'fs10', 112)" onmouseover="showTip(event, 'fs10', 112)" class="id">BioFSharp</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs58', 113)" onmouseover="showTip(event, 'fs58', 113)" class="id">IO</span>
+
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs59', 114)" onmouseover="showTip(event, 'fs59', 114)" class="id">firstProtein</span> <span class="o">=</span>
+    <span onmouseout="hideTip(event, 'fs60', 115)" onmouseover="showTip(event, 'fs60', 115)" class="m">Fasta</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs61', 116)" onmouseover="showTip(event, 'fs61', 116)" class="id">read</span> <span onmouseout="hideTip(event, 'fs62', 117)" onmouseover="showTip(event, 'fs62', 117)" class="m">BioArray</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs63', 118)" onmouseover="showTip(event, 'fs63', 118)" class="id">ofAminoAcidString</span> <span onmouseout="hideTip(event, 'fs30', 119)" onmouseover="showTip(event, 'fs30', 119)" class="id">fastaPath</span>
+    <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs64', 120)" onmouseover="showTip(event, 'fs64', 120)" class="m">Seq</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs65', 121)" onmouseover="showTip(event, 'fs65', 121)" class="id">head</span>
+
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs66', 122)" onmouseover="showTip(event, 'fs66', 122)" class="id">targetPeptide</span> <span class="o">=</span>
+    <span onmouseout="hideTip(event, 'fs37', 123)" onmouseover="showTip(event, 'fs37', 123)" class="m">Digestion</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs67', 124)" onmouseover="showTip(event, 'fs67', 124)" class="m">BioArray</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs68', 125)" onmouseover="showTip(event, 'fs68', 125)" class="id">digest</span> <span onmouseout="hideTip(event, 'fs37', 126)" onmouseover="showTip(event, 'fs37', 126)" class="m">Digestion</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs38', 127)" onmouseover="showTip(event, 'fs38', 127)" class="m">Table</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs69', 128)" onmouseover="showTip(event, 'fs69', 128)" class="id">Trypsin</span> <span class="n">0</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs59', 129)" onmouseover="showTip(event, 'fs59', 129)" class="id">firstProtein</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs70', 130)" onmouseover="showTip(event, 'fs70', 130)" class="id">Sequence</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs71', 131)" onmouseover="showTip(event, 'fs71', 131)" class="m">Array</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs72', 132)" onmouseover="showTip(event, 'fs72', 132)" class="id">ofSeq</span><span class="pn">)</span>
+    <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs71', 133)" onmouseover="showTip(event, 'fs71', 133)" class="m">Array</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs73', 134)" onmouseover="showTip(event, 'fs73', 134)" class="id">find</span> <span class="pn">(</span><span class="k">fun</span> <span onmouseout="hideTip(event, 'fs74', 135)" onmouseover="showTip(event, 'fs74', 135)" class="fn">p</span> <span class="k">-&gt;</span>
+        <span onmouseout="hideTip(event, 'fs74', 136)" onmouseover="showTip(event, 'fs74', 136)" class="fn">p</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs75', 137)" onmouseover="showTip(event, 'fs75', 137)" class="prop">PepSequence</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs76', 138)" onmouseover="showTip(event, 'fs76', 138)" class="id">Length</span> <span class="o">&gt;</span><span class="o">=</span> <span class="n">6</span> <span class="o">&amp;&amp;</span> <span onmouseout="hideTip(event, 'fs74', 139)" onmouseover="showTip(event, 'fs74', 139)" class="fn">p</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs75', 140)" onmouseover="showTip(event, 'fs75', 140)" class="prop">PepSequence</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs76', 141)" onmouseover="showTip(event, 'fs76', 141)" class="id">Length</span> <span class="o">&lt;=</span> <span class="n">40</span>
+        <span class="o">&amp;&amp;</span> <span onmouseout="hideTip(event, 'fs77', 142)" onmouseover="showTip(event, 'fs77', 142)" class="m">List</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs78', 143)" onmouseover="showTip(event, 'fs78', 143)" class="id">contains</span> <span onmouseout="hideTip(event, 'fs16', 144)" onmouseover="showTip(event, 'fs16', 144)" class="m">AminoAcids</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs17', 145)" onmouseover="showTip(event, 'fs17', 145)" class="id">Met</span> <span onmouseout="hideTip(event, 'fs74', 146)" onmouseover="showTip(event, 'fs74', 146)" class="fn">p</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs75', 147)" onmouseover="showTip(event, 'fs75', 147)" class="id">PepSequence</span><span class="pn">)</span>
+
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs79', 148)" onmouseover="showTip(event, 'fs79', 148)" class="id">targetMass</span> <span class="o">=</span>
+    <span onmouseout="hideTip(event, 'fs66', 149)" onmouseover="showTip(event, 'fs66', 149)" class="id">targetPeptide</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs75', 150)" onmouseover="showTip(event, 'fs75', 150)" class="id">PepSequence</span>
+    <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs77', 151)" onmouseover="showTip(event, 'fs77', 151)" class="m">List</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs80', 152)" onmouseover="showTip(event, 'fs80', 152)" class="id">sumBy</span> <span onmouseout="hideTip(event, 'fs81', 153)" onmouseover="showTip(event, 'fs81', 153)" class="m">BioItem</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs82', 154)" onmouseover="showTip(event, 'fs82', 154)" class="id">monoisoMass</span>
+    <span class="o">|&gt;</span> <span class="pn">(</span><span class="o">+</span><span class="pn">)</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs81', 155)" onmouseover="showTip(event, 'fs81', 155)" class="m">BioItem</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs82', 156)" onmouseover="showTip(event, 'fs82', 156)" class="id">monoisoMass</span> <span onmouseout="hideTip(event, 'fs18', 157)" onmouseover="showTip(event, 'fs18', 157)" class="m">ModificationInfo</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs83', 158)" onmouseover="showTip(event, 'fs83', 158)" class="m">Table</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs84', 159)" onmouseover="showTip(event, 'fs84', 159)" class="id">H2O</span><span class="pn">)</span>
+
+<span onmouseout="hideTip(event, 'fs28', 160)" onmouseover="showTip(event, 'fs28', 160)" class="fn">printfn</span> <span class="s">&quot;protein:  </span><span class="pf">%s</span><span class="s">&quot;</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs31', 161)" onmouseover="showTip(event, 'fs31', 161)" class="fn">fastaHeaderToName</span> <span onmouseout="hideTip(event, 'fs59', 162)" onmouseover="showTip(event, 'fs59', 162)" class="id">firstProtein</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs85', 163)" onmouseover="showTip(event, 'fs85', 163)" class="id">Header</span><span class="pn">)</span>
+<span onmouseout="hideTip(event, 'fs28', 164)" onmouseover="showTip(event, 'fs28', 164)" class="fn">printfn</span> <span class="s">&quot;peptide:  </span><span class="pf">%s</span><span class="s">&quot;</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs86', 165)" onmouseover="showTip(event, 'fs86', 165)" class="m">BioList</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs87', 166)" onmouseover="showTip(event, 'fs87', 166)" class="id">toString</span> <span onmouseout="hideTip(event, 'fs66', 167)" onmouseover="showTip(event, 'fs66', 167)" class="id">targetPeptide</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs75', 168)" onmouseover="showTip(event, 'fs75', 168)" class="id">PepSequence</span><span class="pn">)</span>
+<span onmouseout="hideTip(event, 'fs28', 169)" onmouseover="showTip(event, 'fs28', 169)" class="fn">printfn</span> <span class="s">&quot;neutral monoisotopic mass: </span><span class="pf">%.5f</span><span class="s"> Da&quot;</span> <span onmouseout="hideTip(event, 'fs79', 170)" onmouseover="showTip(event, 'fs79', 170)" class="id">targetMass</span>
+</code></pre>
+<table class="pre"><tr><td class="snippet"><pre class="fssnip"><code lang="text">protein:  P19528
+peptide:  LLGVLLMAAVPAGLITVPFIESINK
+neutral monoisotopic mass: 2578.51720 Da
+</code></pre></td></tr></table>
+<p>A production pipeline queries the database with a 30 ppm window around the
+measured precursor mass.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs88', 171)" onmouseover="showTip(event, 'fs88', 171)" class="fn">lookUpByMass</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs13', 172)" onmouseover="showTip(event, 'fs13', 172)" class="m">SearchDB</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs89', 173)" onmouseover="showTip(event, 'fs89', 173)" class="id">getThreadSafePeptideLookUpFromFileBy</span> <span onmouseout="hideTip(event, 'fs47', 174)" onmouseover="showTip(event, 'fs47', 174)" class="d">cn</span> <span onmouseout="hideTip(event, 'fs35', 175)" onmouseover="showTip(event, 'fs35', 175)" class="id">searchDbParams</span>
+
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs90', 176)" onmouseover="showTip(event, 'fs90', 176)" class="fn">ppmToDalton</span> <span onmouseout="hideTip(event, 'fs91', 177)" onmouseover="showTip(event, 'fs91', 177)" class="fn">ppm</span> <span onmouseout="hideTip(event, 'fs92', 178)" onmouseover="showTip(event, 'fs92', 178)" class="fn">mass</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs92', 179)" onmouseover="showTip(event, 'fs92', 179)" class="fn">mass</span> <span class="o">*</span> <span onmouseout="hideTip(event, 'fs91', 180)" onmouseover="showTip(event, 'fs91', 180)" class="fn">ppm</span> <span class="o">/</span> <span class="n">1000000.</span>
+
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs93', 181)" onmouseover="showTip(event, 'fs93', 181)" class="fn">showHits</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs94', 182)" onmouseover="showTip(event, 'fs94', 182)" class="fn">hits</span><span class="pn">:</span> <span onmouseout="hideTip(event, 'fs13', 183)" onmouseover="showTip(event, 'fs13', 183)" class="m">SearchDB</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs95', 184)" onmouseover="showTip(event, 'fs95', 184)" class="id">LookUpResult</span><span class="pn">&lt;</span><span onmouseout="hideTip(event, 'fs16', 185)" onmouseover="showTip(event, 'fs16', 185)" class="m">AminoAcids</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs96', 186)" onmouseover="showTip(event, 'fs96', 186)" class="id">AminoAcid</span><span class="pn">&gt;</span> <span onmouseout="hideTip(event, 'fs97', 187)" onmouseover="showTip(event, 'fs97', 187)" class="rt">list</span><span class="pn">)</span> <span class="o">=</span>
+    <span onmouseout="hideTip(event, 'fs94', 188)" onmouseover="showTip(event, 'fs94', 188)" class="fn">hits</span>
+    <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs77', 189)" onmouseover="showTip(event, 'fs77', 189)" class="m">List</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs98', 190)" onmouseover="showTip(event, 'fs98', 190)" class="id">sortBy</span> <span class="pn">(</span><span class="k">fun</span> <span onmouseout="hideTip(event, 'fs99', 191)" onmouseover="showTip(event, 'fs99', 191)" class="fn">h</span> <span class="k">-&gt;</span> <span onmouseout="hideTip(event, 'fs99', 192)" onmouseover="showTip(event, 'fs99', 192)" class="fn">h</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs100', 193)" onmouseover="showTip(event, 'fs100', 193)" class="id">Mass</span><span class="pn">)</span>
+    <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs77', 194)" onmouseover="showTip(event, 'fs77', 194)" class="m">List</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs101', 195)" onmouseover="showTip(event, 'fs101', 195)" class="id">iter</span> <span class="pn">(</span><span class="k">fun</span> <span onmouseout="hideTip(event, 'fs99', 196)" onmouseover="showTip(event, 'fs99', 196)" class="fn">h</span> <span class="k">-&gt;</span>
+        <span onmouseout="hideTip(event, 'fs28', 197)" onmouseover="showTip(event, 'fs28', 197)" class="fn">printfn</span> <span class="s">&quot;</span><span class="pf">%-30s</span><span class="s"> mass </span><span class="pf">%11.5f</span><span class="s">  rounded </span><span class="pf">%11i</span><span class="s">  pepSeqID </span><span class="pf">%i</span><span class="s">  modSeqID </span><span class="pf">%i</span><span class="s">  globalMod </span><span class="pf">%i</span><span class="s">&quot;</span>
+            <span onmouseout="hideTip(event, 'fs99', 198)" onmouseover="showTip(event, 'fs99', 198)" class="fn">h</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs102', 199)" onmouseover="showTip(event, 'fs102', 199)" class="id">StringSequence</span> <span onmouseout="hideTip(event, 'fs99', 200)" onmouseover="showTip(event, 'fs99', 200)" class="fn">h</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs100', 201)" onmouseover="showTip(event, 'fs100', 201)" class="id">Mass</span> <span onmouseout="hideTip(event, 'fs99', 202)" onmouseover="showTip(event, 'fs99', 202)" class="fn">h</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs103', 203)" onmouseover="showTip(event, 'fs103', 203)" class="id">RoundedMass</span> <span onmouseout="hideTip(event, 'fs99', 204)" onmouseover="showTip(event, 'fs99', 204)" class="fn">h</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs104', 205)" onmouseover="showTip(event, 'fs104', 205)" class="id">PepSequenceID</span> <span onmouseout="hideTip(event, 'fs99', 206)" onmouseover="showTip(event, 'fs99', 206)" class="fn">h</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs105', 207)" onmouseover="showTip(event, 'fs105', 207)" class="id">ModSequenceID</span> <span onmouseout="hideTip(event, 'fs99', 208)" onmouseover="showTip(event, 'fs99', 208)" class="fn">h</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs106', 209)" onmouseover="showTip(event, 'fs106', 209)" class="id">GlobalMod</span><span class="pn">)</span>
+
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs107', 210)" onmouseover="showTip(event, 'fs107', 210)" class="id">tolerance</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs90', 211)" onmouseover="showTip(event, 'fs90', 211)" class="fn">ppmToDalton</span> <span class="n">30.</span> <span onmouseout="hideTip(event, 'fs79', 212)" onmouseover="showTip(event, 'fs79', 212)" class="id">targetMass</span>
+
+<span onmouseout="hideTip(event, 'fs28', 213)" onmouseover="showTip(event, 'fs28', 213)" class="fn">printfn</span> <span class="s">&quot;30 ppm at this mass: </span><span class="pf">%.5f</span><span class="s"> Da&quot;</span> <span onmouseout="hideTip(event, 'fs107', 214)" onmouseover="showTip(event, 'fs107', 214)" class="id">tolerance</span>
+
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs94', 215)" onmouseover="showTip(event, 'fs94', 215)" class="id">hits</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs88', 216)" onmouseover="showTip(event, 'fs88', 216)" class="fn">lookUpByMass</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs79', 217)" onmouseover="showTip(event, 'fs79', 217)" class="id">targetMass</span> <span class="o">-</span> <span onmouseout="hideTip(event, 'fs107', 218)" onmouseover="showTip(event, 'fs107', 218)" class="id">tolerance</span><span class="pn">)</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs79', 219)" onmouseover="showTip(event, 'fs79', 219)" class="id">targetMass</span> <span class="o">+</span> <span onmouseout="hideTip(event, 'fs107', 220)" onmouseover="showTip(event, 'fs107', 220)" class="id">tolerance</span><span class="pn">)</span>
+
+<span onmouseout="hideTip(event, 'fs93', 221)" onmouseover="showTip(event, 'fs93', 221)" class="fn">showHits</span> <span onmouseout="hideTip(event, 'fs94', 222)" onmouseover="showTip(event, 'fs94', 222)" class="id">hits</span>
+</code></pre>
+<table class="pre"><tr><td class="snippet"><pre class="fssnip"><code lang="text">30 ppm at this mass: 0.07736 Da
+LLGVLLMAAVPAGLITVPFIESINK      mass  2578.51720  rounded  2578517204  pepSeqID 4  modSeqID 3  globalMod 0
+</code></pre></td></tr></table>
+<p>The window returns exactly the peptide we computed the mass for, as a
+<code>LookUpResult</code>. <code>StringSequence</code> is the stored sequence, <code>Mass</code> the
+precomputed neutral mass and <code>RoundedMass</code> that mass multiplied by one million
+and stored as an integer, which is the indexed column the BETWEEN query runs
+against. <code>PepSequenceID</code> identifies the plain peptide sequence and
+<code>ModSequenceID</code> the specific modified variant. <code>GlobalMod</code> tells whether the
+entry belongs to the isotopically labeled form of the database. We configured
+no isotopic modification, so it is 0 for every entry. The <code>BioSequence</code> field,
+not printed here, holds the sequence parsed back into a BioFSharp amino acid
+list, ready for fragment prediction.</p>
+<p>The oxidized form of the same peptide weighs one oxygen more and sits in its
+own mass window. Querying 30 ppm around that mass returns the variant carrying
+the modification.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs108', 223)" onmouseover="showTip(event, 'fs108', 223)" class="id">oxidizedMass</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs79', 224)" onmouseover="showTip(event, 'fs79', 224)" class="id">targetMass</span> <span class="o">+</span> <span onmouseout="hideTip(event, 'fs23', 225)" onmouseover="showTip(event, 'fs23', 225)" class="id">oxidationDelta</span>
+
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs109', 226)" onmouseover="showTip(event, 'fs109', 226)" class="id">oxHits</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs88', 227)" onmouseover="showTip(event, 'fs88', 227)" class="fn">lookUpByMass</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs108', 228)" onmouseover="showTip(event, 'fs108', 228)" class="id">oxidizedMass</span> <span class="o">-</span> <span onmouseout="hideTip(event, 'fs107', 229)" onmouseover="showTip(event, 'fs107', 229)" class="id">tolerance</span><span class="pn">)</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs108', 230)" onmouseover="showTip(event, 'fs108', 230)" class="id">oxidizedMass</span> <span class="o">+</span> <span onmouseout="hideTip(event, 'fs107', 231)" onmouseover="showTip(event, 'fs107', 231)" class="id">tolerance</span><span class="pn">)</span>
+
+<span onmouseout="hideTip(event, 'fs93', 232)" onmouseover="showTip(event, 'fs93', 232)" class="fn">showHits</span> <span onmouseout="hideTip(event, 'fs109', 233)" onmouseover="showTip(event, 'fs109', 233)" class="id">oxHits</span>
+</code></pre>
+<table class="pre"><tr><td class="snippet"><pre class="fssnip"><code lang="text">LLGVLL[ox]MAAVPAGLITVPFIESINK  mass  2594.51212  rounded  2594512119  pepSeqID 4  modSeqID 4  globalMod 0
+</code></pre></td></tr></table>
+<p>The modification appears inside the sequence string as the <code>[ox]</code> code
+directly in front of the modified residue, the same code we passed to
+<code>createSearchModification</code>. Both variants share the <code>PepSequenceID</code> of the
+plain sequence but have distinct <code>ModSequenceID</code>s and masses. A search engine
+scoring this window would now treat the oxidized sequence as its own
+candidate.</p>
+<h2><a name="Mapping-peptides-back-to-proteins" class="anchor" href="#Mapping-peptides-back-to-proteins">Mapping peptides back to proteins</a></h2>
+<p>After spectra have been matched, the pipeline needs to know which proteins a
+peptide belongs to, because the final goal is a protein list. The
+<code>CleavageIndex</code> table stores this mapping, and
+<code>getProteinPeptideLookUpFromFileBy</code> prepares a lookup from a <code>PepSequenceID</code>
+to the accessions of all proteins containing that peptide, each accession
+paired with the peptide sequence the ID stands for. It expects an
+in-memory copy of the database, which <code>copyDBIntoMemory</code> produces from the
+open file connection, so the many lookups of a full run avoid disk access.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs110', 234)" onmouseover="showTip(event, 'fs110', 234)" class="d">memoryDB</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs13', 235)" onmouseover="showTip(event, 'fs13', 235)" class="m">SearchDB</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs111', 236)" onmouseover="showTip(event, 'fs111', 236)" class="id">copyDBIntoMemory</span> <span onmouseout="hideTip(event, 'fs47', 237)" onmouseover="showTip(event, 'fs47', 237)" class="d">cn</span>
+
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs112', 238)" onmouseover="showTip(event, 'fs112', 238)" class="fn">proteinsOfPeptide</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs13', 239)" onmouseover="showTip(event, 'fs13', 239)" class="m">SearchDB</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs113', 240)" onmouseover="showTip(event, 'fs113', 240)" class="id">getProteinPeptideLookUpFromFileBy</span> <span onmouseout="hideTip(event, 'fs110', 241)" onmouseover="showTip(event, 'fs110', 241)" class="d">memoryDB</span>
+
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs114', 242)" onmouseover="showTip(event, 'fs114', 242)" class="id">firstHit</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs94', 243)" onmouseover="showTip(event, 'fs94', 243)" class="id">hits</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs77', 244)" onmouseover="showTip(event, 'fs77', 244)" class="m">List</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs115', 245)" onmouseover="showTip(event, 'fs115', 245)" class="id">minBy</span> <span class="pn">(</span><span class="k">fun</span> <span onmouseout="hideTip(event, 'fs99', 246)" onmouseover="showTip(event, 'fs99', 246)" class="fn">h</span> <span class="k">-&gt;</span> <span onmouseout="hideTip(event, 'fs99', 247)" onmouseover="showTip(event, 'fs99', 247)" class="fn">h</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs100', 248)" onmouseover="showTip(event, 'fs100', 248)" class="id">Mass</span><span class="pn">)</span>
+
+<span onmouseout="hideTip(event, 'fs112', 249)" onmouseover="showTip(event, 'fs112', 249)" class="fn">proteinsOfPeptide</span> <span onmouseout="hideTip(event, 'fs114', 250)" onmouseover="showTip(event, 'fs114', 250)" class="id">firstHit</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs104', 251)" onmouseover="showTip(event, 'fs104', 251)" class="id">PepSequenceID</span>
+<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs77', 252)" onmouseover="showTip(event, 'fs77', 252)" class="m">List</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs101', 253)" onmouseover="showTip(event, 'fs101', 253)" class="id">iter</span> <span class="pn">(</span><span class="k">fun</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs116', 254)" onmouseover="showTip(event, 'fs116', 254)" class="fn">accession</span><span class="pn">,</span> <span onmouseout="hideTip(event, 'fs117', 255)" onmouseover="showTip(event, 'fs117', 255)" class="fn">peptideSequence</span><span class="pn">)</span> <span class="k">-&gt;</span>
+    <span onmouseout="hideTip(event, 'fs28', 256)" onmouseover="showTip(event, 'fs28', 256)" class="fn">printfn</span> <span class="s">&quot;peptide </span><span class="pf">%s</span><span class="s"> occurs in protein </span><span class="pf">%s</span><span class="s">&quot;</span> <span onmouseout="hideTip(event, 'fs117', 257)" onmouseover="showTip(event, 'fs117', 257)" class="fn">peptideSequence</span> <span onmouseout="hideTip(event, 'fs116', 258)" onmouseover="showTip(event, 'fs116', 258)" class="fn">accession</span><span class="pn">)</span>
+</code></pre>
+<table class="pre"><tr><td class="snippet"><pre class="fssnip"><code lang="text">peptide LLGVLLMAAVPAGLITVPFIESINK occurs in protein P19528
+</code></pre></td></tr></table>
+<p>The peptide maps back to P19528, the cytochrome b6/f subunit the FASTA starts
+with, and the returned accession is exactly what our <code>fastaHeaderToName</code>
+function extracted during the build. This reverse mapping is the raw material
+for <a href="https://biofsharp.com/BioFSharp.Mz/04_02_protein_inference.html">protein inference</a>, where shared
+peptides make the mapping ambiguous and need to be resolved.</p>
+<h2><a name="Caching-repeated-lookups" class="anchor" href="#Caching-repeated-lookups">Caching repeated lookups</a></h2>
+<p>Consecutive precursors in a run often have similar masses, so their candidate
+windows overlap and the same peptides would be fetched and their fragments
+predicted again. The <code>Cache</code> module addresses this with a thin wrapper around
+<code>SortedList</code>, keyed by the same rounded integer masses the database uses.
+<code>getPeptideLookUpWithMemBy</code> combines such a cache with the database lookup and
+fragment prediction, so a peptide that already went through the pipeline is
+served from memory. Creating a cache and storing a result under its rounded
+mass looks like this.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs118', 259)" onmouseover="showTip(event, 'fs118', 259)" class="id">lookUpCache</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs119', 260)" onmouseover="showTip(event, 'fs119', 260)" class="m">Cache</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs120', 261)" onmouseover="showTip(event, 'fs120', 261)" class="id">createCache</span><span class="pn">&lt;</span><span onmouseout="hideTip(event, 'fs55', 262)" onmouseover="showTip(event, 'fs55', 262)" class="vt">int64</span><span class="pn">,</span> <span onmouseout="hideTip(event, 'fs13', 263)" onmouseover="showTip(event, 'fs13', 263)" class="m">SearchDB</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs95', 264)" onmouseover="showTip(event, 'fs95', 264)" class="id">LookUpResult</span><span class="pn">&lt;</span><span onmouseout="hideTip(event, 'fs16', 265)" onmouseover="showTip(event, 'fs16', 265)" class="m">AminoAcids</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs96', 266)" onmouseover="showTip(event, 'fs96', 266)" class="id">AminoAcid</span><span class="pn">&gt;</span> <span onmouseout="hideTip(event, 'fs97', 267)" onmouseover="showTip(event, 'fs97', 267)" class="rt">list</span><span class="pn">&gt;</span>
+
+<span onmouseout="hideTip(event, 'fs119', 268)" onmouseover="showTip(event, 'fs119', 268)" class="m">Cache</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs121', 269)" onmouseover="showTip(event, 'fs121', 269)" class="id">addItem</span> <span onmouseout="hideTip(event, 'fs118', 270)" onmouseover="showTip(event, 'fs118', 270)" class="id">lookUpCache</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs114', 271)" onmouseover="showTip(event, 'fs114', 271)" class="id">firstHit</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs103', 272)" onmouseover="showTip(event, 'fs103', 272)" class="id">RoundedMass</span><span class="pn">,</span> <span onmouseout="hideTip(event, 'fs94', 273)" onmouseover="showTip(event, 'fs94', 273)" class="id">hits</span><span class="pn">)</span>
+
+<span onmouseout="hideTip(event, 'fs28', 274)" onmouseover="showTip(event, 'fs28', 274)" class="fn">printfn</span> <span class="s">&quot;cached entries: </span><span class="pf">%i</span><span class="s">&quot;</span> <span onmouseout="hideTip(event, 'fs118', 275)" onmouseover="showTip(event, 'fs118', 275)" class="id">lookUpCache</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs122', 276)" onmouseover="showTip(event, 'fs122', 276)" class="id">Count</span>
+<span onmouseout="hideTip(event, 'fs28', 277)" onmouseover="showTip(event, 'fs28', 277)" class="fn">printfn</span> <span class="s">&quot;contains key </span><span class="pf">%i</span><span class="s">: </span><span class="pf">%b</span><span class="s">&quot;</span> <span onmouseout="hideTip(event, 'fs114', 278)" onmouseover="showTip(event, 'fs114', 278)" class="id">firstHit</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs103', 279)" onmouseover="showTip(event, 'fs103', 279)" class="id">RoundedMass</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs123', 280)" onmouseover="showTip(event, 'fs123', 280)" class="fn">fst</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs119', 281)" onmouseover="showTip(event, 'fs119', 281)" class="m">Cache</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs124', 282)" onmouseover="showTip(event, 'fs124', 282)" class="id">getItemBy</span> <span onmouseout="hideTip(event, 'fs118', 283)" onmouseover="showTip(event, 'fs118', 283)" class="id">lookUpCache</span> <span onmouseout="hideTip(event, 'fs114', 284)" onmouseover="showTip(event, 'fs114', 284)" class="id">firstHit</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs103', 285)" onmouseover="showTip(event, 'fs103', 285)" class="id">RoundedMass</span><span class="pn">)</span><span class="pn">)</span>
+</code></pre>
+<table class="pre"><tr><td class="snippet"><pre class="fssnip"><code lang="text">cached entries: 1
+contains key 2578517204: true
+</code></pre></td></tr></table>
+<p><code>addItem</code> inserts or replaces the value under a key and <code>getItemBy</code> retrieves it.
+The memoized lookup itself is wired up by the search engine.</p>
+<p>The next step is to predict each candidate's fragments and compare them to the
+measured spectrum, the subject of
+<a href="https://biofsharp.com/BioFSharp.Mz/02_03_sequest_like_scoring.html">SEQUEST-like scoring</a>.</p>
+
+        <div class="fsdocs-tip" id="fs1">val dbFolder: string</div>
+<div class="fsdocs-tip" id="fs2">namespace System</div>
+<div class="fsdocs-tip" id="fs3">namespace System.IO</div>
+<div class="fsdocs-tip" id="fs4">type Path =
+  static member ChangeExtension: path: string * extension: string -&gt; string
+  static member Combine: path1: string * path2: string -&gt; string + 4 overloads
+  static member EndsInDirectorySeparator: path: ReadOnlySpan&lt;char&gt; -&gt; bool + 1 overload
+  static member Exists: path: string -&gt; bool
+  static member GetDirectoryName: path: ReadOnlySpan&lt;char&gt; -&gt; ReadOnlySpan&lt;char&gt; + 1 overload
+  static member GetExtension: path: ReadOnlySpan&lt;char&gt; -&gt; ReadOnlySpan&lt;char&gt; + 1 overload
+  static member GetFileName: path: ReadOnlySpan&lt;char&gt; -&gt; ReadOnlySpan&lt;char&gt; + 1 overload
+  static member GetFileNameWithoutExtension: path: ReadOnlySpan&lt;char&gt; -&gt; ReadOnlySpan&lt;char&gt; + 1 overload
+  static member GetFullPath: path: string -&gt; string + 1 overload
+  static member GetInvalidFileNameChars: unit -&gt; char array
+  ...<br /><em>&lt;summary&gt;Performs operations on &lt;see cref=&quot;T:System.String&quot; /&gt; instances that contain file or directory path information. These operations are performed in a cross-platform manner.&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs5">System.IO.Path.Combine(paths: System.ReadOnlySpan&lt;string&gt;) : string<br />System.IO.Path.Combine([&lt;System.ParamArray&gt;] paths: string array) : string<br />System.IO.Path.Combine(path1: string, path2: string) : string<br />System.IO.Path.Combine(path1: string, path2: string, path3: string) : string<br />System.IO.Path.Combine(path1: string, path2: string, path3: string, path4: string) : string</div>
+<div class="fsdocs-tip" id="fs6">System.IO.Path.GetTempPath() : string</div>
+<div class="fsdocs-tip" id="fs7">type Directory =
+  static member CreateDirectory: path: string -&gt; DirectoryInfo + 1 overload
+  static member CreateSymbolicLink: path: string * pathToTarget: string -&gt; FileSystemInfo
+  static member CreateTempSubdirectory: ?prefix: string -&gt; DirectoryInfo
+  static member Delete: path: string -&gt; unit + 1 overload
+  static member EnumerateDirectories: path: string -&gt; IEnumerable&lt;string&gt; + 3 overloads
+  static member EnumerateFileSystemEntries: path: string -&gt; IEnumerable&lt;string&gt; + 3 overloads
+  static member EnumerateFiles: path: string -&gt; IEnumerable&lt;string&gt; + 3 overloads
+  static member Exists: path: string -&gt; bool
+  static member GetCreationTime: path: string -&gt; DateTime
+  static member GetCreationTimeUtc: path: string -&gt; DateTime
+  ...<br /><em>&lt;summary&gt;Exposes static methods for creating, moving, and enumerating through directories and subdirectories. This class cannot be inherited.&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs8">System.IO.Directory.CreateDirectory(path: string) : System.IO.DirectoryInfo<br />System.IO.Directory.CreateDirectory(path: string, unixCreateMode: System.IO.UnixFileMode) : System.IO.DirectoryInfo</div>
+<div class="fsdocs-tip" id="fs9">val ignore: value: &#39;T -&gt; unit</div>
+<div class="fsdocs-tip" id="fs10">namespace BioFSharp</div>
+<div class="fsdocs-tip" id="fs11">namespace BioFSharp.Mz</div>
+<div class="fsdocs-tip" id="fs12">val oxidationM: SearchDB.SearchModification</div>
+<div class="fsdocs-tip" id="fs13">module SearchDB
+
+from BioFSharp.Mz</div>
+<div class="fsdocs-tip" id="fs14">val createSearchModification: name: string -&gt; accession: string -&gt; description: string -&gt; isBiological: bool -&gt; composition: string -&gt; site: SearchDB.SearchModSite list -&gt; mType: SearchDB.SearchModType -&gt; xModCode: string -&gt; SearchDB.SearchModification</div>
+<div class="fsdocs-tip" id="fs15">union case SearchDB.SearchModSite.Specific: AminoAcids.AminoAcid * ModificationInfo.ModLocation -&gt; SearchDB.SearchModSite</div>
+<div class="fsdocs-tip" id="fs16">module AminoAcids
+
+from BioFSharp<br /><em>&lt;summary&gt;
+Contains the AminoAcid type and its according functions. The AminoAcid type is a complex presentation of amino acids, allowing modifications
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs17">union case AminoAcids.AminoAcid.Met: AminoAcids.AminoAcid<br /><em>&lt;summary&gt;
+ &#39;M&#39; - Met - Methionine
+
+ Met is essential for humans. Always the first amino acid to be incorporated into a protein, it is sometimes removed after translation. Like cysteine, it contains sulfur, but with a methyl group instead of hydrogen. This methyl group can be activated, and is used in many reactions where a new carbon atom is being added to another molecule.
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs18">module ModificationInfo
+
+from BioFSharp<br /><em>&lt;summary&gt;
+ Functionality for creating formula modifications
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs19">[&lt;Struct&gt;]
+type ModLocation =
+  | Residual = 0
+  | Cterm = 1
+  | Nterm = 2
+  | ProteinCterm = 3
+  | ProteinNterm = 4
+  | Isotopic = 5<br /><em>&lt;summary&gt;
+ Specifier for location of modification
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs20">ModificationInfo.ModLocation.Residual: ModificationInfo.ModLocation = 0</div>
+<div class="fsdocs-tip" id="fs21">type SearchModType =
+  | Minus
+  | Plus
+  member Equals: SearchModType * IEqualityComparer -&gt; bool
+  member IsMinus: bool
+  member IsPlus: bool</div>
+<div class="fsdocs-tip" id="fs22">union case SearchDB.SearchModType.Plus: SearchDB.SearchModType</div>
+<div class="fsdocs-tip" id="fs23">val oxidationDelta: float</div>
+<div class="fsdocs-tip" id="fs24">val massFBy: massMode: SearchDB.MassMode -&gt; (IBioItem -&gt; float)</div>
+<div class="fsdocs-tip" id="fs25">type MassMode =
+  | Average
+  | Monoisotopic
+  member Equals: MassMode * IEqualityComparer -&gt; bool
+  override ToString: unit -&gt; string
+  member IsAverage: bool
+  member IsMonoisotopic: bool</div>
+<div class="fsdocs-tip" id="fs26">union case SearchDB.MassMode.Monoisotopic: SearchDB.MassMode</div>
+<div class="fsdocs-tip" id="fs27">val getModBy: smodi: SearchDB.SearchModification -&gt; ModificationInfo.Modification</div>
+<div class="fsdocs-tip" id="fs28">val printfn: format: Printf.TextWriterFormat&lt;&#39;T&gt; -&gt; &#39;T</div>
+<div class="fsdocs-tip" id="fs29">SearchDB.SearchModification.Name: string</div>
+<div class="fsdocs-tip" id="fs30">val fastaPath: string</div>
+<div class="fsdocs-tip" id="fs31">val fastaHeaderToName: header: string -&gt; string</div>
+<div class="fsdocs-tip" id="fs32">val header: string</div>
+<div class="fsdocs-tip" id="fs33">Multiple items<br />val string: value: &#39;T -&gt; string<br /><br />--------------------<br />type string = System.String</div>
+<div class="fsdocs-tip" id="fs34">System.String.Split(separator: System.ReadOnlySpan&lt;char&gt;) : string array<br />&#160;&#160;&#160;<em>(+0 other overloads)</em><br />System.String.Split([&lt;System.ParamArray&gt;] separator: char array) : string array<br />&#160;&#160;&#160;<em>(+0 other overloads)</em><br />System.String.Split(separator: string array, options: System.StringSplitOptions) : string array<br />&#160;&#160;&#160;<em>(+0 other overloads)</em><br />System.String.Split(separator: string, ?options: System.StringSplitOptions) : string array<br />&#160;&#160;&#160;<em>(+0 other overloads)</em><br />System.String.Split(separator: char array, options: System.StringSplitOptions) : string array<br />&#160;&#160;&#160;<em>(+0 other overloads)</em><br />System.String.Split(separator: char array, count: int) : string array<br />&#160;&#160;&#160;<em>(+0 other overloads)</em><br />System.String.Split(separator: char, ?options: System.StringSplitOptions) : string array<br />&#160;&#160;&#160;<em>(+0 other overloads)</em><br />System.String.Split(separator: string array, count: int, options: System.StringSplitOptions) : string array<br />&#160;&#160;&#160;<em>(+0 other overloads)</em><br />System.String.Split(separator: string, count: int, ?options: System.StringSplitOptions) : string array<br />&#160;&#160;&#160;<em>(+0 other overloads)</em><br />System.String.Split(separator: char array, count: int, options: System.StringSplitOptions) : string array<br />&#160;&#160;&#160;<em>(+0 other overloads)</em></div>
+<div class="fsdocs-tip" id="fs35">val searchDbParams: SearchDB.SearchDbParams</div>
+<div class="fsdocs-tip" id="fs36">val createSearchDbParams: name: string -&gt; dbPath: string -&gt; fastapath: string -&gt; fastaHeaderToName: (string -&gt; string) -&gt; protease: Digestion.Protease -&gt; minMissedCleavages: int -&gt; maxMissedCleavages: int -&gt; maxmass: float -&gt; minPepLength: int -&gt; maxPepLength: int -&gt; globalMod: SearchDB.SearchInfoIsotopic list -&gt; massMode: SearchDB.MassMode -&gt; massFunction: (IBioItem -&gt; float) -&gt; fixedMods: SearchDB.SearchModification list -&gt; variableMods: SearchDB.SearchModification list -&gt; varModThreshold: int -&gt; SearchDB.SearchDbParams</div>
+<div class="fsdocs-tip" id="fs37">module Digestion
+
+from BioFSharp<br /><em>&lt;summary&gt;
+Contains types and functions needed to digest amino acid sequences with proteases
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs38">module Table
+
+from BioFSharp.Digestion<br /><em>&lt;summary&gt;
+Contains frequently needed proteases
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs39">val getProteaseBy: name: string -&gt; Digestion.Protease</div>
+<div class="fsdocs-tip" id="fs40">Path.GetFileName(path: string) : string<br />Path.GetFileName(path: System.ReadOnlySpan&lt;char&gt;) : System.ReadOnlySpan&lt;char&gt;</div>
+<div class="fsdocs-tip" id="fs41">module Db
+
+from BioFSharp.Mz.SearchDB</div>
+<div class="fsdocs-tip" id="fs42">val getNameOf: sdbParams: SearchDB.SearchDbParams -&gt; string<br /><em>&lt;summary&gt;
+ Returns the database name given the SearchDbParams
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs43">SearchDB.SearchDbParams.Protease: Digestion.Protease</div>
+<div class="fsdocs-tip" id="fs44">Digestion.Protease.Name: string</div>
+<div class="fsdocs-tip" id="fs45">namespace System.Data</div>
+<div class="fsdocs-tip" id="fs46">namespace System.Data.SQLite</div>
+<div class="fsdocs-tip" id="fs47">val cn: SQLiteConnection</div>
+<div class="fsdocs-tip" id="fs48">val connectOrCreateDB: sdbParams: SearchDB.SearchDbParams -&gt; SQLiteConnection</div>
+<div class="fsdocs-tip" id="fs49">val countRows: table: string -&gt; int64</div>
+<div class="fsdocs-tip" id="fs50">val table: string</div>
+<div class="fsdocs-tip" id="fs51">val cmd: SQLiteCommand</div>
+<div class="fsdocs-tip" id="fs52">Multiple items<br />type SQLiteCommand =
+  inherit DbCommand
+  interface ICloneable
+  new: unit -&gt; unit + 4 overloads
+  member Cancel: unit -&gt; unit
+  member Clone: unit -&gt; obj
+  member CreateParameter: unit -&gt; SQLiteParameter
+  member ExecuteNonQuery: unit -&gt; int + 1 overload
+  member ExecuteReader: behavior: CommandBehavior -&gt; SQLiteDataReader + 1 overload
+  member ExecuteScalar: unit -&gt; obj + 1 overload
+  member GetDiagnostics: unit -&gt; string
+  ...<br /><em>&lt;summary&gt;
+            SQLite implementation of DbCommand.
+            &lt;/summary&gt;</em><br /><br />--------------------<br />SQLiteCommand() : SQLiteCommand<br />SQLiteCommand(commandText: string) : SQLiteCommand<br />SQLiteCommand(connection: SQLiteConnection) : SQLiteCommand<br />SQLiteCommand(commandText: string, connection: SQLiteConnection) : SQLiteCommand<br />SQLiteCommand(commandText: string, connection: SQLiteConnection, transaction: SQLiteTransaction) : SQLiteCommand</div>
+<div class="fsdocs-tip" id="fs53">val sprintf: format: Printf.StringFormat&lt;&#39;T&gt; -&gt; &#39;T</div>
+<div class="fsdocs-tip" id="fs54">SQLiteCommand.ExecuteScalar() : obj<br />SQLiteCommand.ExecuteScalar(behavior: System.Data.CommandBehavior) : obj</div>
+<div class="fsdocs-tip" id="fs55">Multiple items<br />val int64: value: &#39;T -&gt; int64 (requires member op_Explicit)<br /><br />--------------------<br />type int64 = System.Int64<br /><br />--------------------<br />type int64&lt;&#39;Measure&gt; =
+  int64</div>
+<div class="fsdocs-tip" id="fs56">type File =
+  static member AppendAllBytes: path: string * bytes: byte array -&gt; unit + 1 overload
+  static member AppendAllBytesAsync: path: string * bytes: byte array * ?cancellationToken: CancellationToken -&gt; Task + 1 overload
+  static member AppendAllLines: path: string * contents: IEnumerable&lt;string&gt; -&gt; unit + 1 overload
+  static member AppendAllLinesAsync: path: string * contents: IEnumerable&lt;string&gt; * encoding: Encoding * ?cancellationToken: CancellationToken -&gt; Task + 1 overload
+  static member AppendAllText: path: string * contents: ReadOnlySpan&lt;char&gt; -&gt; unit + 3 overloads
+  static member AppendAllTextAsync: path: string * contents: ReadOnlyMemory&lt;char&gt; * encoding: Encoding * ?cancellationToken: CancellationToken -&gt; Task + 3 overloads
+  static member AppendText: path: string -&gt; StreamWriter
+  static member Copy: sourceFileName: string * destFileName: string -&gt; unit + 1 overload
+  static member Create: path: string -&gt; FileStream + 2 overloads
+  static member CreateSymbolicLink: path: string * pathToTarget: string -&gt; FileSystemInfo
+  ...<br /><em>&lt;summary&gt;Provides static methods for the creation, copying, deletion, moving, and opening of a single file, and aids in the creation of &lt;see cref=&quot;T:System.IO.FileStream&quot; /&gt; objects.&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs57">File.Exists(path: string) : bool</div>
+<div class="fsdocs-tip" id="fs58">namespace BioFSharp.IO</div>
+<div class="fsdocs-tip" id="fs59">val firstProtein: FileFormats.Fasta.FastaItem&lt;AminoAcids.AminoAcid&gt;</div>
+<div class="fsdocs-tip" id="fs60">module Fasta
+
+from BioFSharp.IO<br /><em>&lt;summary&gt;
+ Functions to read and write fasta formatted files
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs61">val read: sequenceConverter: (char seq -&gt; #(&#39;SequenceItem seq)) -&gt; filePath: string -&gt; FileFormats.Fasta.FastaItem&lt;&#39;SequenceItem&gt; seq<br /><em>&lt;summary&gt;
+ Creates a sequence of FastaItems by parsing the input line per line.
+
+ The passed converter function is used to convert the sequence of each record to the desired type.
+
+ Lines starting with &#39;#&#39; or &#39;;&#39; are ignored.
+ &lt;/summary&gt;<br />&lt;param name=&quot;sequenceConverter&quot;&gt;Function to convert the sequence of each record to the desired type&lt;/param&gt;<br />&lt;param name=&quot;filePath&quot;&gt;Path to a fasta formatted file&lt;/param&gt;<br />&lt;returns&gt;Sequence of FastaItems&lt;/returns&gt;<br />&lt;exception cref=&quot;System.IO.InvalidDataException&quot;&gt;If the input is not in the correct fasta format&lt;/exception&gt;</em></div>
+<div class="fsdocs-tip" id="fs62">Multiple items<br />module BioArray
+
+from BioFSharp.BioCollectionsExtensions<br /><br />--------------------<br />module BioArray
+
+from BioFSharp<br /><em>&lt;summary&gt;
+This module contains the BioArray type and its according functions. The BioArray type is an array of objects using the IBioItem interface
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs63">val ofAminoAcidString: s: #(char seq) -&gt; BioArray.BioArray&lt;AminoAcids.AminoAcid&gt;<br /><em>&lt;summary&gt;
+ Generates amino acid sequence of one-letter-code raw string
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs64">module Seq
+
+from Microsoft.FSharp.Collections</div>
+<div class="fsdocs-tip" id="fs65">val head: source: &#39;T seq -&gt; &#39;T</div>
+<div class="fsdocs-tip" id="fs66">val targetPeptide: Digestion.DigestedPeptide&lt;int&gt;</div>
+<div class="fsdocs-tip" id="fs67">module BioArray
+
+from BioFSharp.Digestion</div>
+<div class="fsdocs-tip" id="fs68">val digest: protease: Digestion.Protease -&gt; proteinID: &#39;a -&gt; aas: AminoAcids.AminoAcid array -&gt; Digestion.DigestedPeptide&lt;&#39;a&gt; array<br /><em>&lt;summary&gt;
+ Takes Proteinsequence as input and returns Array of resulting DigestedPeptides
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs69">val Trypsin: Digestion.Protease</div>
+<div class="fsdocs-tip" id="fs70">FileFormats.Fasta.FastaItem.Sequence: AminoAcids.AminoAcid seq</div>
+<div class="fsdocs-tip" id="fs71">module Array
+
+from Microsoft.FSharp.Collections</div>
+<div class="fsdocs-tip" id="fs72">val ofSeq: source: &#39;T seq -&gt; &#39;T array</div>
+<div class="fsdocs-tip" id="fs73">val find: predicate: (&#39;T -&gt; bool) -&gt; array: &#39;T array -&gt; &#39;T</div>
+<div class="fsdocs-tip" id="fs74">val p: Digestion.DigestedPeptide&lt;int&gt;</div>
+<div class="fsdocs-tip" id="fs75">Digestion.DigestedPeptide.PepSequence: AminoAcids.AminoAcid list</div>
+<div class="fsdocs-tip" id="fs76">property List.Length: int with get</div>
+<div class="fsdocs-tip" id="fs77">Multiple items<br />module List
+
+from Microsoft.FSharp.Collections<br /><br />--------------------<br />type List&lt;&#39;T&gt; =
+  | op_Nil
+  | op_ColonColon of Head: &#39;T * Tail: &#39;T list
+  interface IReadOnlyList&lt;&#39;T&gt;
+  interface IReadOnlyCollection&lt;&#39;T&gt;
+  interface IEnumerable
+  interface IEnumerable&lt;&#39;T&gt;
+  member GetReverseIndex: rank: int * offset: int -&gt; int
+  member GetSlice: startIndex: int option * endIndex: int option -&gt; &#39;T list
+  static member Cons: head: &#39;T * tail: &#39;T list -&gt; &#39;T list
+  member Head: &#39;T
+  member IsEmpty: bool
+  member Item: index: int -&gt; &#39;T with get
+  ...</div>
+<div class="fsdocs-tip" id="fs78">val contains: value: &#39;T -&gt; source: &#39;T list -&gt; bool (requires equality)</div>
+<div class="fsdocs-tip" id="fs79">val targetMass: float</div>
+<div class="fsdocs-tip" id="fs80">val sumBy: projection: (&#39;T -&gt; &#39;U) -&gt; list: &#39;T list -&gt; &#39;U (requires member (+) and member Zero)</div>
+<div class="fsdocs-tip" id="fs81">module BioItem
+
+from BioFSharp<br /><em>&lt;summary&gt;
+ Basic functions on IBioItems interface
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs82">val monoisoMass&lt;&#39;a (requires &#39;a :&gt; IBioItem)&gt; : (IBioItem -&gt; float) (requires &#39;a :&gt; IBioItem)<br /><em>&lt;summary&gt;
+ Returns the monoisotopic mass of a bio item (without H20)
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs83">module Table
+
+from BioFSharp.ModificationInfo<br /><em>&lt;summary&gt;
+Contains frequent modifications
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs84">val H2O: ModificationInfo.Modification</div>
+<div class="fsdocs-tip" id="fs85">FileFormats.Fasta.FastaItem.Header: string</div>
+<div class="fsdocs-tip" id="fs86">Multiple items<br />module BioList
+
+from BioFSharp.BioCollectionsExtensions<br /><br />--------------------<br />module BioList
+
+from BioFSharp<br /><em>&lt;summary&gt;
+This module contains the BioList type and its according functions. The BioList type is a List of objects using the IBioItem interface
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs87">val toString: bs: BioList.BioList&lt;#IBioItem&gt; -&gt; string<br /><em>&lt;summary&gt;
+ Returns string of one-letter-code
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs88">val lookUpByMass: (float -&gt; float -&gt; SearchDB.LookUpResult&lt;AminoAcids.AminoAcid&gt; list)</div>
+<div class="fsdocs-tip" id="fs89">val getThreadSafePeptideLookUpFromFileBy: cn: SQLiteConnection -&gt; sdbParams: SearchDB.SearchDbParams -&gt; (float -&gt; float -&gt; SearchDB.LookUpResult&lt;AminoAcids.AminoAcid&gt; list)<br /><em>&lt;summary&gt;
+ Returns a LookUpResult list
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs90">val ppmToDalton: ppm: float -&gt; mass: float -&gt; float</div>
+<div class="fsdocs-tip" id="fs91">val ppm: float</div>
+<div class="fsdocs-tip" id="fs92">val mass: float</div>
+<div class="fsdocs-tip" id="fs93">val showHits: hits: SearchDB.LookUpResult&lt;AminoAcids.AminoAcid&gt; list -&gt; unit</div>
+<div class="fsdocs-tip" id="fs94">val hits: SearchDB.LookUpResult&lt;AminoAcids.AminoAcid&gt; list</div>
+<div class="fsdocs-tip" id="fs95">type LookUpResult&lt;&#39;a (requires &#39;a :&gt; IBioItem)&gt; =
+  {
+    ModSequenceID: int
+    PepSequenceID: int
+    Mass: float
+    RoundedMass: int64
+    StringSequence: string
+    BioSequence: &#39;a list
+    GlobalMod: int
+  }
+  member Equals: LookUpResult&lt;&#39;a&gt; * IEqualityComparer -&gt; bool</div>
+<div class="fsdocs-tip" id="fs96">type AminoAcid =
+  | Ala
+  | Cys
+  | Asp
+  | Glu
+  | Phe
+  | Gly
+  | His
+  | Ile
+  | Lys
+  | Leu
+  ...
+  interface IBioItem
+  static member op_Explicit: value: #IBioItem -&gt; byte + 1 overload<br /><em>&lt;summary&gt;
+ Amino acid Codes
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs97">type &#39;T list = List&lt;&#39;T&gt;</div>
+<div class="fsdocs-tip" id="fs98">val sortBy: projection: (&#39;T -&gt; &#39;Key) -&gt; list: &#39;T list -&gt; &#39;T list (requires comparison)</div>
+<div class="fsdocs-tip" id="fs99">val h: SearchDB.LookUpResult&lt;AminoAcids.AminoAcid&gt;</div>
+<div class="fsdocs-tip" id="fs100">SearchDB.LookUpResult.Mass: float</div>
+<div class="fsdocs-tip" id="fs101">val iter: action: (&#39;T -&gt; unit) -&gt; list: &#39;T list -&gt; unit</div>
+<div class="fsdocs-tip" id="fs102">SearchDB.LookUpResult.StringSequence: string</div>
+<div class="fsdocs-tip" id="fs103">SearchDB.LookUpResult.RoundedMass: int64</div>
+<div class="fsdocs-tip" id="fs104">SearchDB.LookUpResult.PepSequenceID: int</div>
+<div class="fsdocs-tip" id="fs105">SearchDB.LookUpResult.ModSequenceID: int</div>
+<div class="fsdocs-tip" id="fs106">SearchDB.LookUpResult.GlobalMod: int</div>
+<div class="fsdocs-tip" id="fs107">val tolerance: float</div>
+<div class="fsdocs-tip" id="fs108">val oxidizedMass: float</div>
+<div class="fsdocs-tip" id="fs109">val oxHits: SearchDB.LookUpResult&lt;AminoAcids.AminoAcid&gt; list</div>
+<div class="fsdocs-tip" id="fs110">val memoryDB: SQLiteConnection</div>
+<div class="fsdocs-tip" id="fs111">val copyDBIntoMemory: cn: SQLiteConnection -&gt; SQLiteConnection</div>
+<div class="fsdocs-tip" id="fs112">val proteinsOfPeptide: (int32 -&gt; (string * string) list)</div>
+<div class="fsdocs-tip" id="fs113">val getProteinPeptideLookUpFromFileBy: memoryDB: SQLiteConnection -&gt; (int32 -&gt; (string * string) list)<br /><em>&lt;summary&gt;
+ Prepares a function which returns a list of protein Accessions tupled with the peptide sequence whose ID they were retrieved by
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs114">val firstHit: SearchDB.LookUpResult&lt;AminoAcids.AminoAcid&gt;</div>
+<div class="fsdocs-tip" id="fs115">val minBy: projection: (&#39;T -&gt; &#39;U) -&gt; list: &#39;T list -&gt; &#39;T (requires comparison)</div>
+<div class="fsdocs-tip" id="fs116">val accession: string</div>
+<div class="fsdocs-tip" id="fs117">val peptideSequence: string</div>
+<div class="fsdocs-tip" id="fs118">val lookUpCache: Cache.Cache&lt;int64,SearchDB.LookUpResult&lt;AminoAcids.AminoAcid&gt; list&gt;</div>
+<div class="fsdocs-tip" id="fs119">module Cache
+
+from BioFSharp.Mz</div>
+<div class="fsdocs-tip" id="fs120">val createCache&lt;&#39;a,&#39;b&gt; : Cache.Cache&lt;&#39;a,&#39;b&gt;<br /><em>&lt;summary&gt;
+ Creates cache with default constructor 
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs121">val addItem: cache: Cache.Cache&lt;&#39;a,&#39;b&gt; -&gt; &#39;a * &#39;b -&gt; unit<br /><em>&lt;summary&gt;
+ Adds item to the Cache
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs122">property System.Collections.Generic.SortedList.Count: int with get</div>
+<div class="fsdocs-tip" id="fs123">val fst: tuple: (&#39;T1 * &#39;T2) -&gt; &#39;T1</div>
+<div class="fsdocs-tip" id="fs124">val getItemBy: cache: Cache.Cache&lt;&#39;a,&#39;b&gt; -&gt; key: &#39;a -&gt; bool * &#39;b<br /><em>&lt;summary&gt;
+ Returns with defined key
+&lt;/summary&gt;</em></div>
+
+    </div>
+</main>
+<aside id="fsdocs-page-menu">
+    <p id="on-this-page">On this page</p>
+    <ul>
+  <li class="level-1">
+    <a href="#Peptide-search-databases">
+      Peptide search databases
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Describing-the-search-space">
+      Describing the search space
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Building-and-connecting-to-the-database">
+      Building and connecting to the database
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Looking-up-candidates-by-precursor-mass">
+      Looking up candidates by precursor mass
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Mapping-peptides-back-to-proteins">
+      Mapping peptides back to proteins
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Caching-repeated-lookups">
+      Caching repeated lookups
+    </a>
+  </li>
+</ul>
+</aside>
+<dialog>
+    <input type="search" placeholder="Search docs" />
+    <div class="results">
+        <ul></ul>
+        <p class="empty">Type something to start searching.</p>
+    </div>
+</dialog>
+<script type="module" src="https://biofsharp.com/BioFSharp.Mz/content/fsdocs-tips.js"></script>
+<script type="module" src="https://biofsharp.com/BioFSharp.Mz/content/fsdocs-theme-toggle.js"></script>
+<script type="module" src="https://biofsharp.com/BioFSharp.Mz/content/fsdocs-theme.js"></script>
+<script type="module" src="https://biofsharp.com/BioFSharp.Mz/content/fsdocs-search.js"></script>
+
+</body>
+</html>

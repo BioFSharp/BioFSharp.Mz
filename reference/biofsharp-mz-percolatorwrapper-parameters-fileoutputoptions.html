@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-root="https://csbiology.github.io/BioFSharp.Mz/">
+<html lang="en" data-root="https://biofsharp.com/BioFSharp.Mz/">
 <head>
     <meta charset="UTF-8">
     <meta content="IE=edge" http-equiv="X-UA-Compatible">
@@ -8,11 +8,11 @@
     <!-- Opengraph properties (https://ogp.me/) -->
     <meta property="og:site_name" content="BioFSharp.Mz">
     <meta property="og:title" content="FileOutputOptions (BioFSharp.Mz)" />
-    <meta property="og:url" content="https://csbiology.github.io/BioFSharp.Mz/{{fsdocs-source-basename}}.html">
+    <meta property="og:url" content="https://biofsharp.com/BioFSharp.Mz/{{fsdocs-source-basename}}.html">
     <meta property="og:type" content="website" />
     <!-- Twitter cards (https://developer.twitter.com/en/docs/twitter-for-websites/cards/overview/summary-card-with-large-image) -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:site" content="https://csbiology.github.io/BioFSharp.Mz/">
+    <meta name="twitter:site" content="https://biofsharp.com/BioFSharp.Mz/">
     <meta name="twitter:title" content="FileOutputOptions (BioFSharp.Mz)">
     
     <title>FileOutputOptions (BioFSharp.Mz) | BioFSharp.Mz</title>
@@ -20,11 +20,12 @@
     <link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
     <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
-    <link href="https://csbiology.github.io/BioFSharp.Mz/img/favicon.ico" rel="icon" sizes="32x32" type="image/png"/>
-    <script type="application/javascript" src="https://csbiology.github.io/BioFSharp.Mz/content/fsdocs-theme-set-dark.js"></script>
-    <link href="https://csbiology.github.io/BioFSharp.Mz/content/fsdocs-default.css" rel="stylesheet" type="text/css"/>
-    <link href="https://csbiology.github.io/BioFSharp.Mz/content/fsdocs-theme.css" rel="stylesheet" type="text/css"/>
+    <link href="https://biofsharp.com/BioFSharp.Mz/img/favicon.ico" rel="icon" sizes="32x32" type="image/png"/>
+    <script type="application/javascript" src="https://biofsharp.com/BioFSharp.Mz/content/fsdocs-theme-set-dark.js"></script>
+    <link href="https://biofsharp.com/BioFSharp.Mz/content/fsdocs-default.css" rel="stylesheet" type="text/css"/>
+    <link href="https://biofsharp.com/BioFSharp.Mz/content/fsdocs-theme.css" rel="stylesheet" type="text/css"/>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js"></script>
+<style>header .start a img { background-color: #2f3337; border-radius: 6px; padding: 3px; }</style>
     
 </head>
 <body class="api-docs">
@@ -43,19 +44,80 @@
                     Notes</a></li>
                 <li class="nav-item"><a class="nav-link" href="https://github.com/CSBiology/BioFSharp.Mz/">Source
                     Repository</a></li>
-                
+                <li class="nav-header ">
+  Spectrum processing
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/01_01_peaks_and_peak_arrays.html">
+    Peaks and peak arrays
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/01_02_signal_detection.html">
+    Signal detection and centroiding
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/01_03_charge_state_determination.html">
+    Charge state determination
+  </a>
+</li>             
+<li class="nav-header ">
+  Peptide identification
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/02_01_fragmentation.html">
+    In silico fragmentation
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/02_02_search_databases.html">
+    Peptide search databases
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/02_03_sequest_like_scoring.html">
+    SEQUEST-like scoring
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/02_04_andromeda_like_scoring.html">
+    Andromeda-like and X!Tandem-like scoring
+  </a>
+</li>             
+<li class="nav-header ">
+  Quantification
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/03_01_quantification.html">
+    Peak quantification
+  </a>
+</li>             
+<li class="nav-header ">
+  Validation and inference
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/04_01_fdr_control.html">
+    False discovery rate control
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/04_02_protein_inference.html">
+    Protein inference
+  </a>
+</li>
                 <li class="nav-header">
   API Reference
 </li>             
 <li class="nav-item">
-  <a class="nav-link" href="https://csbiology.github.io/BioFSharp.Mz/reference/index.html">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/reference/index.html">
     All Namespaces
   </a>
 </li>
             </ul>
         </div>
         <a href="https://csbiology.github.io/BioFSharp.Mz/">
-            <img alt="Header menu logo" src="https://csbiology.github.io/BioFSharp.Mz/img/logo.png">
+            <img alt="Header menu logo" src="https://biofsharp.com/BioFSharp.Mz/img/logo.png">
             <strong>BioFSharp.Mz</strong>
         </a>
     </div>
@@ -77,12 +139,73 @@
             Notes</a></li>
         <li class="nav-item"><a class="nav-link" href="https://github.com/CSBiology/BioFSharp.Mz/">Source
             Repository</a></li>
-        
+        <li class="nav-header ">
+  Spectrum processing
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/01_01_peaks_and_peak_arrays.html">
+    Peaks and peak arrays
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/01_02_signal_detection.html">
+    Signal detection and centroiding
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/01_03_charge_state_determination.html">
+    Charge state determination
+  </a>
+</li>             
+<li class="nav-header ">
+  Peptide identification
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/02_01_fragmentation.html">
+    In silico fragmentation
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/02_02_search_databases.html">
+    Peptide search databases
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/02_03_sequest_like_scoring.html">
+    SEQUEST-like scoring
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/02_04_andromeda_like_scoring.html">
+    Andromeda-like and X!Tandem-like scoring
+  </a>
+</li>             
+<li class="nav-header ">
+  Quantification
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/03_01_quantification.html">
+    Peak quantification
+  </a>
+</li>             
+<li class="nav-header ">
+  Validation and inference
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/04_01_fdr_control.html">
+    False discovery rate control
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/04_02_protein_inference.html">
+    Protein inference
+  </a>
+</li>
         <li class="nav-header">
   API Reference
 </li>             
 <li class="nav-item">
-  <a class="nav-link" href="https://csbiology.github.io/BioFSharp.Mz/reference/index.html">
+  <a class="nav-link" href="https://biofsharp.com/BioFSharp.Mz/reference/index.html">
     All Namespaces
   </a>
 </li>
@@ -97,7 +220,7 @@
   <dl class="fsdocs-metadata">
     <dt>
       Namespace: 
-      <a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz.html">
+      <a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz.html">
         BioFSharp.Mz
       </a>
     </dt>
@@ -106,7 +229,7 @@
     </dt>
     <dt>
       Parent Module: 
-      <a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-percolatorwrapper-parameters.html">
+      <a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-percolatorwrapper-parameters.html">
         Parameters
       </a>
     </dt>
@@ -116,7 +239,7 @@
     </dt>
     <dt>
       All Interfaces: 
-      <code><span><a href="https://learn.microsoft.com/dotnet/api/system.iequatable-1">IEquatable</a>&lt;<a href="https://csbiology.github.io/BioFSharp.Mz/reference/biofsharp-mz-percolatorwrapper-parameters-fileoutputoptions.html">FileOutputOptions</a>&gt;</span></code>
+      <code><span><a href="https://learn.microsoft.com/dotnet/api/system.iequatable-1">IEquatable</a>&lt;<a href="https://biofsharp.com/BioFSharp.Mz/reference/biofsharp-mz-percolatorwrapper-parameters-fileoutputoptions.html">FileOutputOptions</a>&gt;</span></code>
       , 
       <code><a href="https://learn.microsoft.com/dotnet/api/system.collections.istructuralequatable">IStructuralEquatable</a></code>
     </dt>
@@ -150,7 +273,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '917', 917)" onmouseover="showTip(event, '917', 917)">
+              <code onmouseout="hideTip(event, '928', 928)" onmouseover="showTip(event, '928', 928)">
                 <p>
                   <a id="IncludeDecoysInXML">
                     <a href="#IncludeDecoysInXML">
@@ -159,7 +282,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="917">
+              <div class="fsdocs-tip" id="928">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>IncludeDecoysInXML</span></code>
@@ -183,7 +306,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '918', 918)" onmouseover="showTip(event, '918', 918)">
+              <code onmouseout="hideTip(event, '929', 929)" onmouseover="showTip(event, '929', 929)">
                 <p>
                   <a id="POUTTAB_DecoyPSMs">
                     <a href="#POUTTAB_DecoyPSMs">
@@ -192,7 +315,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="918">
+              <div class="fsdocs-tip" id="929">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>POUTTAB_DecoyPSMs&#32;<a href="https://learn.microsoft.com/dotnet/api/system.io.fileinfo">FileInfo</a></span></code>
@@ -242,7 +365,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '919', 919)" onmouseover="showTip(event, '919', 919)">
+              <code onmouseout="hideTip(event, '930', 930)" onmouseover="showTip(event, '930', 930)">
                 <p>
                   <a id="POUTTAB_DecoyPeptides">
                     <a href="#POUTTAB_DecoyPeptides">
@@ -251,7 +374,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="919">
+              <div class="fsdocs-tip" id="930">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>POUTTAB_DecoyPeptides&#32;<a href="https://learn.microsoft.com/dotnet/api/system.io.fileinfo">FileInfo</a></span></code>
@@ -301,7 +424,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '920', 920)" onmouseover="showTip(event, '920', 920)">
+              <code onmouseout="hideTip(event, '931', 931)" onmouseover="showTip(event, '931', 931)">
                 <p>
                   <a id="POUTTAB_DecoyProteins">
                     <a href="#POUTTAB_DecoyProteins">
@@ -310,7 +433,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="920">
+              <div class="fsdocs-tip" id="931">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>POUTTAB_DecoyProteins&#32;<a href="https://learn.microsoft.com/dotnet/api/system.io.fileinfo">FileInfo</a></span></code>
@@ -360,7 +483,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '921', 921)" onmouseover="showTip(event, '921', 921)">
+              <code onmouseout="hideTip(event, '932', 932)" onmouseover="showTip(event, '932', 932)">
                 <p>
                   <a id="POUTTAB_Features">
                     <a href="#POUTTAB_Features">
@@ -369,7 +492,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="921">
+              <div class="fsdocs-tip" id="932">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>POUTTAB_Features&#32;<a href="https://learn.microsoft.com/dotnet/api/system.io.fileinfo">FileInfo</a></span></code>
@@ -419,7 +542,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '922', 922)" onmouseover="showTip(event, '922', 922)">
+              <code onmouseout="hideTip(event, '933', 933)" onmouseover="showTip(event, '933', 933)">
                 <p>
                   <a id="POUTTAB_PSMs">
                     <a href="#POUTTAB_PSMs">
@@ -428,7 +551,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="922">
+              <div class="fsdocs-tip" id="933">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>POUTTAB_PSMs&#32;<a href="https://learn.microsoft.com/dotnet/api/system.io.fileinfo">FileInfo</a></span></code>
@@ -478,7 +601,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '923', 923)" onmouseover="showTip(event, '923', 923)">
+              <code onmouseout="hideTip(event, '934', 934)" onmouseover="showTip(event, '934', 934)">
                 <p>
                   <a id="POUTTAB_Peptides">
                     <a href="#POUTTAB_Peptides">
@@ -487,7 +610,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="923">
+              <div class="fsdocs-tip" id="934">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>POUTTAB_Peptides&#32;<a href="https://learn.microsoft.com/dotnet/api/system.io.fileinfo">FileInfo</a></span></code>
@@ -537,7 +660,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '924', 924)" onmouseover="showTip(event, '924', 924)">
+              <code onmouseout="hideTip(event, '935', 935)" onmouseover="showTip(event, '935', 935)">
                 <p>
                   <a id="POUTTAB_Proteins">
                     <a href="#POUTTAB_Proteins">
@@ -546,7 +669,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="924">
+              <div class="fsdocs-tip" id="935">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>POUTTAB_Proteins&#32;<a href="https://learn.microsoft.com/dotnet/api/system.io.fileinfo">FileInfo</a></span></code>
@@ -596,7 +719,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '925', 925)" onmouseover="showTip(event, '925', 925)">
+              <code onmouseout="hideTip(event, '936', 936)" onmouseover="showTip(event, '936', 936)">
                 <p>
                   <a id="POUTXML">
                     <a href="#POUTXML">
@@ -605,7 +728,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="925">
+              <div class="fsdocs-tip" id="936">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>POUTXML&#32;<a href="https://learn.microsoft.com/dotnet/api/system.io.fileinfo">FileInfo</a></span></code>
@@ -677,7 +800,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '926', 926)" onmouseover="showTip(event, '926', 926)">
+              <code onmouseout="hideTip(event, '937', 937)" onmouseover="showTip(event, '937', 937)">
                 <p>
                   <a id="IsIncludeDecoysInXML">
                     <a href="#IsIncludeDecoysInXML">
@@ -686,7 +809,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="926">
+              <div class="fsdocs-tip" id="937">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>this.IsIncludeDecoysInXML</span></code>
@@ -716,7 +839,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '927', 927)" onmouseover="showTip(event, '927', 927)">
+              <code onmouseout="hideTip(event, '938', 938)" onmouseover="showTip(event, '938', 938)">
                 <p>
                   <a id="IsPOUTTAB_DecoyPSMs">
                     <a href="#IsPOUTTAB_DecoyPSMs">
@@ -725,7 +848,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="927">
+              <div class="fsdocs-tip" id="938">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>this.IsPOUTTAB_DecoyPSMs</span></code>
@@ -755,7 +878,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '928', 928)" onmouseover="showTip(event, '928', 928)">
+              <code onmouseout="hideTip(event, '939', 939)" onmouseover="showTip(event, '939', 939)">
                 <p>
                   <a id="IsPOUTTAB_DecoyPeptides">
                     <a href="#IsPOUTTAB_DecoyPeptides">
@@ -764,7 +887,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="928">
+              <div class="fsdocs-tip" id="939">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>this.IsPOUTTAB_DecoyPeptides</span></code>
@@ -794,7 +917,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '929', 929)" onmouseover="showTip(event, '929', 929)">
+              <code onmouseout="hideTip(event, '940', 940)" onmouseover="showTip(event, '940', 940)">
                 <p>
                   <a id="IsPOUTTAB_DecoyProteins">
                     <a href="#IsPOUTTAB_DecoyProteins">
@@ -803,7 +926,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="929">
+              <div class="fsdocs-tip" id="940">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>this.IsPOUTTAB_DecoyProteins</span></code>
@@ -833,7 +956,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '930', 930)" onmouseover="showTip(event, '930', 930)">
+              <code onmouseout="hideTip(event, '941', 941)" onmouseover="showTip(event, '941', 941)">
                 <p>
                   <a id="IsPOUTTAB_Features">
                     <a href="#IsPOUTTAB_Features">
@@ -842,7 +965,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="930">
+              <div class="fsdocs-tip" id="941">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>this.IsPOUTTAB_Features</span></code>
@@ -872,7 +995,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '931', 931)" onmouseover="showTip(event, '931', 931)">
+              <code onmouseout="hideTip(event, '942', 942)" onmouseover="showTip(event, '942', 942)">
                 <p>
                   <a id="IsPOUTTAB_PSMs">
                     <a href="#IsPOUTTAB_PSMs">
@@ -881,7 +1004,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="931">
+              <div class="fsdocs-tip" id="942">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>this.IsPOUTTAB_PSMs</span></code>
@@ -911,7 +1034,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '932', 932)" onmouseover="showTip(event, '932', 932)">
+              <code onmouseout="hideTip(event, '943', 943)" onmouseover="showTip(event, '943', 943)">
                 <p>
                   <a id="IsPOUTTAB_Peptides">
                     <a href="#IsPOUTTAB_Peptides">
@@ -920,7 +1043,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="932">
+              <div class="fsdocs-tip" id="943">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>this.IsPOUTTAB_Peptides</span></code>
@@ -950,7 +1073,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '933', 933)" onmouseover="showTip(event, '933', 933)">
+              <code onmouseout="hideTip(event, '944', 944)" onmouseover="showTip(event, '944', 944)">
                 <p>
                   <a id="IsPOUTTAB_Proteins">
                     <a href="#IsPOUTTAB_Proteins">
@@ -959,7 +1082,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="933">
+              <div class="fsdocs-tip" id="944">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>this.IsPOUTTAB_Proteins</span></code>
@@ -989,7 +1112,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '934', 934)" onmouseover="showTip(event, '934', 934)">
+              <code onmouseout="hideTip(event, '945', 945)" onmouseover="showTip(event, '945', 945)">
                 <p>
                   <a id="IsPOUTXML">
                     <a href="#IsPOUTXML">
@@ -998,7 +1121,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="934">
+              <div class="fsdocs-tip" id="945">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>this.IsPOUTXML</span></code>
@@ -1044,10 +1167,10 @@
         <p class="empty">Type something to start searching.</p>
     </div>
 </dialog>
-<script type="module" src="https://csbiology.github.io/BioFSharp.Mz/content/fsdocs-tips.js"></script>
-<script type="module" src="https://csbiology.github.io/BioFSharp.Mz/content/fsdocs-theme-toggle.js"></script>
-<script type="module" src="https://csbiology.github.io/BioFSharp.Mz/content/fsdocs-theme.js"></script>
-<script type="module" src="https://csbiology.github.io/BioFSharp.Mz/content/fsdocs-search.js"></script>
+<script type="module" src="https://biofsharp.com/BioFSharp.Mz/content/fsdocs-tips.js"></script>
+<script type="module" src="https://biofsharp.com/BioFSharp.Mz/content/fsdocs-theme-toggle.js"></script>
+<script type="module" src="https://biofsharp.com/BioFSharp.Mz/content/fsdocs-theme.js"></script>
+<script type="module" src="https://biofsharp.com/BioFSharp.Mz/content/fsdocs-search.js"></script>
 
 </body>
 </html>
