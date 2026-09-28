@@ -1,4 +1,4 @@
-﻿namespace BioFSharp.Mz
+namespace BioFSharp.Mz
 
 open System
 open BioFSharp
@@ -85,38 +85,34 @@ module XScoring =
     /// Converts the fragmentIon ladder to a theoretical spectrum at a given charge state. Filters out all theoretical peaks, that lie
     /// outside the given lower and upperScanLimits.
     let predictOf (lowerScanLimit,upperScanLimit) chargeState (fragments:PeakFamily<TaggedMass.TaggedMass> list)  =
-        let predictPeak charge (taggedMass: TaggedMass.TaggedMass) = 
+        let predictPeak charge (taggedMass: TaggedMass.TaggedMass) =
             TaggedPeak.TaggedPeak(taggedMass.Iontype, (Mass.toMZ taggedMass.Mass charge), nan)
-        let computePeakFamily charge fragments = 
+        let computePeakFamily charge fragments =
             let mainPeak = predictPeak charge fragments.MainPeak
             let dependentPeaks =
                 fragments.DependentPeaks
-                |> List.fold (fun acc dependent -> 
-                                 if charge <= 1. then 
-                                     predictPeak charge dependent 
+                |> List.fold (fun acc dependent ->
+                                 if charge <= 1. then
+                                     predictPeak charge dependent
                                      :: acc
-                                 else 
+                                 else
                                      acc
                               ) []
             createPeakFamily mainPeak dependentPeaks
-        let rec recloop ions charge (fragments:PeakFamily<TaggedMass.TaggedMass> list) =
-            match fragments with
-            | fragments::rest ->  
-                if charge <= 1. then 
-                    let tempIons = computePeakFamily 1. fragments 
-                    recloop (tempIons::ions) charge rest        
-                else 
-
-                let tempIons = 
-                    [
-                    for z = 1 to 2 do 
-                        yield computePeakFamily (float z) fragments
-                    ]
-                recloop (tempIons@ions) charge rest
-            | [] -> ions       
-        recloop [] chargeState fragments
-        //|> List.sortBy (fun peak -> peak.MainPeak.Mz)
-        |> List.toArray
+        // The families come out in reversed fragment order, and with two charge states the
+        // singly charged family of a fragment precedes its doubly charged one, which is the order
+        // the former list building produced. Filling the array from its end gives it directly.
+        let fragments = List.toArray fragments
+        let perFragment = if chargeState <= 1. then 1 else 2
+        let result = Array.zeroCreate (fragments.Length * perFragment)
+        for f = 0 to fragments.Length - 1 do
+            let slot = (fragments.Length - 1 - f) * perFragment
+            if perFragment = 1 then
+                result.[slot] <- computePeakFamily 1. fragments.[f]
+            else
+                result.[slot] <- computePeakFamily 1. fragments.[f]
+                result.[slot + 1] <- computePeakFamily 2. fragments.[f]
+        result
 
     /// Searches for a Peak in ratedSpectrum that matches the target mz (tarmz) within a certain tolerance defined by mzmatchingTolerance.
     let private hasMatchingPeakMZTol (mzMatchingTolerance: float) (tarmz: float) (ratedSpectrum: RatedPeak []) =        
