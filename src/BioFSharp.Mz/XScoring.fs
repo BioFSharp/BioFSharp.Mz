@@ -345,23 +345,58 @@ module XScoring =
                     findMatches mzMatchingTolerance theoSpect ratedSpectrum (idx+1)
         findMatches mzMatchingTolerance theoSpect ratedSpectrum 0                          
 
+    /// gammaLn of the integers 0 .. n, filled with FSharp.Stats gammaLn on demand.
+    type private GammaLnTable() =
+        let gate = obj()
+        let mutable values : float[] = Array.init 4096 (fun i -> FSharp.Stats.SpecialFunctions.Gamma.gammaLn (float i))
+        /// Reads through a local reference, so a table that grows on another thread at the same
+        /// time cannot shrink under this reader. Growth happens under the lock and only ever
+        /// replaces the array with a longer one.
+        member _.At (n: int) =
+            let current = values
+            if n < current.Length then current.[n]
+            else
+                lock gate (fun () ->
+                    if n >= values.Length then
+                        let old = values
+                        values <- Array.init (max (n + 1) (old.Length * 2)) (fun i -> if i < old.Length then old.[i] else FSharp.Stats.SpecialFunctions.Gamma.gammaLn (float i))
+                    values.[n])
+
+    /// gammaLn at the integers 0 .. n, computed once with the same function the score used
+    /// directly, so the table holds the same values. Grows when a larger argument shows up.
+    let private lnGammaTable : GammaLnTable = GammaLnTable()
+
     /// Helper function to calculate the AndromedaScore
-    let private lnProb n k lnp lnq = 
-        let s1 = -k * lnp - (n - k) * lnq - FSharp.Stats.SpecialFunctions.Gamma.gammaLn(n + 1.) 
-                    + FSharp.Stats.SpecialFunctions.Gamma.gammaLn(k + 1.) + FSharp.Stats.SpecialFunctions.Gamma.gammaLn(n - k + 1.) 
-        s1 
-    
+    let private lnProb (n: int) (k: int) lnp lnq =
+        let fn = float n
+        let fk = float k
+        let s1 = -fk * lnp - (fn - fk) * lnq - lnGammaTable.At(n + 1)
+                    + lnGammaTable.At(k + 1) + lnGammaTable.At(n - k + 1)
+        s1
+
     /// Calculates the andromedaLike Score based on offered peaks n and matched peaks k, as well as the q value threshold topx
-    let private scoreFuncImpl n k topx = 
-        let fTopx = float topx 
+    let private scoreFuncCompute n k topx =
+        let fTopx = float topx
         let p1 = Math.Min(fTopx/100.0,0.5)
         let lnp = Math.Log(p1)
         let lnq = Math.Log(1.0-p1)
         let mutable acc = 0.
-        for i = k to n do 
-            acc <- acc + Math.Exp(-lnProb (float n) (float i) lnp lnq)
+        for i = k to n do
+            acc <- acc + Math.Exp(-lnProb n i lnp lnq)
         acc <- -Math.Log(acc)
         10. * acc / Math.Log(10.)
+
+    /// The score depends on nothing but the three integers, so every computed value is kept.
+    let private scoreFuncMemo = System.Collections.Concurrent.ConcurrentDictionary<struct (int * int * int), float>()
+
+    let private scoreFuncImpl n k topx =
+        let key = struct (n, k, topx)
+        match scoreFuncMemo.TryGetValue key with
+        | true, v -> v
+        | _ ->
+            let v = scoreFuncCompute n k topx
+            scoreFuncMemo.[key] <- v
+            v
 
     /// Correction factor applided to the andromeda score based on the observed precursor Mz.
     /// Values are taken from the original andromeda release.
