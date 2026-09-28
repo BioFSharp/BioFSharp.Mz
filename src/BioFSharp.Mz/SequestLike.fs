@@ -1,4 +1,4 @@
-﻿namespace BioFSharp.Mz
+namespace BioFSharp.Mz
 
 open BioFSharp
 open SearchDB
@@ -77,37 +77,29 @@ module SequestLike =
 
     /// Computes the autocorrelation of the vector +/- plusMinusMaxDelay.
     let autoCorrelation (plusMinusMaxDelay:int) (vector:Vector<float>) =
-        let shifted (vector:Vector<float>) (tau:int) =
-            vector
-            |> Vector.mapi
-                (fun i x ->
-                    let index = i - tau
-                    if (index < 0) || (index > vector.Length - 1) then 
-                        0.
-                    else
-                        vector.[index] )
-        let rec accumVector (accum) (state:int) (max:int) =
-            if state = max then
-                accum
-            else
-                accumVector (accum + (shifted vector state)) (state - 1) (max)
-        let emtyVector = Vector.zero vector.Length
-        let plus  = accumVector emtyVector (plusMinusMaxDelay) (1)
-        let minus = accumVector emtyVector (-1) (-plusMinusMaxDelay)
-        (plus + minus)
-        |> Vector.map (fun x ->  x / (float plusMinusMaxDelay * 2.))
-       
-    /////
-    //let private createShiftedMatrix (plusMinusMaxDelay:int) (array:float[]) =
-    //    let colNumber = array.Length
-    //    Array2D.init (plusMinusMaxDelay * 2 + 1) colNumber
-    //        (fun i ii ->
-    //            let ni = (i - plusMinusMaxDelay)
-    //            let index = ii - ni
-    //            if (index < 0) || (index > colNumber - 1) then 
-    //                0.
-    //            else
-    //                array.[index] )
+        // Element by element the same sums as the former recursion, which stopped one shift short
+        // on both sides. The positive shifts run from +delay down to +2. The negative shifts run
+        // from -1 down to -(delay-1). The two sums are added and divided by twice the delay. A
+        // shift outside the vector added a zero, and adding zero changes nothing, so those shifts
+        // are skipped. A delay below 1 made the former recursion run forever, so it is rejected.
+        if plusMinusMaxDelay < 1 then invalidArg "plusMinusMaxDelay" "Must be at least 1."
+        let n = vector.Length
+        let result = Vector.zero n
+        let scale = float plusMinusMaxDelay * 2.
+        for i = 0 to n - 1 do
+            let mutable plus = 0.
+            let mutable tau = min plusMinusMaxDelay i
+            while tau >= 2 do
+                plus <- plus + vector.[i - tau]
+                tau <- tau - 1
+            let mutable minus = 0.
+            let mutable k = 1
+            let kMax = min (plusMinusMaxDelay - 1) (n - 1 - i)
+            while k <= kMax do
+                minus <- minus + vector.[i + k]
+                k <- k + 1
+            result.[i] <- (plus + minus) / scale
+        result
 
     /// Converts the fragment ion ladder to a theoretical Sequestlike spectrum at a given charge state. 
     /// Subsequently, the spectrum is binned to the nearest mz bin (binwidth = 1 Da). Filters out peaks 
