@@ -4,6 +4,7 @@
 * XScoring: look up gammaLn of integers in a table and keep the computed Andromeda binomial sums, which makes the Andromeda-like score about ten times faster with identical results
 * XScoring: build the theoretical spectrum of predictOf in an array instead of a list, with the same peaks in the same order
 * SequestLike: compute the autocorrelation in one pass that skips the shifts outside the spectrum, with identical results; a delay below 1, which never terminated before, is rejected
+* Require FSharp.Core 10.0.100 or later instead of the FSharp.Core version of the building SDK
 
 #### 0.2.1 (Released 2026-08-30)
 

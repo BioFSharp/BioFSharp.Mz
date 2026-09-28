@@ -39,6 +39,7 @@
     <ProjectReference Include="..\BioFSharp.Mz\BioFSharp.Mz.fsproj" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Update="FSharp.Core" Version="10.0.100" />
     <PackageReference Include="Plotly.NET" Version="6.0.0-preview.2" />
   </ItemGroup>
 </Project>

@@ -57,6 +57,7 @@
     <Folder Include="scripts\" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Update="FSharp.Core" Version="10.0.100" />
     <PackageReference Include="BioFSharp" Version="2.0.0" />
     <PackageReference Include="FSharp.Stats" Version="0.6.0" />
     <PackageReference Include="FSharpAux" Version="2.1.0" />
