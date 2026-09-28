@@ -1,3 +1,10 @@
+#### 0.2.2 (Released 2026-09-28)
+
+* SearchDB: read the parameters of search databases digested with ProteomIQon's proteases (Trypsin/P, LysC, LysC/P, Chymotrypsin, PepsinA) back with their cleavage rules through the new proteaseByName; reading them failed before because BioFSharp's protease table does not know these names. An unknown protease name now gives an error that names it
+* XScoring: look up gammaLn of integers in a table and keep the computed Andromeda binomial sums, which makes the Andromeda-like score about ten times faster with identical results
+* XScoring: build the theoretical spectrum of predictOf in an array instead of a list, with the same peaks in the same order
+* SequestLike: compute the autocorrelation in one pass that skips the shifts outside the spectrum, with identical results; a delay below 1, which never terminated before, is rejected
+
 #### 0.2.1 (Released 2026-08-30)
 
 * SparsePeakArray: new module upstreamed from ProteomIQon (sparse binned peak vectors over PeakArray with dot product)
