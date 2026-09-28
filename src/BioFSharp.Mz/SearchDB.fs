@@ -1,4 +1,4 @@
-﻿namespace BioFSharp.Mz
+namespace BioFSharp.Mz
 
 
 open BioFSharp
@@ -1702,6 +1702,30 @@ module SearchDB =
         //cn.Close()
         inMemoryDB
 
+    /// The protease stored under its name in a data base. The proteases ProteomIQon digests with
+    /// are built here with ProteomIQon's rules, so a data base digested with one of them can be
+    /// searched and digested again with the same rule. Each cuts after its residues and never at
+    /// the end of the sequence; the ones without "/P" in the name do not cut before a proline.
+    /// ProteomIQon's "LysC" is not the "Lys-C" of BioFSharp's table, which cuts before a proline.
+    /// Any other name is taken from BioFSharp's table.
+    let proteaseByName (name: string) =
+        let create name (residues: AminoAcids.AminoAcid list) beforeProline =
+            let cutters = Set.ofList residues
+            Digestion.createProtease name (fun _ _ _ p1 p1' _ ->
+                match p1, p1' with
+                | Some a1, Some a1' -> cutters.Contains a1 && (beforeProline || a1' <> AminoAcids.Pro)
+                | _ -> false)
+        match name with
+        | "Trypsin/P" -> create name [AminoAcids.Lys; AminoAcids.Arg] true
+        | "LysC" -> create name [AminoAcids.Lys] false
+        | "LysC/P" -> create name [AminoAcids.Lys] true
+        | "Chymotrypsin" -> create name [AminoAcids.Phe; AminoAcids.Tyr; AminoAcids.Trp; AminoAcids.Leu] false
+        | "PepsinA" -> create name [AminoAcids.Phe; AminoAcids.Leu] true
+        | _ ->
+            try Digestion.Table.getProteaseBy name
+            with :? MatchFailureException ->
+                failwithf "The protease \"%s\" of the data base is unknown. Known are Trypsin/P, LysC, LysC/P, Chymotrypsin, PepsinA and the proteases of BioFSharp's table." name
+
     /// Returns a LookUpResult list 
     let getPeptideLookUpBy (sdbParams:SearchDbParams) =
         // Check existens by param
@@ -1772,7 +1796,7 @@ module SearchDB =
         match Db.SQLiteQuery.selectSearchDbParams cn with 
         | Some (iD,name,fo,fp,pr,minmscl,maxmscl,mass,minpL,maxpL,isoL,mMode,fMods,vMods,vThr) -> 
             createSearchDbParams 
-                name fo fp id (Digestion.Table.getProteaseBy pr) minmscl maxmscl mass minpL maxpL 
+                name fo fp id (proteaseByName pr) minmscl maxmscl mass minpL maxpL
                     (Newtonsoft.Json.JsonConvert.DeserializeObject<SearchInfoIsotopic list>(isoL)) (Newtonsoft.Json.JsonConvert.DeserializeObject<MassMode>(mMode)) (massFBy (Newtonsoft.Json.JsonConvert.DeserializeObject<MassMode>(mMode))) 
                         (Newtonsoft.Json.JsonConvert.DeserializeObject<SearchModification list>(fMods)) (Newtonsoft.Json.JsonConvert.DeserializeObject<SearchModification list>(vMods)) vThr
         | None ->
@@ -1791,7 +1815,7 @@ module SearchDB =
         match Db.SQLiteQuery.selectSearchDbParams cn with
         | Some (iD,name,fo,fp,pr,minmscl,maxmscl,mass,minpL,maxpL,isoL,mMode,fMods,vMods,vThr) ->
             createSearchDbParams
-                name fo fp id (Digestion.Table.getProteaseBy pr) minmscl maxmscl mass minpL maxpL
+                name fo fp id (proteaseByName pr) minmscl maxmscl mass minpL maxpL
                     (Newtonsoft.Json.JsonConvert.DeserializeObject<SearchInfoIsotopic list>(isoL)) (Newtonsoft.Json.JsonConvert.DeserializeObject<MassMode>(mMode)) (massFBy (Newtonsoft.Json.JsonConvert.DeserializeObject<MassMode>(mMode)))
                         (Newtonsoft.Json.JsonConvert.DeserializeObject<SearchModification list>(fMods)) (Newtonsoft.Json.JsonConvert.DeserializeObject<SearchModification list>(vMods)) vThr
         | None ->

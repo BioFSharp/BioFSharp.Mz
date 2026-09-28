@@ -40,6 +40,23 @@ let withTemporaryDirectory action =
 let stripBracketedModifications sequence =
     Regex.Replace(sequence, @"\[[^\]]*\]", "")
 
+let digestToStrings (protease: Digestion.Protease) (sequence: string) =
+    Digestion.BioArray.digest protease 0 (BioArray.ofAminoAcidString sequence)
+    |> Array.map (fun peptide -> BioList.toString peptide.PepSequence)
+    |> List.ofArray
+
+/// ProteomIQon's proteases by the names it stores, each with a sequence and the peptides its rule
+/// gives, derived by hand: cut after the residues, never at the end of the sequence, and not before
+/// a proline unless the name ends in "/P". Every sequence holds a residue of the rule before a
+/// proline and one before another residue, and residues of other rules that must not be cut.
+let proteomIQonProteases = [
+    "Trypsin/P",    "AAKPARPAAR",     ["AAK"; "PAR"; "PAAR"]
+    "LysC",         "AAKPARAKAAK",    ["AAKPARAK"; "AAK"]
+    "LysC/P",       "AAKPARAKAAK",    ["AAK"; "PARAK"; "AAK"]
+    "Chymotrypsin", "AFAYAYPAWALAKG", ["AF"; "AY"; "AYPAW"; "AL"; "AKG"]
+    "PepsinA",      "AFPALAYAGF",     ["AF"; "PAL"; "AYAGF"]
+]
+
 [<Tests>]
 let tests =
     testList "SearchDBTests" [
@@ -85,6 +102,29 @@ let tests =
 
                 Expect.equal p.FixedMods (List.sort fx) "fixed modifications are stored in sorted order"
                 // The parameter record is the database's identity for matching existing DBs; sorting makes that identity independent of caller-supplied list order (deterministic identity contract).
+
+            testCase "proteaseByName builds ProteomIQon's proteases under their stored names with their cleavage rules" <| fun _ ->
+                for name, sequence, expected in proteomIQonProteases do
+                    let protease = SearchDB.proteaseByName name
+                    Expect.equal protease.Name name (sprintf "%s keeps its name, so it is stored and found again under it" name)
+                    Expect.equal (digestToStrings protease sequence) expected (sprintf "%s digests %s by its rule" name sequence)
+                // BioFSharp's table has none of these names; a data base digested by ProteomIQon has to be
+                // read back with the rule it was digested with.
+
+            testCase "proteaseByName takes any other name from BioFSharp's table" <| fun _ ->
+                for name, sequence, expected in [ "Trypsin", "AAKPARAAR", ["AAKPAR"; "AAR"]
+                                                  "Lys-C", "AAKPARAKAAK", ["AAK"; "PARAK"; "AAK"] ] do
+                    let protease = SearchDB.proteaseByName name
+                    let table = Digestion.Table.getProteaseBy name
+                    Expect.equal protease.Name table.Name (sprintf "the name of %s comes from the table" name)
+                    Expect.equal (digestToStrings protease sequence) (digestToStrings table sequence) (sprintf "the rule of %s comes from the table" name)
+                    Expect.equal (digestToStrings protease sequence) expected (sprintf "%s digests %s by the table's rule" name sequence)
+                // the table's Lys-C cuts before a proline, unlike ProteomIQon's LysC; a data base digested
+                // with the table's Lys-C has to be read back with that rule.
+
+            testCase "proteaseByName names an unknown protease in its error" <| fun _ ->
+                let error = Expect.throwsC (fun () -> SearchDB.proteaseByName "Unknownase" |> ignore) id
+                Expect.stringContains error.Message "Unknownase" "the message names the protease"
 
             testCase "getModBy realizes the predefined modifications with their published mass deltas" <| fun _ ->
                 let modificationCases = [
@@ -444,6 +484,38 @@ let tests =
                         "changing a digestion parameter identifies a different database"
                     // a database is identified by its search parameters, not its file name: a changed digestion setting must not silently reuse an incompatible database, and stored parameters must survive persistence.
                 )
+
+            testCase "a data base digested with any of ProteomIQon's proteases reads back with the same protease" <| fun _ ->
+                withTemporaryDirectory (fun directory ->
+                    for name, sequence, expected in proteomIQonProteases do
+                        let fastaPath = Path.Combine(directory, "protease.fasta")
+                        File.WriteAllText(fastaPath, ">sp|TESTPROT8|T8\r\n" + sequence + "\r\n")
+                        let creatingParams =
+                            SearchDB.createSearchDbParams
+                                ("testdb_" + name.Replace("/", "_"))
+                                directory
+                                fastaPath
+                                id
+                                (SearchDB.proteaseByName name)
+                                0
+                                1
+                                2750.0
+                                2
+                                20
+                                []
+                                SearchDB.MassMode.Monoisotopic
+                                monoisotopicMass
+                                []
+                                []
+                                1
+                        use connection = SearchDB.connectOrCreateDB creatingParams
+                        let storedParams = SearchDB.getSDBParamsBy (SearchDB.Db.getNameOf creatingParams)
+                        Expect.equal storedParams.Protease.Name name (sprintf "%s is read back under its name" name)
+                        Expect.equal (digestToStrings storedParams.Protease sequence) expected (sprintf "%s is read back with its rule" name)
+                        connection.Close()
+                )
+                // BioFSharp's table has none of these names, so reading the parameters failed before,
+                // which stopped every tool that opens a data base digested with one of them.
 
             // PENDING: MinPepLength = 4 must admit the 4-residue tryptic peptide LLVR. The digestion
             // filter compares (CleavageEnd - CleavageStart) = length-1 strictly, so the effective minimum
