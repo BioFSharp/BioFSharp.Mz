@@ -57,6 +57,21 @@ let taggedFamilyAtMz mz =
 let lookupB =
     SearchDB.createLookUpResult 2 2 (pepMass + 1.0) (int64 ((pepMass + 1.0) * 1e6)) "B" peptide 0
 
+/// The Andromeda-like score of optimizeAndromedaScore without neutral losses, computed as the
+/// released library did before it cached the scores and looked gammaLn up in a table.
+let referenceAndromedaScore (precursorMz: float) (n: int) (k: int) (q: int) =
+    let gammaLn = FSharp.Stats.SpecialFunctions.Gamma.gammaLn
+    let p1 = Math.Min(float q / 100.0, 0.5)
+    let lnp = Math.Log p1
+    let lnq = Math.Log(1.0 - p1)
+    let lnProb (n: float) (k: float) = -k * lnp - (n - k) * lnq - gammaLn (n + 1.) + gammaLn (k + 1.) + gammaLn (n - k + 1.)
+    let mutable acc = 0.
+    for i = k to n do
+        acc <- acc + Math.Exp(-(lnProb (float n) (float i)))
+    let raw = 10. * -Math.Log acc / Math.Log 10.
+    let tmp = raw + 0.024 * (precursorMz - 600.) + 42. + 53.2 - 100.
+    if tmp < 0. then 0. else tmp
+
 [<Tests>]
 let tests =
     testList "XScoringTests" [
@@ -383,5 +398,29 @@ let tests =
                 // a scorer that processes only the first candidate, or reuses one candidate's spectra, fails the per-ID accounting; A matches and B does not, so A-target must lead both streams.
                 assertStream "Andromeda" andro
                 assertStream "XTandem" xtandem
+        ]
+        testList "ScoreCache" [
+            testCase "Andromeda scores from many threads equal the uncached computation bit for bit" <| fun _ ->
+                // Peak counts far above the 4096 values the gammaLn table starts with make it grow
+                // while other threads read it, and every count is asked for eight times, so threads
+                // race on the same cache entries. A torn read or a lost growth gives a wrong score.
+                let rnd = Random(11)
+                let keys =
+                    Array.init 400 (fun i ->
+                        let n = if i % 4 = 0 then 4096 + rnd.Next 40000 else 1 + rnd.Next 400
+                        n, rnd.Next(0, min n 120 + 1), 1 + rnd.Next 12)
+                let expected = keys |> Array.map (fun (n, k, q) -> referenceAndromedaScore 800. n k q)
+                let asks = Array.init (keys.Length * 8) (fun i -> i % keys.Length) |> Array.sortBy (fun _ -> rnd.Next())
+                let actual = Array.zeroCreate<float> asks.Length
+                Threading.Tasks.Parallel.For(0, asks.Length, Threading.Tasks.ParallelOptions(MaxDegreeOfParallelism = 16), fun i ->
+                    let n, k, q = keys.[asks.[i]]
+                    let counted = XScoring.createCountedMatches q n 0 0 k 0 0 0.
+                    actual.[i] <- (XScoring.optimizeAndromedaScore 800. counted).Score) |> ignore
+                let wrong =
+                    asks
+                    |> Array.mapi (fun i key -> BitConverter.DoubleToInt64Bits actual.[i] <> BitConverter.DoubleToInt64Bits expected.[key])
+                    |> Array.filter id
+                    |> Array.length
+                Expect.equal wrong 0 "every score from every thread equals the uncached computation"
         ]
     ]
